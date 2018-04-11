@@ -1,0 +1,71 @@
+   1               		.file	"main.cpp"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	main
+  18               	main:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LBB15:
+  24               	.LM2:
+  25 0000 8FEF      		ldi r24,lo8(-1)
+  26 0002 87BB      		out 55-32,r24
+  27               	.LM3:
+  28 0004 18BA      		out 56-32,__zero_reg__
+  29               	.LM4:
+  30 0006 88BB      		out 56-32,r24
+  31 0008 88E8      		ldi r24,lo8(5000)
+  32 000a 93E1      		ldi r25,hi8(5000)
+  33               	.LVL0:
+  34               	.LBB16:
+  35               	.LBB17:
+  36               	.LBB18:
+  37               	.LBB19:
+  38               	.LBB20:
+  39               	.LM5:
+  40 000c 29E1      		ldi r18,lo8(25)
+  41 000e 30E0      		ldi r19,hi8(25)
+  42               	.L2:
+  43 0010 F901      		movw r30,r18
+  44               	.LVL1:
+  45               	/* #APP */
+  46               	 ;  110 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  47 0012 3197      		1: sbiw r30,1
+  48 0014 01F4      		brne 1b
+  49               	 ;  0 "" 2
+  50               	/* #NOAPP */
+  51               	.LBE20:
+  52               	.LBE19:
+  53               	.LM6:
+  54 0016 0197      		sbiw r24,1
+  55               	.LM7:
+  56 0018 01F4      		brne .L2
+  57               	.LBE18:
+  58               	.LBE17:
+  59               	.LBE16:
+  60               	.LM8:
+  61 001a 88B3      		in r24,56-32
+  62               	.LVL2:
+  63 001c 18BA      		out 56-32,__zero_reg__
+  64               	.L3:
+  65 001e 00C0      		rjmp .L3
+  66               	.LBE15:
+  67               	.LFE6:
+  93               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.cpp
+C:\Users\YATEEN~1\AppData\Local\Temp/ccLvehOC.s:2      *ABS*:0000003f __SREG__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccLvehOC.s:3      *ABS*:0000003e __SP_H__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccLvehOC.s:4      *ABS*:0000003d __SP_L__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccLvehOC.s:5      *ABS*:00000034 __CCP__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccLvehOC.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccLvehOC.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccLvehOC.s:18     .text:00000000 main
+
+NO UNDEFINED SYMBOLS

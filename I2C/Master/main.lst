@@ -1,0 +1,350 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	TWI_init_master
+  18               	TWI_init_master:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 81E0      		ldi r24,lo8(1)
+  25 0002 8093 B800 		sts 184,r24
+  26               	.LM3:
+  27 0006 E9EB      		ldi r30,lo8(185)
+  28 0008 F0E0      		ldi r31,hi8(185)
+  29 000a 8081      		ld r24,Z
+  30 000c 8D7F      		andi r24,lo8(-3)
+  31 000e 8083      		st Z,r24
+  32               	.LM4:
+  33 0010 8081      		ld r24,Z
+  34 0012 8E7F      		andi r24,lo8(-2)
+  35 0014 8083      		st Z,r24
+  36               	/* epilogue start */
+  37               	.LM5:
+  38 0016 0895      		ret
+  39               	.LFE6:
+  41               	.global	TWI_start
+  43               	TWI_start:
+  44               	.LFB7:
+  45               	.LM6:
+  46               	/* prologue: function */
+  47               	/* frame size = 0 */
+  48               	.LM7:
+  49 0018 84EA      		ldi r24,lo8(-92)
+  50 001a 8093 BC00 		sts 188,r24
+  51               	.L4:
+  52               	.LM8:
+  53 001e 8091 BC00 		lds r24,188
+  54 0022 87FF      		sbrs r24,7
+  55 0024 00C0      		rjmp .L4
+  56               	.L7:
+  57               	.LM9:
+  58 0026 8091 B900 		lds r24,185
+  59 002a 887F      		andi r24,lo8(-8)
+  60 002c 8830      		cpi r24,lo8(8)
+  61 002e 01F4      		brne .L7
+  62               	/* epilogue start */
+  63               	.LM10:
+  64 0030 0895      		ret
+  65               	.LFE7:
+  67               	.global	TWI_repeated_start
+  69               	TWI_repeated_start:
+  70               	.LFB8:
+  71               	.LM11:
+  72               	/* prologue: function */
+  73               	/* frame size = 0 */
+  74               	.LM12:
+  75 0032 84EA      		ldi r24,lo8(-92)
+  76 0034 8093 BC00 		sts 188,r24
+  77               	.L11:
+  78               	.LM13:
+  79 0038 8091 BC00 		lds r24,188
+  80 003c 87FF      		sbrs r24,7
+  81 003e 00C0      		rjmp .L11
+  82               	.L14:
+  83               	.LM14:
+  84 0040 8091 B900 		lds r24,185
+  85 0044 887F      		andi r24,lo8(-8)
+  86 0046 8031      		cpi r24,lo8(16)
+  87 0048 01F4      		brne .L14
+  88               	/* epilogue start */
+  89               	.LM15:
+  90 004a 0895      		ret
+  91               	.LFE8:
+  93               	.global	TWI_write_address
+  95               	TWI_write_address:
+  96               	.LFB9:
+  97               	.LM16:
+  98               	.LVL0:
+  99               	/* prologue: function */
+ 100               	/* frame size = 0 */
+ 101               	.LM17:
+ 102 004c 8093 BB00 		sts 187,r24
+ 103               	.LM18:
+ 104 0050 84E8      		ldi r24,lo8(-124)
+ 105               	.LVL1:
+ 106 0052 8093 BC00 		sts 188,r24
+ 107               	.L18:
+ 108               	.LM19:
+ 109 0056 8091 BC00 		lds r24,188
+ 110 005a 87FF      		sbrs r24,7
+ 111 005c 00C0      		rjmp .L18
+ 112               	.L21:
+ 113               	.LM20:
+ 114 005e 8091 B900 		lds r24,185
+ 115 0062 887F      		andi r24,lo8(-8)
+ 116 0064 8831      		cpi r24,lo8(24)
+ 117 0066 01F4      		brne .L21
+ 118               	/* epilogue start */
+ 119               	.LM21:
+ 120 0068 0895      		ret
+ 121               	.LFE9:
+ 123               	.global	TWI_write_data
+ 125               	TWI_write_data:
+ 126               	.LFB10:
+ 127               	.LM22:
+ 128               	.LVL2:
+ 129               	/* prologue: function */
+ 130               	/* frame size = 0 */
+ 131               	.LM23:
+ 132 006a 8093 BB00 		sts 187,r24
+ 133               	.LM24:
+ 134 006e 84E8      		ldi r24,lo8(-124)
+ 135               	.LVL3:
+ 136 0070 8093 BC00 		sts 188,r24
+ 137               	.L25:
+ 138               	.LM25:
+ 139 0074 8091 BC00 		lds r24,188
+ 140 0078 87FF      		sbrs r24,7
+ 141 007a 00C0      		rjmp .L25
+ 142               	.L28:
+ 143               	.LM26:
+ 144 007c 8091 B900 		lds r24,185
+ 145 0080 887F      		andi r24,lo8(-8)
+ 146 0082 8832      		cpi r24,lo8(40)
+ 147 0084 01F4      		brne .L28
+ 148               	/* epilogue start */
+ 149               	.LM27:
+ 150 0086 0895      		ret
+ 151               	.LFE10:
+ 153               	.global	TWI_read_address
+ 155               	TWI_read_address:
+ 156               	.LFB11:
+ 157               	.LM28:
+ 158               	.LVL4:
+ 159               	/* prologue: function */
+ 160               	/* frame size = 0 */
+ 161               	.LM29:
+ 162 0088 8093 BB00 		sts 187,r24
+ 163               	.LM30:
+ 164 008c 84E8      		ldi r24,lo8(-124)
+ 165               	.LVL5:
+ 166 008e 8093 BC00 		sts 188,r24
+ 167               	.L32:
+ 168               	.LM31:
+ 169 0092 8091 BC00 		lds r24,188
+ 170 0096 87FF      		sbrs r24,7
+ 171 0098 00C0      		rjmp .L32
+ 172               	.L35:
+ 173               	.LM32:
+ 174 009a 8091 B900 		lds r24,185
+ 175 009e 887F      		andi r24,lo8(-8)
+ 176 00a0 8034      		cpi r24,lo8(64)
+ 177 00a2 01F4      		brne .L35
+ 178               	/* epilogue start */
+ 179               	.LM33:
+ 180 00a4 0895      		ret
+ 181               	.LFE11:
+ 183               	.global	TWI_read_data
+ 185               	TWI_read_data:
+ 186               	.LFB12:
+ 187               	.LM34:
+ 188               	/* prologue: function */
+ 189               	/* frame size = 0 */
+ 190               	.LM35:
+ 191 00a6 84E8      		ldi r24,lo8(-124)
+ 192 00a8 8093 BC00 		sts 188,r24
+ 193               	.L39:
+ 194               	.LM36:
+ 195 00ac 8091 BC00 		lds r24,188
+ 196 00b0 87FF      		sbrs r24,7
+ 197 00b2 00C0      		rjmp .L39
+ 198               	.L42:
+ 199               	.LM37:
+ 200 00b4 8091 B900 		lds r24,185
+ 201 00b8 887F      		andi r24,lo8(-8)
+ 202 00ba 8835      		cpi r24,lo8(88)
+ 203 00bc 01F4      		brne .L42
+ 204               	.LM38:
+ 205 00be 8091 BB00 		lds r24,187
+ 206 00c2 8093 0000 		sts recv_data,r24
+ 207               	/* epilogue start */
+ 208               	.LM39:
+ 209 00c6 0895      		ret
+ 210               	.LFE12:
+ 212               	.global	TWI_stop
+ 214               	TWI_stop:
+ 215               	.LFB13:
+ 216               	.LM40:
+ 217               	/* prologue: function */
+ 218               	/* frame size = 0 */
+ 219               	.LM41:
+ 220 00c8 84E9      		ldi r24,lo8(-108)
+ 221 00ca 8093 BC00 		sts 188,r24
+ 222               	/* epilogue start */
+ 223               	.LM42:
+ 224 00ce 0895      		ret
+ 225               	.LFE13:
+ 227               	.global	I2C_Write
+ 229               	I2C_Write:
+ 230               	.LFB14:
+ 231               	.LM43:
+ 232               	.LVL6:
+ 233 00d0 0F93      		push r16
+ 234 00d2 1F93      		push r17
+ 235               	/* prologue: function */
+ 236               	/* frame size = 0 */
+ 237 00d4 182F      		mov r17,r24
+ 238 00d6 062F      		mov r16,r22
+ 239               	.LM44:
+ 240 00d8 0E94 0000 		call TWI_start
+ 241               	.LVL7:
+ 242               	.LM45:
+ 243 00dc 812F      		mov r24,r17
+ 244 00de 0E94 0000 		call TWI_write_address
+ 245               	.LM46:
+ 246 00e2 802F      		mov r24,r16
+ 247 00e4 0E94 0000 		call TWI_write_data
+ 248               	.LBB18:
+ 249               	.LBB19:
+ 250               	.LM47:
+ 251 00e8 84E9      		ldi r24,lo8(-108)
+ 252 00ea 8093 BC00 		sts 188,r24
+ 253               	/* epilogue start */
+ 254               	.LBE19:
+ 255               	.LBE18:
+ 256               	.LM48:
+ 257 00ee 1F91      		pop r17
+ 258               	.LVL8:
+ 259 00f0 0F91      		pop r16
+ 260               	.LVL9:
+ 261 00f2 0895      		ret
+ 262               	.LFE14:
+ 264               	.global	I2C_Read
+ 266               	I2C_Read:
+ 267               	.LFB15:
+ 268               	.LM49:
+ 269               	.LVL10:
+ 270 00f4 1F93      		push r17
+ 271               	/* prologue: function */
+ 272               	/* frame size = 0 */
+ 273 00f6 182F      		mov r17,r24
+ 274               	.LM50:
+ 275 00f8 0E94 0000 		call TWI_start
+ 276               	.LVL11:
+ 277               	.LM51:
+ 278 00fc 812F      		mov r24,r17
+ 279 00fe 8F5F      		subi r24,lo8(-(1))
+ 280 0100 0E94 0000 		call TWI_read_address
+ 281               	.LM52:
+ 282 0104 0E94 0000 		call TWI_read_data
+ 283               	.LBB20:
+ 284               	.LBB21:
+ 285               	.LM53:
+ 286 0108 94E9      		ldi r25,lo8(-108)
+ 287 010a 9093 BC00 		sts 188,r25
+ 288               	/* epilogue start */
+ 289               	.LBE21:
+ 290               	.LBE20:
+ 291               	.LM54:
+ 292 010e 1F91      		pop r17
+ 293               	.LVL12:
+ 294 0110 0895      		ret
+ 295               	.LFE15:
+ 297               	.global	main
+ 299               	main:
+ 300               	.LFB16:
+ 301               	.LM55:
+ 302               	/* prologue: function */
+ 303               	/* frame size = 0 */
+ 304               	.LM56:
+ 305 0112 80E2      		ldi r24,lo8(20000)
+ 306 0114 9EE4      		ldi r25,hi8(20000)
+ 307               	.LVL13:
+ 308               	.LBB22:
+ 309               	.LBB23:
+ 310               	.LBB24:
+ 311               	.LBB25:
+ 312               	.LM57:
+ 313 0116 20E7      		ldi r18,lo8(368)
+ 314 0118 31E0      		ldi r19,hi8(368)
+ 315               	.L52:
+ 316 011a F901      		movw r30,r18
+ 317               	.LVL14:
+ 318               	/* #APP */
+ 319               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 320 011c 3197      		1: sbiw r30,1
+ 321 011e 01F4      		brne 1b
+ 322               	 ;  0 "" 2
+ 323               	/* #NOAPP */
+ 324               	.LBE25:
+ 325               	.LBE24:
+ 326               	.LM58:
+ 327 0120 0197      		sbiw r24,1
+ 328               	.LM59:
+ 329 0122 01F4      		brne .L52
+ 330               	.LBE23:
+ 331               	.LBE22:
+ 332               	.LM60:
+ 333 0124 8FEF      		ldi r24,lo8(-1)
+ 334               	.LVL15:
+ 335 0126 84B9      		out 36-32,r24
+ 336               	.LBB26:
+ 337               	.LBB27:
+ 338               	.LM61:
+ 339 0128 81E0      		ldi r24,lo8(1)
+ 340 012a 8093 B800 		sts 184,r24
+ 341               	.LM62:
+ 342 012e 8091 B900 		lds r24,185
+ 343 0132 8D7F      		andi r24,lo8(-3)
+ 344 0134 8093 B900 		sts 185,r24
+ 345               	.LM63:
+ 346 0138 8091 B900 		lds r24,185
+ 347 013c 8E7F      		andi r24,lo8(-2)
+ 348 013e 8093 B900 		sts 185,r24
+ 349               	.L53:
+ 350 0142 00C0      		rjmp .L53
+ 351               	.LBE27:
+ 352               	.LBE26:
+ 353               	.LFE16:
+ 355               		.comm recv_data,1,1
+ 460               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:2      *ABS*:0000003f __SREG__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:3      *ABS*:0000003e __SP_H__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:4      *ABS*:0000003d __SP_L__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:5      *ABS*:00000034 __CCP__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:18     .text:00000000 TWI_init_master
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:43     .text:00000018 TWI_start
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:69     .text:00000032 TWI_repeated_start
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:95     .text:0000004c TWI_write_address
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:125    .text:0000006a TWI_write_data
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:155    .text:00000088 TWI_read_address
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:185    .text:000000a6 TWI_read_data
+                            *COM*:00000001 recv_data
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:214    .text:000000c8 TWI_stop
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:229    .text:000000d0 I2C_Write
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:266    .text:000000f4 I2C_Read
+C:\Users\YATEEN~1\AppData\Local\Temp/ccE1ZunT.s:299    .text:00000112 main
+
+UNDEFINED SYMBOLS
+__do_clear_bss

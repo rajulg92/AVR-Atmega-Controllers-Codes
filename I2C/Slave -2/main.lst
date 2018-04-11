@@ -1,0 +1,236 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	TWI_init_slave
+  18               	TWI_init_slave:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 80E3      		ldi r24,lo8(48)
+  25 0002 82B9      		out 34-32,r24
+  26               	/* epilogue start */
+  27               	.LM3:
+  28 0004 0895      		ret
+  29               	.LFE6:
+  31               	.global	TWI_write_slave
+  33               	TWI_write_slave:
+  34               	.LFB7:
+  35               	.LM4:
+  36               	.LVL0:
+  37               	/* prologue: function */
+  38               	/* frame size = 0 */
+  39               	.LM5:
+  40 0006 83B9      		out 35-32,r24
+  41               	.LM6:
+  42 0008 84E8      		ldi r24,lo8(-124)
+  43               	.LVL1:
+  44 000a 86BF      		out 86-32,r24
+  45               	.L4:
+  46               	.LM7:
+  47 000c 81B1      		in r24,33-32
+  48 000e 887F      		andi r24,lo8(-8)
+  49 0010 803C      		cpi r24,lo8(-64)
+  50 0012 01F4      		brne .L4
+  51               	/* epilogue start */
+  52               	.LM8:
+  53 0014 0895      		ret
+  54               	.LFE7:
+  56               	.global	TWI_match_write_slave
+  58               	TWI_match_write_slave:
+  59               	.LFB8:
+  60               	.LM9:
+  61               	/* prologue: function */
+  62               	/* frame size = 0 */
+  63               	.LM10:
+  64 0016 94EC      		ldi r25,lo8(-60)
+  65 0018 00C0      		rjmp .L8
+  66               	.L10:
+  67 001a 96BF      		out 86-32,r25
+  68               	.L9:
+  69               	.LM11:
+  70 001c 06B6      		in __tmp_reg__,86-32
+  71 001e 07FE      		sbrs __tmp_reg__,7
+  72 0020 00C0      		rjmp .L9
+  73               	.L8:
+  74               	.LM12:
+  75 0022 81B1      		in r24,33-32
+  76 0024 887F      		andi r24,lo8(-8)
+  77 0026 883A      		cpi r24,lo8(-88)
+  78 0028 01F4      		brne .L10
+  79               	/* epilogue start */
+  80               	.LM13:
+  81 002a 0895      		ret
+  82               	.LFE8:
+  84               	.global	TWI_read_slave
+  86               	TWI_read_slave:
+  87               	.LFB9:
+  88               	.LM14:
+  89               	/* prologue: function */
+  90               	/* frame size = 0 */
+  91               	.LM15:
+  92 002c 84EC      		ldi r24,lo8(-60)
+  93 002e 86BF      		out 86-32,r24
+  94               	.L14:
+  95               	.LM16:
+  96 0030 06B6      		in __tmp_reg__,86-32
+  97 0032 07FE      		sbrs __tmp_reg__,7
+  98 0034 00C0      		rjmp .L14
+  99               	.L17:
+ 100               	.LM17:
+ 101 0036 81B1      		in r24,33-32
+ 102 0038 887F      		andi r24,lo8(-8)
+ 103 003a 8038      		cpi r24,lo8(-128)
+ 104 003c 01F4      		brne .L17
+ 105               	.LM18:
+ 106 003e 83B1      		in r24,35-32
+ 107 0040 8093 0000 		sts recv_data,r24
+ 108               	.LM19:
+ 109 0044 88BB      		out 56-32,r24
+ 110               	/* epilogue start */
+ 111               	.LM20:
+ 112 0046 0895      		ret
+ 113               	.LFE9:
+ 115               	.global	TWI_match_read_slave
+ 117               	TWI_match_read_slave:
+ 118               	.LFB10:
+ 119               	.LM21:
+ 120               	/* prologue: function */
+ 121               	/* frame size = 0 */
+ 122               	.LM22:
+ 123 0048 94EC      		ldi r25,lo8(-60)
+ 124 004a 00C0      		rjmp .L21
+ 125               	.L23:
+ 126 004c 96BF      		out 86-32,r25
+ 127               	.L22:
+ 128               	.LM23:
+ 129 004e 06B6      		in __tmp_reg__,86-32
+ 130 0050 07FE      		sbrs __tmp_reg__,7
+ 131 0052 00C0      		rjmp .L22
+ 132               	.L21:
+ 133               	.LM24:
+ 134 0054 81B1      		in r24,33-32
+ 135 0056 887F      		andi r24,lo8(-8)
+ 136 0058 8036      		cpi r24,lo8(96)
+ 137 005a 01F4      		brne .L23
+ 138               	/* epilogue start */
+ 139               	.LM25:
+ 140 005c 0895      		ret
+ 141               	.LFE10:
+ 143               	.global	main
+ 145               	main:
+ 146               	.LFB11:
+ 147               	.LM26:
+ 148 005e DF92      		push r13
+ 149 0060 EF92      		push r14
+ 150 0062 FF92      		push r15
+ 151 0064 0F93      		push r16
+ 152 0066 1F93      		push r17
+ 153 0068 CF93      		push r28
+ 154 006a DF93      		push r29
+ 155               	/* prologue: function */
+ 156               	/* frame size = 0 */
+ 157               	.LM27:
+ 158 006c 8FEF      		ldi r24,lo8(-1)
+ 159 006e 87BB      		out 55-32,r24
+ 160               	.LBB6:
+ 161               	.LBB7:
+ 162               	.LM28:
+ 163 0070 80E3      		ldi r24,lo8(48)
+ 164 0072 82B9      		out 34-32,r24
+ 165 0074 C0E0      		ldi r28,lo8(0)
+ 166 0076 D0E0      		ldi r29,hi8(0)
+ 167               	.LVL2:
+ 168 0078 00E0      		ldi r16,lo8(0)
+ 169 007a 10E0      		ldi r17,hi8(0)
+ 170               	.LVL3:
+ 171               	.LBE7:
+ 172               	.LBE6:
+ 173               	.LBB8:
+ 174               	.LBB9:
+ 175               	.LM29:
+ 176 007c 94E8      		ldi r25,lo8(-124)
+ 177 007e D92E      		mov r13,r25
+ 178               	.LBE9:
+ 179               	.LBE8:
+ 180               	.LM30:
+ 181 0080 81E0      		ldi r24,lo8(1)
+ 182 0082 E82E      		mov r14,r24
+ 183 0084 F12C      		mov r15,__zero_reg__
+ 184               	.L30:
+ 185               	.LM31:
+ 186 0086 0E94 0000 		call TWI_match_read_slave
+ 187               	.LM32:
+ 188 008a 0E94 0000 		call TWI_read_slave
+ 189               	.LM33:
+ 190 008e 8091 0000 		lds r24,recv_data
+ 191 0092 8230      		cpi r24,lo8(2)
+ 192 0094 01F4      		brne .L27
+ 193               	.LM34:
+ 194 0096 0E94 0000 		call TWI_match_write_slave
+ 195               	.LBB11:
+ 196               	.LBB10:
+ 197               	.LM35:
+ 198 009a C3B9      		out 35-32,r28
+ 199               	.LM36:
+ 200 009c D6BE      		out 86-32,r13
+ 201               	.L28:
+ 202               	.LM37:
+ 203 009e 81B1      		in r24,33-32
+ 204 00a0 887F      		andi r24,lo8(-8)
+ 205 00a2 803C      		cpi r24,lo8(-64)
+ 206 00a4 01F4      		brne .L28
+ 207               	.L27:
+ 208               	.LBE10:
+ 209               	.LBE11:
+ 210               	.LM38:
+ 211 00a6 CF3F      		cpi r28,255
+ 212 00a8 D105      		cpc r29,__zero_reg__
+ 213 00aa 01F0      		breq .L29
+ 214 00ac 04F0      		brlt .L29
+ 215 00ae C0E0      		ldi r28,lo8(0)
+ 216 00b0 D0E0      		ldi r29,hi8(0)
+ 217 00b2 00E0      		ldi r16,lo8(0)
+ 218 00b4 10E0      		ldi r17,hi8(0)
+ 219               	.L29:
+ 220               	.LM39:
+ 221 00b6 C701      		movw r24,r14
+ 222 00b8 002E      		mov r0,r16
+ 223 00ba 00C0      		rjmp 2f
+ 224 00bc 880F      	1:	lsl r24
+ 225 00be 991F      		rol r25
+ 226 00c0 0A94      	2:	dec r0
+ 227 00c2 02F4      		brpl 1b
+ 228 00c4 C82B      		or r28,r24
+ 229 00c6 D92B      		or r29,r25
+ 230               	.LM40:
+ 231 00c8 0F5F      		subi r16,lo8(-(1))
+ 232 00ca 1F4F      		sbci r17,hi8(-(1))
+ 233 00cc 00C0      		rjmp .L30
+ 234               	.LFE11:
+ 236               		.comm recv_data,1,1
+ 301               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\YATEEN~1\AppData\Local\Temp/ccs3iJwW.s:2      *ABS*:0000003f __SREG__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccs3iJwW.s:3      *ABS*:0000003e __SP_H__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccs3iJwW.s:4      *ABS*:0000003d __SP_L__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccs3iJwW.s:5      *ABS*:00000034 __CCP__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccs3iJwW.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccs3iJwW.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccs3iJwW.s:18     .text:00000000 TWI_init_slave
+C:\Users\YATEEN~1\AppData\Local\Temp/ccs3iJwW.s:33     .text:00000006 TWI_write_slave
+C:\Users\YATEEN~1\AppData\Local\Temp/ccs3iJwW.s:58     .text:00000016 TWI_match_write_slave
+C:\Users\YATEEN~1\AppData\Local\Temp/ccs3iJwW.s:86     .text:0000002c TWI_read_slave
+                            *COM*:00000001 recv_data
+C:\Users\YATEEN~1\AppData\Local\Temp/ccs3iJwW.s:117    .text:00000048 TWI_match_read_slave
+C:\Users\YATEEN~1\AppData\Local\Temp/ccs3iJwW.s:145    .text:0000005e main
+
+UNDEFINED SYMBOLS
+__do_clear_bss

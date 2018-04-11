@@ -1,0 +1,234 @@
+#include<avr/io.h>
+#include<avr/interrupt.h>
+#include"PORT.h"
+#include"LCD.H"
+#include<util/delay.h>
+int count=0;
+
+void pwm_init()
+{
+	TCCR1A=0XA0;
+	TCNT1=0;
+    TCCR1B=0X11;
+    ICR1=552;
+	OCR1A=0;
+	OCR1B=0;
+}
+
+void fwd()
+{
+OCR1A=552;
+OCR1B=532;
+PORTB|=(1<<PB0);
+PORTE|=(1<<PE7);
+}
+
+void stop()
+{
+OCR1A=0;
+OCR1B=0;
+}
+
+void left()
+{
+OCR1A=250;
+OCR1B=250;
+PORTB&=~(1<<PB0);
+PORTE|=(1<<PE7);
+}
+
+void right()
+{
+OCR1A=250;
+OCR1B=250;
+PORTB|=(1<<PB0);
+PORTE&=~(1<<PE7);
+}
+
+void timer_init()
+{
+TCCR3B |= (1<<CS30);
+//TIMSK |= (1<<TOIE1);
+TCNT3=0;
+}
+
+void main()
+{	
+//int f=0,i=0;
+int cnt = 0;
+DDRB=0xFF;     
+PORTB=0xFF;
+DDRE=0x00;
+//PORTE=0xFF;
+timer_init();
+pwm_init();
+lcd_init();
+lcd_string("FUCK");
+lcd_cmd(LINE2);
+lcd_string("MIT");
+
+/*
+while(cnt<1000)
+{
+
+	lcd_cmd(LINE2);
+	lcd_showvalue(cnt);
+
+	if(CHECKBIT(PORTE,BIT(4)))
+	{	
+		while(CHECKBIT(PORTE,BIT(4)));
+		cnt++;
+	}
+//	lcd_gotoxy2(0);
+//	lcd_showvalue(cnt);
+}
+
+lcd_cmd(LINE2);
+lcd_showvalue(cnt);
+
+//fwd();
+/*
+while(count<=325)
+{
+fwd();
+if(TCNT3>=65000)
+{
+count++;
+TCNT3=0;
+}
+}
+count=0;
+stop();
+while(count<=485)
+{
+stop();
+if(TCNT3>=65000)
+{
+count++;
+TCNT3=0;
+}
+}
+count=0;
+
+while(count<=264)
+{
+right();
+if(TCNT3>=65000)
+{
+count++;
+TCNT3=0;
+}
+}
+count=0;
+while(count<=224)
+{
+stop();
+if(TCNT3>=65000)
+{
+count++;
+TCNT3=0;
+}
+}
+count=0;
+
+while(count<=295)
+{
+fwd();
+if(TCNT3>=65000)
+{
+count++;
+TCNT3=0;
+}
+}
+count=0;
+while(count<=264)
+{
+stop();
+if(TCNT3>=65000)
+{
+count++;
+TCNT3=0;
+}
+}
+count=0;
+while(count<=244)
+{
+right();
+if(TCNT3>=65000)
+{
+count++;
+TCNT3=0;
+}
+}
+stop();
+/*right();
+_delay_ms(1000);
+_delay_ms(500);
+fwd();
+_delay_ms(1000);
+_delay_ms(1000);
+_delay_ms(1000);
+stop();*/
+/*
+while(count!=500)
+{
+if(CHECKBIT(PINE,BIT(4)))
+{
+//SETBIT(PORTB,BIT(5));
+while((CHECKBIT(PINE,BIT(4))));
+//CLEARBIT(PORTB,BIT(5));
+count++;
+lcd_gotoxy1(0);
+lcd_showvalue(count);
+
+}
+}
+while(1);
+/*
+while(1)
+{
+for(i=0;i<128;i++)
+{
+_delay_ms(500);
+}
+TOGGLEBIT(PORTB,BIT(3));
+}
+*/
+/*
+while(1)  
+{
+while(OCR1A<530)
+{
+OCR1A++;
+_delay_ms(20);
+}
+
+_delay_ms(1000);
+_delay_ms(1000);
+_delay_ms(1000);
+_delay_ms(1000);
+_delay_ms(1000);
+TOGGLEBIT(PORTB,BIT(3));
+
+while(OCR1A>30)
+{
+OCR1A--;
+_delay_ms(20);
+}
+_delay_ms(1000);
+//_delay_ms(1000);
+//_delay_ms(1000);
+f=1;
+if(f==1)
+{
+TOGGLEBIT(PORTB,BIT(3));
+f=0;
+}
+
+}*/
+
+while(1);
+}
+
+
+

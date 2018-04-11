@@ -1,0 +1,3 @@
+Change Component Footprint: Designator=P2 Old Footprint=4mm2pin New Footprint=5.08MM2PIN
+Added Member To Class: ClassName=Schematic Member=Component P2 Header 2
+Added Room: Name=Schematic

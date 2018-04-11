@@ -1,0 +1,20 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "DataLogging SMS with Auto Reset", "DataLogging SMS with Auto Reset\DataLogging SMS with Auto Reset_6_1.cproj", "{238AD2D3-EE94-4FEA-8DAF-6A2707DF0BDA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{238AD2D3-EE94-4FEA-8DAF-6A2707DF0BDA}.Debug|AVR.ActiveCfg = Debug|AVR
+		{238AD2D3-EE94-4FEA-8DAF-6A2707DF0BDA}.Debug|AVR.Build.0 = Debug|AVR
+		{238AD2D3-EE94-4FEA-8DAF-6A2707DF0BDA}.Release|AVR.ActiveCfg = Release|AVR
+		{238AD2D3-EE94-4FEA-8DAF-6A2707DF0BDA}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

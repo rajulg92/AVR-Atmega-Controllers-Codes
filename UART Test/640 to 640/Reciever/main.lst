@@ -1,0 +1,2173 @@
+   1               		.file	"main.c"
+   2               	__SP_H__ = 0x3e
+   3               	__SP_L__ = 0x3d
+   4               	__SREG__ = 0x3f
+   5               	__tmp_reg__ = 0
+   6               	__zero_reg__ = 1
+   7               		.text
+   8               	.Ltext0:
+   9               		.cfi_sections	.debug_frame
+  10               	.global	WaitMs
+  12               	WaitMs:
+  13               	.LFB6:
+  14               		.file 1 "LCD_640.h"
+   1:LCD_640.h     **** /*	LCD.h
+   2:LCD_640.h     **** 
+   3:LCD_640.h     **** 	This header files have implementation of some common finctions of the LCD.
+   4:LCD_640.h     **** 	Include this header file in your C code. Call the lcd_init() function before
+   5:LCD_640.h     **** 	calling any other functions to initialize the lcd.
+   6:LCD_640.h     **** 
+   7:LCD_640.h     **** 
+   8:LCD_640.h     **** 	lcd_init() ----- Call the lcd_init() function before calling any other functions
+   9:LCD_640.h     **** 			  to initialize the lcd.
+  10:LCD_640.h     **** 	lcd_cmd() ------ This function is used to give any command instructions to the
+  11:LCD_640.h     **** 			  LCD. For e.g lcd_cmd(0x01) will give the clear command.
+  12:LCD_640.h     **** 	lcd_char() ----- This function will display a single character on the LCD display.
+  13:LCD_640.h     **** 			  For example lcd_char(0x61) will display A. Again lcd_char('b')
+  14:LCD_640.h     **** 			  will display b.
+  15:LCD_640.h     **** 	lcd_string()---- This function will display a string. An example of this would be
+  16:LCD_640.h     **** 			  like lcd_string("This is AVR")
+  17:LCD_640.h     **** 	lcd_showvalue()- This will show a 3-digit decimal value on the LCD. For example if
+  18:LCD_640.h     **** 
+  19:LCD_640.h     **** 			  we give lcd_showvalue(0xFF) then 255 will be displayed.
+  20:LCD_640.h     **** 	lcd_gotoxy1()--- Will set the cursor at a particular position on LINE1 of the LCD.
+  21:LCD_640.h     **** 			  So lcd_gotoxy1(3) will set the cursor at the 3+1=4th column in
+  22:LCD_640.h     **** 			  the 1st line of the LCD.
+  23:LCD_640.h     **** 	lcd_gotoxy2()--- Will set the cursor at a particular position on LINE1 of the LCD.
+  24:LCD_640.h     **** 			  So lcd_gotoxy2(0) will set the cursor at the 0+1=1st column in
+  25:LCD_640.h     **** 			  the 2nd line of the LCD.
+  26:LCD_640.h     **** */
+  27:LCD_640.h     **** 
+  28:LCD_640.h     **** #define BIT(x)  (1<<(x))
+  29:LCD_640.h     **** #define CHECKBIT(x,b)  x&b
+  30:LCD_640.h     **** #define SETBIT(x,b)  x|=b;
+  31:LCD_640.h     **** #define CLEARBIT(x,b)  x&=~b;
+  32:LCD_640.h     **** #define TOGGLEBIT(x,b)  x^=b;
+  33:LCD_640.h     **** #define LINE1	0x80
+  34:LCD_640.h     **** #define LINE2	0xC0
+  35:LCD_640.h     **** #include<util/delay.h>
+  36:LCD_640.h     **** #include <math.h>
+  37:LCD_640.h     **** 
+  38:LCD_640.h     **** void lcd_init(void);
+  39:LCD_640.h     **** void lcd_cmd(unsigned char cmd);
+  40:LCD_640.h     **** void toggleE(void);
+  41:LCD_640.h     **** void lcd_char(unsigned char single);
+  42:LCD_640.h     **** void lcd_string(unsigned char str[32]);
+  43:LCD_640.h     **** void lcd_showvalue(long int num);
+  44:LCD_640.h     **** void lcd_showvaluef(float);
+  45:LCD_640.h     **** void lcd_showvalueh(unsigned int num);
+  46:LCD_640.h     **** void lcd_gotoxy1(unsigned char pos);
+  47:LCD_640.h     **** void lcd_gotoxy2(unsigned char pos);
+  48:LCD_640.h     **** void lcd_exit(void);
+  49:LCD_640.h     **** void WaitMs(unsigned int ms);
+  50:LCD_640.h     **** void CheckTemp(uint8_t temp);
+  51:LCD_640.h     **** unsigned char k=0,j=0;
+  52:LCD_640.h     **** 
+  53:LCD_640.h     **** unsigned char ch[10] = {'0','1','2','3','4','5','6','7','8','9'};
+  54:LCD_640.h     **** unsigned char tenthousand=0,thousand=0,hundred=0,ten=0,one=0;
+  55:LCD_640.h     **** 
+  56:LCD_640.h     **** void WaitMs(unsigned int ms)
+  57:LCD_640.h     **** {
+  15               		.loc 1 57 0
+  16               		.cfi_startproc
+  17               	.LVL0:
+  18               	/* prologue: function */
+  19               	/* frame size = 0 */
+  20               	/* stack size = 0 */
+  21               	.L__stack_usage = 0
+  22               	.L2:
+  58:LCD_640.h     **** 	int i;
+  59:LCD_640.h     **** 	while (ms-- > 0)
+  23               		.loc 1 59 0 discriminator 1
+  24               	.LVL1:
+  25 0000 0197      		sbiw r24,1
+  26 0002 00F0      		brcs .L1
+  27               		.loc 1 59 0 is_stmt 0
+  28 0004 2CEC      		ldi r18,lo8(-52)
+  29 0006 3CE0      		ldi r19,lo8(12)
+  30               	.L5:
+  31               	.LVL2:
+  60:LCD_640.h     **** 	{
+  61:LCD_640.h     **** 		/* 16380 (16k) clock cycles for 1ms; each time through loop
+  62:LCD_640.h     **** 		   is 5 cycles (for loop control + nop) */
+  63:LCD_640.h     **** 		for (i = 0; i < 3276; ++i)
+  64:LCD_640.h     **** 			asm("nop");
+  32               		.loc 1 64 0 is_stmt 1 discriminator 2
+  33               	/* #APP */
+  34               	 ;  64 "LCD_640.h" 1
+  35 0008 0000      		nop
+  36               	 ;  0 "" 2
+  37               	.LVL3:
+  38               	/* #NOAPP */
+  39 000a 2150      		subi r18,1
+  40 000c 3109      		sbc r19,__zero_reg__
+  41               	.LVL4:
+  63:LCD_640.h     **** 		for (i = 0; i < 3276; ++i)
+  42               		.loc 1 63 0 discriminator 2
+  43 000e 2115      		cp r18,__zero_reg__
+  44 0010 3105      		cpc r19,__zero_reg__
+  45 0012 01F4      		brne .L5
+  46 0014 00C0      		rjmp .L2
+  47               	.LVL5:
+  48               	.L1:
+  49 0016 0895      		ret
+  50               		.cfi_endproc
+  51               	.LFE6:
+  53               	.global	toggleE
+  55               	toggleE:
+  56               	.LFB7:
+  65:LCD_640.h     **** 	}
+  66:LCD_640.h     **** }
+  67:LCD_640.h     **** 
+  68:LCD_640.h     **** void toggleE(void)
+  69:LCD_640.h     **** {
+  57               		.loc 1 69 0
+  58               		.cfi_startproc
+  59               	/* prologue: function */
+  60               	/* frame size = 0 */
+  61               	/* stack size = 0 */
+  62               	.L__stack_usage = 0
+  70:LCD_640.h     **** 	SETBIT(PORTE,BIT(0));
+  63               		.loc 1 70 0
+  64 0018 709A      		sbi 0xe,0
+  65               	.LVL6:
+  66               	.LBB12:
+  67               	.LBB13:
+  68               		.file 2 "/usr/lib/avr/include/util/delay.h"
+   1:/usr/lib/avr/include/util/delay.h **** /* Copyright (c) 2002, Marek Michalkiewicz
+   2:/usr/lib/avr/include/util/delay.h ****    Copyright (c) 2004,2005,2007 Joerg Wunsch
+   3:/usr/lib/avr/include/util/delay.h ****    Copyright (c) 2007  Florin-Viorel Petrov
+   4:/usr/lib/avr/include/util/delay.h ****    All rights reserved.
+   5:/usr/lib/avr/include/util/delay.h **** 
+   6:/usr/lib/avr/include/util/delay.h ****    Redistribution and use in source and binary forms, with or without
+   7:/usr/lib/avr/include/util/delay.h ****    modification, are permitted provided that the following conditions are met:
+   8:/usr/lib/avr/include/util/delay.h **** 
+   9:/usr/lib/avr/include/util/delay.h ****    * Redistributions of source code must retain the above copyright
+  10:/usr/lib/avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer.
+  11:/usr/lib/avr/include/util/delay.h **** 
+  12:/usr/lib/avr/include/util/delay.h ****    * Redistributions in binary form must reproduce the above copyright
+  13:/usr/lib/avr/include/util/delay.h ****      notice, this list of conditions and the following disclaimer in
+  14:/usr/lib/avr/include/util/delay.h ****      the documentation and/or other materials provided with the
+  15:/usr/lib/avr/include/util/delay.h ****      distribution.
+  16:/usr/lib/avr/include/util/delay.h **** 
+  17:/usr/lib/avr/include/util/delay.h ****    * Neither the name of the copyright holders nor the names of
+  18:/usr/lib/avr/include/util/delay.h ****      contributors may be used to endorse or promote products derived
+  19:/usr/lib/avr/include/util/delay.h ****      from this software without specific prior written permission.
+  20:/usr/lib/avr/include/util/delay.h **** 
+  21:/usr/lib/avr/include/util/delay.h ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  22:/usr/lib/avr/include/util/delay.h ****   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  23:/usr/lib/avr/include/util/delay.h ****   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  24:/usr/lib/avr/include/util/delay.h ****   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  25:/usr/lib/avr/include/util/delay.h ****   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  26:/usr/lib/avr/include/util/delay.h ****   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  27:/usr/lib/avr/include/util/delay.h ****   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  28:/usr/lib/avr/include/util/delay.h ****   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  29:/usr/lib/avr/include/util/delay.h ****   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  30:/usr/lib/avr/include/util/delay.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  31:/usr/lib/avr/include/util/delay.h ****   POSSIBILITY OF SUCH DAMAGE. */
+  32:/usr/lib/avr/include/util/delay.h **** 
+  33:/usr/lib/avr/include/util/delay.h **** /* $Id: delay.h.in 2251 2011-09-14 08:20:33Z joerg_wunsch $ */
+  34:/usr/lib/avr/include/util/delay.h **** 
+  35:/usr/lib/avr/include/util/delay.h **** #ifndef _UTIL_DELAY_H_
+  36:/usr/lib/avr/include/util/delay.h **** #define _UTIL_DELAY_H_ 1
+  37:/usr/lib/avr/include/util/delay.h **** 
+  38:/usr/lib/avr/include/util/delay.h **** #ifndef __HAS_DELAY_CYCLES
+  39:/usr/lib/avr/include/util/delay.h **** #define __HAS_DELAY_CYCLES 1
+  40:/usr/lib/avr/include/util/delay.h **** #endif
+  41:/usr/lib/avr/include/util/delay.h **** 
+  42:/usr/lib/avr/include/util/delay.h **** #include <inttypes.h>
+  43:/usr/lib/avr/include/util/delay.h **** #include <util/delay_basic.h>
+  44:/usr/lib/avr/include/util/delay.h **** #include <math.h>
+  45:/usr/lib/avr/include/util/delay.h **** 
+  46:/usr/lib/avr/include/util/delay.h **** /** \file */
+  47:/usr/lib/avr/include/util/delay.h **** /** \defgroup util_delay <util/delay.h>: Convenience functions for busy-wait delay loops
+  48:/usr/lib/avr/include/util/delay.h ****     \code
+  49:/usr/lib/avr/include/util/delay.h ****     #define F_CPU 1000000UL  // 1 MHz
+  50:/usr/lib/avr/include/util/delay.h ****     //#define F_CPU 14.7456E6
+  51:/usr/lib/avr/include/util/delay.h ****     #include <util/delay.h>
+  52:/usr/lib/avr/include/util/delay.h ****     \endcode
+  53:/usr/lib/avr/include/util/delay.h **** 
+  54:/usr/lib/avr/include/util/delay.h ****     \note As an alternative method, it is possible to pass the
+  55:/usr/lib/avr/include/util/delay.h ****     F_CPU macro down to the compiler from the Makefile.
+  56:/usr/lib/avr/include/util/delay.h ****     Obviously, in that case, no \c \#define statement should be
+  57:/usr/lib/avr/include/util/delay.h ****     used.
+  58:/usr/lib/avr/include/util/delay.h **** 
+  59:/usr/lib/avr/include/util/delay.h ****     The functions in this header file are wrappers around the basic
+  60:/usr/lib/avr/include/util/delay.h ****     busy-wait functions from <util/delay_basic.h>.  They are meant as
+  61:/usr/lib/avr/include/util/delay.h ****     convenience functions where actual time values can be specified
+  62:/usr/lib/avr/include/util/delay.h ****     rather than a number of cycles to wait for.  The idea behind is
+  63:/usr/lib/avr/include/util/delay.h ****     that compile-time constant expressions will be eliminated by
+  64:/usr/lib/avr/include/util/delay.h ****     compiler optimization so floating-point expressions can be used
+  65:/usr/lib/avr/include/util/delay.h ****     to calculate the number of delay cycles needed based on the CPU
+  66:/usr/lib/avr/include/util/delay.h ****     frequency passed by the macro F_CPU.
+  67:/usr/lib/avr/include/util/delay.h **** 
+  68:/usr/lib/avr/include/util/delay.h ****     \note In order for these functions to work as intended, compiler
+  69:/usr/lib/avr/include/util/delay.h ****     optimizations <em>must</em> be enabled, and the delay time
+  70:/usr/lib/avr/include/util/delay.h ****     <em>must</em> be an expression that is a known constant at
+  71:/usr/lib/avr/include/util/delay.h ****     compile-time.  If these requirements are not met, the resulting
+  72:/usr/lib/avr/include/util/delay.h ****     delay will be much longer (and basically unpredictable), and
+  73:/usr/lib/avr/include/util/delay.h ****     applications that otherwise do not use floating-point calculations
+  74:/usr/lib/avr/include/util/delay.h ****     will experience severe code bloat by the floating-point library
+  75:/usr/lib/avr/include/util/delay.h ****     routines linked into the application.
+  76:/usr/lib/avr/include/util/delay.h **** 
+  77:/usr/lib/avr/include/util/delay.h ****     The functions available allow the specification of microsecond, and
+  78:/usr/lib/avr/include/util/delay.h ****     millisecond delays directly, using the application-supplied macro
+  79:/usr/lib/avr/include/util/delay.h ****     F_CPU as the CPU clock frequency (in Hertz).
+  80:/usr/lib/avr/include/util/delay.h **** 
+  81:/usr/lib/avr/include/util/delay.h **** */
+  82:/usr/lib/avr/include/util/delay.h **** 
+  83:/usr/lib/avr/include/util/delay.h **** #if !defined(__DOXYGEN__)
+  84:/usr/lib/avr/include/util/delay.h **** static inline void _delay_us(double __us) __attribute__((always_inline));
+  85:/usr/lib/avr/include/util/delay.h **** static inline void _delay_ms(double __ms) __attribute__((always_inline));
+  86:/usr/lib/avr/include/util/delay.h **** #endif
+  87:/usr/lib/avr/include/util/delay.h **** 
+  88:/usr/lib/avr/include/util/delay.h **** #ifndef F_CPU
+  89:/usr/lib/avr/include/util/delay.h **** /* prevent compiler error by supplying a default */
+  90:/usr/lib/avr/include/util/delay.h **** # warning "F_CPU not defined for <util/delay.h>"
+  91:/usr/lib/avr/include/util/delay.h **** # define F_CPU 1000000UL
+  92:/usr/lib/avr/include/util/delay.h **** #endif
+  93:/usr/lib/avr/include/util/delay.h **** 
+  94:/usr/lib/avr/include/util/delay.h **** #ifndef __OPTIMIZE__
+  95:/usr/lib/avr/include/util/delay.h **** # warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+  96:/usr/lib/avr/include/util/delay.h **** #endif
+  97:/usr/lib/avr/include/util/delay.h **** 
+  98:/usr/lib/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+  99:/usr/lib/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 100:/usr/lib/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 101:/usr/lib/avr/include/util/delay.h **** #  include <math.h>
+ 102:/usr/lib/avr/include/util/delay.h **** #endif
+ 103:/usr/lib/avr/include/util/delay.h **** 
+ 104:/usr/lib/avr/include/util/delay.h **** /**
+ 105:/usr/lib/avr/include/util/delay.h ****    \ingroup util_delay
+ 106:/usr/lib/avr/include/util/delay.h **** 
+ 107:/usr/lib/avr/include/util/delay.h ****    Perform a delay of \c __ms milliseconds, using _delay_loop_2().
+ 108:/usr/lib/avr/include/util/delay.h **** 
+ 109:/usr/lib/avr/include/util/delay.h ****    The macro F_CPU is supposed to be defined to a
+ 110:/usr/lib/avr/include/util/delay.h ****    constant defining the CPU clock frequency (in Hertz).
+ 111:/usr/lib/avr/include/util/delay.h **** 
+ 112:/usr/lib/avr/include/util/delay.h ****    The maximal possible delay is 262.14 ms / F_CPU in MHz.
+ 113:/usr/lib/avr/include/util/delay.h **** 
+ 114:/usr/lib/avr/include/util/delay.h ****    When the user request delay which exceed the maximum possible one,
+ 115:/usr/lib/avr/include/util/delay.h ****    _delay_ms() provides a decreased resolution functionality. In this
+ 116:/usr/lib/avr/include/util/delay.h ****    mode _delay_ms() will work with a resolution of 1/10 ms, providing
+ 117:/usr/lib/avr/include/util/delay.h ****    delays up to 6.5535 seconds (independent from CPU frequency).  The
+ 118:/usr/lib/avr/include/util/delay.h ****    user will not be informed about decreased resolution.
+ 119:/usr/lib/avr/include/util/delay.h **** 
+ 120:/usr/lib/avr/include/util/delay.h ****    If the avr-gcc toolchain has __builtin_avr_delay_cycles(unsigned long)
+ 121:/usr/lib/avr/include/util/delay.h ****    support, maximal possible delay is 4294967.295 ms/ F_CPU in MHz. For
+ 122:/usr/lib/avr/include/util/delay.h ****    values greater than the maximal possible delay, overflows results in
+ 123:/usr/lib/avr/include/util/delay.h ****    no delay i.e., 0ms.
+ 124:/usr/lib/avr/include/util/delay.h **** 
+ 125:/usr/lib/avr/include/util/delay.h ****    Conversion of __us into clock cycles may not always result in integer.
+ 126:/usr/lib/avr/include/util/delay.h ****    By default, the clock cycles rounded up to next integer. This ensures that
+ 127:/usr/lib/avr/include/util/delay.h ****    the user gets atleast __us microseconds of delay.
+ 128:/usr/lib/avr/include/util/delay.h **** 
+ 129:/usr/lib/avr/include/util/delay.h ****    Alternatively, user can define __DELAY_ROUND_DOWN__ and __DELAY_ROUND_CLOSEST__
+ 130:/usr/lib/avr/include/util/delay.h ****    to round down and round to closest integer.
+ 131:/usr/lib/avr/include/util/delay.h **** 
+ 132:/usr/lib/avr/include/util/delay.h ****    Note: The new implementation of _delay_ms(double __ms) with 
+ 133:/usr/lib/avr/include/util/delay.h ****     __builtin_avr_delay_cycles(unsigned long) support is not backward compatible. 
+ 134:/usr/lib/avr/include/util/delay.h ****    User can define __DELAY_BACKWARD_COMPATIBLE__ to get a backward compatible delay.
+ 135:/usr/lib/avr/include/util/delay.h ****    Also, the backward compatible
+ 136:/usr/lib/avr/include/util/delay.h ****    algorithm will be chosen if the code is compiled in a <em>freestanding
+ 137:/usr/lib/avr/include/util/delay.h ****    environment</em> (GCC option \c -ffreestanding), as the math functions
+ 138:/usr/lib/avr/include/util/delay.h ****    required for rounding are not available to the compiler then.
+ 139:/usr/lib/avr/include/util/delay.h **** 
+ 140:/usr/lib/avr/include/util/delay.h ****  */
+ 141:/usr/lib/avr/include/util/delay.h **** void
+ 142:/usr/lib/avr/include/util/delay.h **** _delay_ms(double __ms)
+ 143:/usr/lib/avr/include/util/delay.h **** {
+ 144:/usr/lib/avr/include/util/delay.h **** 	uint16_t __ticks;
+ 145:/usr/lib/avr/include/util/delay.h **** 	double __tmp ; 
+ 146:/usr/lib/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 147:/usr/lib/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 148:/usr/lib/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 149:/usr/lib/avr/include/util/delay.h **** 	uint32_t __ticks_dc;
+ 150:/usr/lib/avr/include/util/delay.h **** 	extern void __builtin_avr_delay_cycles(unsigned long);
+ 151:/usr/lib/avr/include/util/delay.h **** 	__tmp = ((F_CPU) / 1e3) * __ms;
+ 152:/usr/lib/avr/include/util/delay.h **** 
+ 153:/usr/lib/avr/include/util/delay.h **** 	#if defined(__DELAY_ROUND_DOWN__)
+ 154:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)fabs(__tmp);
+ 155:/usr/lib/avr/include/util/delay.h **** 
+ 156:/usr/lib/avr/include/util/delay.h **** 	#elif defined(__DELAY_ROUND_CLOSEST__)
+ 157:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(fabs(__tmp)+0.5);
+ 158:/usr/lib/avr/include/util/delay.h **** 
+ 159:/usr/lib/avr/include/util/delay.h **** 	#else
+ 160:/usr/lib/avr/include/util/delay.h **** 		//round up by default
+ 161:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+ 162:/usr/lib/avr/include/util/delay.h **** 	#endif
+ 163:/usr/lib/avr/include/util/delay.h **** 
+ 164:/usr/lib/avr/include/util/delay.h **** 	__builtin_avr_delay_cycles(__ticks_dc);
+ 165:/usr/lib/avr/include/util/delay.h **** 
+ 166:/usr/lib/avr/include/util/delay.h **** #else
+ 167:/usr/lib/avr/include/util/delay.h **** 	__tmp = ((F_CPU) / 4e3) * __ms;
+ 168:/usr/lib/avr/include/util/delay.h **** 	if (__tmp < 1.0)
+ 169:/usr/lib/avr/include/util/delay.h **** 		__ticks = 1;
+ 170:/usr/lib/avr/include/util/delay.h **** 	else if (__tmp > 65535)
+ 171:/usr/lib/avr/include/util/delay.h **** 	{
+ 172:/usr/lib/avr/include/util/delay.h **** 		//	__ticks = requested delay in 1/10 ms
+ 173:/usr/lib/avr/include/util/delay.h **** 		__ticks = (uint16_t) (__ms * 10.0);
+ 174:/usr/lib/avr/include/util/delay.h **** 		while(__ticks)
+ 175:/usr/lib/avr/include/util/delay.h **** 		{
+ 176:/usr/lib/avr/include/util/delay.h **** 			// wait 1/10 ms
+ 177:/usr/lib/avr/include/util/delay.h **** 			_delay_loop_2(((F_CPU) / 4e3) / 10);
+ 178:/usr/lib/avr/include/util/delay.h **** 			__ticks --;
+ 179:/usr/lib/avr/include/util/delay.h **** 		}
+ 180:/usr/lib/avr/include/util/delay.h **** 		return;
+ 181:/usr/lib/avr/include/util/delay.h **** 	}
+ 182:/usr/lib/avr/include/util/delay.h **** 	else
+ 183:/usr/lib/avr/include/util/delay.h **** 		__ticks = (uint16_t)__tmp;
+ 184:/usr/lib/avr/include/util/delay.h **** 	_delay_loop_2(__ticks);
+ 185:/usr/lib/avr/include/util/delay.h **** #endif
+ 186:/usr/lib/avr/include/util/delay.h **** }
+ 187:/usr/lib/avr/include/util/delay.h **** 
+ 188:/usr/lib/avr/include/util/delay.h **** /**
+ 189:/usr/lib/avr/include/util/delay.h ****    \ingroup util_delay
+ 190:/usr/lib/avr/include/util/delay.h **** 
+ 191:/usr/lib/avr/include/util/delay.h ****    Perform a delay of \c __us microseconds, using _delay_loop_1().
+ 192:/usr/lib/avr/include/util/delay.h **** 
+ 193:/usr/lib/avr/include/util/delay.h ****    The macro F_CPU is supposed to be defined to a
+ 194:/usr/lib/avr/include/util/delay.h ****    constant defining the CPU clock frequency (in Hertz).
+ 195:/usr/lib/avr/include/util/delay.h **** 
+ 196:/usr/lib/avr/include/util/delay.h ****    The maximal possible delay is 768 us / F_CPU in MHz.
+ 197:/usr/lib/avr/include/util/delay.h **** 
+ 198:/usr/lib/avr/include/util/delay.h ****    If the user requests a delay greater than the maximal possible one,
+ 199:/usr/lib/avr/include/util/delay.h ****    _delay_us() will automatically call _delay_ms() instead.  The user
+ 200:/usr/lib/avr/include/util/delay.h ****    will not be informed about this case.
+ 201:/usr/lib/avr/include/util/delay.h **** 
+ 202:/usr/lib/avr/include/util/delay.h ****    If the avr-gcc toolchain has __builtin_avr_delay_cycles(unsigned long)
+ 203:/usr/lib/avr/include/util/delay.h ****    support, maximal possible delay is 4294967.295 us/ F_CPU in MHz. For
+ 204:/usr/lib/avr/include/util/delay.h ****    values greater than the maximal possible delay, overflow results in
+ 205:/usr/lib/avr/include/util/delay.h ****    no delay i.e., 0us.
+ 206:/usr/lib/avr/include/util/delay.h ****   
+ 207:/usr/lib/avr/include/util/delay.h ****    Conversion of __us into clock cycles may not always result in integer.
+ 208:/usr/lib/avr/include/util/delay.h ****    By default, the clock cycles rounded up to next integer. This ensures that
+ 209:/usr/lib/avr/include/util/delay.h ****    the user gets atleast __us microseconds of delay.
+ 210:/usr/lib/avr/include/util/delay.h **** 
+ 211:/usr/lib/avr/include/util/delay.h ****    Alternatively, user can define __DELAY_ROUND_DOWN__ and __DELAY_ROUND_CLOSEST__
+ 212:/usr/lib/avr/include/util/delay.h ****    to round down and round to closest integer.
+ 213:/usr/lib/avr/include/util/delay.h ****  
+ 214:/usr/lib/avr/include/util/delay.h ****    Note: The new implementation of _delay_us(double __us) with 
+ 215:/usr/lib/avr/include/util/delay.h ****     __builtin_avr_delay_cycles(unsigned long) support is not backward compatible.
+ 216:/usr/lib/avr/include/util/delay.h ****    User can define __DELAY_BACKWARD_COMPATIBLE__ to get a backward compatible delay.
+ 217:/usr/lib/avr/include/util/delay.h ****    Also, the backward compatible
+ 218:/usr/lib/avr/include/util/delay.h ****    algorithm will be chosen if the code is compiled in a <em>freestanding
+ 219:/usr/lib/avr/include/util/delay.h ****    environment</em> (GCC option \c -ffreestanding), as the math functions
+ 220:/usr/lib/avr/include/util/delay.h ****    required for rounding are not available to the compiler then.
+ 221:/usr/lib/avr/include/util/delay.h **** 
+ 222:/usr/lib/avr/include/util/delay.h ****  */
+ 223:/usr/lib/avr/include/util/delay.h **** void
+ 224:/usr/lib/avr/include/util/delay.h **** _delay_us(double __us)
+ 225:/usr/lib/avr/include/util/delay.h **** {
+ 226:/usr/lib/avr/include/util/delay.h **** 	uint8_t __ticks;
+ 227:/usr/lib/avr/include/util/delay.h **** 	double __tmp ; 
+ 228:/usr/lib/avr/include/util/delay.h **** #if __HAS_DELAY_CYCLES && defined(__OPTIMIZE__) && \
+ 229:/usr/lib/avr/include/util/delay.h ****   !defined(__DELAY_BACKWARD_COMPATIBLE__) &&	   \
+ 230:/usr/lib/avr/include/util/delay.h ****   __STDC_HOSTED__
+ 231:/usr/lib/avr/include/util/delay.h **** 	uint32_t __ticks_dc;
+ 232:/usr/lib/avr/include/util/delay.h **** 	extern void __builtin_avr_delay_cycles(unsigned long);
+ 233:/usr/lib/avr/include/util/delay.h **** 	__tmp = ((F_CPU) / 1e6) * __us;
+ 234:/usr/lib/avr/include/util/delay.h **** 
+ 235:/usr/lib/avr/include/util/delay.h **** 	#if defined(__DELAY_ROUND_DOWN__)
+ 236:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)fabs(__tmp);
+ 237:/usr/lib/avr/include/util/delay.h **** 
+ 238:/usr/lib/avr/include/util/delay.h **** 	#elif defined(__DELAY_ROUND_CLOSEST__)
+ 239:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(fabs(__tmp)+0.5);
+ 240:/usr/lib/avr/include/util/delay.h **** 
+ 241:/usr/lib/avr/include/util/delay.h **** 	#else
+ 242:/usr/lib/avr/include/util/delay.h **** 		//round up by default
+ 243:/usr/lib/avr/include/util/delay.h **** 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+ 244:/usr/lib/avr/include/util/delay.h **** 	#endif
+ 245:/usr/lib/avr/include/util/delay.h **** 
+ 246:/usr/lib/avr/include/util/delay.h **** 	__builtin_avr_delay_cycles(__ticks_dc);
+  69               		.loc 2 246 0
+  70 001a 86EA      		ldi r24,lo8(-90)
+  71 001c 8A95      		1: dec r24
+  72 001e 01F4      		brne 1b
+  73 0020 00C0      		rjmp .
+  74               	.LBE13:
+  75               	.LBE12:
+  71:LCD_640.h     **** 	_delay_us(500);
+  72:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(0));
+  76               		.loc 1 72 0
+  77 0022 7098      		cbi 0xe,0
+  78 0024 0895      		ret
+  79               		.cfi_endproc
+  80               	.LFE7:
+  82               	.global	CheckTemp
+  84               	CheckTemp:
+  85               	.LFB8:
+  73:LCD_640.h     **** }
+  74:LCD_640.h     **** 
+  75:LCD_640.h     **** void CheckTemp(uint8_t temp)
+  76:LCD_640.h     **** {
+  86               		.loc 1 76 0
+  87               		.cfi_startproc
+  88               	.LVL7:
+  89 0026 CF93      		push r28
+  90               	.LCFI0:
+  91               		.cfi_def_cfa_offset 3
+  92               		.cfi_offset 28, -2
+  93 0028 DF93      		push r29
+  94               	.LCFI1:
+  95               		.cfi_def_cfa_offset 4
+  96               		.cfi_offset 29, -3
+  97 002a 1F92      		push __zero_reg__
+  98               	.LCFI2:
+  99               		.cfi_def_cfa_offset 5
+ 100 002c CDB7      		in r28,__SP_L__
+ 101 002e DEB7      		in r29,__SP_H__
+ 102               	.LCFI3:
+ 103               		.cfi_def_cfa_register 28
+ 104               	/* prologue: function */
+ 105               	/* frame size = 1 */
+ 106               	/* stack size = 3 */
+ 107               	.L__stack_usage = 3
+ 108 0030 8983      		std Y+1,r24
+  77:LCD_640.h     **** 	if (bit_is_set(temp, 7))
+ 109               		.loc 1 77 0
+ 110 0032 8981      		ldd r24,Y+1
+ 111               	.LVL8:
+ 112 0034 87FF      		sbrs r24,7
+ 113 0036 00C0      		rjmp .L9
+  78:LCD_640.h     **** 	{
+  79:LCD_640.h     **** 		SETBIT(PORTE, BIT(7))
+ 114               		.loc 1 79 0
+ 115 0038 779A      		sbi 0xe,7
+ 116 003a 00C0      		rjmp .L10
+ 117               	.L9:
+  80:LCD_640.h     **** 	}
+  81:LCD_640.h     **** 	else
+  82:LCD_640.h     **** 	{
+  83:LCD_640.h     **** 		CLEARBIT(PORTE, BIT(7))
+ 118               		.loc 1 83 0
+ 119 003c 7798      		cbi 0xe,7
+ 120               	.L10:
+  84:LCD_640.h     **** 	}
+  85:LCD_640.h     **** 	
+  86:LCD_640.h     **** 	if (bit_is_set(temp, 6))
+ 121               		.loc 1 86 0
+ 122 003e 8981      		ldd r24,Y+1
+ 123 0040 86FF      		sbrs r24,6
+ 124 0042 00C0      		rjmp .L11
+  87:LCD_640.h     **** 	{
+  88:LCD_640.h     **** 		SETBIT(PORTE, BIT(6))
+ 125               		.loc 1 88 0
+ 126 0044 769A      		sbi 0xe,6
+ 127 0046 00C0      		rjmp .L12
+ 128               	.L11:
+  89:LCD_640.h     **** 	}
+  90:LCD_640.h     **** 	else
+  91:LCD_640.h     **** 	{
+  92:LCD_640.h     **** 		CLEARBIT(PORTE, BIT(6))
+ 129               		.loc 1 92 0
+ 130 0048 7698      		cbi 0xe,6
+ 131               	.L12:
+  93:LCD_640.h     **** 	}
+  94:LCD_640.h     **** 	if (bit_is_set(temp, 1))
+ 132               		.loc 1 94 0
+ 133 004a 8981      		ldd r24,Y+1
+ 134 004c 81FF      		sbrs r24,1
+ 135 004e 00C0      		rjmp .L13
+  95:LCD_640.h     **** 	{
+  96:LCD_640.h     **** 		SETBIT(PORTE, BIT(1))
+ 136               		.loc 1 96 0
+ 137 0050 719A      		sbi 0xe,1
+ 138 0052 00C0      		rjmp .L14
+ 139               	.L13:
+  97:LCD_640.h     **** 	}
+  98:LCD_640.h     **** 	else
+  99:LCD_640.h     **** 	{
+ 100:LCD_640.h     **** 		CLEARBIT(PORTE, BIT(1))
+ 140               		.loc 1 100 0
+ 141 0054 7198      		cbi 0xe,1
+ 142               	.L14:
+ 101:LCD_640.h     **** 	}
+ 102:LCD_640.h     **** 	
+ 103:LCD_640.h     **** 	if (bit_is_set(temp, 2))
+ 143               		.loc 1 103 0
+ 144 0056 8981      		ldd r24,Y+1
+ 145 0058 82FF      		sbrs r24,2
+ 146 005a 00C0      		rjmp .L15
+ 104:LCD_640.h     **** 	{
+ 105:LCD_640.h     **** 		SETBIT(PORTE, BIT(2))
+ 147               		.loc 1 105 0
+ 148 005c 729A      		sbi 0xe,2
+ 149 005e 00C0      		rjmp .L16
+ 150               	.L15:
+ 106:LCD_640.h     **** 	}
+ 107:LCD_640.h     **** 	else
+ 108:LCD_640.h     **** 	{
+ 109:LCD_640.h     **** 		CLEARBIT(PORTE, BIT(2))
+ 151               		.loc 1 109 0
+ 152 0060 7298      		cbi 0xe,2
+ 153               	.L16:
+ 110:LCD_640.h     **** 	}
+ 111:LCD_640.h     **** 	
+ 112:LCD_640.h     **** 	if (bit_is_set(temp, 0))
+ 154               		.loc 1 112 0
+ 155 0062 8981      		ldd r24,Y+1
+ 156 0064 80FF      		sbrs r24,0
+ 157 0066 00C0      		rjmp .L17
+ 113:LCD_640.h     **** 	{
+ 114:LCD_640.h     **** 		SETBIT(PORTE, BIT(0))
+ 158               		.loc 1 114 0
+ 159 0068 709A      		sbi 0xe,0
+ 160 006a 00C0      		rjmp .L8
+ 161               	.L17:
+ 115:LCD_640.h     **** 	}
+ 116:LCD_640.h     **** 	else
+ 117:LCD_640.h     **** 	{
+ 118:LCD_640.h     **** 		CLEARBIT(PORTE, BIT(0))
+ 162               		.loc 1 118 0
+ 163 006c 7098      		cbi 0xe,0
+ 164               	.L8:
+ 165               	/* epilogue start */
+ 119:LCD_640.h     **** 	}
+ 120:LCD_640.h     **** }
+ 166               		.loc 1 120 0
+ 167 006e 0F90      		pop __tmp_reg__
+ 168 0070 DF91      		pop r29
+ 169 0072 CF91      		pop r28
+ 170               	.LVL9:
+ 171 0074 0895      		ret
+ 172               		.cfi_endproc
+ 173               	.LFE8:
+ 175               	.global	lcd_cmd
+ 177               	lcd_cmd:
+ 178               	.LFB9:
+ 121:LCD_640.h     **** 
+ 122:LCD_640.h     **** void lcd_cmd(unsigned char ch)
+ 123:LCD_640.h     **** {
+ 179               		.loc 1 123 0
+ 180               		.cfi_startproc
+ 181               	.LVL10:
+ 182 0076 CF93      		push r28
+ 183               	.LCFI4:
+ 184               		.cfi_def_cfa_offset 3
+ 185               		.cfi_offset 28, -2
+ 186 0078 DF93      		push r29
+ 187               	.LCFI5:
+ 188               		.cfi_def_cfa_offset 4
+ 189               		.cfi_offset 29, -3
+ 190               	/* prologue: function */
+ 191               	/* frame size = 0 */
+ 192               	/* stack size = 2 */
+ 193               	.L__stack_usage = 2
+ 194 007a C82F      		mov r28,r24
+ 124:LCD_640.h     **** 	int temp;
+ 125:LCD_640.h     **** 	CLEARBIT(PORTG,BIT(5));
+ 195               		.loc 1 125 0
+ 196 007c A598      		cbi 0x14,5
+ 126:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(0));
+ 197               		.loc 1 126 0
+ 198 007e 7098      		cbi 0xe,0
+ 199               	.LVL11:
+ 127:LCD_640.h     **** 
+ 128:LCD_640.h     **** 	temp= ch & 0b11000000; // '10'000000
+ 129:LCD_640.h     **** 	CheckTemp(temp);	
+ 200               		.loc 1 129 0
+ 201 0080 807C      		andi r24,lo8(-64)
+ 202               	.LVL12:
+ 203 0082 0E94 0000 		call CheckTemp
+ 204               	.LVL13:
+ 130:LCD_640.h     **** 	//PORTE=temp;
+ 131:LCD_640.h     **** 	
+ 132:LCD_640.h     **** 	temp=(ch >> 3) & 0b00000110; // 00000'11'0
+ 133:LCD_640.h     **** 	temp = PORTE | temp;
+ 205               		.loc 1 133 0
+ 206 0086 9EB1      		in r25,0xe
+ 207               	.LVL14:
+ 132:LCD_640.h     **** 	temp=(ch >> 3) & 0b00000110; // 00000'11'0
+ 208               		.loc 1 132 0
+ 209 0088 8C2F      		mov r24,r28
+ 210 008a 8695      		lsr r24
+ 211 008c 8695      		lsr r24
+ 212 008e 8695      		lsr r24
+ 213 0090 8670      		andi r24,lo8(6)
+ 134:LCD_640.h     **** 	
+ 135:LCD_640.h     **** 	CheckTemp(temp);
+ 214               		.loc 1 135 0
+ 215 0092 892B      		or r24,r25
+ 216 0094 0E94 0000 		call CheckTemp
+ 217               	.LVL15:
+ 218               	.LBB14:
+ 219               	.LBB15:
+ 220               		.loc 2 246 0
+ 221 0098 00C0      		rjmp .
+ 222 009a 00C0      		rjmp .
+ 223 009c 0000      		nop
+ 224               	.LBE15:
+ 225               	.LBE14:
+ 136:LCD_640.h     **** 	_delay_us(5);
+ 137:LCD_640.h     **** 	
+ 138:LCD_640.h     **** 	toggleE();
+ 226               		.loc 1 138 0
+ 227 009e 0E94 0000 		call toggleE
+ 228               	.LVL16:
+ 139:LCD_640.h     ****    // Extract lower nibble
+ 140:LCD_640.h     **** 	SETBIT(PORTG,BIT(5));
+ 229               		.loc 1 140 0
+ 230 00a2 A59A      		sbi 0x14,5
+ 141:LCD_640.h     ****    	CLEARBIT(PORTG,BIT(5));
+ 231               		.loc 1 141 0
+ 232 00a4 A598      		cbi 0x14,5
+ 142:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(0));
+ 233               		.loc 1 142 0
+ 234 00a6 7098      		cbi 0xe,0
+ 143:LCD_640.h     **** 
+ 144:LCD_640.h     **** 	temp=(ch << 4) & 0b11000000; // '10'000000
+ 235               		.loc 1 144 0
+ 236 00a8 D0E0      		ldi r29,0
+ 237               	.LVL17:
+ 238 00aa CE01      		movw r24,r28
+ 239 00ac 24E0      		ldi r18,4
+ 240               		1:
+ 241 00ae 880F      		lsl r24
+ 242 00b0 991F      		rol r25
+ 243 00b2 2A95      		dec r18
+ 244 00b4 01F4      		brne 1b
+ 145:LCD_640.h     **** 	CheckTemp(temp);
+ 245               		.loc 1 145 0
+ 246 00b6 807C      		andi r24,lo8(-64)
+ 247 00b8 0E94 0000 		call CheckTemp
+ 248               	.LVL18:
+ 146:LCD_640.h     **** 	temp=(ch << 1) & 0b00000110; // 00000'01'0 
+ 249               		.loc 1 146 0
+ 250 00bc CE01      		movw r24,r28
+ 251 00be 880F      		lsl r24
+ 252 00c0 991F      		rol r25
+ 253 00c2 8670      		andi r24,6
+ 254 00c4 9927      		clr r25
+ 255               	.LVL19:
+ 147:LCD_640.h     **** 	temp= PORTE | temp;
+ 256               		.loc 1 147 0
+ 257 00c6 9EB1      		in r25,0xe
+ 258               	.LVL20:
+ 148:LCD_640.h     **** 	CheckTemp(temp);
+ 259               		.loc 1 148 0
+ 260 00c8 892B      		or r24,r25
+ 261               	.LVL21:
+ 262 00ca 0E94 0000 		call CheckTemp
+ 263               	.LVL22:
+ 264               	.LBB16:
+ 265               	.LBB17:
+ 266               		.loc 2 246 0
+ 267 00ce 00C0      		rjmp .
+ 268 00d0 00C0      		rjmp .
+ 269 00d2 0000      		nop
+ 270               	.LBE17:
+ 271               	.LBE16:
+ 149:LCD_640.h     **** 	_delay_us(5);
+ 150:LCD_640.h     **** 	toggleE();
+ 272               		.loc 1 150 0
+ 273 00d4 0E94 0000 		call toggleE
+ 274               	.LVL23:
+ 151:LCD_640.h     ****    	//PORTE = 0x00;
+ 152:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(0));			//Enable
+ 275               		.loc 1 152 0
+ 276 00d8 7098      		cbi 0xe,0
+ 153:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(1));
+ 277               		.loc 1 153 0
+ 278 00da 7198      		cbi 0xe,1
+ 154:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(2));
+ 279               		.loc 1 154 0
+ 280 00dc 7298      		cbi 0xe,2
+ 155:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(6));
+ 281               		.loc 1 155 0
+ 282 00de 7698      		cbi 0xe,6
+ 156:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(7));
+ 283               		.loc 1 156 0
+ 284 00e0 7798      		cbi 0xe,7
+ 157:LCD_640.h     ****    	WaitMs(10);
+ 285               		.loc 1 157 0
+ 286 00e2 8AE0      		ldi r24,lo8(10)
+ 287 00e4 90E0      		ldi r25,0
+ 288               	/* epilogue start */
+ 158:LCD_640.h     **** }
+ 289               		.loc 1 158 0
+ 290 00e6 DF91      		pop r29
+ 291 00e8 CF91      		pop r28
+ 292               	.LVL24:
+ 157:LCD_640.h     ****    	WaitMs(10);
+ 293               		.loc 1 157 0
+ 294 00ea 0C94 0000 		jmp WaitMs
+ 295               	.LVL25:
+ 296               		.cfi_endproc
+ 297               	.LFE9:
+ 299               	.global	lcd_init
+ 301               	lcd_init:
+ 302               	.LFB10:
+ 159:LCD_640.h     **** 
+ 160:LCD_640.h     **** void lcd_init(void)
+ 161:LCD_640.h     **** {
+ 303               		.loc 1 161 0
+ 304               		.cfi_startproc
+ 305               	/* prologue: function */
+ 306               	/* frame size = 0 */
+ 307               	/* stack size = 0 */
+ 308               	.L__stack_usage = 0
+ 162:LCD_640.h     **** 	DDRE |= (1<<0) | (1<<1) | (1<<2) | (1<<6) | (1<<7);
+ 309               		.loc 1 162 0
+ 310 00ee 8DB1      		in r24,0xd
+ 311 00f0 876C      		ori r24,lo8(-57)
+ 312 00f2 8DB9      		out 0xd,r24
+ 163:LCD_640.h     **** 	DDRG |= (1<<5);
+ 313               		.loc 1 163 0
+ 314 00f4 9D9A      		sbi 0x13,5
+ 164:LCD_640.h     **** 	WaitMs(15);
+ 315               		.loc 1 164 0
+ 316 00f6 8FE0      		ldi r24,lo8(15)
+ 317 00f8 90E0      		ldi r25,0
+ 318 00fa 0E94 0000 		call WaitMs
+ 319               	.LVL26:
+ 165:LCD_640.h     **** 	CLEARBIT(PORTG,BIT(5));			//RS
+ 320               		.loc 1 165 0
+ 321 00fe A598      		cbi 0x14,5
+ 166:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(0));			//Enable
+ 322               		.loc 1 166 0
+ 323 0100 7098      		cbi 0xe,0
+ 167:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(1));
+ 324               		.loc 1 167 0
+ 325 0102 7198      		cbi 0xe,1
+ 168:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(2));
+ 326               		.loc 1 168 0
+ 327 0104 7298      		cbi 0xe,2
+ 169:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(6));
+ 328               		.loc 1 169 0
+ 329 0106 7698      		cbi 0xe,6
+ 170:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(7));
+ 330               		.loc 1 170 0
+ 331 0108 7798      		cbi 0xe,7
+ 171:LCD_640.h     **** 	lcd_cmd(0x20);		//data is 8-bit length
+ 332               		.loc 1 171 0
+ 333 010a 80E2      		ldi r24,lo8(32)
+ 334 010c 0E94 0000 		call lcd_cmd
+ 335               	.LVL27:
+ 172:LCD_640.h     **** 	WaitMs(1);
+ 336               		.loc 1 172 0
+ 337 0110 81E0      		ldi r24,lo8(1)
+ 338 0112 90E0      		ldi r25,0
+ 339 0114 0E94 0000 		call WaitMs
+ 340               	.LVL28:
+ 173:LCD_640.h     **** 	lcd_cmd(0x20);		//data is 8-bit length
+ 341               		.loc 1 173 0
+ 342 0118 80E2      		ldi r24,lo8(32)
+ 343 011a 0E94 0000 		call lcd_cmd
+ 344               	.LVL29:
+ 174:LCD_640.h     **** 	WaitMs(1);
+ 345               		.loc 1 174 0
+ 346 011e 81E0      		ldi r24,lo8(1)
+ 347 0120 90E0      		ldi r25,0
+ 348 0122 0E94 0000 		call WaitMs
+ 349               	.LVL30:
+ 175:LCD_640.h     **** 	lcd_cmd(0x20);		//data is 8-bit length
+ 350               		.loc 1 175 0
+ 351 0126 80E2      		ldi r24,lo8(32)
+ 352 0128 0E94 0000 		call lcd_cmd
+ 353               	.LVL31:
+ 176:LCD_640.h     **** 	WaitMs(1);
+ 354               		.loc 1 176 0
+ 355 012c 81E0      		ldi r24,lo8(1)
+ 356 012e 90E0      		ldi r25,0
+ 357 0130 0E94 0000 		call WaitMs
+ 358               	.LVL32:
+ 177:LCD_640.h     **** 	lcd_cmd(0x28);		//sets character font
+ 359               		.loc 1 177 0
+ 360 0134 88E2      		ldi r24,lo8(40)
+ 361 0136 0E94 0000 		call lcd_cmd
+ 362               	.LVL33:
+ 178:LCD_640.h     **** 	WaitMs(1);
+ 363               		.loc 1 178 0
+ 364 013a 81E0      		ldi r24,lo8(1)
+ 365 013c 90E0      		ldi r25,0
+ 366 013e 0E94 0000 		call WaitMs
+ 367               	.LVL34:
+ 179:LCD_640.h     **** 	lcd_cmd(0x0E);		//display off(d,c,b=0) 08
+ 368               		.loc 1 179 0
+ 369 0142 8EE0      		ldi r24,lo8(14)
+ 370 0144 0E94 0000 		call lcd_cmd
+ 371               	.LVL35:
+ 180:LCD_640.h     **** 	WaitMs(1);
+ 372               		.loc 1 180 0
+ 373 0148 81E0      		ldi r24,lo8(1)
+ 374 014a 90E0      		ldi r25,0
+ 375 014c 0E94 0000 		call WaitMs
+ 376               	.LVL36:
+ 181:LCD_640.h     **** 	lcd_cmd(0x01);		//clears the data
+ 377               		.loc 1 181 0
+ 378 0150 81E0      		ldi r24,lo8(1)
+ 379 0152 0E94 0000 		call lcd_cmd
+ 380               	.LVL37:
+ 182:LCD_640.h     **** 	WaitMs(1);
+ 381               		.loc 1 182 0
+ 382 0156 81E0      		ldi r24,lo8(1)
+ 383 0158 90E0      		ldi r25,0
+ 384 015a 0E94 0000 		call WaitMs
+ 385               	.LVL38:
+ 183:LCD_640.h     **** 	lcd_cmd(0x6);		//entry mode--increment
+ 386               		.loc 1 183 0
+ 387 015e 86E0      		ldi r24,lo8(6)
+ 388 0160 0E94 0000 		call lcd_cmd
+ 389               	.LVL39:
+ 184:LCD_640.h     **** 	WaitMs(1);
+ 390               		.loc 1 184 0
+ 391 0164 81E0      		ldi r24,lo8(1)
+ 392 0166 90E0      		ldi r25,0
+ 393 0168 0C94 0000 		jmp WaitMs
+ 394               	.LVL40:
+ 395               		.cfi_endproc
+ 396               	.LFE10:
+ 398               	.global	lcd_char
+ 400               	lcd_char:
+ 401               	.LFB11:
+ 185:LCD_640.h     **** }
+ 186:LCD_640.h     **** 
+ 187:LCD_640.h     **** void lcd_char(unsigned char data)
+ 188:LCD_640.h     **** {	
+ 402               		.loc 1 188 0
+ 403               		.cfi_startproc
+ 404               	.LVL41:
+ 405 016c CF93      		push r28
+ 406               	.LCFI6:
+ 407               		.cfi_def_cfa_offset 3
+ 408               		.cfi_offset 28, -2
+ 409 016e DF93      		push r29
+ 410               	.LCFI7:
+ 411               		.cfi_def_cfa_offset 4
+ 412               		.cfi_offset 29, -3
+ 413               	/* prologue: function */
+ 414               	/* frame size = 0 */
+ 415               	/* stack size = 2 */
+ 416               	.L__stack_usage = 2
+ 417 0170 C82F      		mov r28,r24
+ 189:LCD_640.h     **** 	int temp;
+ 190:LCD_640.h     **** 	WaitMs(15);
+ 418               		.loc 1 190 0
+ 419 0172 8FE0      		ldi r24,lo8(15)
+ 420 0174 90E0      		ldi r25,0
+ 421               	.LVL42:
+ 422 0176 0E94 0000 		call WaitMs
+ 423               	.LVL43:
+ 191:LCD_640.h     **** 	SETBIT(PORTG,BIT(5));
+ 424               		.loc 1 191 0
+ 425 017a A59A      		sbi 0x14,5
+ 192:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(0));
+ 426               		.loc 1 192 0
+ 427 017c 7098      		cbi 0xe,0
+ 428               	.LVL44:
+ 193:LCD_640.h     **** 	temp= (data & 0b11000000); // '10'000000
+ 194:LCD_640.h     **** 	CheckTemp(temp);
+ 429               		.loc 1 194 0
+ 430 017e 8C2F      		mov r24,r28
+ 431 0180 807C      		andi r24,lo8(-64)
+ 432 0182 0E94 0000 		call CheckTemp
+ 433               	.LVL45:
+ 195:LCD_640.h     **** 	temp=(data>>3) & 0b00000110; // 00000'11'0
+ 196:LCD_640.h     **** 	temp = PORTE | temp;
+ 434               		.loc 1 196 0
+ 435 0186 9EB1      		in r25,0xe
+ 436               	.LVL46:
+ 195:LCD_640.h     **** 	temp=(data>>3) & 0b00000110; // 00000'11'0
+ 437               		.loc 1 195 0
+ 438 0188 8C2F      		mov r24,r28
+ 439 018a 8695      		lsr r24
+ 440 018c 8695      		lsr r24
+ 441 018e 8695      		lsr r24
+ 442 0190 8670      		andi r24,lo8(6)
+ 197:LCD_640.h     **** 	CheckTemp(temp);
+ 443               		.loc 1 197 0
+ 444 0192 892B      		or r24,r25
+ 445 0194 0E94 0000 		call CheckTemp
+ 446               	.LVL47:
+ 447               	.LBB18:
+ 448               	.LBB19:
+ 449               		.loc 2 246 0
+ 450 0198 00C0      		rjmp .
+ 451 019a 00C0      		rjmp .
+ 452 019c 0000      		nop
+ 453               	.LBE19:
+ 454               	.LBE18:
+ 198:LCD_640.h     **** 	_delay_us(5);
+ 199:LCD_640.h     **** 	toggleE();	
+ 455               		.loc 1 199 0
+ 456 019e 0E94 0000 		call toggleE
+ 457               	.LVL48:
+ 200:LCD_640.h     **** 	
+ 201:LCD_640.h     **** 	CLEARBIT(PORTG,BIT(5));
+ 458               		.loc 1 201 0
+ 459 01a2 A598      		cbi 0x14,5
+ 202:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(0));
+ 460               		.loc 1 202 0
+ 461 01a4 7098      		cbi 0xe,0
+ 203:LCD_640.h     **** 	SETBIT(PORTG,BIT(5));
+ 462               		.loc 1 203 0
+ 463 01a6 A59A      		sbi 0x14,5
+ 204:LCD_640.h     **** 	temp=(data << 4) & 0b11000000; // '10'000000
+ 464               		.loc 1 204 0
+ 465 01a8 D0E0      		ldi r29,0
+ 466               	.LVL49:
+ 467 01aa CE01      		movw r24,r28
+ 468 01ac 44E0      		ldi r20,4
+ 469               		1:
+ 470 01ae 880F      		lsl r24
+ 471 01b0 991F      		rol r25
+ 472 01b2 4A95      		dec r20
+ 473 01b4 01F4      		brne 1b
+ 205:LCD_640.h     **** 	CheckTemp(temp);
+ 474               		.loc 1 205 0
+ 475 01b6 807C      		andi r24,lo8(-64)
+ 476 01b8 0E94 0000 		call CheckTemp
+ 477               	.LVL50:
+ 206:LCD_640.h     **** 	temp=(data << 1) & 0b00000110; // 00000'01'0 
+ 478               		.loc 1 206 0
+ 479 01bc CE01      		movw r24,r28
+ 480 01be 880F      		lsl r24
+ 481 01c0 991F      		rol r25
+ 482 01c2 8670      		andi r24,6
+ 483 01c4 9927      		clr r25
+ 484               	.LVL51:
+ 207:LCD_640.h     **** 	temp = PORTE | temp;
+ 485               		.loc 1 207 0
+ 486 01c6 9EB1      		in r25,0xe
+ 487               	.LVL52:
+ 208:LCD_640.h     **** 	CheckTemp(temp);
+ 488               		.loc 1 208 0
+ 489 01c8 892B      		or r24,r25
+ 490               	.LVL53:
+ 491 01ca 0E94 0000 		call CheckTemp
+ 492               	.LVL54:
+ 493               	.LBB20:
+ 494               	.LBB21:
+ 495               		.loc 2 246 0
+ 496 01ce 00C0      		rjmp .
+ 497 01d0 00C0      		rjmp .
+ 498 01d2 0000      		nop
+ 499               	/* epilogue start */
+ 500               	.LBE21:
+ 501               	.LBE20:
+ 209:LCD_640.h     **** 	_delay_us(5);				
+ 210:LCD_640.h     **** 	toggleE();
+ 211:LCD_640.h     **** }
+ 502               		.loc 1 211 0
+ 503 01d4 DF91      		pop r29
+ 504 01d6 CF91      		pop r28
+ 505               	.LVL55:
+ 210:LCD_640.h     **** 	toggleE();
+ 506               		.loc 1 210 0
+ 507 01d8 0C94 0000 		jmp toggleE
+ 508               	.LVL56:
+ 509               		.cfi_endproc
+ 510               	.LFE11:
+ 512               	.global	lcd_string
+ 514               	lcd_string:
+ 515               	.LFB12:
+ 212:LCD_640.h     **** 
+ 213:LCD_640.h     **** void lcd_string(unsigned char str[32])
+ 214:LCD_640.h     **** {
+ 516               		.loc 1 214 0
+ 517               		.cfi_startproc
+ 518               	.LVL57:
+ 519 01dc EF92      		push r14
+ 520               	.LCFI8:
+ 521               		.cfi_def_cfa_offset 3
+ 522               		.cfi_offset 14, -2
+ 523 01de FF92      		push r15
+ 524               	.LCFI9:
+ 525               		.cfi_def_cfa_offset 4
+ 526               		.cfi_offset 15, -3
+ 527 01e0 0F93      		push r16
+ 528               	.LCFI10:
+ 529               		.cfi_def_cfa_offset 5
+ 530               		.cfi_offset 16, -4
+ 531 01e2 1F93      		push r17
+ 532               	.LCFI11:
+ 533               		.cfi_def_cfa_offset 6
+ 534               		.cfi_offset 17, -5
+ 535 01e4 CF93      		push r28
+ 536               	.LCFI12:
+ 537               		.cfi_def_cfa_offset 7
+ 538               		.cfi_offset 28, -6
+ 539 01e6 DF93      		push r29
+ 540               	.LCFI13:
+ 541               		.cfi_def_cfa_offset 8
+ 542               		.cfi_offset 29, -7
+ 543               	/* prologue: function */
+ 544               	/* frame size = 0 */
+ 545               	/* stack size = 6 */
+ 546               	.L__stack_usage = 6
+ 547 01e8 8C01      		movw r16,r24
+ 548               	.LVL58:
+ 215:LCD_640.h     **** 	int poop,bitch;
+ 216:LCD_640.h     **** 	unsigned char k=0;
+ 217:LCD_640.h     **** 	SETBIT(PORTG,BIT(5));
+ 549               		.loc 1 217 0
+ 550 01ea A59A      		sbi 0x14,5
+ 218:LCD_640.h     **** 	CLEARBIT(PORTE,BIT(0));
+ 551               		.loc 1 218 0
+ 552 01ec 7098      		cbi 0xe,0
+ 216:LCD_640.h     **** 	unsigned char k=0;
+ 553               		.loc 1 216 0
+ 554 01ee F12C      		mov r15,__zero_reg__
+ 555               	.LVL59:
+ 556               	.L23:
+ 219:LCD_640.h     **** 	while(str[k]!='\0')	//Till null character is encountered
+ 557               		.loc 1 219 0 discriminator 1
+ 558 01f0 E801      		movw r28,r16
+ 559 01f2 CF0D      		add r28,r15
+ 560 01f4 D11D      		adc r29,__zero_reg__
+ 561 01f6 8881      		ld r24,Y
+ 562 01f8 8823      		tst r24
+ 563 01fa 01F0      		breq .L26
+ 220:LCD_640.h     **** 	{
+ 221:LCD_640.h     **** 		if(k==16)
+ 564               		.loc 1 221 0
+ 565 01fc 80E1      		ldi r24,lo8(16)
+ 566 01fe F812      		cpse r15,r24
+ 567 0200 00C0      		rjmp .L24
+ 222:LCD_640.h     **** 		lcd_cmd(LINE2);
+ 568               		.loc 1 222 0
+ 569 0202 80EC      		ldi r24,lo8(-64)
+ 570 0204 0E94 0000 		call lcd_cmd
+ 571               	.LVL60:
+ 572               	.L24:
+ 223:LCD_640.h     **** 		SETBIT(PORTG,BIT(5));
+ 573               		.loc 1 223 0
+ 574 0208 A59A      		sbi 0x14,5
+ 224:LCD_640.h     **** 		CLEARBIT(PORTE,BIT(0));
+ 575               		.loc 1 224 0
+ 576 020a 7098      		cbi 0xe,0
+ 225:LCD_640.h     **** 		bitch=str[k]; //10111001
+ 577               		.loc 1 225 0
+ 578 020c E880      		ld r14,Y
+ 579               	.LVL61:
+ 226:LCD_640.h     **** 		poop= bitch & 0b11000000; // '10'000000
+ 227:LCD_640.h     **** 		CheckTemp(poop);
+ 580               		.loc 1 227 0
+ 581 020e 8E2D      		mov r24,r14
+ 582 0210 807C      		andi r24,lo8(-64)
+ 583 0212 0E94 0000 		call CheckTemp
+ 584               	.LVL62:
+ 225:LCD_640.h     **** 		bitch=str[k]; //10111001
+ 585               		.loc 1 225 0
+ 586 0216 2E2D      		mov r18,r14
+ 587 0218 30E0      		ldi r19,0
+ 228:LCD_640.h     **** 		//PORTE=poop;
+ 229:LCD_640.h     **** 		poop=(bitch>>3) & 0b00000110; // 00000'11'0
+ 588               		.loc 1 229 0
+ 589 021a 63E0      		ldi r22,3
+ 590               		1:
+ 591 021c 3595      		asr r19
+ 592 021e 2795      		ror r18
+ 593 0220 6A95      		dec r22
+ 594 0222 01F4      		brne 1b
+ 595 0224 2670      		andi r18,6
+ 596 0226 3327      		clr r19
+ 597               	.LVL63:
+ 230:LCD_640.h     **** 		poop = PORTE | poop;
+ 598               		.loc 1 230 0
+ 599 0228 8EB1      		in r24,0xe
+ 231:LCD_640.h     **** 		CheckTemp(poop);
+ 600               		.loc 1 231 0
+ 601 022a 822B      		or r24,r18
+ 602 022c 0E94 0000 		call CheckTemp
+ 603               	.LVL64:
+ 232:LCD_640.h     **** 		
+ 233:LCD_640.h     **** 		toggleE();
+ 604               		.loc 1 233 0
+ 605 0230 0E94 0000 		call toggleE
+ 606               	.LVL65:
+ 234:LCD_640.h     **** 		CLEARBIT(PORTG,BIT(5))
+ 607               		.loc 1 234 0
+ 608 0234 A598      		cbi 0x14,5
+ 235:LCD_640.h     **** 		SETBIT(PORTG,BIT(5));
+ 609               		.loc 1 235 0
+ 610 0236 A59A      		sbi 0x14,5
+ 236:LCD_640.h     **** 		CLEARBIT(PORTE,BIT(0));
+ 611               		.loc 1 236 0
+ 612 0238 7098      		cbi 0xe,0
+ 237:LCD_640.h     **** 		bitch=str[k];
+ 613               		.loc 1 237 0
+ 614 023a C881      		ld r28,Y
+ 615 023c D0E0      		ldi r29,0
+ 616               	.LVL66:
+ 238:LCD_640.h     **** 		poop=(bitch << 4) & 0b11000000; // '10'000000
+ 617               		.loc 1 238 0
+ 618 023e CE01      		movw r24,r28
+ 619 0240 74E0      		ldi r23,4
+ 620               		1:
+ 621 0242 880F      		lsl r24
+ 622 0244 991F      		rol r25
+ 623 0246 7A95      		dec r23
+ 624 0248 01F4      		brne 1b
+ 239:LCD_640.h     **** 		CheckTemp(poop);
+ 625               		.loc 1 239 0
+ 626 024a 807C      		andi r24,lo8(-64)
+ 627 024c 0E94 0000 		call CheckTemp
+ 628               	.LVL67:
+ 240:LCD_640.h     **** 		poop=(bitch << 1) & 0b00000110; // 00000'01'0
+ 629               		.loc 1 240 0
+ 630 0250 9E01      		movw r18,r28
+ 631 0252 220F      		lsl r18
+ 632 0254 331F      		rol r19
+ 633 0256 2670      		andi r18,6
+ 634 0258 3327      		clr r19
+ 635               	.LVL68:
+ 241:LCD_640.h     **** 		poop = PORTE | poop;
+ 636               		.loc 1 241 0
+ 637 025a 8EB1      		in r24,0xe
+ 242:LCD_640.h     **** 		CheckTemp(poop);
+ 638               		.loc 1 242 0
+ 639 025c 822B      		or r24,r18
+ 640 025e 0E94 0000 		call CheckTemp
+ 641               	.LVL69:
+ 243:LCD_640.h     **** 		toggleE();
+ 642               		.loc 1 243 0
+ 643 0262 0E94 0000 		call toggleE
+ 644               	.LVL70:
+ 244:LCD_640.h     **** 		k++;
+ 645               		.loc 1 244 0
+ 646 0266 F394      		inc r15
+ 647               	.LVL71:
+ 245:LCD_640.h     **** 		WaitMs(1);
+ 648               		.loc 1 245 0
+ 649 0268 81E0      		ldi r24,lo8(1)
+ 650 026a 90E0      		ldi r25,0
+ 651 026c 0E94 0000 		call WaitMs
+ 652               	.LVL72:
+ 653 0270 00C0      		rjmp .L23
+ 654               	.LVL73:
+ 655               	.L26:
+ 656               	/* epilogue start */
+ 246:LCD_640.h     **** 	}
+ 247:LCD_640.h     **** }
+ 657               		.loc 1 247 0
+ 658 0272 DF91      		pop r29
+ 659 0274 CF91      		pop r28
+ 660 0276 1F91      		pop r17
+ 661 0278 0F91      		pop r16
+ 662               	.LVL74:
+ 663 027a FF90      		pop r15
+ 664               	.LVL75:
+ 665 027c EF90      		pop r14
+ 666 027e 0895      		ret
+ 667               		.cfi_endproc
+ 668               	.LFE12:
+ 670               	.global	lcd_showvalue
+ 672               	lcd_showvalue:
+ 673               	.LFB13:
+ 248:LCD_640.h     **** 
+ 249:LCD_640.h     **** void lcd_showvalue(long int num)
+ 250:LCD_640.h     **** {
+ 674               		.loc 1 250 0
+ 675               		.cfi_startproc
+ 676               	.LVL76:
+ 677 0280 4F92      		push r4
+ 678               	.LCFI14:
+ 679               		.cfi_def_cfa_offset 3
+ 680               		.cfi_offset 4, -2
+ 681 0282 5F92      		push r5
+ 682               	.LCFI15:
+ 683               		.cfi_def_cfa_offset 4
+ 684               		.cfi_offset 5, -3
+ 685 0284 6F92      		push r6
+ 686               	.LCFI16:
+ 687               		.cfi_def_cfa_offset 5
+ 688               		.cfi_offset 6, -4
+ 689 0286 7F92      		push r7
+ 690               	.LCFI17:
+ 691               		.cfi_def_cfa_offset 6
+ 692               		.cfi_offset 7, -5
+ 693 0288 8F92      		push r8
+ 694               	.LCFI18:
+ 695               		.cfi_def_cfa_offset 7
+ 696               		.cfi_offset 8, -6
+ 697 028a 9F92      		push r9
+ 698               	.LCFI19:
+ 699               		.cfi_def_cfa_offset 8
+ 700               		.cfi_offset 9, -7
+ 701 028c AF92      		push r10
+ 702               	.LCFI20:
+ 703               		.cfi_def_cfa_offset 9
+ 704               		.cfi_offset 10, -8
+ 705 028e BF92      		push r11
+ 706               	.LCFI21:
+ 707               		.cfi_def_cfa_offset 10
+ 708               		.cfi_offset 11, -9
+ 709 0290 CF92      		push r12
+ 710               	.LCFI22:
+ 711               		.cfi_def_cfa_offset 11
+ 712               		.cfi_offset 12, -10
+ 713 0292 DF92      		push r13
+ 714               	.LCFI23:
+ 715               		.cfi_def_cfa_offset 12
+ 716               		.cfi_offset 13, -11
+ 717 0294 EF92      		push r14
+ 718               	.LCFI24:
+ 719               		.cfi_def_cfa_offset 13
+ 720               		.cfi_offset 14, -12
+ 721 0296 FF92      		push r15
+ 722               	.LCFI25:
+ 723               		.cfi_def_cfa_offset 14
+ 724               		.cfi_offset 15, -13
+ 725 0298 0F93      		push r16
+ 726               	.LCFI26:
+ 727               		.cfi_def_cfa_offset 15
+ 728               		.cfi_offset 16, -14
+ 729 029a 1F93      		push r17
+ 730               	.LCFI27:
+ 731               		.cfi_def_cfa_offset 16
+ 732               		.cfi_offset 17, -15
+ 733 029c CF93      		push r28
+ 734               	.LCFI28:
+ 735               		.cfi_def_cfa_offset 17
+ 736               		.cfi_offset 28, -16
+ 737 029e DF93      		push r29
+ 738               	.LCFI29:
+ 739               		.cfi_def_cfa_offset 18
+ 740               		.cfi_offset 29, -17
+ 741 02a0 00D0      		rcall .
+ 742 02a2 00D0      		rcall .
+ 743               	.LCFI30:
+ 744               		.cfi_def_cfa_offset 22
+ 745 02a4 CDB7      		in r28,__SP_L__
+ 746 02a6 DEB7      		in r29,__SP_H__
+ 747               	.LCFI31:
+ 748               		.cfi_def_cfa_register 28
+ 749               	/* prologue: function */
+ 750               	/* frame size = 4 */
+ 751               	/* stack size = 20 */
+ 752               	.L__stack_usage = 20
+ 753 02a8 6B01      		movw r12,r22
+ 754 02aa 7C01      		movw r14,r24
+ 251:LCD_640.h     **** 	if (num < 0)
+ 755               		.loc 1 251 0
+ 756 02ac 97FF      		sbrs r25,7
+ 757 02ae 00C0      		rjmp .L28
+ 252:LCD_640.h     **** 	{
+ 253:LCD_640.h     **** 		lcd_char('-');
+ 758               		.loc 1 253 0
+ 759 02b0 8DE2      		ldi r24,lo8(45)
+ 760 02b2 0E94 0000 		call lcd_char
+ 761               	.LVL77:
+ 254:LCD_640.h     **** 		num = -num;
+ 762               		.loc 1 254 0
+ 763 02b6 F094      		com r15
+ 764 02b8 E094      		com r14
+ 765 02ba D094      		com r13
+ 766 02bc C094      		com r12
+ 767 02be C11C      		adc r12,__zero_reg__
+ 768 02c0 D11C      		adc r13,__zero_reg__
+ 769 02c2 E11C      		adc r14,__zero_reg__
+ 770 02c4 F11C      		adc r15,__zero_reg__
+ 771               	.LVL78:
+ 772               	.L28:
+ 255:LCD_640.h     **** 	}
+ 256:LCD_640.h     **** 	
+ 257:LCD_640.h     **** 	unsigned char H=0;
+ 258:LCD_640.h     **** 	
+ 259:LCD_640.h     **** 	unsigned long int n = 0;
+ 260:LCD_640.h     **** 	int flag = 0;
+ 261:LCD_640.h     **** 
+ 262:LCD_640.h     **** 
+ 263:LCD_640.h     **** 	if(num%100000 == 0)
+ 773               		.loc 1 263 0
+ 774 02c6 C701      		movw r24,r14
+ 775 02c8 B601      		movw r22,r12
+ 776 02ca 20EA      		ldi r18,lo8(-96)
+ 777 02cc 36E8      		ldi r19,lo8(-122)
+ 778 02ce 41E0      		ldi r20,lo8(1)
+ 779 02d0 50E0      		ldi r21,0
+ 780 02d2 0E94 0000 		call __divmodsi4
+ 781 02d6 672B      		or r22,r23
+ 782 02d8 682B      		or r22,r24
+ 783 02da 692B      		or r22,r25
+ 784 02dc 01F0      		breq .L37
+ 264:LCD_640.h     **** 	{
+ 265:LCD_640.h     **** 		flag = 5;
+ 266:LCD_640.h     **** 	}
+ 267:LCD_640.h     **** 	
+ 268:LCD_640.h     **** 	else if(num%10000 == 0)
+ 785               		.loc 1 268 0
+ 786 02de C701      		movw r24,r14
+ 787 02e0 B601      		movw r22,r12
+ 788 02e2 20E1      		ldi r18,lo8(16)
+ 789 02e4 37E2      		ldi r19,lo8(39)
+ 790 02e6 40E0      		ldi r20,0
+ 791 02e8 50E0      		ldi r21,0
+ 792 02ea 0E94 0000 		call __divmodsi4
+ 793 02ee 672B      		or r22,r23
+ 794 02f0 682B      		or r22,r24
+ 795 02f2 692B      		or r22,r25
+ 796 02f4 01F0      		breq .L38
+ 269:LCD_640.h     **** 	{
+ 270:LCD_640.h     **** 		flag = 4;
+ 271:LCD_640.h     **** 	}
+ 272:LCD_640.h     **** 
+ 273:LCD_640.h     **** 	else if(num%1000 == 0)
+ 797               		.loc 1 273 0
+ 798 02f6 C701      		movw r24,r14
+ 799 02f8 B601      		movw r22,r12
+ 800 02fa 28EE      		ldi r18,lo8(-24)
+ 801 02fc 33E0      		ldi r19,lo8(3)
+ 802 02fe 40E0      		ldi r20,0
+ 803 0300 50E0      		ldi r21,0
+ 804 0302 0E94 0000 		call __divmodsi4
+ 805 0306 672B      		or r22,r23
+ 806 0308 682B      		or r22,r24
+ 807 030a 692B      		or r22,r25
+ 808 030c 01F0      		breq .L39
+ 274:LCD_640.h     **** 	{
+ 275:LCD_640.h     **** 		flag = 3;
+ 276:LCD_640.h     **** 	}
+ 277:LCD_640.h     **** 
+ 278:LCD_640.h     **** 	else if(num%100 == 0)
+ 809               		.loc 1 278 0
+ 810 030e C701      		movw r24,r14
+ 811 0310 B601      		movw r22,r12
+ 812 0312 24E6      		ldi r18,lo8(100)
+ 813 0314 30E0      		ldi r19,0
+ 814 0316 40E0      		ldi r20,0
+ 815 0318 50E0      		ldi r21,0
+ 816 031a 0E94 0000 		call __divmodsi4
+ 817 031e 672B      		or r22,r23
+ 818 0320 682B      		or r22,r24
+ 819 0322 692B      		or r22,r25
+ 820 0324 01F0      		breq .L40
+ 279:LCD_640.h     **** 	{
+ 280:LCD_640.h     **** 		flag = 2;
+ 281:LCD_640.h     **** 	}
+ 282:LCD_640.h     **** 
+ 283:LCD_640.h     **** 	else if(num%10 == 0)
+ 821               		.loc 1 283 0
+ 822 0326 C701      		movw r24,r14
+ 823 0328 B601      		movw r22,r12
+ 824 032a 2AE0      		ldi r18,lo8(10)
+ 825 032c 30E0      		ldi r19,0
+ 826 032e 40E0      		ldi r20,0
+ 827 0330 50E0      		ldi r21,0
+ 828 0332 0E94 0000 		call __divmodsi4
+ 829 0336 31E0      		ldi r19,lo8(1)
+ 830 0338 20E0      		ldi r18,0
+ 831 033a 672B      		or r22,r23
+ 832 033c 682B      		or r22,r24
+ 833 033e 692B      		or r22,r25
+ 834 0340 01F0      		breq .L30
+ 835 0342 30E0      		ldi r19,0
+ 836               	.L30:
+ 270:LCD_640.h     **** 		flag = 4;
+ 837               		.loc 1 270 0
+ 838 0344 032F      		mov r16,r19
+ 839 0346 122F      		mov r17,r18
+ 840 0348 00C0      		rjmp .L29
+ 841               	.L37:
+ 265:LCD_640.h     **** 		flag = 5;
+ 842               		.loc 1 265 0
+ 843 034a 05E0      		ldi r16,lo8(5)
+ 844 034c 10E0      		ldi r17,0
+ 845 034e 00C0      		rjmp .L29
+ 846               	.L38:
+ 270:LCD_640.h     **** 		flag = 4;
+ 847               		.loc 1 270 0
+ 848 0350 04E0      		ldi r16,lo8(4)
+ 849 0352 10E0      		ldi r17,0
+ 850 0354 00C0      		rjmp .L29
+ 851               	.L39:
+ 275:LCD_640.h     **** 		flag = 3;
+ 852               		.loc 1 275 0
+ 853 0356 03E0      		ldi r16,lo8(3)
+ 854 0358 10E0      		ldi r17,0
+ 855 035a 00C0      		rjmp .L29
+ 856               	.L40:
+ 280:LCD_640.h     **** 		flag = 2;
+ 857               		.loc 1 280 0
+ 858 035c 02E0      		ldi r16,lo8(2)
+ 859 035e 10E0      		ldi r17,0
+ 860               	.L29:
+ 280:LCD_640.h     **** 		flag = 2;
+ 861               		.loc 1 280 0 is_stmt 0 discriminator 1
+ 862 0360 812C      		mov r8,__zero_reg__
+ 863 0362 912C      		mov r9,__zero_reg__
+ 864 0364 5401      		movw r10,r8
+ 284:LCD_640.h     **** 	{
+ 285:LCD_640.h     **** 		flag = 1;
+ 286:LCD_640.h     **** 	}
+ 287:LCD_640.h     **** 
+ 288:LCD_640.h     **** 	else
+ 289:LCD_640.h     **** 	{
+ 290:LCD_640.h     **** 		flag = 0;
+ 291:LCD_640.h     **** 	}
+ 292:LCD_640.h     **** 
+ 293:LCD_640.h     **** 
+ 294:LCD_640.h     **** 
+ 295:LCD_640.h     **** 	while(num!=0)
+ 296:LCD_640.h     **** 	{
+ 297:LCD_640.h     **** 		
+ 298:LCD_640.h     **** 		H = num%10;
+ 865               		.loc 1 298 0 is_stmt 1 discriminator 1
+ 866 0366 AAE0      		ldi r26,lo8(10)
+ 867 0368 4A2E      		mov r4,r26
+ 868 036a 512C      		mov r5,__zero_reg__
+ 869 036c 612C      		mov r6,__zero_reg__
+ 870 036e 712C      		mov r7,__zero_reg__
+ 871               	.LVL79:
+ 872               	.L31:
+ 295:LCD_640.h     **** 	while(num!=0)
+ 873               		.loc 1 295 0 discriminator 1
+ 874 0370 C114      		cp r12,__zero_reg__
+ 875 0372 D104      		cpc r13,__zero_reg__
+ 876 0374 E104      		cpc r14,__zero_reg__
+ 877 0376 F104      		cpc r15,__zero_reg__
+ 878 0378 01F0      		breq .L44
+ 299:LCD_640.h     **** 		num = num/10;
+ 879               		.loc 1 299 0
+ 880 037a C701      		movw r24,r14
+ 881 037c B601      		movw r22,r12
+ 882 037e A301      		movw r20,r6
+ 883 0380 9201      		movw r18,r4
+ 884 0382 0E94 0000 		call __divmodsi4
+ 885 0386 6901      		movw r12,r18
+ 886 0388 7A01      		movw r14,r20
+ 887               	.LVL80:
+ 888 038a 6983      		std Y+1,r22
+ 889 038c 7A83      		std Y+2,r23
+ 890 038e 8B83      		std Y+3,r24
+ 891 0390 9C83      		std Y+4,r25
+ 892               	.LVL81:
+ 300:LCD_640.h     **** 		n = (n*10)+H;
+ 893               		.loc 1 300 0
+ 894 0392 AAE0      		ldi r26,lo8(10)
+ 895 0394 B0E0      		ldi r27,0
+ 896 0396 A501      		movw r20,r10
+ 897 0398 9401      		movw r18,r8
+ 898 039a 0E94 0000 		call __muluhisi3
+ 899 039e 4B01      		movw r8,r22
+ 900 03a0 5C01      		movw r10,r24
+ 901               	.LVL82:
+ 902 03a2 8981      		ldd r24,Y+1
+ 903 03a4 9A81      		ldd r25,Y+2
+ 904 03a6 AB81      		ldd r26,Y+3
+ 905 03a8 BC81      		ldd r27,Y+4
+ 906 03aa 880E      		add r8,r24
+ 907 03ac 991E      		adc r9,r25
+ 908 03ae AA1E      		adc r10,r26
+ 909 03b0 BB1E      		adc r11,r27
+ 910               	.LVL83:
+ 911 03b2 00C0      		rjmp .L31
+ 912               	.L44:
+ 301:LCD_640.h     **** 
+ 302:LCD_640.h     **** 	}
+ 303:LCD_640.h     **** 	
+ 304:LCD_640.h     **** 	while(n!=0)
+ 305:LCD_640.h     **** 	{
+ 306:LCD_640.h     **** 		
+ 307:LCD_640.h     **** 		H = n%10;
+ 913               		.loc 1 307 0
+ 914 03b4 FAE0      		ldi r31,lo8(10)
+ 915 03b6 CF2E      		mov r12,r31
+ 916 03b8 D12C      		mov r13,__zero_reg__
+ 917 03ba E12C      		mov r14,__zero_reg__
+ 918 03bc F12C      		mov r15,__zero_reg__
+ 919               	.LVL84:
+ 920               	.L33:
+ 304:LCD_640.h     **** 	while(n!=0)
+ 921               		.loc 1 304 0 discriminator 1
+ 922 03be 8114      		cp r8,__zero_reg__
+ 923 03c0 9104      		cpc r9,__zero_reg__
+ 924 03c2 A104      		cpc r10,__zero_reg__
+ 925 03c4 B104      		cpc r11,__zero_reg__
+ 926 03c6 01F0      		breq .L35
+ 308:LCD_640.h     **** 		n = n/10;
+ 927               		.loc 1 308 0
+ 928 03c8 C501      		movw r24,r10
+ 929 03ca B401      		movw r22,r8
+ 930 03cc A701      		movw r20,r14
+ 931 03ce 9601      		movw r18,r12
+ 932 03d0 0E94 0000 		call __udivmodsi4
+ 933 03d4 4901      		movw r8,r18
+ 934 03d6 5A01      		movw r10,r20
+ 935               	.LVL85:
+ 309:LCD_640.h     **** 		lcd_char(H+48);
+ 936               		.loc 1 309 0
+ 937 03d8 80E3      		ldi r24,lo8(48)
+ 938 03da 860F      		add r24,r22
+ 939 03dc 0E94 0000 		call lcd_char
+ 940               	.LVL86:
+ 941 03e0 00C0      		rjmp .L33
+ 942               	.L35:
+ 310:LCD_640.h     **** 
+ 311:LCD_640.h     **** 	}
+ 312:LCD_640.h     **** 	
+ 313:LCD_640.h     **** 	
+ 314:LCD_640.h     **** 	while(flag > 0)
+ 943               		.loc 1 314 0 discriminator 1
+ 944 03e2 0115      		cp r16,__zero_reg__
+ 945 03e4 1105      		cpc r17,__zero_reg__
+ 946 03e6 01F0      		breq .L45
+ 315:LCD_640.h     **** 	{
+ 316:LCD_640.h     **** 		lcd_char(48);
+ 947               		.loc 1 316 0
+ 948 03e8 80E3      		ldi r24,lo8(48)
+ 949 03ea 0E94 0000 		call lcd_char
+ 950               	.LVL87:
+ 317:LCD_640.h     **** 		flag--;
+ 951               		.loc 1 317 0
+ 952 03ee 0150      		subi r16,1
+ 953 03f0 1109      		sbc r17,__zero_reg__
+ 954               	.LVL88:
+ 955 03f2 00C0      		rjmp .L35
+ 956               	.L45:
+ 957               	/* epilogue start */
+ 318:LCD_640.h     **** 	}
+ 319:LCD_640.h     **** 
+ 320:LCD_640.h     **** }
+ 958               		.loc 1 320 0
+ 959 03f4 0F90      		pop __tmp_reg__
+ 960 03f6 0F90      		pop __tmp_reg__
+ 961 03f8 0F90      		pop __tmp_reg__
+ 962 03fa 0F90      		pop __tmp_reg__
+ 963 03fc DF91      		pop r29
+ 964 03fe CF91      		pop r28
+ 965 0400 1F91      		pop r17
+ 966 0402 0F91      		pop r16
+ 967               	.LVL89:
+ 968 0404 FF90      		pop r15
+ 969 0406 EF90      		pop r14
+ 970 0408 DF90      		pop r13
+ 971 040a CF90      		pop r12
+ 972 040c BF90      		pop r11
+ 973 040e AF90      		pop r10
+ 974 0410 9F90      		pop r9
+ 975 0412 8F90      		pop r8
+ 976               	.LVL90:
+ 977 0414 7F90      		pop r7
+ 978 0416 6F90      		pop r6
+ 979 0418 5F90      		pop r5
+ 980 041a 4F90      		pop r4
+ 981 041c 0895      		ret
+ 982               		.cfi_endproc
+ 983               	.LFE13:
+ 985               	.global	__ltsf2
+ 986               	.global	__fixunssfsi
+ 987               	.global	__mulsf3
+ 988               	.global	lcd_showvaluef
+ 990               	lcd_showvaluef:
+ 991               	.LFB14:
+ 321:LCD_640.h     **** 
+ 322:LCD_640.h     **** void lcd_showvaluef(float num)
+ 323:LCD_640.h     **** {
+ 992               		.loc 1 323 0
+ 993               		.cfi_startproc
+ 994               	.LVL91:
+ 995 041e CF92      		push r12
+ 996               	.LCFI32:
+ 997               		.cfi_def_cfa_offset 3
+ 998               		.cfi_offset 12, -2
+ 999 0420 DF92      		push r13
+ 1000               	.LCFI33:
+ 1001               		.cfi_def_cfa_offset 4
+ 1002               		.cfi_offset 13, -3
+ 1003 0422 EF92      		push r14
+ 1004               	.LCFI34:
+ 1005               		.cfi_def_cfa_offset 5
+ 1006               		.cfi_offset 14, -4
+ 1007 0424 FF92      		push r15
+ 1008               	.LCFI35:
+ 1009               		.cfi_def_cfa_offset 6
+ 1010               		.cfi_offset 15, -5
+ 1011 0426 CF93      		push r28
+ 1012               	.LCFI36:
+ 1013               		.cfi_def_cfa_offset 7
+ 1014               		.cfi_offset 28, -6
+ 1015 0428 DF93      		push r29
+ 1016               	.LCFI37:
+ 1017               		.cfi_def_cfa_offset 8
+ 1018               		.cfi_offset 29, -7
+ 1019 042a 00D0      		rcall .
+ 1020 042c 00D0      		rcall .
+ 1021               	.LCFI38:
+ 1022               		.cfi_def_cfa_offset 12
+ 1023 042e CDB7      		in r28,__SP_L__
+ 1024 0430 DEB7      		in r29,__SP_H__
+ 1025               	.LCFI39:
+ 1026               		.cfi_def_cfa_register 28
+ 1027               	/* prologue: function */
+ 1028               	/* frame size = 4 */
+ 1029               	/* stack size = 10 */
+ 1030               	.L__stack_usage = 10
+ 1031 0432 6B01      		movw r12,r22
+ 1032 0434 7C01      		movw r14,r24
+ 324:LCD_640.h     **** 	if (num < 0)
+ 1033               		.loc 1 324 0
+ 1034 0436 20E0      		ldi r18,0
+ 1035 0438 30E0      		ldi r19,0
+ 1036 043a A901      		movw r20,r18
+ 1037 043c 0E94 0000 		call __ltsf2
+ 1038               	.LVL92:
+ 1039 0440 87FF      		sbrs r24,7
+ 1040 0442 00C0      		rjmp .L47
+ 325:LCD_640.h     **** 	{
+ 326:LCD_640.h     **** 		lcd_char('-');
+ 1041               		.loc 1 326 0
+ 1042 0444 8DE2      		ldi r24,lo8(45)
+ 1043 0446 0E94 0000 		call lcd_char
+ 1044               	.LVL93:
+ 327:LCD_640.h     **** 		num = -num;
+ 1045               		.loc 1 327 0
+ 1046 044a F7FA      		bst r15,7
+ 1047 044c F094      		com r15
+ 1048 044e F7F8      		bld r15,7
+ 1049 0450 F094      		com r15
+ 1050               	.LVL94:
+ 1051               	.L47:
+ 328:LCD_640.h     **** 	}
+ 329:LCD_640.h     **** 	
+ 330:LCD_640.h     **** 	unsigned long int l;
+ 331:LCD_640.h     **** 	double fraction,integer;
+ 332:LCD_640.h     **** 
+ 333:LCD_640.h     **** 	l = (unsigned long int)num;
+ 1052               		.loc 1 333 0
+ 1053 0452 C701      		movw r24,r14
+ 1054 0454 B601      		movw r22,r12
+ 1055 0456 0E94 0000 		call __fixunssfsi
+ 1056               	.LVL95:
+ 334:LCD_640.h     **** 
+ 335:LCD_640.h     **** 	lcd_showvalue(l);
+ 1057               		.loc 1 335 0
+ 1058 045a 0E94 0000 		call lcd_showvalue
+ 1059               	.LVL96:
+ 336:LCD_640.h     **** 
+ 337:LCD_640.h     **** 	fraction = modf((double)num,&integer);
+ 1060               		.loc 1 337 0
+ 1061 045e AE01      		movw r20,r28
+ 1062 0460 4F5F      		subi r20,-1
+ 1063 0462 5F4F      		sbci r21,-1
+ 1064 0464 C701      		movw r24,r14
+ 1065 0466 B601      		movw r22,r12
+ 1066 0468 0E94 0000 		call modf
+ 1067               	.LVL97:
+ 1068 046c 6B01      		movw r12,r22
+ 1069 046e 7C01      		movw r14,r24
+ 1070               	.LVL98:
+ 338:LCD_640.h     **** 
+ 339:LCD_640.h     **** 	l = (unsigned long int)(fraction * 100000);
+ 340:LCD_640.h     **** 
+ 341:LCD_640.h     **** 	lcd_char('.');
+ 1071               		.loc 1 341 0
+ 1072 0470 8EE2      		ldi r24,lo8(46)
+ 1073 0472 0E94 0000 		call lcd_char
+ 1074               	.LVL99:
+ 339:LCD_640.h     **** 	l = (unsigned long int)(fraction * 100000);
+ 1075               		.loc 1 339 0
+ 1076 0476 20E0      		ldi r18,0
+ 1077 0478 30E5      		ldi r19,lo8(80)
+ 1078 047a 43EC      		ldi r20,lo8(-61)
+ 1079 047c 57E4      		ldi r21,lo8(71)
+ 1080 047e C701      		movw r24,r14
+ 1081 0480 B601      		movw r22,r12
+ 1082 0482 0E94 0000 		call __mulsf3
+ 1083               	.LVL100:
+ 1084 0486 0E94 0000 		call __fixunssfsi
+ 1085               	.LVL101:
+ 1086               	/* epilogue start */
+ 342:LCD_640.h     **** 
+ 343:LCD_640.h     **** 	lcd_showvalue(l);
+ 344:LCD_640.h     **** 
+ 345:LCD_640.h     **** }
+ 1087               		.loc 1 345 0
+ 1088 048a 0F90      		pop __tmp_reg__
+ 1089 048c 0F90      		pop __tmp_reg__
+ 1090 048e 0F90      		pop __tmp_reg__
+ 1091 0490 0F90      		pop __tmp_reg__
+ 1092 0492 DF91      		pop r29
+ 1093 0494 CF91      		pop r28
+ 1094 0496 FF90      		pop r15
+ 1095 0498 EF90      		pop r14
+ 1096 049a DF90      		pop r13
+ 1097 049c CF90      		pop r12
+ 1098               	.LVL102:
+ 343:LCD_640.h     **** 	lcd_showvalue(l);
+ 1099               		.loc 1 343 0
+ 1100 049e 0C94 0000 		jmp lcd_showvalue
+ 1101               	.LVL103:
+ 1102               		.cfi_endproc
+ 1103               	.LFE14:
+ 1105               	.global	lcd_gotoxy1
+ 1107               	lcd_gotoxy1:
+ 1108               	.LFB15:
+ 346:LCD_640.h     **** 
+ 347:LCD_640.h     **** void lcd_gotoxy1(unsigned char pos)
+ 348:LCD_640.h     **** {
+ 1109               		.loc 1 348 0
+ 1110               		.cfi_startproc
+ 1111               	.LVL104:
+ 1112               	/* prologue: function */
+ 1113               	/* frame size = 0 */
+ 1114               	/* stack size = 0 */
+ 1115               	.L__stack_usage = 0
+ 349:LCD_640.h     **** 	lcd_cmd(LINE1+pos);
+ 1116               		.loc 1 349 0
+ 1117 04a2 8058      		subi r24,lo8(-(-128))
+ 1118               	.LVL105:
+ 1119 04a4 0C94 0000 		jmp lcd_cmd
+ 1120               	.LVL106:
+ 1121               		.cfi_endproc
+ 1122               	.LFE15:
+ 1124               	.global	lcd_gotoxy2
+ 1126               	lcd_gotoxy2:
+ 1127               	.LFB16:
+ 350:LCD_640.h     **** }
+ 351:LCD_640.h     **** 
+ 352:LCD_640.h     **** void lcd_gotoxy2(unsigned char pos)
+ 353:LCD_640.h     **** {
+ 1128               		.loc 1 353 0
+ 1129               		.cfi_startproc
+ 1130               	.LVL107:
+ 1131               	/* prologue: function */
+ 1132               	/* frame size = 0 */
+ 1133               	/* stack size = 0 */
+ 1134               	.L__stack_usage = 0
+ 354:LCD_640.h     **** 	lcd_cmd(LINE2+pos);
+ 1135               		.loc 1 354 0
+ 1136 04a8 8054      		subi r24,lo8(-(-64))
+ 1137               	.LVL108:
+ 1138 04aa 0C94 0000 		jmp lcd_cmd
+ 1139               	.LVL109:
+ 1140               		.cfi_endproc
+ 1141               	.LFE16:
+ 1143               	.global	lcd_showvalueh
+ 1145               	lcd_showvalueh:
+ 1146               	.LFB17:
+ 355:LCD_640.h     **** }
+ 356:LCD_640.h     **** 
+ 357:LCD_640.h     **** void lcd_showvalueh(unsigned int num)	//prints the decimal 3digit value of num
+ 358:LCD_640.h     **** {
+ 1147               		.loc 1 358 0
+ 1148               		.cfi_startproc
+ 1149               	.LVL110:
+ 1150 04ae 1F93      		push r17
+ 1151               	.LCFI40:
+ 1152               		.cfi_def_cfa_offset 3
+ 1153               		.cfi_offset 17, -2
+ 1154 04b0 CF93      		push r28
+ 1155               	.LCFI41:
+ 1156               		.cfi_def_cfa_offset 4
+ 1157               		.cfi_offset 28, -3
+ 1158 04b2 DF93      		push r29
+ 1159               	.LCFI42:
+ 1160               		.cfi_def_cfa_offset 5
+ 1161               		.cfi_offset 29, -4
+ 1162               	/* prologue: function */
+ 1163               	/* frame size = 0 */
+ 1164               	/* stack size = 3 */
+ 1165               	.L__stack_usage = 3
+ 1166 04b4 EC01      		movw r28,r24
+ 1167               	.LVL111:
+ 359:LCD_640.h     **** 	unsigned char H=0,T=0,O=0;
+ 360:LCD_640.h     **** 	H=num/100;
+ 1168               		.loc 1 360 0
+ 1169 04b6 64E6      		ldi r22,lo8(100)
+ 1170 04b8 70E0      		ldi r23,0
+ 1171 04ba 0E94 0000 		call __udivmodhi4
+ 1172               	.LVL112:
+ 1173 04be 162F      		mov r17,r22
+ 1174               	.LVL113:
+ 361:LCD_640.h     **** 	T=(num - (H*100))/10;
+ 1175               		.loc 1 361 0
+ 1176 04c0 CE01      		movw r24,r28
+ 1177 04c2 24E6      		ldi r18,lo8(100)
+ 1178 04c4 629F      		mul r22,r18
+ 1179 04c6 8019      		sub r24,r0
+ 1180 04c8 9109      		sbc r25,r1
+ 1181 04ca 1124      		clr __zero_reg__
+ 1182 04cc 6AE0      		ldi r22,lo8(10)
+ 1183 04ce 70E0      		ldi r23,0
+ 1184 04d0 0E94 0000 		call __udivmodhi4
+ 1185 04d4 D62F      		mov r29,r22
+ 1186               	.LVL114:
+ 362:LCD_640.h     **** 	O=(num - (H*100) - (T*10));
+ 363:LCD_640.h     **** 	
+ 364:LCD_640.h     **** 	lcd_char(H+48);
+ 1187               		.loc 1 364 0
+ 1188 04d6 80E3      		ldi r24,lo8(48)
+ 1189 04d8 810F      		add r24,r17
+ 1190 04da 0E94 0000 		call lcd_char
+ 1191               	.LVL115:
+ 365:LCD_640.h     **** 	lcd_char(T+48);
+ 1192               		.loc 1 365 0
+ 1193 04de 80E3      		ldi r24,lo8(48)
+ 1194 04e0 8D0F      		add r24,r29
+ 1195 04e2 0E94 0000 		call lcd_char
+ 1196               	.LVL116:
+ 362:LCD_640.h     **** 	O=(num - (H*100) - (T*10));
+ 1197               		.loc 1 362 0
+ 1198 04e6 8C2F      		mov r24,r28
+ 1199 04e8 805D      		subi r24,lo8(-(48))
+ 1200 04ea 94E6      		ldi r25,lo8(100)
+ 1201 04ec 199F      		mul r17,r25
+ 1202 04ee 8019      		sub r24,r0
+ 1203 04f0 1124      		clr __zero_reg__
+ 366:LCD_640.h     **** 	lcd_char(O+48);
+ 1204               		.loc 1 366 0
+ 1205 04f2 2AE0      		ldi r18,lo8(10)
+ 1206 04f4 D29F      		mul r29,r18
+ 1207 04f6 8019      		sub r24,r0
+ 1208 04f8 1124      		clr __zero_reg__
+ 1209               	/* epilogue start */
+ 367:LCD_640.h     **** }
+ 1210               		.loc 1 367 0
+ 1211 04fa DF91      		pop r29
+ 1212               	.LVL117:
+ 1213 04fc CF91      		pop r28
+ 1214               	.LVL118:
+ 1215 04fe 1F91      		pop r17
+ 1216               	.LVL119:
+ 366:LCD_640.h     **** 	lcd_char(O+48);
+ 1217               		.loc 1 366 0
+ 1218 0500 0C94 0000 		jmp lcd_char
+ 1219               	.LVL120:
+ 1220               		.cfi_endproc
+ 1221               	.LFE17:
+ 1223               	.global	UartInit
+ 1225               	UartInit:
+ 1226               	.LFB18:
+ 1227               		.file 3 "main.c"
+   1:main.c        **** /*
+   2:main.c        **** Flash this code in ATMEL ATMEGA640 m/c used as Reciever
+   3:main.c        ****  */ 
+   4:main.c        **** 
+   5:main.c        **** 
+   6:main.c        **** //#define F_CPU 14745600
+   7:main.c        **** #include <util/delay.h>
+   8:main.c        **** #include <avr/io.h>
+   9:main.c        **** #include "LCD_640.h"
+  10:main.c        **** 
+  11:main.c        **** uint8_t UartReceive(void);
+  12:main.c        **** void UartTransmit(uint8_t);
+  13:main.c        **** void UartInit(void);
+  14:main.c        **** 
+  15:main.c        **** 
+  16:main.c        **** void UartInit(void)
+  17:main.c        **** {
+ 1228               		.loc 3 17 0
+ 1229               		.cfi_startproc
+ 1230               	/* prologue: function */
+ 1231               	/* frame size = 0 */
+ 1232               	/* stack size = 0 */
+ 1233               	.L__stack_usage = 0
+  18:main.c        **** 	DDRH |= (1<<PH1);
+ 1234               		.loc 3 18 0
+ 1235 0504 E1E0      		ldi r30,lo8(1)
+ 1236 0506 F1E0      		ldi r31,lo8(1)
+ 1237 0508 8081      		ld r24,Z
+ 1238 050a 8260      		ori r24,lo8(2)
+ 1239 050c 8083      		st Z,r24
+  19:main.c        **** 	DDRH &= ~(1<<PH0);
+ 1240               		.loc 3 19 0
+ 1241 050e 8081      		ld r24,Z
+ 1242 0510 8E7F      		andi r24,lo8(-2)
+ 1243 0512 8083      		st Z,r24
+  20:main.c        **** 	
+  21:main.c        **** 	PORTH |= (1<<PH1);
+ 1244               		.loc 3 21 0
+ 1245 0514 E2E0      		ldi r30,lo8(2)
+ 1246 0516 F1E0      		ldi r31,lo8(1)
+ 1247 0518 8081      		ld r24,Z
+ 1248 051a 8260      		ori r24,lo8(2)
+ 1249 051c 8083      		st Z,r24
+  22:main.c        **** 	PORTH &= ~(1<<PH0);
+ 1250               		.loc 3 22 0
+ 1251 051e 8081      		ld r24,Z
+ 1252 0520 8E7F      		andi r24,lo8(-2)
+ 1253 0522 8083      		st Z,r24
+  23:main.c        **** 	
+  24:main.c        **** 	UCSR2B |= (1<<RXEN2) | (1<<TXEN2);
+ 1254               		.loc 3 24 0
+ 1255 0524 E1ED      		ldi r30,lo8(-47)
+ 1256 0526 F0E0      		ldi r31,0
+ 1257 0528 8081      		ld r24,Z
+ 1258 052a 8861      		ori r24,lo8(24)
+ 1259 052c 8083      		st Z,r24
+  25:main.c        **** 	UCSR2C |= (1<<UCSZ20) | (1<<UCSZ21);
+ 1260               		.loc 3 25 0
+ 1261 052e E2ED      		ldi r30,lo8(-46)
+ 1262 0530 F0E0      		ldi r31,0
+ 1263 0532 8081      		ld r24,Z
+ 1264 0534 8660      		ori r24,lo8(6)
+ 1265 0536 8083      		st Z,r24
+  26:main.c        **** 	UCSR2A |= (1<<U2X2);
+ 1266               		.loc 3 26 0
+ 1267 0538 E0ED      		ldi r30,lo8(-48)
+ 1268 053a F0E0      		ldi r31,0
+ 1269 053c 8081      		ld r24,Z
+ 1270 053e 8260      		ori r24,lo8(2)
+ 1271 0540 8083      		st Z,r24
+  27:main.c        **** 	
+  28:main.c        **** 	UBRR2 = 191;
+ 1272               		.loc 3 28 0
+ 1273 0542 8FEB      		ldi r24,lo8(-65)
+ 1274 0544 90E0      		ldi r25,0
+ 1275 0546 9093 D500 		sts 212+1,r25
+ 1276 054a 8093 D400 		sts 212,r24
+ 1277 054e 0895      		ret
+ 1278               		.cfi_endproc
+ 1279               	.LFE18:
+ 1281               	.global	UartTransmit
+ 1283               	UartTransmit:
+ 1284               	.LFB19:
+  29:main.c        **** 	// RX - PJ0
+  30:main.c        **** 	// TX - PJ1
+  31:main.c        **** 	
+  32:main.c        **** 	// Using Channel 2 of 640 Present at PORTH
+  33:main.c        **** }
+  34:main.c        **** 
+  35:main.c        **** void UartTransmit(uint8_t data)
+  36:main.c        **** {
+ 1285               		.loc 3 36 0
+ 1286               		.cfi_startproc
+ 1287               	/* prologue: function */
+ 1288               	/* frame size = 0 */
+ 1289               	/* stack size = 0 */
+ 1290               	.L__stack_usage = 0
+ 1291               	.LVL121:
+ 1292               	.L56:
+  37:main.c        **** 	while ( !( UCSR2A & (1<<UDRE2)) );
+ 1293               		.loc 3 37 0 discriminator 1
+ 1294 0550 9091 D000 		lds r25,208
+ 1295 0554 95FF      		sbrs r25,5
+ 1296 0556 00C0      		rjmp .L56
+  38:main.c        **** 	UDR2 = data;
+ 1297               		.loc 3 38 0
+ 1298 0558 8093 D600 		sts 214,r24
+ 1299 055c 0895      		ret
+ 1300               		.cfi_endproc
+ 1301               	.LFE19:
+ 1303               	.global	UartReceive
+ 1305               	UartReceive:
+ 1306               	.LFB20:
+  39:main.c        **** }
+  40:main.c        **** uint8_t UartReceive(void)
+  41:main.c        **** {
+ 1307               		.loc 3 41 0
+ 1308               		.cfi_startproc
+ 1309               	/* prologue: function */
+ 1310               	/* frame size = 0 */
+ 1311               	/* stack size = 0 */
+ 1312               	.L__stack_usage = 0
+ 1313               	.L59:
+  42:main.c        **** 	while ( !( UCSR2A & (1<<RXC2)) );
+ 1314               		.loc 3 42 0 discriminator 1
+ 1315 055e 8091 D000 		lds r24,208
+ 1316 0562 87FF      		sbrs r24,7
+ 1317 0564 00C0      		rjmp .L59
+  43:main.c        **** 	return UDR2;
+ 1318               		.loc 3 43 0
+ 1319 0566 8091 D600 		lds r24,214
+  44:main.c        **** }
+ 1320               		.loc 3 44 0
+ 1321 056a 0895      		ret
+ 1322               		.cfi_endproc
+ 1323               	.LFE20:
+ 1325               		.section	.rodata.str1.1,"aMS",@progbits,1
+ 1326               	.LC0:
+ 1327 0000 6100      		.string	"a"
+ 1328               	.LC1:
+ 1329 0002 6200      		.string	"b"
+ 1330               	.LC2:
+ 1331 0004 6300      		.string	"c"
+ 1332               	.LC3:
+ 1333 0006 6400      		.string	"d"
+ 1334               		.section	.text.startup,"ax",@progbits
+ 1335               	.global	main
+ 1337               	main:
+ 1338               	.LFB21:
+  45:main.c        **** 
+  46:main.c        **** 
+  47:main.c        **** int main(void)
+  48:main.c        **** {
+ 1339               		.loc 3 48 0
+ 1340               		.cfi_startproc
+ 1341               	/* prologue: function */
+ 1342               	/* frame size = 0 */
+ 1343               	/* stack size = 0 */
+ 1344               	.L__stack_usage = 0
+  49:main.c        **** 	lcd_init();
+ 1345               		.loc 3 49 0
+ 1346 0000 0E94 0000 		call lcd_init
+ 1347               	.LVL122:
+  50:main.c        **** 	UartInit();
+ 1348               		.loc 3 50 0
+ 1349 0004 0E94 0000 		call UartInit
+ 1350               	.LVL123:
+  51:main.c        **** 	while(1)
+  52:main.c        ****     {
+  53:main.c        **** 		lcd_showvalue(UartReceive());
+  54:main.c        **** 		UartTransmit("a");
+ 1351               		.loc 3 54 0
+ 1352 0008 B0E0      		ldi r27,lo8(.LC0)
+ 1353 000a CB2E      		mov r12,r27
+ 1354 000c B0E0      		ldi r27,hi8(.LC0)
+ 1355 000e DB2E      		mov r13,r27
+  55:main.c        **** 		lcd_showvalue(UartReceive());
+  56:main.c        **** 		UartTransmit("b");
+ 1356               		.loc 3 56 0
+ 1357 0010 C0E0      		ldi r28,lo8(.LC1)
+ 1358 0012 EC2E      		mov r14,r28
+ 1359 0014 C0E0      		ldi r28,hi8(.LC1)
+ 1360 0016 FC2E      		mov r15,r28
+  57:main.c        **** 		lcd_showvalue(UartReceive());
+  58:main.c        **** 		UartTransmit("c");
+ 1361               		.loc 3 58 0
+ 1362 0018 00E0      		ldi r16,lo8(.LC2)
+ 1363 001a 10E0      		ldi r17,hi8(.LC2)
+  59:main.c        **** 		lcd_showvalue(UartReceive());
+  60:main.c        **** 		UartTransmit("d");    
+ 1364               		.loc 3 60 0
+ 1365 001c C0E0      		ldi r28,lo8(.LC3)
+ 1366 001e D0E0      		ldi r29,hi8(.LC3)
+ 1367               	.L61:
+  53:main.c        **** 		lcd_showvalue(UartReceive());
+ 1368               		.loc 3 53 0 discriminator 1
+ 1369 0020 0E94 0000 		call UartReceive
+ 1370               	.LVL124:
+ 1371 0024 682F      		mov r22,r24
+ 1372 0026 70E0      		ldi r23,0
+ 1373 0028 80E0      		ldi r24,0
+ 1374 002a 90E0      		ldi r25,0
+ 1375 002c 0E94 0000 		call lcd_showvalue
+ 1376               	.LVL125:
+  54:main.c        **** 		UartTransmit("a");
+ 1377               		.loc 3 54 0 discriminator 1
+ 1378 0030 8C2D      		mov r24,r12
+ 1379 0032 0E94 0000 		call UartTransmit
+ 1380               	.LVL126:
+  55:main.c        **** 		lcd_showvalue(UartReceive());
+ 1381               		.loc 3 55 0 discriminator 1
+ 1382 0036 0E94 0000 		call UartReceive
+ 1383               	.LVL127:
+ 1384 003a 682F      		mov r22,r24
+ 1385 003c 70E0      		ldi r23,0
+ 1386 003e 80E0      		ldi r24,0
+ 1387 0040 90E0      		ldi r25,0
+ 1388 0042 0E94 0000 		call lcd_showvalue
+ 1389               	.LVL128:
+  56:main.c        **** 		UartTransmit("b");
+ 1390               		.loc 3 56 0 discriminator 1
+ 1391 0046 8E2D      		mov r24,r14
+ 1392 0048 0E94 0000 		call UartTransmit
+ 1393               	.LVL129:
+  57:main.c        **** 		lcd_showvalue(UartReceive());
+ 1394               		.loc 3 57 0 discriminator 1
+ 1395 004c 0E94 0000 		call UartReceive
+ 1396               	.LVL130:
+ 1397 0050 682F      		mov r22,r24
+ 1398 0052 70E0      		ldi r23,0
+ 1399 0054 80E0      		ldi r24,0
+ 1400 0056 90E0      		ldi r25,0
+ 1401 0058 0E94 0000 		call lcd_showvalue
+ 1402               	.LVL131:
+  58:main.c        **** 		UartTransmit("c");
+ 1403               		.loc 3 58 0 discriminator 1
+ 1404 005c 802F      		mov r24,r16
+ 1405 005e 0E94 0000 		call UartTransmit
+ 1406               	.LVL132:
+  59:main.c        **** 		lcd_showvalue(UartReceive());
+ 1407               		.loc 3 59 0 discriminator 1
+ 1408 0062 0E94 0000 		call UartReceive
+ 1409               	.LVL133:
+ 1410 0066 682F      		mov r22,r24
+ 1411 0068 70E0      		ldi r23,0
+ 1412 006a 80E0      		ldi r24,0
+ 1413 006c 90E0      		ldi r25,0
+ 1414 006e 0E94 0000 		call lcd_showvalue
+ 1415               	.LVL134:
+ 1416               		.loc 3 60 0 discriminator 1
+ 1417 0072 8C2F      		mov r24,r28
+ 1418 0074 0E94 0000 		call UartTransmit
+ 1419               	.LVL135:
+ 1420 0078 00C0      		rjmp .L61
+ 1421               		.cfi_endproc
+ 1422               	.LFE21:
+ 1424               	.global	one
+ 1425               		.section .bss
+ 1428               	one:
+ 1429 0000 00        		.zero	1
+ 1430               	.global	ten
+ 1433               	ten:
+ 1434 0001 00        		.zero	1
+ 1435               	.global	hundred
+ 1438               	hundred:
+ 1439 0002 00        		.zero	1
+ 1440               	.global	thousand
+ 1443               	thousand:
+ 1444 0003 00        		.zero	1
+ 1445               	.global	tenthousand
+ 1448               	tenthousand:
+ 1449 0004 00        		.zero	1
+ 1450               	.global	ch
+ 1451               		.data
+ 1454               	ch:
+ 1455 0000 30        		.byte	48
+ 1456 0001 31        		.byte	49
+ 1457 0002 32        		.byte	50
+ 1458 0003 33        		.byte	51
+ 1459 0004 34        		.byte	52
+ 1460 0005 35        		.byte	53
+ 1461 0006 36        		.byte	54
+ 1462 0007 37        		.byte	55
+ 1463 0008 38        		.byte	56
+ 1464 0009 39        		.byte	57
+ 1465               	.global	j
+ 1466               		.section .bss
+ 1469               	j:
+ 1470 0005 00        		.zero	1
+ 1471               	.global	k
+ 1474               	k:
+ 1475 0006 00        		.zero	1
+ 1476               		.text
+ 1477               	.Letext0:
+ 1478               		.file 4 "/usr/lib/avr/include/stdint.h"
+ 1479               		.file 5 "/usr/lib/avr/include/math.h"
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+     /tmp/ccb0kk7k.s:2      *ABS*:000000000000003e __SP_H__
+     /tmp/ccb0kk7k.s:3      *ABS*:000000000000003d __SP_L__
+     /tmp/ccb0kk7k.s:4      *ABS*:000000000000003f __SREG__
+     /tmp/ccb0kk7k.s:5      *ABS*:0000000000000000 __tmp_reg__
+     /tmp/ccb0kk7k.s:6      *ABS*:0000000000000001 __zero_reg__
+     /tmp/ccb0kk7k.s:12     .text:0000000000000000 WaitMs
+     /tmp/ccb0kk7k.s:55     .text:0000000000000018 toggleE
+     /tmp/ccb0kk7k.s:84     .text:0000000000000026 CheckTemp
+     /tmp/ccb0kk7k.s:177    .text:0000000000000076 lcd_cmd
+     /tmp/ccb0kk7k.s:301    .text:00000000000000ee lcd_init
+     /tmp/ccb0kk7k.s:400    .text:000000000000016c lcd_char
+     /tmp/ccb0kk7k.s:514    .text:00000000000001dc lcd_string
+     /tmp/ccb0kk7k.s:672    .text:0000000000000280 lcd_showvalue
+     /tmp/ccb0kk7k.s:990    .text:000000000000041e lcd_showvaluef
+     /tmp/ccb0kk7k.s:1107   .text:00000000000004a2 lcd_gotoxy1
+     /tmp/ccb0kk7k.s:1126   .text:00000000000004a8 lcd_gotoxy2
+     /tmp/ccb0kk7k.s:1145   .text:00000000000004ae lcd_showvalueh
+     /tmp/ccb0kk7k.s:1225   .text:0000000000000504 UartInit
+     /tmp/ccb0kk7k.s:1283   .text:0000000000000550 UartTransmit
+     /tmp/ccb0kk7k.s:1305   .text:000000000000055e UartReceive
+     /tmp/ccb0kk7k.s:1337   .text.startup:0000000000000000 main
+     /tmp/ccb0kk7k.s:1428   .bss:0000000000000000 one
+     /tmp/ccb0kk7k.s:1433   .bss:0000000000000001 ten
+     /tmp/ccb0kk7k.s:1438   .bss:0000000000000002 hundred
+     /tmp/ccb0kk7k.s:1443   .bss:0000000000000003 thousand
+     /tmp/ccb0kk7k.s:1448   .bss:0000000000000004 tenthousand
+     /tmp/ccb0kk7k.s:1454   .data:0000000000000000 ch
+     /tmp/ccb0kk7k.s:1469   .bss:0000000000000005 j
+     /tmp/ccb0kk7k.s:1474   .bss:0000000000000006 k
+
+UNDEFINED SYMBOLS
+__divmodsi4
+__muluhisi3
+__udivmodsi4
+__ltsf2
+__fixunssfsi
+__mulsf3
+modf
+__udivmodhi4
+__do_copy_data
+__do_clear_bss

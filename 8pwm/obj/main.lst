@@ -1,0 +1,102 @@
+   1               		.file	"main.c"
+   2               		.arch atmega8
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	ports_init
+  20               	ports_init:
+  21               	.LFB6:
+  22               	.LM1:
+  23               	/* prologue: frame size=0 */
+  24               	/* prologue end (size=0) */
+  25               	.LM2:
+  26 0000 11BA      		out 49-0x20,__zero_reg__
+  27               	.LM3:
+  28 0002 8FEF      		ldi r24,lo8(-1)
+  29 0004 87BB      		out 55-0x20,r24
+  30               	.LM4:
+  31 0006 84BB      		out 52-0x20,r24
+  32               	/* epilogue: frame size=0 */
+  33 0008 0895      		ret
+  34               	/* epilogue end (size=1) */
+  35               	/* function ports_init size 5 (4) */
+  36               	.LFE6:
+  38               	.global	pwm_init
+  40               	pwm_init:
+  41               	.LFB7:
+  42               	.LM5:
+  43               	/* prologue: frame size=0 */
+  44               	/* prologue end (size=0) */
+  45               	.LM6:
+  46 000a 80EA      		ldi r24,lo8(-96)
+  47 000c 8FBD      		out 79-0x20,r24
+  48               	.LM7:
+  49 000e 1DBC      		out (76)+1-0x20,__zero_reg__
+  50 0010 1CBC      		out 76-0x20,__zero_reg__
+  51               	.LM8:
+  52 0012 81E1      		ldi r24,lo8(17)
+  53 0014 8EBD      		out 78-0x20,r24
+  54               	.LM9:
+  55 0016 84EC      		ldi r24,lo8(2500)
+  56 0018 99E0      		ldi r25,hi8(2500)
+  57 001a 97BD      		out (70)+1-0x20,r25
+  58 001c 86BD      		out 70-0x20,r24
+  59               	.LM10:
+  60 001e 82EE      		ldi r24,lo8(1250)
+  61 0020 94E0      		ldi r25,hi8(1250)
+  62 0022 9BBD      		out (74)+1-0x20,r25
+  63 0024 8ABD      		out 74-0x20,r24
+  64               	.LM11:
+  65 0026 99BD      		out (72)+1-0x20,r25
+  66 0028 88BD      		out 72-0x20,r24
+  67               	/* epilogue: frame size=0 */
+  68 002a 0895      		ret
+  69               	/* epilogue end (size=1) */
+  70               	/* function pwm_init size 17 (16) */
+  71               	.LFE7:
+  73               	.global	main
+  75               	main:
+  76               	.LFB8:
+  77               	.LM12:
+  78               	/* prologue: frame size=0 */
+  79 002c C0E0      		ldi r28,lo8(__stack - 0)
+  80 002e D0E0      		ldi r29,hi8(__stack - 0)
+  81 0030 DEBF      		out __SP_H__,r29
+  82 0032 CDBF      		out __SP_L__,r28
+  83               	/* prologue end (size=4) */
+  84               	.LM13:
+  85 0034 8FEF      		ldi r24,lo8(-1)
+  86 0036 87BB      		out 55-0x20,r24
+  87               	.LM14:
+  88 0038 88BB      		out 56-0x20,r24
+  89               	.LM15:
+  90 003a E7DF      		rcall pwm_init
+  91               	.L4:
+  92               	.LM16:
+  93 003c FFCF      		rjmp .L4
+  94               	/* epilogue: frame size=0 */
+  95               	/* epilogue: noreturn */
+  96               	/* epilogue end (size=0) */
+  97               	/* function main size 9 (5) */
+  98               	.LFE8:
+ 100               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Aditya\AppData\Local\Temp/ccyqaaaa.s:3      *ABS*:0000003f __SREG__
+C:\Users\Aditya\AppData\Local\Temp/ccyqaaaa.s:4      *ABS*:0000003e __SP_H__
+C:\Users\Aditya\AppData\Local\Temp/ccyqaaaa.s:5      *ABS*:0000003d __SP_L__
+C:\Users\Aditya\AppData\Local\Temp/ccyqaaaa.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Aditya\AppData\Local\Temp/ccyqaaaa.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Aditya\AppData\Local\Temp/ccyqaaaa.s:20     .text:00000000 ports_init
+C:\Users\Aditya\AppData\Local\Temp/ccyqaaaa.s:40     .text:0000000a pwm_init
+C:\Users\Aditya\AppData\Local\Temp/ccyqaaaa.s:75     .text:0000002c main
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+__stack

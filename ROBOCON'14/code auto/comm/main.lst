@@ -1,0 +1,67 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	port_init
+  20               	port_init:
+  21               	.LFB6:
+  22               	.LM1:
+  23               	/* prologue: function */
+  24               	/* frame size = 0 */
+  25               	.LM2:
+  26 0000 11B8      		out 33-32,__zero_reg__
+  27               	.LM3:
+  28 0002 8FEF      		ldi r24,lo8(-1)
+  29 0004 87B9      		out 39-32,r24
+  30               	.LM4:
+  31 0006 82B9      		out 34-32,r24
+  32               	/* epilogue start */
+  33               	.LM5:
+  34 0008 0895      		ret
+  35               	.LFE6:
+  37               	.global	main
+  39               	main:
+  40               	.LFB7:
+  41               	.LM6:
+  42               	/* prologue: function */
+  43               	/* frame size = 0 */
+  44               	.LBB4:
+  45               	.LBB5:
+  46               	.LM7:
+  47 000a 11B8      		out 33-32,__zero_reg__
+  48               	.LM8:
+  49 000c 8FEF      		ldi r24,lo8(-1)
+  50 000e 87B9      		out 39-32,r24
+  51               	.LM9:
+  52 0010 82B9      		out 34-32,r24
+  53               	.L4:
+  54               	.LBE5:
+  55               	.LBE4:
+  56               	.LM10:
+  57 0012 80B1      		in r24,32-32
+  58               	.LVL0:
+  59               	.LM11:
+  60 0014 88B9      		out 40-32,r24
+  61 0016 00C0      		rjmp .L4
+  62               	.LFE7:
+  96               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\RG\AppData\Local\Temp/ccsl8Vj1.s:2      *ABS*:0000003f __SREG__
+C:\Users\RG\AppData\Local\Temp/ccsl8Vj1.s:3      *ABS*:0000003e __SP_H__
+C:\Users\RG\AppData\Local\Temp/ccsl8Vj1.s:4      *ABS*:0000003d __SP_L__
+C:\Users\RG\AppData\Local\Temp/ccsl8Vj1.s:5      *ABS*:00000034 __CCP__
+C:\Users\RG\AppData\Local\Temp/ccsl8Vj1.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\RG\AppData\Local\Temp/ccsl8Vj1.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\RG\AppData\Local\Temp/ccsl8Vj1.s:20     .text:00000000 port_init
+C:\Users\RG\AppData\Local\Temp/ccsl8Vj1.s:39     .text:0000000a main
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss

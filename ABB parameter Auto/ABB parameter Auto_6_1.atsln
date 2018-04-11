@@ -1,0 +1,20 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "ABB parameter Auto", "ABB parameter Auto\ABB parameter Auto_6_1.cproj", "{795EFF48-94F2-4C82-92C0-F44AE7ECB507}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{795EFF48-94F2-4C82-92C0-F44AE7ECB507}.Debug|AVR.ActiveCfg = Debug|AVR
+		{795EFF48-94F2-4C82-92C0-F44AE7ECB507}.Debug|AVR.Build.0 = Debug|AVR
+		{795EFF48-94F2-4C82-92C0-F44AE7ECB507}.Release|AVR.ActiveCfg = Release|AVR
+		{795EFF48-94F2-4C82-92C0-F44AE7ECB507}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

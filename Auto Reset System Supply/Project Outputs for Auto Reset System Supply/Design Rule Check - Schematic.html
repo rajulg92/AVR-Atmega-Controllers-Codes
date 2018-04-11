@@ -1,0 +1,592 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : sans-serif;
+			color : white;
+			background-color : #21489e;
+			padding: 0.3em;
+		}
+		body {
+			font-family : verdana;
+		}
+		td, th {
+			padding: 0.5em;
+			text-align : center;
+			width : 18%;
+		}
+		th {
+			background-color : #A6CAF0;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+		}
+		
+		.DRC_summary_header {							
+			padding-bottom : 0.1em;
+			border : 0px solid black;							
+			width: 100%;
+                        align: right;
+                        
+		}
+
+		.DRC_summary_header_col1, 
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3
+		{
+			color : black;
+			font-size:150%;
+                        padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2: 0em;
+			border : 0px solid black;
+			width : auto;
+			vertical-align: top;
+			font-weight: bold;				
+		}
+		
+		.DRC_summary_header_col1 	
+		{		                       
+			text-align: right;
+                        width: auto;	
+		}
+
+		.DRC_summary_header_col2 	
+		{		
+			text-align: center;	
+		}
+
+		.DRC_summary_header_col3 	
+		{		
+			text-align: left;	
+		}
+
+
+		
+		.header_holder
+		{
+		Width = 100%;
+		border = 0px solid green;
+		padding = 0;
+		}
+		
+		
+		
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+                {
+			left:0;
+			top:0;
+			padding-top : 0.1em;			
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top
+
+		}
+		.front_matter {	
+			
+			margin-top: 5px;
+ 			margin-left: 0px;					 			
+ 			horizontal-align: left;
+		}
+				
+		
+		.front_matter_column1 {
+			width : 10em;	
+			text-align  : right;
+			padding-right:0.1em;
+			
+		}
+		
+		.front_matter_column2 {
+                        width: 0.1em;
+			align: center;
+			text-align : center;
+			margin-right  : 0.1em;	
+			margin-left   : 0.1em;
+		}
+		.front_matter_column3 {
+			width         : auto;  
+			text-align    : left;	
+			margin-right  : 0.5em;				
+		}
+		
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : right;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #EEEEE0 
+		}
+		tr.onmouseout_even { 
+			background-color : #F3F3E3   
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : lightYellow
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #008000 
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD13\Templates\AD-rgb_logo_223x64.gif
+		"><a href="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports" class="customize"><acronym title="dxpprocess://Client:SetupPreferences?Server=PCB|PageName=Reports">customize</acronym></a><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td Style="width:70%">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">04-04-2016</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">19:40:31</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename</td>
+<td class="front_matter_column2">:</td>
+<td class="front_matter_column3"><a href="file:///E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc" class="file"><acronym title="E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc">E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td Style="Width:30%">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings</td>
+<td class="DRC_summary_header_col2">:</td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations</td>
+<td class="DRC_summary_header_col2">:</td>
+<td class="DRC_summary_header_col3" style="color : red">64</td></tr>
+</table>
+</td>
+</table>
+<hr><a name="ID4KHPBJE33JJHP41VIVN5LXLMIMXOEDEWNN0WAUGJ5TGZVEHANTVP"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSORKS15DQS01IEVPLERPVH2GBDQCNS50ZQ2GV5NAMQA2TTBGDYQB">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5LE3CDUKOBYSCREDRNXJCNOMTK34OMFZUXOI01JW2J45A5VDJ1HK">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDKT0UKI4YS2XWNDDHESO2WVNBXBI2DGDMCTK4S3HAOIP3043W5DRF">Clearance Constraint (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID52F0Y40RNLBXBIAHRZBNQ4BADCIWT5NMNYTIQLM0C1M5TQ1CFKHF">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3QKKJHNDI1O5LTKMBUYOB52MUGAERC5KWD0X3CIK1H2K5CC3VLWP">Width Constraint (Min=10mil) (Max=50mil) (Preferred=25mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZUDD2T3JAFYQKKSJUOQRL0WSFLJDZ44TY024JTJOWUVTWJ2UNTGJ">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDKHIHKXMN2WKSCVZL3FPARNDDMGKCPEKUHXCJDKPCHFPPN0EDTLJO">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">8</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBO24I1APCOM0E3NZ2VVIHC1LHUNURHDDZUWRBK4I05GIFWEPYNC">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYJ3GGW24AMDEN4MZ1QQX0GQ4TKC4PIAELNS25GIME40BHNRX0AE">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3YO0JLBF0DO3G420YJOFWKHOYPNMCXUSYDQAHRMWISRXXOAK1BZD">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">50</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDED0MEQJYWFC1LVHPRF23PNM5DLOOPDWSCHUMOLNLVP4N0AGUDAG">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">6</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEPOC2B42Y5EAGXTQQD2UNNWHXFMXXTEOWXGCVOOFEHOLS33TUIUN">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">64</td>
+</tr>
+</table><br><hr><a name="IDKHIHKXMN2WKSCVZL3FPARNDDMGKCPEKUHXCJDKPCHFPPN0EDTLJO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2940.32mil|Location2.X=3059.68mil|Location1.Y=4290.32mil|Location2.Y=4409.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2940.32mil|Location2.X=3059.68mil|Location1.Y=4290.32mil|Location2.Y=4409.68mil|Absolute=True">Hole Size Constraint (118.11mil &gt; 100mil) : Via (3000mil,4350mil) Top Layer to Bottom Layer</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=985.32mil|Location2.X=1104.68mil|Location1.Y=4280.32mil|Location2.Y=4399.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=985.32mil|Location2.X=1104.68mil|Location1.Y=4280.32mil|Location2.Y=4399.68mil|Absolute=True">Hole Size Constraint (118.11mil &gt; 100mil) : Via (1045mil,4340mil) Top Layer to Bottom Layer</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2940.32mil|Location2.X=3059.68mil|Location1.Y=1940.32mil|Location2.Y=2059.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2940.32mil|Location2.X=3059.68mil|Location1.Y=1940.32mil|Location2.Y=2059.68mil|Absolute=True">Hole Size Constraint (118.11mil &gt; 100mil) : Via (3000mil,2000mil) Top Layer to Bottom Layer</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=990.32mil|Location2.X=1109.68mil|Location1.Y=1940.32mil|Location2.Y=2059.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=990.32mil|Location2.X=1109.68mil|Location1.Y=1940.32mil|Location2.Y=2059.68mil|Absolute=True">Hole Size Constraint (118.11mil &gt; 100mil) : Via (1050mil,2000mil) Top Layer to Bottom Layer</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1870.32mil|Location2.X=1989.68mil|Location1.Y=-1884.68mil|Location2.Y=-1765.32mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1870.32mil|Location2.X=1989.68mil|Location1.Y=-1884.68mil|Location2.Y=-1765.32mil|Absolute=True">Hole Size Constraint (118.11mil &gt; 100mil) : Via (1930mil,-1825mil) Top Layer to Bottom Layer</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=800.32mil|Location2.X=919.68mil|Location1.Y=-1494.68mil|Location2.Y=-1375.32mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=800.32mil|Location2.X=919.68mil|Location1.Y=-1494.68mil|Location2.Y=-1375.32mil|Absolute=True">Hole Size Constraint (118.11mil &gt; 100mil) : Via (860mil,-1435mil) Top Layer to Bottom Layer</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=365.32mil|Location2.X=484.68mil|Location1.Y=-2484.68mil|Location2.Y=-2365.32mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=365.32mil|Location2.X=484.68mil|Location1.Y=-2484.68mil|Location2.Y=-2365.32mil|Absolute=True">Hole Size Constraint (118.11mil &gt; 100mil) : Via (425mil,-2425mil) Top Layer to Bottom Layer</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=365.32mil|Location2.X=484.68mil|Location1.Y=-209.68mil|Location2.Y=-90.32mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=365.32mil|Location2.X=484.68mil|Location1.Y=-209.68mil|Location2.Y=-90.32mil|Absolute=True">Hole Size Constraint (118.11mil &gt; 100mil) : Via (425mil,-150mil) Top Layer to Bottom Layer</acronym></a><br></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br><a name="ID3YO0JLBF0DO3G420YJOFWKHOYPNMCXUSYDQAHRMWISRXXOAK1BZD"><table>
+<tr>
+<th style="text-align : left" colspan="2" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1891.732mil|Location2.X=1899.606mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1891.732mil|Location2.X=1899.606mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True">Track (1895.669mil,2297.244mil)(1895.669mil,2702.756mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1810.567mil|Location2.X=1889.433mil|Location1.Y=2610.567mil|Location2.Y=2689.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1810.567mil|Location2.X=1889.433mil|Location1.Y=2610.567mil|Location2.Y=2689.433mil|Absolute=True">Pad U1-1(1850mil,2650mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1891.732mil|Location2.X=1899.606mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1891.732mil|Location2.X=1899.606mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True">Track (1895.669mil,2297.244mil)(1895.669mil,2702.756mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1810.567mil|Location2.X=1889.433mil|Location1.Y=2510.567mil|Location2.Y=2589.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1810.567mil|Location2.X=1889.433mil|Location1.Y=2510.567mil|Location2.Y=2589.433mil|Absolute=True">Pad U1-2(1850mil,2550mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1891.732mil|Location2.X=1899.606mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1891.732mil|Location2.X=1899.606mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True">Track (1895.669mil,2297.244mil)(1895.669mil,2702.756mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1810.567mil|Location2.X=1889.433mil|Location1.Y=2410.567mil|Location2.Y=2489.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1810.567mil|Location2.X=1889.433mil|Location1.Y=2410.567mil|Location2.Y=2489.433mil|Absolute=True">Pad U1-3(1850mil,2450mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1891.732mil|Location2.X=1899.606mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1891.732mil|Location2.X=1899.606mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True">Track (1895.669mil,2297.244mil)(1895.669mil,2702.756mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1810.567mil|Location2.X=1889.433mil|Location1.Y=2310.567mil|Location2.Y=2389.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1810.567mil|Location2.X=1889.433mil|Location1.Y=2310.567mil|Location2.Y=2389.433mil|Absolute=True">Pad U1-4(1850mil,2350mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2100.394mil|Location2.X=2108.268mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2100.394mil|Location2.X=2108.268mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True">Track (2104.331mil,2297.244mil)(2104.331mil,2702.756mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2110.567mil|Location2.X=2189.433mil|Location1.Y=2610.567mil|Location2.Y=2689.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2110.567mil|Location2.X=2189.433mil|Location1.Y=2610.567mil|Location2.Y=2689.433mil|Absolute=True">Pad U1-8(2150mil,2650mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2100.394mil|Location2.X=2108.268mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2100.394mil|Location2.X=2108.268mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True">Track (2104.331mil,2297.244mil)(2104.331mil,2702.756mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2110.567mil|Location2.X=2189.433mil|Location1.Y=2510.567mil|Location2.Y=2589.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2110.567mil|Location2.X=2189.433mil|Location1.Y=2510.567mil|Location2.Y=2589.433mil|Absolute=True">Pad U1-7(2150mil,2550mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2183.698mil|Location2.X=2245.845mil|Location1.Y=2490mil|Location2.Y=2575.341mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2183.698mil|Location2.X=2245.845mil|Location1.Y=2490mil|Location2.Y=2575.341mil|Absolute=True">Text "C1" (2240mil,2495mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2110.567mil|Location2.X=2189.433mil|Location1.Y=2510.567mil|Location2.Y=2589.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2110.567mil|Location2.X=2189.433mil|Location1.Y=2510.567mil|Location2.Y=2589.433mil|Absolute=True">Pad U1-7(2150mil,2550mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2100.394mil|Location2.X=2108.268mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2100.394mil|Location2.X=2108.268mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True">Track (2104.331mil,2297.244mil)(2104.331mil,2702.756mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2110.567mil|Location2.X=2189.433mil|Location1.Y=2410.567mil|Location2.Y=2489.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2110.567mil|Location2.X=2189.433mil|Location1.Y=2410.567mil|Location2.Y=2489.433mil|Absolute=True">Pad U1-6(2150mil,2450mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2100.394mil|Location2.X=2108.268mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2100.394mil|Location2.X=2108.268mil|Location1.Y=2293.307mil|Location2.Y=2706.693mil|Absolute=True">Track (2104.331mil,2297.244mil)(2104.331mil,2702.756mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2110.567mil|Location2.X=2189.433mil|Location1.Y=2310.567mil|Location2.Y=2389.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2110.567mil|Location2.X=2189.433mil|Location1.Y=2310.567mil|Location2.Y=2389.433mil|Absolute=True">Pad U1-5(2150mil,2350mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1997.047mil|Location2.X=2032.953mil|Location1.Y=3047.047mil|Location2.Y=3052.953mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1997.047mil|Location2.X=2032.953mil|Location1.Y=3047.047mil|Location2.Y=3052.953mil|Absolute=True">Track (2000mil,3050mil)(2030mil,3050mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1906.63mil|Location2.X=1993.37mil|Location1.Y=3010.567mil|Location2.Y=3089.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1906.63mil|Location2.X=1993.37mil|Location1.Y=3010.567mil|Location2.Y=3089.433mil|Absolute=True">Pad D3-1(1950mil,3050mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1069.813mil|Location2.X=1137.687mil|Location1.Y=3748.563mil|Location2.Y=3756.437mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1069.813mil|Location2.X=1137.687mil|Location1.Y=3748.563mil|Location2.Y=3756.437mil|Absolute=True">Track (1073.75mil,3752.5mil)(1133.75mil,3752.5mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=982.506mil|Location2.X=1084.994mil|Location1.Y=3701.256mil|Location2.Y=3803.744mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=982.506mil|Location2.X=1084.994mil|Location1.Y=3701.256mil|Location2.Y=3803.744mil|Absolute=True">Pad D2-1(1033.75mil,3752.5mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.813mil|Location2.X=1597.687mil|Location1.Y=3748.563mil|Location2.Y=3756.437mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1529.813mil|Location2.X=1597.687mil|Location1.Y=3748.563mil|Location2.Y=3756.437mil|Absolute=True">Track (1533.75mil,3752.5mil)(1593.75mil,3752.5mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1582.506mil|Location2.X=1684.994mil|Location1.Y=3701.256mil|Location2.Y=3803.744mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1582.506mil|Location2.X=1684.994mil|Location1.Y=3701.256mil|Location2.Y=3803.744mil|Absolute=True">Pad D2-2(1633.75mil,3752.5mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2896.063mil|Location2.X=2903.937mil|Location1.Y=2386.063mil|Location2.Y=2433.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2896.063mil|Location2.X=2903.937mil|Location1.Y=2386.063mil|Location2.Y=2433.937mil|Absolute=True">Track (2900mil,2390mil)(2900mil,2430mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2860.567mil|Location2.X=2939.433mil|Location1.Y=2310.567mil|Location2.Y=2389.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2860.567mil|Location2.X=2939.433mil|Location1.Y=2310.567mil|Location2.Y=2389.433mil|Absolute=True">Pad D1-1(2900mil,2350mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2896.063mil|Location2.X=2903.937mil|Location1.Y=2666.063mil|Location2.Y=2713.937mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2896.063mil|Location2.X=2903.937mil|Location1.Y=2666.063mil|Location2.Y=2713.937mil|Absolute=True">Track (2900mil,2670mil)(2900mil,2710mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2860.567mil|Location2.X=2939.433mil|Location1.Y=2710.567mil|Location2.Y=2789.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2860.567mil|Location2.X=2939.433mil|Location1.Y=2710.567mil|Location2.Y=2789.433mil|Absolute=True">Pad D1-2(2900mil,2750mil)  Multi-Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2240mil|Location2.X=2250mil|Location1.Y=3360mil|Location2.Y=3447.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2240mil|Location2.X=2250mil|Location1.Y=3360mil|Location2.Y=3447.5mil|Absolute=True">Track (2245mil,3365mil)(2245mil,3442.5mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2161mil|Location2.X=2239mil|Location1.Y=3380.5mil|Location2.Y=3433.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2161mil|Location2.X=2239mil|Location1.Y=3380.5mil|Location2.Y=3433.5mil|Absolute=True">Pad R5-2(2200mil,3407mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2150mil|Location2.X=2250mil|Location1.Y=3437.5mil|Location2.Y=3447.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2150mil|Location2.X=2250mil|Location1.Y=3437.5mil|Location2.Y=3447.5mil|Absolute=True">Track (2155mil,3442.5mil)(2245mil,3442.5mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2161mil|Location2.X=2239mil|Location1.Y=3380.5mil|Location2.Y=3433.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2161mil|Location2.X=2239mil|Location1.Y=3380.5mil|Location2.Y=3433.5mil|Absolute=True">Pad R5-2(2200mil,3407mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2150mil|Location2.X=2160mil|Location1.Y=3360mil|Location2.Y=3447.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2150mil|Location2.X=2160mil|Location1.Y=3360mil|Location2.Y=3447.5mil|Absolute=True">Track (2155mil,3365mil)(2155mil,3442.5mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2161mil|Location2.X=2239mil|Location1.Y=3380.5mil|Location2.Y=3433.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2161mil|Location2.X=2239mil|Location1.Y=3380.5mil|Location2.Y=3433.5mil|Absolute=True">Pad R5-2(2200mil,3407mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2240mil|Location2.X=2250mil|Location1.Y=3260mil|Location2.Y=3345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2240mil|Location2.X=2250mil|Location1.Y=3260mil|Location2.Y=3345mil|Absolute=True">Track (2245mil,3265mil)(2245mil,3340mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2161mil|Location2.X=2239mil|Location1.Y=3273.5mil|Location2.Y=3326.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2161mil|Location2.X=2239mil|Location1.Y=3273.5mil|Location2.Y=3326.5mil|Absolute=True">Pad R5-1(2200mil,3300mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2150mil|Location2.X=2250mil|Location1.Y=3260mil|Location2.Y=3270mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2150mil|Location2.X=2250mil|Location1.Y=3260mil|Location2.Y=3270mil|Absolute=True">Track (2155mil,3265mil)(2245mil,3265mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2161mil|Location2.X=2239mil|Location1.Y=3273.5mil|Location2.Y=3326.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2161mil|Location2.X=2239mil|Location1.Y=3273.5mil|Location2.Y=3326.5mil|Absolute=True">Pad R5-1(2200mil,3300mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2150mil|Location2.X=2160mil|Location1.Y=3260mil|Location2.Y=3345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2150mil|Location2.X=2160mil|Location1.Y=3260mil|Location2.Y=3345mil|Absolute=True">Track (2155mil,3265mil)(2155mil,3340mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2161mil|Location2.X=2239mil|Location1.Y=3273.5mil|Location2.Y=3326.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2161mil|Location2.X=2239mil|Location1.Y=3273.5mil|Location2.Y=3326.5mil|Absolute=True">Pad R5-1(2200mil,3300mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1952.5mil|Location2.X=1962.5mil|Location1.Y=2750mil|Location2.Y=2850mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1952.5mil|Location2.X=1962.5mil|Location1.Y=2750mil|Location2.Y=2850mil|Absolute=True">Track (1957.5mil,2755mil)(1957.5mil,2845mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1966.5mil|Location2.X=2019.5mil|Location1.Y=2761mil|Location2.Y=2839mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1966.5mil|Location2.X=2019.5mil|Location1.Y=2761mil|Location2.Y=2839mil|Absolute=True">Pad R7-2(1993mil,2800mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1952.5mil|Location2.X=2040mil|Location1.Y=2750mil|Location2.Y=2760mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1952.5mil|Location2.X=2040mil|Location1.Y=2750mil|Location2.Y=2760mil|Absolute=True">Track (1957.5mil,2755mil)(2035mil,2755mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1966.5mil|Location2.X=2019.5mil|Location1.Y=2761mil|Location2.Y=2839mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1966.5mil|Location2.X=2019.5mil|Location1.Y=2761mil|Location2.Y=2839mil|Absolute=True">Pad R7-2(1993mil,2800mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1952.5mil|Location2.X=2040mil|Location1.Y=2840mil|Location2.Y=2850mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1952.5mil|Location2.X=2040mil|Location1.Y=2840mil|Location2.Y=2850mil|Absolute=True">Track (1957.5mil,2845mil)(2035mil,2845mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1966.5mil|Location2.X=2019.5mil|Location1.Y=2761mil|Location2.Y=2839mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1966.5mil|Location2.X=2019.5mil|Location1.Y=2761mil|Location2.Y=2839mil|Absolute=True">Pad R7-2(1993mil,2800mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2130mil|Location2.X=2140mil|Location1.Y=2750mil|Location2.Y=2850mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2130mil|Location2.X=2140mil|Location1.Y=2750mil|Location2.Y=2850mil|Absolute=True">Track (2135mil,2755mil)(2135mil,2845mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2073.5mil|Location2.X=2126.5mil|Location1.Y=2761mil|Location2.Y=2839mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2073.5mil|Location2.X=2126.5mil|Location1.Y=2761mil|Location2.Y=2839mil|Absolute=True">Pad R7-1(2100mil,2800mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2055mil|Location2.X=2140mil|Location1.Y=2750mil|Location2.Y=2760mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2055mil|Location2.X=2140mil|Location1.Y=2750mil|Location2.Y=2760mil|Absolute=True">Track (2060mil,2755mil)(2135mil,2755mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2073.5mil|Location2.X=2126.5mil|Location1.Y=2761mil|Location2.Y=2839mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2073.5mil|Location2.X=2126.5mil|Location1.Y=2761mil|Location2.Y=2839mil|Absolute=True">Pad R7-1(2100mil,2800mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2055mil|Location2.X=2140mil|Location1.Y=2840mil|Location2.Y=2850mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2055mil|Location2.X=2140mil|Location1.Y=2840mil|Location2.Y=2850mil|Absolute=True">Track (2060mil,2845mil)(2135mil,2845mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2073.5mil|Location2.X=2126.5mil|Location1.Y=2761mil|Location2.Y=2839mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2073.5mil|Location2.X=2126.5mil|Location1.Y=2761mil|Location2.Y=2839mil|Absolute=True">Pad R7-1(2100mil,2800mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2250mil|Location2.X=2260mil|Location1.Y=2610mil|Location2.Y=2697.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2250mil|Location2.X=2260mil|Location1.Y=2610mil|Location2.Y=2697.5mil|Absolute=True">Track (2255mil,2615mil)(2255mil,2692.5mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2261mil|Location2.X=2339mil|Location1.Y=2630.5mil|Location2.Y=2683.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2261mil|Location2.X=2339mil|Location1.Y=2630.5mil|Location2.Y=2683.5mil|Absolute=True">Pad R2-2(2300mil,2657mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2340mil|Location2.X=2350mil|Location1.Y=2610mil|Location2.Y=2697.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2340mil|Location2.X=2350mil|Location1.Y=2610mil|Location2.Y=2697.5mil|Absolute=True">Track (2345mil,2615mil)(2345mil,2692.5mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2261mil|Location2.X=2339mil|Location1.Y=2630.5mil|Location2.Y=2683.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2261mil|Location2.X=2339mil|Location1.Y=2630.5mil|Location2.Y=2683.5mil|Absolute=True">Pad R2-2(2300mil,2657mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2250mil|Location2.X=2350mil|Location1.Y=2687.5mil|Location2.Y=2697.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2250mil|Location2.X=2350mil|Location1.Y=2687.5mil|Location2.Y=2697.5mil|Absolute=True">Track (2255mil,2692.5mil)(2345mil,2692.5mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2261mil|Location2.X=2339mil|Location1.Y=2630.5mil|Location2.Y=2683.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2261mil|Location2.X=2339mil|Location1.Y=2630.5mil|Location2.Y=2683.5mil|Absolute=True">Pad R2-2(2300mil,2657mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2250mil|Location2.X=2260mil|Location1.Y=2510mil|Location2.Y=2595mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2250mil|Location2.X=2260mil|Location1.Y=2510mil|Location2.Y=2595mil|Absolute=True">Track (2255mil,2515mil)(2255mil,2590mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2261mil|Location2.X=2339mil|Location1.Y=2523.5mil|Location2.Y=2576.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2261mil|Location2.X=2339mil|Location1.Y=2523.5mil|Location2.Y=2576.5mil|Absolute=True">Pad R2-1(2300mil,2550mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2340mil|Location2.X=2350mil|Location1.Y=2510mil|Location2.Y=2595mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2340mil|Location2.X=2350mil|Location1.Y=2510mil|Location2.Y=2595mil|Absolute=True">Track (2345mil,2515mil)(2345mil,2590mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2261mil|Location2.X=2339mil|Location1.Y=2523.5mil|Location2.Y=2576.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2261mil|Location2.X=2339mil|Location1.Y=2523.5mil|Location2.Y=2576.5mil|Absolute=True">Pad R2-1(2300mil,2550mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2250mil|Location2.X=2350mil|Location1.Y=2510mil|Location2.Y=2520mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2250mil|Location2.X=2350mil|Location1.Y=2510mil|Location2.Y=2520mil|Absolute=True">Track (2255mil,2515mil)(2345mil,2515mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2261mil|Location2.X=2339mil|Location1.Y=2523.5mil|Location2.Y=2576.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2261mil|Location2.X=2339mil|Location1.Y=2523.5mil|Location2.Y=2576.5mil|Absolute=True">Pad R2-1(2300mil,2550mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1802.5mil|Location2.X=1812.5mil|Location1.Y=2100mil|Location2.Y=2200mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1802.5mil|Location2.X=1812.5mil|Location1.Y=2100mil|Location2.Y=2200mil|Absolute=True">Track (1807.5mil,2105mil)(1807.5mil,2195mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1816.5mil|Location2.X=1869.5mil|Location1.Y=2111mil|Location2.Y=2189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1816.5mil|Location2.X=1869.5mil|Location1.Y=2111mil|Location2.Y=2189mil|Absolute=True">Pad R3-2(1843mil,2150mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1802.5mil|Location2.X=1890mil|Location1.Y=2100mil|Location2.Y=2110mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1802.5mil|Location2.X=1890mil|Location1.Y=2100mil|Location2.Y=2110mil|Absolute=True">Track (1807.5mil,2105mil)(1885mil,2105mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1816.5mil|Location2.X=1869.5mil|Location1.Y=2111mil|Location2.Y=2189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1816.5mil|Location2.X=1869.5mil|Location1.Y=2111mil|Location2.Y=2189mil|Absolute=True">Pad R3-2(1843mil,2150mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1802.5mil|Location2.X=1890mil|Location1.Y=2190mil|Location2.Y=2200mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1802.5mil|Location2.X=1890mil|Location1.Y=2190mil|Location2.Y=2200mil|Absolute=True">Track (1807.5mil,2195mil)(1885mil,2195mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1816.5mil|Location2.X=1869.5mil|Location1.Y=2111mil|Location2.Y=2189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1816.5mil|Location2.X=1869.5mil|Location1.Y=2111mil|Location2.Y=2189mil|Absolute=True">Pad R3-2(1843mil,2150mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1980mil|Location2.X=1990mil|Location1.Y=2100mil|Location2.Y=2200mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1980mil|Location2.X=1990mil|Location1.Y=2100mil|Location2.Y=2200mil|Absolute=True">Track (1985mil,2105mil)(1985mil,2195mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1923.5mil|Location2.X=1976.5mil|Location1.Y=2111mil|Location2.Y=2189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1923.5mil|Location2.X=1976.5mil|Location1.Y=2111mil|Location2.Y=2189mil|Absolute=True">Pad R3-1(1950mil,2150mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1905mil|Location2.X=1990mil|Location1.Y=2100mil|Location2.Y=2110mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1905mil|Location2.X=1990mil|Location1.Y=2100mil|Location2.Y=2110mil|Absolute=True">Track (1910mil,2105mil)(1985mil,2105mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1923.5mil|Location2.X=1976.5mil|Location1.Y=2111mil|Location2.Y=2189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1923.5mil|Location2.X=1976.5mil|Location1.Y=2111mil|Location2.Y=2189mil|Absolute=True">Pad R3-1(1950mil,2150mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1905mil|Location2.X=1990mil|Location1.Y=2190mil|Location2.Y=2200mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1905mil|Location2.X=1990mil|Location1.Y=2190mil|Location2.Y=2200mil|Absolute=True">Track (1910mil,2195mil)(1985mil,2195mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1923.5mil|Location2.X=1976.5mil|Location1.Y=2111mil|Location2.Y=2189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1923.5mil|Location2.X=1976.5mil|Location1.Y=2111mil|Location2.Y=2189mil|Absolute=True">Pad R3-1(1950mil,2150mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1692.5mil|Location2.X=1702.5mil|Location1.Y=2165mil|Location2.Y=2265mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1692.5mil|Location2.X=1702.5mil|Location1.Y=2165mil|Location2.Y=2265mil|Absolute=True">Track (1697.5mil,2170mil)(1697.5mil,2260mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1635.5mil|Location2.X=1688.5mil|Location1.Y=2176mil|Location2.Y=2254mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1635.5mil|Location2.X=1688.5mil|Location1.Y=2176mil|Location2.Y=2254mil|Absolute=True">Pad R1-2(1662mil,2215mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1615mil|Location2.X=1702.5mil|Location1.Y=2165mil|Location2.Y=2175mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1615mil|Location2.X=1702.5mil|Location1.Y=2165mil|Location2.Y=2175mil|Absolute=True">Track (1620mil,2170mil)(1697.5mil,2170mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1635.5mil|Location2.X=1688.5mil|Location1.Y=2176mil|Location2.Y=2254mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1635.5mil|Location2.X=1688.5mil|Location1.Y=2176mil|Location2.Y=2254mil|Absolute=True">Pad R1-2(1662mil,2215mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1615mil|Location2.X=1702.5mil|Location1.Y=2255mil|Location2.Y=2265mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1615mil|Location2.X=1702.5mil|Location1.Y=2255mil|Location2.Y=2265mil|Absolute=True">Track (1620mil,2260mil)(1697.5mil,2260mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1635.5mil|Location2.X=1688.5mil|Location1.Y=2176mil|Location2.Y=2254mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1635.5mil|Location2.X=1688.5mil|Location1.Y=2176mil|Location2.Y=2254mil|Absolute=True">Pad R1-2(1662mil,2215mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1515mil|Location2.X=1600mil|Location1.Y=2165mil|Location2.Y=2175mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1515mil|Location2.X=1600mil|Location1.Y=2165mil|Location2.Y=2175mil|Absolute=True">Track (1520mil,2170mil)(1595mil,2170mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1528.5mil|Location2.X=1581.5mil|Location1.Y=2176mil|Location2.Y=2254mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1528.5mil|Location2.X=1581.5mil|Location1.Y=2176mil|Location2.Y=2254mil|Absolute=True">Pad R1-1(1555mil,2215mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1515mil|Location2.X=1600mil|Location1.Y=2255mil|Location2.Y=2265mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1515mil|Location2.X=1600mil|Location1.Y=2255mil|Location2.Y=2265mil|Absolute=True">Track (1520mil,2260mil)(1595mil,2260mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1528.5mil|Location2.X=1581.5mil|Location1.Y=2176mil|Location2.Y=2254mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1528.5mil|Location2.X=1581.5mil|Location1.Y=2176mil|Location2.Y=2254mil|Absolute=True">Pad R1-1(1555mil,2215mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1515mil|Location2.X=1525mil|Location1.Y=2165mil|Location2.Y=2265mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1515mil|Location2.X=1525mil|Location1.Y=2165mil|Location2.Y=2265mil|Absolute=True">Track (1520mil,2170mil)(1520mil,2260mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1528.5mil|Location2.X=1581.5mil|Location1.Y=2176mil|Location2.Y=2254mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1528.5mil|Location2.X=1581.5mil|Location1.Y=2176mil|Location2.Y=2254mil|Absolute=True">Pad R1-1(1555mil,2215mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1440mil|Location2.X=1450mil|Location1.Y=2452.5mil|Location2.Y=2540mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1440mil|Location2.X=1450mil|Location1.Y=2452.5mil|Location2.Y=2540mil|Absolute=True">Track (1445mil,2457.5mil)(1445mil,2535mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1361mil|Location2.X=1439mil|Location1.Y=2466.5mil|Location2.Y=2519.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1361mil|Location2.X=1439mil|Location1.Y=2466.5mil|Location2.Y=2519.5mil|Absolute=True">Pad R4-2(1400mil,2493mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350mil|Location2.X=1450mil|Location1.Y=2452.5mil|Location2.Y=2462.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350mil|Location2.X=1450mil|Location1.Y=2452.5mil|Location2.Y=2462.5mil|Absolute=True">Track (1355mil,2457.5mil)(1445mil,2457.5mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1361mil|Location2.X=1439mil|Location1.Y=2466.5mil|Location2.Y=2519.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1361mil|Location2.X=1439mil|Location1.Y=2466.5mil|Location2.Y=2519.5mil|Absolute=True">Pad R4-2(1400mil,2493mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350mil|Location2.X=1360mil|Location1.Y=2452.5mil|Location2.Y=2540mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350mil|Location2.X=1360mil|Location1.Y=2452.5mil|Location2.Y=2540mil|Absolute=True">Track (1355mil,2457.5mil)(1355mil,2535mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1361mil|Location2.X=1439mil|Location1.Y=2466.5mil|Location2.Y=2519.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1361mil|Location2.X=1439mil|Location1.Y=2466.5mil|Location2.Y=2519.5mil|Absolute=True">Pad R4-2(1400mil,2493mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1440mil|Location2.X=1450mil|Location1.Y=2555mil|Location2.Y=2640mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1440mil|Location2.X=1450mil|Location1.Y=2555mil|Location2.Y=2640mil|Absolute=True">Track (1445mil,2560mil)(1445mil,2635mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1361mil|Location2.X=1439mil|Location1.Y=2573.5mil|Location2.Y=2626.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1361mil|Location2.X=1439mil|Location1.Y=2573.5mil|Location2.Y=2626.5mil|Absolute=True">Pad R4-1(1400mil,2600mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350mil|Location2.X=1450mil|Location1.Y=2630mil|Location2.Y=2640mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350mil|Location2.X=1450mil|Location1.Y=2630mil|Location2.Y=2640mil|Absolute=True">Track (1355mil,2635mil)(1445mil,2635mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1361mil|Location2.X=1439mil|Location1.Y=2573.5mil|Location2.Y=2626.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1361mil|Location2.X=1439mil|Location1.Y=2573.5mil|Location2.Y=2626.5mil|Absolute=True">Pad R4-1(1400mil,2600mil)  Bottom Layer</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350mil|Location2.X=1360mil|Location1.Y=2555mil|Location2.Y=2640mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350mil|Location2.X=1360mil|Location1.Y=2555mil|Location2.Y=2640mil|Absolute=True">Track (1355mil,2560mil)(1355mil,2635mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1361mil|Location2.X=1439mil|Location1.Y=2573.5mil|Location2.Y=2626.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1361mil|Location2.X=1439mil|Location1.Y=2573.5mil|Location2.Y=2626.5mil|Absolute=True">Pad R4-1(1400mil,2600mil)  Bottom Layer</acronym></a></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br><a name="IDED0MEQJYWFC1LVHPRF23PNM5DLOOPDWSCHUMOLNLVP4N0AGUDAG"><table>
+<tr>
+<th style="text-align : left" colspan="2" class="rule">Silk to Silk (Clearance=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1369.389mil|Location2.X=1430mil|Location1.Y=3055mil|Location2.Y=3130.434mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1369.389mil|Location2.X=1430mil|Location1.Y=3055mil|Location2.Y=3130.434mil|Absolute=True">Text "L1" (1425mil,3060mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1412.997mil|Location2.X=1787.003mil|Location1.Y=3027.997mil|Location2.Y=3402.003mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1412.997mil|Location2.X=1787.003mil|Location1.Y=3027.997mil|Location2.Y=3402.003mil|Absolute=True">Arc (1600mil,3215mil)  Top Overlay</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1795mil|Location2.X=1888.712mil|Location1.Y=3554.078mil|Location2.Y=3616.302mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1795mil|Location2.X=1888.712mil|Location1.Y=3554.078mil|Location2.Y=3616.302mil|Absolute=True">Text "C3" (1800mil,3560mil)  Top Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1798.465mil|Location2.X=2241.535mil|Location1.Y=3163.465mil|Location2.Y=3606.535mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1798.465mil|Location2.X=2241.535mil|Location1.Y=3163.465mil|Location2.Y=3606.535mil|Absolute=True">Arc (2020mil,3385mil)  Top Overlay</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2344.389mil|Location2.X=2405mil|Location1.Y=2563.669mil|Location2.Y=2655mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2344.389mil|Location2.X=2405mil|Location1.Y=2563.669mil|Location2.Y=2655mil|Absolute=True">Text "R2" (2400mil,2650mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2340mil|Location2.X=2350mil|Location1.Y=2610mil|Location2.Y=2697.5mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2340mil|Location2.X=2350mil|Location1.Y=2610mil|Location2.Y=2697.5mil|Absolute=True">Track (2345mil,2615mil)(2345mil,2692.5mil)  Bottom Overlay</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2344.389mil|Location2.X=2405mil|Location1.Y=2563.669mil|Location2.Y=2655mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2344.389mil|Location2.X=2405mil|Location1.Y=2563.669mil|Location2.Y=2655mil|Absolute=True">Text "R2" (2400mil,2650mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2340mil|Location2.X=2350mil|Location1.Y=2510mil|Location2.Y=2595mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2340mil|Location2.X=2350mil|Location1.Y=2510mil|Location2.Y=2595mil|Absolute=True">Track (2345mil,2515mil)(2345mil,2590mil)  Bottom Overlay</acronym></a></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1290mil|Location2.X=1350.611mil|Location1.Y=2505mil|Location2.Y=2598.251mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1290mil|Location2.X=1350.611mil|Location1.Y=2505mil|Location2.Y=2598.251mil|Absolute=True">Text "R4" (1295mil,2510mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350mil|Location2.X=1360mil|Location1.Y=2452.5mil|Location2.Y=2540mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350mil|Location2.X=1360mil|Location1.Y=2452.5mil|Location2.Y=2540mil|Absolute=True">Track (1355mil,2457.5mil)(1355mil,2535mil)  Bottom Overlay</acronym></a></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td style="width:50%; text-align:left" class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1290mil|Location2.X=1350.611mil|Location1.Y=2505mil|Location2.Y=2598.251mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1290mil|Location2.X=1350.611mil|Location1.Y=2505mil|Location2.Y=2598.251mil|Absolute=True">Text "R4" (1295mil,2510mil)  Bottom Overlay</acronym></a></td>
+<td style="width:50%; text-align:left" class="column2"><a href="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350mil|Location2.X=1360mil|Location1.Y=2555mil|Location2.Y=2640mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\Ecozen\Auto Reset System Supply\Schematic.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1350mil|Location2.X=1360mil|Location1.Y=2555mil|Location2.Y=2640mil|Absolute=True">Track (1355mil,2560mil)(1355mil,2635mil)  Bottom Overlay</acronym></a></td>
+</tr>
+</table></a><a href="#top">Back to top</a><br><br></body>
+</html>

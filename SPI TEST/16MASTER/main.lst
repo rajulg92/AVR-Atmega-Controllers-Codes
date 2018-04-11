@@ -1,0 +1,118 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	ports_init
+  20               	ports_init:
+  21               	.LFB6:
+  22               	.LM1:
+  23               	/* prologue: function */
+  24               	/* frame size = 0 */
+  25               	.LM2:
+  26 0000 8FEF      		ldi r24,lo8(-1)
+  27 0002 87BB      		out 55-32,r24
+  28               	/* epilogue start */
+  29               	.LM3:
+  30 0004 0895      		ret
+  31               	.LFE6:
+  33               	.global	transmit_data
+  35               	transmit_data:
+  36               	.LFB7:
+  37               	.LM4:
+  38               	.LVL0:
+  39               	/* prologue: function */
+  40               	/* frame size = 0 */
+  41               	.LM5:
+  42 0006 C498      		cbi 56-32,4
+  43               	.LM6:
+  44 0008 8FB9      		out 47-32,r24
+  45               	.L4:
+  46               	.LM7:
+  47 000a 779B      		sbis 46-32,7
+  48 000c 00C0      		rjmp .L4
+  49               	.LM8:
+  50 000e C49A      		sbi 56-32,4
+  51               	.LVL1:
+  52               	/* epilogue start */
+  53               	.LM9:
+  54 0010 0895      		ret
+  55               	.LFE7:
+  57               	.global	spi_init
+  59               	spi_init:
+  60               	.LFB8:
+  61               	.LM10:
+  62               	/* prologue: function */
+  63               	/* frame size = 0 */
+  64               	.LM11:
+  65 0012 80E5      		ldi r24,lo8(80)
+  66 0014 8DB9      		out 45-32,r24
+  67               	.LM12:
+  68 0016 80E0      		ldi r24,lo8(0)
+  69 0018 90E0      		ldi r25,hi8(0)
+  70               	/* epilogue start */
+  71 001a 0895      		ret
+  72               	.LFE8:
+  74               	.global	main
+  76               	main:
+  77               	.LFB9:
+  78               	.LM13:
+  79               	/* prologue: function */
+  80               	/* frame size = 0 */
+  81               	.LM14:
+  82 001c 8FEB      		ldi r24,lo8(-65)
+  83 001e 87BB      		out 55-32,r24
+  84               	.LM15:
+  85 0020 8FEF      		ldi r24,lo8(-1)
+  86 0022 8ABB      		out 58-32,r24
+  87               	.LM16:
+  88 0024 8EEF      		ldi r24,lo8(-2)
+  89 0026 81BB      		out 49-32,r24
+  90               	.LBB6:
+  91               	.LBB7:
+  92               	.LM17:
+  93 0028 80E5      		ldi r24,lo8(80)
+  94 002a 8DB9      		out 45-32,r24
+  95               	.LBE7:
+  96               	.LBE6:
+  97               	.LBB8:
+  98               	.LBB9:
+  99               	.LM18:
+ 100 002c 86E4      		ldi r24,lo8(70)
+ 101               	.L11:
+ 102               	.LM19:
+ 103 002e C498      		cbi 56-32,4
+ 104               	.LM20:
+ 105 0030 8FB9      		out 47-32,r24
+ 106               	.L10:
+ 107               	.LM21:
+ 108 0032 779B      		sbis 46-32,7
+ 109 0034 00C0      		rjmp .L10
+ 110               	.LM22:
+ 111 0036 C49A      		sbi 56-32,4
+ 112 0038 00C0      		rjmp .L11
+ 113               	.LBE9:
+ 114               	.LBE8:
+ 115               	.LFE9:
+ 165               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\RG\AppData\Local\Temp/ccHlx9Lk.s:2      *ABS*:0000003f __SREG__
+C:\Users\RG\AppData\Local\Temp/ccHlx9Lk.s:3      *ABS*:0000003e __SP_H__
+C:\Users\RG\AppData\Local\Temp/ccHlx9Lk.s:4      *ABS*:0000003d __SP_L__
+C:\Users\RG\AppData\Local\Temp/ccHlx9Lk.s:5      *ABS*:00000034 __CCP__
+C:\Users\RG\AppData\Local\Temp/ccHlx9Lk.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\RG\AppData\Local\Temp/ccHlx9Lk.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\RG\AppData\Local\Temp/ccHlx9Lk.s:20     .text:00000000 ports_init
+C:\Users\RG\AppData\Local\Temp/ccHlx9Lk.s:35     .text:00000006 transmit_data
+C:\Users\RG\AppData\Local\Temp/ccHlx9Lk.s:59     .text:00000012 spi_init
+C:\Users\RG\AppData\Local\Temp/ccHlx9Lk.s:76     .text:0000001c main
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss

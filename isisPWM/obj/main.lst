@@ -1,0 +1,75 @@
+   1               		.file	"main.c"
+   2               		.arch atmega8
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	pwm_init
+  20               	pwm_init:
+  21               	.LFB2:
+  22               	.LM1:
+  23               	/* prologue: frame size=0 */
+  24               	/* prologue end (size=0) */
+  25               	.LM2:
+  26 0000 80EA      		ldi r24,lo8(-96)
+  27 0002 8FBD      		out 79-0x20,r24
+  28               	.LM3:
+  29 0004 81E1      		ldi r24,lo8(17)
+  30 0006 8EBD      		out 78-0x20,r24
+  31               	.LM4:
+  32 0008 88E8      		ldi r24,lo8(5000)
+  33 000a 93E1      		ldi r25,hi8(5000)
+  34 000c 97BD      		out (70)+1-0x20,r25
+  35 000e 86BD      		out 70-0x20,r24
+  36               	.LM5:
+  37 0010 84EC      		ldi r24,lo8(2500)
+  38 0012 99E0      		ldi r25,hi8(2500)
+  39 0014 9BBD      		out (74)+1-0x20,r25
+  40 0016 8ABD      		out 74-0x20,r24
+  41               	/* epilogue: frame size=0 */
+  42 0018 0895      		ret
+  43               	/* epilogue end (size=1) */
+  44               	/* function pwm_init size 13 (12) */
+  45               	.LFE2:
+  47               	.global	main
+  49               	main:
+  50               	.LFB3:
+  51               	.LM6:
+  52               	/* prologue: frame size=0 */
+  53 001a C0E0      		ldi r28,lo8(__stack - 0)
+  54 001c D0E0      		ldi r29,hi8(__stack - 0)
+  55 001e DEBF      		out __SP_H__,r29
+  56 0020 CDBF      		out __SP_L__,r28
+  57               	/* prologue end (size=4) */
+  58               	.LM7:
+  59 0022 8FEF      		ldi r24,lo8(-1)
+  60 0024 87BB      		out 55-0x20,r24
+  61               	.LM8:
+  62 0026 ECDF      		rcall pwm_init
+  63               	.L3:
+  64               	.LM9:
+  65 0028 FFCF      		rjmp .L3
+  66               	/* epilogue: frame size=0 */
+  67               	/* epilogue: noreturn */
+  68               	/* epilogue end (size=0) */
+  69               	/* function main size 8 (4) */
+  70               	.LFE3:
+  72               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Aditya\AppData\Local\Temp/cc8abaaa.s:3      *ABS*:0000003f __SREG__
+C:\Users\Aditya\AppData\Local\Temp/cc8abaaa.s:4      *ABS*:0000003e __SP_H__
+C:\Users\Aditya\AppData\Local\Temp/cc8abaaa.s:5      *ABS*:0000003d __SP_L__
+C:\Users\Aditya\AppData\Local\Temp/cc8abaaa.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Aditya\AppData\Local\Temp/cc8abaaa.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Aditya\AppData\Local\Temp/cc8abaaa.s:20     .text:00000000 pwm_init
+C:\Users\Aditya\AppData\Local\Temp/cc8abaaa.s:49     .text:0000001a main
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+__stack

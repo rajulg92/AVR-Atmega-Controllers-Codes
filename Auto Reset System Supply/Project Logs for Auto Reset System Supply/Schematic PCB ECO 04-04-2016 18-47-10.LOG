@@ -1,0 +1,7 @@
+Added Component: Designator=LM1(LM2576)
+Added Pin To Net: NetName=24V Pin=LM1-1
+Added Pin To Net: NetName=NetD2_2 Pin=LM1-2
+Added Pin To Net: NetName=GND Pin=LM1-3
+Added Pin To Net: NetName=VCC Pin=LM1-4
+Added Pin To Net: NetName=GND Pin=LM1-5
+Added Member To Class: ClassName=Schematic Member=Component LM1 LM2576

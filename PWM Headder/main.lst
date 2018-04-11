@@ -1,0 +1,104 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	PWM_init
+  18               	PWM_init:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	.LVL0:
+  22               	/* prologue: function */
+  23               	/* frame size = 0 */
+  24               	.LM2:
+  25 0000 8130      		cpi r24,1
+  26 0002 9105      		cpc r25,__zero_reg__
+  27 0004 01F4      		brne .L2
+  28               	.LM3:
+  29 0006 81B3      		in r24,49-32
+  30               	.LVL1:
+  31 0008 8063      		ori r24,lo8(48)
+  32 000a 81BB      		out 49-32,r24
+  33               	.LM4:
+  34 000c 9498      		cbi 50-32,4
+  35               	.LM5:
+  36 000e 9598      		cbi 50-32,5
+  37               	.LM6:
+  38 0010 88EA      		ldi r24,lo8(-88)
+  39 0012 8FBD      		out 79-32,r24
+  40               	.LM7:
+  41 0014 81E1      		ldi r24,lo8(17)
+  42 0016 8EBD      		out 78-32,r24
+  43               	.LM8:
+  44 0018 77BD      		out (70)+1-32,r23
+  45 001a 66BD      		out 70-32,r22
+  46               	.LVL2:
+  47 001c 0895      		ret
+  48               	.LVL3:
+  49               	.L2:
+  50               	.LM9:
+  51 001e 0297      		sbiw r24,2
+  52 0020 01F4      		brne .L4
+  53               	.LM10:
+  54 0022 8F9A      		sbi 49-32,7
+  55               	.LM11:
+  56 0024 9798      		cbi 50-32,7
+  57               	.LM12:
+  58 0026 85B5      		in r24,69-32
+  59               	.LVL4:
+  60 0028 8166      		ori r24,lo8(97)
+  61 002a 85BD      		out 69-32,r24
+  62               	.LVL5:
+  63               	.L4:
+  64 002c 0895      		ret
+  65               	.LFE6:
+  67               	.global	main
+  69               	main:
+  70               	.LFB7:
+  71               	.LM13:
+  72               	/* prologue: function */
+  73               	/* frame size = 0 */
+  74               	.LM14:
+  75 002e 81E0      		ldi r24,lo8(1)
+  76 0030 90E0      		ldi r25,hi8(1)
+  77 0032 61EE      		ldi r22,lo8(737)
+  78 0034 72E0      		ldi r23,hi8(737)
+  79 0036 0E94 0000 		call PWM_init
+  80               	.LM15:
+  81 003a 82E0      		ldi r24,lo8(2)
+  82 003c 90E0      		ldi r25,hi8(2)
+  83 003e 61EE      		ldi r22,lo8(737)
+  84 0040 72E0      		ldi r23,hi8(737)
+  85 0042 0E94 0000 		call PWM_init
+  86               	.LM16:
+  87 0046 84EF      		ldi r24,lo8(500)
+  88 0048 91E0      		ldi r25,hi8(500)
+  89               	.LM17:
+  90 004a 28EC      		ldi r18,lo8(-56)
+  91               	.L6:
+  92               	.LM18:
+  93 004c 9BBD      		out (74)+1-32,r25
+  94 004e 8ABD      		out 74-32,r24
+  95               	.LM19:
+  96 0050 99BD      		out (72)+1-32,r25
+  97 0052 88BD      		out 72-32,r24
+  98               	.LM20:
+  99 0054 23BD      		out 67-32,r18
+ 100 0056 00C0      		rjmp .L6
+ 101               	.LFE7:
+ 135               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\YATEEN~1\AppData\Local\Temp/cc4N6qHe.s:2      *ABS*:0000003f __SREG__
+C:\Users\YATEEN~1\AppData\Local\Temp/cc4N6qHe.s:3      *ABS*:0000003e __SP_H__
+C:\Users\YATEEN~1\AppData\Local\Temp/cc4N6qHe.s:4      *ABS*:0000003d __SP_L__
+C:\Users\YATEEN~1\AppData\Local\Temp/cc4N6qHe.s:5      *ABS*:00000034 __CCP__
+C:\Users\YATEEN~1\AppData\Local\Temp/cc4N6qHe.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\YATEEN~1\AppData\Local\Temp/cc4N6qHe.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\YATEEN~1\AppData\Local\Temp/cc4N6qHe.s:18     .text:00000000 PWM_init
+C:\Users\YATEEN~1\AppData\Local\Temp/cc4N6qHe.s:69     .text:0000002e main
+
+NO UNDEFINED SYMBOLS

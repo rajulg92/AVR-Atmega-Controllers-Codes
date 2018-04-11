@@ -1,0 +1,8 @@
+D:\Robocon\Programms\Robocon 2015\ArduinoC3\ArduinoC3\obj\Debug\ArduinoC3.csprojResolveAssemblyReference.cache
+D:\Robocon\Programms\Robocon 2015\ArduinoC3\ArduinoC3\obj\Debug\ArduinoC3.Form1.resources
+D:\Robocon\Programms\Robocon 2015\ArduinoC3\ArduinoC3\obj\Debug\ArduinoC3.Properties.Resources.resources
+D:\Robocon\Programms\Robocon 2015\ArduinoC3\ArduinoC3\obj\Debug\ArduinoC3.csproj.GenerateResource.Cache
+D:\Robocon\Programms\Robocon 2015\ArduinoC3\ArduinoC3\bin\Debug\ArduinoC3.exe
+D:\Robocon\Programms\Robocon 2015\ArduinoC3\ArduinoC3\bin\Debug\ArduinoC3.pdb
+D:\Robocon\Programms\Robocon 2015\ArduinoC3\ArduinoC3\obj\Debug\ArduinoC3.exe
+D:\Robocon\Programms\Robocon 2015\ArduinoC3\ArduinoC3\obj\Debug\ArduinoC3.pdb

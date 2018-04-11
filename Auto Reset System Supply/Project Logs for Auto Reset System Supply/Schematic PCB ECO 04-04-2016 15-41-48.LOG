@@ -1,0 +1,5 @@
+Change Component Footprint: Designator=R6 Old Footprint=PCBComponent_1 New Footprint=G5LE_relay
+Added Pin To Net: NetName=24V Pin=R6-0
+Added Pin To Net: NetName=NetD1_1 Pin=R6-1
+Added Pin To Net: NetName=24V Pin=R6-2
+Added Pin To Net: NetName=NetP2_2 Pin=R6-4

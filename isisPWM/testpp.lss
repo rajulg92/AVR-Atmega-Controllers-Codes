@@ -1,0 +1,138 @@
+
+testpp.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000086  00000000  00000000  00000094  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00000086  0000011a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000000  00800060  00000086  0000011a  2**0
+                  ALLOC
+  3 .noinit       00000000  00800060  00800060  0000011a  2**0
+                  CONTENTS
+  4 .eeprom       00000000  00810000  00810000  0000011a  2**0
+                  CONTENTS
+  5 .stab         0000036c  00000000  00000000  0000011c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  6 .stabstr      00000084  00000000  00000000  00000488  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_aranges 00000014  00000000  00000000  0000050c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_pubnames 00000028  00000000  00000000  00000520  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_info   00000084  00000000  00000000  00000548  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_abbrev 0000003d  00000000  00000000  000005cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_line   000000ae  00000000  00000000  00000609  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_str    0000007b  00000000  00000000  000006b7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2b c0       	rjmp	.+86     	; 0x5a <__bad_interrupt>
+   4:	2a c0       	rjmp	.+84     	; 0x5a <__bad_interrupt>
+   6:	29 c0       	rjmp	.+82     	; 0x5a <__bad_interrupt>
+   8:	28 c0       	rjmp	.+80     	; 0x5a <__bad_interrupt>
+   a:	27 c0       	rjmp	.+78     	; 0x5a <__bad_interrupt>
+   c:	26 c0       	rjmp	.+76     	; 0x5a <__bad_interrupt>
+   e:	25 c0       	rjmp	.+74     	; 0x5a <__bad_interrupt>
+  10:	24 c0       	rjmp	.+72     	; 0x5a <__bad_interrupt>
+  12:	23 c0       	rjmp	.+70     	; 0x5a <__bad_interrupt>
+  14:	22 c0       	rjmp	.+68     	; 0x5a <__bad_interrupt>
+  16:	21 c0       	rjmp	.+66     	; 0x5a <__bad_interrupt>
+  18:	20 c0       	rjmp	.+64     	; 0x5a <__bad_interrupt>
+  1a:	1f c0       	rjmp	.+62     	; 0x5a <__bad_interrupt>
+  1c:	1e c0       	rjmp	.+60     	; 0x5a <__bad_interrupt>
+  1e:	1d c0       	rjmp	.+58     	; 0x5a <__bad_interrupt>
+  20:	1c c0       	rjmp	.+56     	; 0x5a <__bad_interrupt>
+  22:	1b c0       	rjmp	.+54     	; 0x5a <__bad_interrupt>
+  24:	1a c0       	rjmp	.+52     	; 0x5a <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	e6 e8       	ldi	r30, 0x86	; 134
+  3a:	f0 e0       	ldi	r31, 0x00	; 0
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <.do_copy_data_start>
+
+0000003e <.do_copy_data_loop>:
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+
+00000042 <.do_copy_data_start>:
+  42:	a0 36       	cpi	r26, 0x60	; 96
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	10 e0       	ldi	r17, 0x00	; 0
+  4a:	a0 e6       	ldi	r26, 0x60	; 96
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a0 36       	cpi	r26, 0x60	; 96
+  54:	b1 07       	cpc	r27, r17
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	0e c0       	rjmp	.+28     	; 0x76 <main>
+
+0000005a <__bad_interrupt>:
+  5a:	d2 cf       	rjmp	.-92     	; 0x0 <__heap_end>
+
+0000005c <pwm_init>:
+#include <avr/io.h>
+
+void pwm_init()
+{
+TCCR1A=0xA0;
+  5c:	80 ea       	ldi	r24, 0xA0	; 160
+  5e:	8f bd       	out	0x2f, r24	; 47
+TCCR1B=0x11;
+  60:	81 e1       	ldi	r24, 0x11	; 17
+  62:	8e bd       	out	0x2e, r24	; 46
+ICR1=5000; //10000-5000 -50Hz
+  64:	88 e8       	ldi	r24, 0x88	; 136
+  66:	93 e1       	ldi	r25, 0x13	; 19
+  68:	97 bd       	out	0x27, r25	; 39
+  6a:	86 bd       	out	0x26, r24	; 38
+OCR1A=2500;
+  6c:	84 ec       	ldi	r24, 0xC4	; 196
+  6e:	99 e0       	ldi	r25, 0x09	; 9
+  70:	9b bd       	out	0x2b, r25	; 43
+  72:	8a bd       	out	0x2a, r24	; 42
+  74:	08 95       	ret
+
+00000076 <main>:
+//OCR1B=;
+}
+
+
+void main()
+{
+  76:	cf e5       	ldi	r28, 0x5F	; 95
+  78:	d4 e0       	ldi	r29, 0x04	; 4
+  7a:	de bf       	out	0x3e, r29	; 62
+  7c:	cd bf       	out	0x3d, r28	; 61
+DDRB=0xFF;
+  7e:	8f ef       	ldi	r24, 0xFF	; 255
+  80:	87 bb       	out	0x17, r24	; 23
+pwm_init();
+  82:	ec df       	rcall	.-40     	; 0x5c <pwm_init>
+while(1);
+  84:	ff cf       	rjmp	.-2      	; 0x84 <main+0xe>

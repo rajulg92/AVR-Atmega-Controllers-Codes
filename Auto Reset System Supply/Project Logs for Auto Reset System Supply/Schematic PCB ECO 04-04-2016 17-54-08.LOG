@@ -1,0 +1,6 @@
+Change Component Footprint: Designator=Q2 Old Footprint=TO-92 New Footprint=TO-220-AB
+Change Component Footprint: Designator=Q1 Old Footprint=TO-226-AA New Footprint=TO-220-AB
+Added Component: Designator=Q?(TO-220-AB)
+Added Member To Class: ClassName=Schematic Member=Component Q? 2N3904
+Added Member To Class: ClassName=Schematic Member=Component R4 Res1
+Added Room: Name=Schematic

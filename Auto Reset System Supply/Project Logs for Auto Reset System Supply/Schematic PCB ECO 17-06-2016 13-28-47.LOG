@@ -1,0 +1,19 @@
+Change Component Footprint: Designator=U1 Old Footprint=D008_N New Footprint=DIP8
+Added Pin To Net: NetName=GND Pin=C1-1
+Added Pin To Net: NetName=TRIGGER Pin=C2-1
+Added Pin To Net: NetName=TRIGGER Pin=P1-9
+Added Pin To Net: NetName=GND Pin=P2-3
+Added Pin To Net: NetName=TRIGGER Pin=R2-1
+Added Pin To Net: NetName=GND Pin=U1-4
+Added Pin To Net: NetName=TRIGGER Pin=U1-5
+Change Net Name : Old Net Name=NetQ2_2 New Net Name=NetQ1_2
+Added Pin To Net: NetName=NetC1_2 Pin=C1-2
+Added Pin To Net: NetName=NetC1_2 Pin=R1-1
+Added Pin To Net: NetName=NetC1_2 Pin=U1-1
+Added Net: Name=NetC1_2
+Added Pin To Net: NetName=TO RELAY Pin=R5-2
+Added Pin To Net: NetName=TO RELAY Pin=U1-6
+Added Net: Name=TO RELAY
+Added Member To Class: ClassName=Schematic Member=Component Q1 NPN1
+Added Member To Class: ClassName=Schematic Member=Component R4 Relay_G5LE
+Added Room: Name=Schematic

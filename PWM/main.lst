@@ -1,0 +1,125 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	ports_init
+  20               	ports_init:
+  21               	.LFB6:
+  22               	.LM1:
+  23               	/* prologue: function */
+  24               	/* frame size = 0 */
+  25               	.LM2:
+  26 0000 8FEF      		ldi r24,lo8(-1)
+  27 0002 87B9      		out 39-32,r24
+  28               	.LM3:
+  29 0004 84B9      		out 36-32,r24
+  30               	.LM4:
+  31 0006 8AB9      		out 42-32,r24
+  32               	.LM5:
+  33 0008 81B9      		out 33-32,r24
+  34               	.LM6:
+  35 000a 83BB      		out 51-32,r24
+  36               	.LM7:
+  37 000c 8093 0101 		sts 257,r24
+  38               	.LM8:
+  39 0010 8093 0701 		sts 263,r24
+  40               	/* epilogue start */
+  41               	.LM9:
+  42 0014 0895      		ret
+  43               	.LFE6:
+  45               	.global	main
+  47               	main:
+  48               	.LFB7:
+  49               	.LM10:
+  50               	/* prologue: function */
+  51               	/* frame size = 0 */
+  52               	.LM11:
+  53 0016 8FEF      		ldi r24,lo8(-1)
+  54 0018 8093 0101 		sts 257,r24
+  55               	.LM12:
+  56 001c 8DB9      		out 45-32,r24
+  57               	.LM13:
+  58 001e 1092 9500 		sts (148)+1,__zero_reg__
+  59 0022 1092 9400 		sts 148,__zero_reg__
+  60               	.LM14:
+  61 0026 3AEA      		ldi r19,lo8(-86)
+  62 0028 3093 9000 		sts 144,r19
+  63               	.LM15:
+  64 002c 25E1      		ldi r18,lo8(21)
+  65 002e 2093 9100 		sts 145,r18
+  66               	.LM16:
+  67 0032 1092 9200 		sts 146,__zero_reg__
+  68               	.LM17:
+  69 0036 81EE      		ldi r24,lo8(737)
+  70 0038 92E0      		ldi r25,hi8(737)
+  71 003a 9093 9700 		sts (150)+1,r25
+  72 003e 8093 9600 		sts 150,r24
+  73               	.LM18:
+  74 0042 3093 A000 		sts 160,r19
+  75               	.LM19:
+  76 0046 2093 A100 		sts 161,r18
+  77               	.LM20:
+  78 004a 1092 A200 		sts 162,__zero_reg__
+  79               	.LM21:
+  80 004e 9093 A700 		sts (166)+1,r25
+  81 0052 8093 A600 		sts 166,r24
+  82               	.LM22:
+  83 0056 A0E7      		ldi r26,lo8(368)
+  84 0058 B1E0      		ldi r27,hi8(368)
+  85               	.LM23:
+  86 005a E6E2      		ldi r30,lo8(294)
+  87 005c F1E0      		ldi r31,hi8(294)
+  88               	.LM24:
+  89 005e 6EE6      		ldi r22,lo8(110)
+  90 0060 70E0      		ldi r23,hi8(110)
+  91               	.LM25:
+  92 0062 4DE4      		ldi r20,lo8(589)
+  93 0064 52E0      		ldi r21,hi8(589)
+  94               	.LM26:
+  95 0066 28E2      		ldi r18,lo8(552)
+  96 0068 32E0      		ldi r19,hi8(552)
+  97               	.LM27:
+  98 006a 8AEB      		ldi r24,lo8(442)
+  99 006c 91E0      		ldi r25,hi8(442)
+ 100               	.L4:
+ 101               	.LM28:
+ 102 006e B093 9900 		sts (152)+1,r27
+ 103 0072 A093 9800 		sts 152,r26
+ 104               	.LM29:
+ 105 0076 F093 9B00 		sts (154)+1,r31
+ 106 007a E093 9A00 		sts 154,r30
+ 107               	.LM30:
+ 108 007e 7093 9D00 		sts (156)+1,r23
+ 109 0082 6093 9C00 		sts 156,r22
+ 110               	.LM31:
+ 111 0086 5093 A900 		sts (168)+1,r21
+ 112 008a 4093 A800 		sts 168,r20
+ 113               	.LM32:
+ 114 008e 3093 AB00 		sts (170)+1,r19
+ 115 0092 2093 AA00 		sts 170,r18
+ 116               	.LM33:
+ 117 0096 9093 AD00 		sts (172)+1,r25
+ 118 009a 8093 AC00 		sts 172,r24
+ 119 009e 00C0      		rjmp .L4
+ 120               	.LFE7:
+ 154               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\RAJULG~1\AppData\Local\Temp/ccaiHAYd.s:2      *ABS*:0000003f __SREG__
+C:\Users\RAJULG~1\AppData\Local\Temp/ccaiHAYd.s:3      *ABS*:0000003e __SP_H__
+C:\Users\RAJULG~1\AppData\Local\Temp/ccaiHAYd.s:4      *ABS*:0000003d __SP_L__
+C:\Users\RAJULG~1\AppData\Local\Temp/ccaiHAYd.s:5      *ABS*:00000034 __CCP__
+C:\Users\RAJULG~1\AppData\Local\Temp/ccaiHAYd.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\RAJULG~1\AppData\Local\Temp/ccaiHAYd.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\RAJULG~1\AppData\Local\Temp/ccaiHAYd.s:20     .text:00000000 ports_init
+C:\Users\RAJULG~1\AppData\Local\Temp/ccaiHAYd.s:47     .text:00000016 main
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss

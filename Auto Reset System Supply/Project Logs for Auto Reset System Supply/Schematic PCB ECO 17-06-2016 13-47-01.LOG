@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=NetD1_1 Pin=Q1-1
+Removed Pin From Net: NetName=GND Pin=Q1-3
+Change Component DesignItemId : Designator=Q1 Old DesignItemId=NPN1 New DesignItemId=2N3904
+Change Component Footprint: Designator=Q1 Old Footprint=TO-220-AB New Footprint=TO220
+Change Component Comment : Designator=Q1 Old Comment=NPN1 New Comment=BC547

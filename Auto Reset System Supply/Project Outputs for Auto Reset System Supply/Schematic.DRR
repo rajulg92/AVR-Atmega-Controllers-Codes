@@ -1,0 +1,21 @@
+---------------------------------------------------------------------------
+NCDrill File Report For: Schematic.PcbDoc   05-04-2016  12:11:42
+---------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : Schematic.TXT
+
+Tool         Hole Size           Hole Type     Hole Count Plated       Tool Travel
+---------------------------------------------------------------------------
+T1        0.762mm (30mil)          Round          6                83.19 mm (3.28 Inch)
+T2        0.9mm (35.433mil)        Round          10               41.46 mm (1.63 Inch)
+T3        1mm (39.37mil)           Round          8                56.01 mm (2.20 Inch)
+T4        1.1mm (43.307mil)        Round          14               62.97 mm (2.48 Inch)
+T5        1.2mm (47.244mil)        Round          2                15.24 mm (0.60 Inch)
+T6        1.3mm (51.181mil)        Round          5                36.85 mm (1.45 Inch)
+T7        1.5mm (59.055mil)        Round          2                5.08 mm (0.20 Inch)
+T8        3mm (118.11mil)          Round          4                147.79 mm (5.82 Inch)
+---------------------------------------------------------------------------
+Totals                                            51               448.59 mm (17.66 Inch)
+
+Total Processing Time (hh:mm:ss) : 00:00:00

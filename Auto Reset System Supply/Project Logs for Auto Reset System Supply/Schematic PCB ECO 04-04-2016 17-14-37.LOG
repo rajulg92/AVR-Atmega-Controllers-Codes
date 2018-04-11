@@ -1,0 +1,7 @@
+Change Component Footprint: Designator=R1 Old Footprint=AXIAL-0.4 New Footprint=1206
+Change Component Footprint: Designator=R2 Old Footprint=AXIAL-0.4 New Footprint=1206
+Change Component Footprint: Designator=R3 Old Footprint=AXIAL-0.4 New Footprint=1206
+Change Component Footprint: Designator=R4 Old Footprint=AXIAL-0.4 New Footprint=1206
+Change Component Footprint: Designator=R5 Old Footprint=AXIAL-0.4 New Footprint=1206
+Change Component Footprint: Designator=R7 Old Footprint=AXIAL-0.4 New Footprint=1206
+Added Room: Name=Schematic

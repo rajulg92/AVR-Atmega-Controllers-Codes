@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [Auto Reset System Supply.PrjPcb]
+   Generated File[Schematic.TXT]
+   Generated File[Schematic.LDP]
+   Generated File[Schematic.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 12:11:42 On 05-04-2016

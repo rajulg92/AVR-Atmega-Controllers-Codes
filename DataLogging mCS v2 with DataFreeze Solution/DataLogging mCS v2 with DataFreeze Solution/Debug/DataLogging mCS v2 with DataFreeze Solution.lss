@@ -1,0 +1,5047 @@
+
+DataLogging mCS v2 with DataFreeze Solution.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000084a  00800100  00001a2c  00001ac0  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00001a2c  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          000000cd  0080094a  0080094a  0000230a  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000230a  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000233c  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000100  00000000  00000000  0000237c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00002e49  00000000  00000000  0000247c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000524  00000000  00000000  000052c5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00001432  00000000  00000000  000057e9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000468  00000000  00000000  00006c1c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000607  00000000  00000000  00007084  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00002186  00000000  00000000  0000768b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000d0  00000000  00000000  00009811  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	45 c0       	rjmp	.+138    	; 0x8c <__ctors_end>
+       2:	00 00       	nop
+       4:	62 c0       	rjmp	.+196    	; 0xca <__bad_interrupt>
+       6:	00 00       	nop
+       8:	60 c0       	rjmp	.+192    	; 0xca <__bad_interrupt>
+       a:	00 00       	nop
+       c:	5e c0       	rjmp	.+188    	; 0xca <__bad_interrupt>
+       e:	00 00       	nop
+      10:	5c c0       	rjmp	.+184    	; 0xca <__bad_interrupt>
+      12:	00 00       	nop
+      14:	5a c0       	rjmp	.+180    	; 0xca <__bad_interrupt>
+      16:	00 00       	nop
+      18:	58 c0       	rjmp	.+176    	; 0xca <__bad_interrupt>
+      1a:	00 00       	nop
+      1c:	56 c0       	rjmp	.+172    	; 0xca <__bad_interrupt>
+      1e:	00 00       	nop
+      20:	54 c0       	rjmp	.+168    	; 0xca <__bad_interrupt>
+      22:	00 00       	nop
+      24:	52 c0       	rjmp	.+164    	; 0xca <__bad_interrupt>
+      26:	00 00       	nop
+      28:	50 c0       	rjmp	.+160    	; 0xca <__bad_interrupt>
+      2a:	00 00       	nop
+      2c:	4e c0       	rjmp	.+156    	; 0xca <__bad_interrupt>
+      2e:	00 00       	nop
+      30:	4c c0       	rjmp	.+152    	; 0xca <__bad_interrupt>
+      32:	00 00       	nop
+      34:	4a c0       	rjmp	.+148    	; 0xca <__bad_interrupt>
+      36:	00 00       	nop
+      38:	48 c0       	rjmp	.+144    	; 0xca <__bad_interrupt>
+      3a:	00 00       	nop
+      3c:	3a c1       	rjmp	.+628    	; 0x2b2 <__vector_15>
+      3e:	00 00       	nop
+      40:	44 c0       	rjmp	.+136    	; 0xca <__bad_interrupt>
+      42:	00 00       	nop
+      44:	42 c0       	rjmp	.+132    	; 0xca <__bad_interrupt>
+      46:	00 00       	nop
+      48:	40 c0       	rjmp	.+128    	; 0xca <__bad_interrupt>
+      4a:	00 00       	nop
+      4c:	3e c0       	rjmp	.+124    	; 0xca <__bad_interrupt>
+      4e:	00 00       	nop
+      50:	3c c0       	rjmp	.+120    	; 0xca <__bad_interrupt>
+      52:	00 00       	nop
+      54:	3a c0       	rjmp	.+116    	; 0xca <__bad_interrupt>
+      56:	00 00       	nop
+      58:	38 c0       	rjmp	.+112    	; 0xca <__bad_interrupt>
+      5a:	00 00       	nop
+      5c:	36 c0       	rjmp	.+108    	; 0xca <__bad_interrupt>
+      5e:	00 00       	nop
+      60:	34 c0       	rjmp	.+104    	; 0xca <__bad_interrupt>
+      62:	00 00       	nop
+      64:	32 c0       	rjmp	.+100    	; 0xca <__bad_interrupt>
+      66:	00 00       	nop
+      68:	30 c0       	rjmp	.+96     	; 0xca <__bad_interrupt>
+      6a:	00 00       	nop
+      6c:	2e c0       	rjmp	.+92     	; 0xca <__bad_interrupt>
+      6e:	00 00       	nop
+      70:	2c c0       	rjmp	.+88     	; 0xca <__bad_interrupt>
+      72:	00 00       	nop
+      74:	2a c0       	rjmp	.+84     	; 0xca <__bad_interrupt>
+      76:	00 00       	nop
+      78:	28 c0       	rjmp	.+80     	; 0xca <__bad_interrupt>
+      7a:	00 00       	nop
+      7c:	26 c0       	rjmp	.+76     	; 0xca <__bad_interrupt>
+      7e:	00 00       	nop
+      80:	24 c0       	rjmp	.+72     	; 0xca <__bad_interrupt>
+      82:	00 00       	nop
+      84:	22 c0       	rjmp	.+68     	; 0xca <__bad_interrupt>
+      86:	00 00       	nop
+      88:	20 c0       	rjmp	.+64     	; 0xca <__bad_interrupt>
+	...
+
+0000008c <__ctors_end>:
+      8c:	11 24       	eor	r1, r1
+      8e:	1f be       	out	0x3f, r1	; 63
+      90:	cf ef       	ldi	r28, 0xFF	; 255
+      92:	d0 e4       	ldi	r29, 0x40	; 64
+      94:	de bf       	out	0x3e, r29	; 62
+      96:	cd bf       	out	0x3d, r28	; 61
+
+00000098 <__do_copy_data>:
+      98:	19 e0       	ldi	r17, 0x09	; 9
+      9a:	a0 e0       	ldi	r26, 0x00	; 0
+      9c:	b1 e0       	ldi	r27, 0x01	; 1
+      9e:	ec e2       	ldi	r30, 0x2C	; 44
+      a0:	fa e1       	ldi	r31, 0x1A	; 26
+      a2:	00 e0       	ldi	r16, 0x00	; 0
+      a4:	0b bf       	out	0x3b, r16	; 59
+      a6:	02 c0       	rjmp	.+4      	; 0xac <__do_copy_data+0x14>
+      a8:	07 90       	elpm	r0, Z+
+      aa:	0d 92       	st	X+, r0
+      ac:	aa 34       	cpi	r26, 0x4A	; 74
+      ae:	b1 07       	cpc	r27, r17
+      b0:	d9 f7       	brne	.-10     	; 0xa8 <__do_copy_data+0x10>
+
+000000b2 <__do_clear_bss>:
+      b2:	2a e0       	ldi	r18, 0x0A	; 10
+      b4:	aa e4       	ldi	r26, 0x4A	; 74
+      b6:	b9 e0       	ldi	r27, 0x09	; 9
+      b8:	01 c0       	rjmp	.+2      	; 0xbc <.do_clear_bss_start>
+
+000000ba <.do_clear_bss_loop>:
+      ba:	1d 92       	st	X+, r1
+
+000000bc <.do_clear_bss_start>:
+      bc:	a7 31       	cpi	r26, 0x17	; 23
+      be:	b2 07       	cpc	r27, r18
+      c0:	e1 f7       	brne	.-8      	; 0xba <.do_clear_bss_loop>
+      c2:	0e 94 34 0b 	call	0x1668	; 0x1668 <main>
+      c6:	0c 94 14 0d 	jmp	0x1a28	; 0x1a28 <_exit>
+
+000000ca <__bad_interrupt>:
+      ca:	9a cf       	rjmp	.-204    	; 0x0 <__vectors>
+
+000000cc <get_data>:
+		return 1;
+	}
+	return 0;
+}
+
+void get_data(uint8_t system_on, char* responseimp,uint8_t  signal_status, uint8_t signal_strength,char* user,uint8_t flag_cooldown){
+      cc:	8f 92       	push	r8
+      ce:	9f 92       	push	r9
+      d0:	bf 92       	push	r11
+      d2:	cf 92       	push	r12
+      d4:	df 92       	push	r13
+      d6:	ef 92       	push	r14
+      d8:	ff 92       	push	r15
+      da:	0f 93       	push	r16
+      dc:	1f 93       	push	r17
+      de:	cf 93       	push	r28
+      e0:	df 93       	push	r29
+      e2:	00 d0       	rcall	.+0      	; 0xe4 <get_data+0x18>
+      e4:	00 d0       	rcall	.+0      	; 0xe6 <get_data+0x1a>
+      e6:	cd b7       	in	r28, 0x3d	; 61
+      e8:	de b7       	in	r29, 0x3e	; 62
+      ea:	89 83       	std	Y+1, r24	; 0x01
+      ec:	6b 01       	movw	r12, r22
+      ee:	4a 83       	std	Y+2, r20	; 0x02
+      f0:	2b 83       	std	Y+3, r18	; 0x03
+      f2:	ec 82       	std	Y+4, r14	; 0x04
+	
+	int t=0,takedata=0,dataarrived=0;
+	char dataimp,ch1[3],ch2[3];
+	
+	UART_0_puts("Fetching DATA...\r\n");
+      f4:	8a e5       	ldi	r24, 0x5A	; 90
+      f6:	93 e0       	ldi	r25, 0x03	; 3
+      f8:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+	//  Reception Enable
+	sbi(UCSR0B,RXEN0);
+      fc:	e1 ec       	ldi	r30, 0xC1	; 193
+      fe:	f0 e0       	ldi	r31, 0x00	; 0
+     100:	80 81       	ld	r24, Z
+     102:	80 61       	ori	r24, 0x10	; 16
+     104:	80 83       	st	Z, r24
+	return 0;
+}
+
+void get_data(uint8_t system_on, char* responseimp,uint8_t  signal_status, uint8_t signal_strength,char* user,uint8_t flag_cooldown){
+	
+	int t=0,takedata=0,dataarrived=0;
+     106:	40 e0       	ldi	r20, 0x00	; 0
+     108:	50 e0       	ldi	r21, 0x00	; 0
+     10a:	20 e0       	ldi	r18, 0x00	; 0
+     10c:	30 e0       	ldi	r19, 0x00	; 0
+	UART_0_puts("Fetching DATA...\r\n");
+	//  Reception Enable
+	sbi(UCSR0B,RXEN0);
+	
+	while(1){
+		while(!((UCSR0A) & (1<<RXC0)));  // Wait while data is being received
+     10e:	e0 ec       	ldi	r30, 0xC0	; 192
+     110:	f0 e0       	ldi	r31, 0x00	; 0
+		dataimp = UDR0;
+     112:	0f 2e       	mov	r0, r31
+     114:	f6 ec       	ldi	r31, 0xC6	; 198
+     116:	8f 2e       	mov	r8, r31
+     118:	91 2c       	mov	r9, r1
+     11a:	f0 2d       	mov	r31, r0
+			responseimp[t]=dataimp;
+			t++;
+		}
+		// If first character $ is received, start taking data..
+		if ((dataimp == 0x24) && (takedata == 0)){  //  $=0x24
+			takedata=1;
+     11c:	bb 24       	eor	r11, r11
+     11e:	b3 94       	inc	r11
+     120:	e1 2c       	mov	r14, r1
+			t=0;
+     122:	f1 2c       	mov	r15, r1
+     124:	90 e0       	ldi	r25, 0x00	; 0
+	UART_0_puts("Fetching DATA...\r\n");
+	//  Reception Enable
+	sbi(UCSR0B,RXEN0);
+	
+	while(1){
+		while(!((UCSR0A) & (1<<RXC0)));  // Wait while data is being received
+     126:	80 81       	ld	r24, Z
+     128:	88 23       	and	r24, r24
+     12a:	ec f7       	brge	.-6      	; 0x126 <get_data+0x5a>
+		dataimp = UDR0;
+     12c:	d4 01       	movw	r26, r8
+     12e:	8c 91       	ld	r24, X
+		
+		// If last character # is received..
+		if (((dataimp == 0x23) && (takedata == 1)) || t>=511){  //  #=0x23
+     130:	83 32       	cpi	r24, 0x23	; 35
+     132:	29 f4       	brne	.+10     	; 0x13e <get_data+0x72>
+     134:	41 30       	cpi	r20, 0x01	; 1
+     136:	51 05       	cpc	r21, r1
+     138:	09 f0       	breq	.+2      	; 0x13c <get_data+0x70>
+     13a:	a5 c0       	rjmp	.+330    	; 0x286 <get_data+0x1ba>
+     13c:	05 c0       	rjmp	.+10     	; 0x148 <get_data+0x7c>
+     13e:	2f 3f       	cpi	r18, 0xFF	; 255
+     140:	b1 e0       	ldi	r27, 0x01	; 1
+     142:	3b 07       	cpc	r19, r27
+     144:	0c f4       	brge	.+2      	; 0x148 <get_data+0x7c>
+     146:	88 c0       	rjmp	.+272    	; 0x258 <get_data+0x18c>
+			//  Reception Disable
+			cbi(UCSR0B,RXEN0);
+     148:	e1 ec       	ldi	r30, 0xC1	; 193
+     14a:	f0 e0       	ldi	r31, 0x00	; 0
+     14c:	80 81       	ld	r24, Z
+     14e:	8f 7e       	andi	r24, 0xEF	; 239
+     150:	80 83       	st	Z, r24
+			responseimp[t]='\0';
+     152:	f6 01       	movw	r30, r12
+     154:	e2 0f       	add	r30, r18
+     156:	f3 1f       	adc	r31, r19
+     158:	10 82       	st	Z, r1
+			
+			takedata = 0;
+			if (strlen(responseimp)<10){
+     15a:	f6 01       	movw	r30, r12
+     15c:	01 90       	ld	r0, Z+
+     15e:	00 20       	and	r0, r0
+     160:	e9 f7       	brne	.-6      	; 0x15c <get_data+0x90>
+     162:	31 97       	sbiw	r30, 0x01	; 1
+     164:	ec 19       	sub	r30, r12
+     166:	fd 09       	sbc	r31, r13
+     168:	3a 97       	sbiw	r30, 0x0a	; 10
+     16a:	78 f4       	brcc	.+30     	; 0x18a <get_data+0xbe>
+				get_data(&system_on,responseimp,&signal_status,&signal_strength,user,&flag_cooldown);
+     16c:	7e 01       	movw	r14, r28
+     16e:	24 e0       	ldi	r18, 0x04	; 4
+     170:	e2 0e       	add	r14, r18
+     172:	f1 1c       	adc	r15, r1
+     174:	9e 01       	movw	r18, r28
+     176:	2d 5f       	subi	r18, 0xFD	; 253
+     178:	3f 4f       	sbci	r19, 0xFF	; 255
+     17a:	ae 01       	movw	r20, r28
+     17c:	4e 5f       	subi	r20, 0xFE	; 254
+     17e:	5f 4f       	sbci	r21, 0xFF	; 255
+     180:	b6 01       	movw	r22, r12
+     182:	8c 2f       	mov	r24, r28
+     184:	8f 5f       	subi	r24, 0xFF	; 255
+     186:	a2 df       	rcall	.-188    	; 0xcc <get_data>
+				break;
+     188:	84 c0       	rjmp	.+264    	; 0x292 <get_data+0x1c6>
+			}
+			if (flag_datafreeze==1 && flag_cooldown==0x88){
+     18a:	80 91 4b 09 	lds	r24, 0x094B
+     18e:	81 30       	cpi	r24, 0x01	; 1
+     190:	09 f0       	breq	.+2      	; 0x194 <get_data+0xc8>
+     192:	7f c0       	rjmp	.+254    	; 0x292 <get_data+0x1c6>
+     194:	8c 81       	ldd	r24, Y+4	; 0x04
+     196:	88 38       	cpi	r24, 0x88	; 136
+     198:	09 f0       	breq	.+2      	; 0x19c <get_data+0xd0>
+     19a:	7b c0       	rjmp	.+246    	; 0x292 <get_data+0x1c6>
+				//Copying 68 bytes of responseimp to dataFreeze String for Auto Reset
+				strncpy(str_datafreeze_main,str_datafreeze,68);
+     19c:	44 e4       	ldi	r20, 0x44	; 68
+     19e:	50 e0       	ldi	r21, 0x00	; 0
+     1a0:	63 eb       	ldi	r22, 0xB3	; 179
+     1a2:	79 e0       	ldi	r23, 0x09	; 9
+     1a4:	8f e4       	ldi	r24, 0x4F	; 79
+     1a6:	99 e0       	ldi	r25, 0x09	; 9
+     1a8:	0e 94 b0 0c 	call	0x1960	; 0x1960 <strncpy>
+				strncpy(str_datafreeze,responseimp,68);
+     1ac:	44 e4       	ldi	r20, 0x44	; 68
+     1ae:	50 e0       	ldi	r21, 0x00	; 0
+     1b0:	b6 01       	movw	r22, r12
+     1b2:	83 eb       	ldi	r24, 0xB3	; 179
+     1b4:	99 e0       	ldi	r25, 0x09	; 9
+     1b6:	0e 94 b0 0c 	call	0x1960	; 0x1960 <strncpy>
+				
+				UART_0_puts(str_datafreeze_main);
+     1ba:	8f e4       	ldi	r24, 0x4F	; 79
+     1bc:	99 e0       	ldi	r25, 0x09	; 9
+     1be:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+				UART_0_puts("\r\n");
+     1c2:	83 ea       	ldi	r24, 0xA3	; 163
+     1c4:	95 e0       	ldi	r25, 0x05	; 5
+     1c6:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+				UART_0_puts(str_datafreeze);
+     1ca:	83 eb       	ldi	r24, 0xB3	; 179
+     1cc:	99 e0       	ldi	r25, 0x09	; 9
+     1ce:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+				UART_0_puts("\r\n");
+     1d2:	83 ea       	ldi	r24, 0xA3	; 163
+     1d4:	95 e0       	ldi	r25, 0x05	; 5
+     1d6:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+				UART_0_puts("COunter =");
+     1da:	8d e6       	ldi	r24, 0x6D	; 109
+     1dc:	93 e0       	ldi	r25, 0x03	; 3
+     1de:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+				UART_0_putc(counter_datafreeze+48);
+     1e2:	80 91 4c 09 	lds	r24, 0x094C
+     1e6:	80 5d       	subi	r24, 0xD0	; 208
+     1e8:	0e 94 1b 0c 	call	0x1836	; 0x1836 <UART_0_putc>
+				UART_0_puts("\r\n");
+     1ec:	83 ea       	ldi	r24, 0xA3	; 163
+     1ee:	95 e0       	ldi	r25, 0x05	; 5
+     1f0:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     1f4:	6f ef       	ldi	r22, 0xFF	; 255
+     1f6:	83 ed       	ldi	r24, 0xD3	; 211
+     1f8:	90 e3       	ldi	r25, 0x30	; 48
+     1fa:	61 50       	subi	r22, 0x01	; 1
+     1fc:	80 40       	sbci	r24, 0x00	; 0
+     1fe:	90 40       	sbci	r25, 0x00	; 0
+     200:	e1 f7       	brne	.-8      	; 0x1fa <get_data+0x12e>
+     202:	00 c0       	rjmp	.+0      	; 0x204 <get_data+0x138>
+     204:	00 00       	nop
+				_delay_ms(2000);
+	
+				if (strcmp(str_datafreeze_main,str_datafreeze)==0){
+     206:	63 eb       	ldi	r22, 0xB3	; 179
+     208:	79 e0       	ldi	r23, 0x09	; 9
+     20a:	8f e4       	ldi	r24, 0x4F	; 79
+     20c:	99 e0       	ldi	r25, 0x09	; 9
+     20e:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     212:	89 2b       	or	r24, r25
+     214:	31 f4       	brne	.+12     	; 0x222 <get_data+0x156>
+					counter_datafreeze++;
+     216:	80 91 4c 09 	lds	r24, 0x094C
+     21a:	8f 5f       	subi	r24, 0xFF	; 255
+     21c:	80 93 4c 09 	sts	0x094C, r24
+     220:	02 c0       	rjmp	.+4      	; 0x226 <get_data+0x15a>
+					}else{
+					counter_datafreeze=0;
+     222:	10 92 4c 09 	sts	0x094C, r1
+				}
+				UART_0_puts("Data Recieved...\r\n");
+     226:	87 e7       	ldi	r24, 0x77	; 119
+     228:	93 e0       	ldi	r25, 0x03	; 3
+     22a:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+				if (counter_datafreeze>8){// 8 for reset after 10 data points
+     22e:	80 91 4c 09 	lds	r24, 0x094C
+     232:	89 30       	cpi	r24, 0x09	; 9
+     234:	70 f1       	brcs	.+92     	; 0x292 <get_data+0x1c6>
+					UART_0_puts("RESETTING...\r\n");
+     236:	8a e8       	ldi	r24, 0x8A	; 138
+     238:	93 e0       	ldi	r25, 0x03	; 3
+     23a:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+     23e:	af ef       	ldi	r26, 0xFF	; 255
+     240:	b1 e1       	ldi	r27, 0x11	; 17
+     242:	2a e7       	ldi	r18, 0x7A	; 122
+     244:	a1 50       	subi	r26, 0x01	; 1
+     246:	b0 40       	sbci	r27, 0x00	; 0
+     248:	20 40       	sbci	r18, 0x00	; 0
+     24a:	e1 f7       	brne	.-8      	; 0x244 <get_data+0x178>
+     24c:	00 c0       	rjmp	.+0      	; 0x24e <get_data+0x182>
+     24e:	00 00       	nop
+					_delay_ms(5000);
+					counter_datafreeze=0;
+     250:	10 92 4c 09 	sts	0x094C, r1
+					//Reset the PCB Stack
+					cbi(PORTB,6);
+     254:	2e 98       	cbi	0x05, 6	; 5
+     256:	1d c0       	rjmp	.+58     	; 0x292 <get_data+0x1c6>
+			}
+			
+			break;
+		}
+		// Continue taking data
+		if (takedata==1){
+     258:	41 30       	cpi	r20, 0x01	; 1
+     25a:	51 05       	cpc	r21, r1
+     25c:	41 f4       	brne	.+16     	; 0x26e <get_data+0x1a2>
+			responseimp[t]=dataimp;
+     25e:	b6 01       	movw	r22, r12
+     260:	62 0f       	add	r22, r18
+     262:	73 1f       	adc	r23, r19
+     264:	db 01       	movw	r26, r22
+     266:	8c 93       	st	X, r24
+			t++;
+     268:	2f 5f       	subi	r18, 0xFF	; 255
+     26a:	3f 4f       	sbci	r19, 0xFF	; 255
+     26c:	5c cf       	rjmp	.-328    	; 0x126 <get_data+0x5a>
+		}
+		// If first character $ is received, start taking data..
+		if ((dataimp == 0x24) && (takedata == 0)){  //  $=0x24
+     26e:	84 32       	cpi	r24, 0x24	; 36
+     270:	09 f0       	breq	.+2      	; 0x274 <get_data+0x1a8>
+     272:	59 cf       	rjmp	.-334    	; 0x126 <get_data+0x5a>
+     274:	41 15       	cp	r20, r1
+     276:	51 05       	cpc	r21, r1
+     278:	09 f0       	breq	.+2      	; 0x27c <get_data+0x1b0>
+     27a:	55 cf       	rjmp	.-342    	; 0x126 <get_data+0x5a>
+			takedata=1;
+     27c:	4b 2d       	mov	r20, r11
+     27e:	5e 2d       	mov	r21, r14
+			t=0;
+     280:	2f 2d       	mov	r18, r15
+     282:	39 2f       	mov	r19, r25
+     284:	50 cf       	rjmp	.-352    	; 0x126 <get_data+0x5a>
+	while(1){
+		while(!((UCSR0A) & (1<<RXC0)));  // Wait while data is being received
+		dataimp = UDR0;
+		
+		// If last character # is received..
+		if (((dataimp == 0x23) && (takedata == 1)) || t>=511){  //  #=0x23
+     286:	2f 3f       	cpi	r18, 0xFF	; 255
+     288:	b1 e0       	ldi	r27, 0x01	; 1
+     28a:	3b 07       	cpc	r19, r27
+     28c:	0c f4       	brge	.+2      	; 0x290 <get_data+0x1c4>
+     28e:	4b cf       	rjmp	.-362    	; 0x126 <get_data+0x5a>
+     290:	5b cf       	rjmp	.-330    	; 0x148 <get_data+0x7c>
+		if ((dataimp == 0x24) && (takedata == 0)){  //  $=0x24
+			takedata=1;
+			t=0;
+		}
+	}
+}
+     292:	0f 90       	pop	r0
+     294:	0f 90       	pop	r0
+     296:	0f 90       	pop	r0
+     298:	0f 90       	pop	r0
+     29a:	df 91       	pop	r29
+     29c:	cf 91       	pop	r28
+     29e:	1f 91       	pop	r17
+     2a0:	0f 91       	pop	r16
+     2a2:	ff 90       	pop	r15
+     2a4:	ef 90       	pop	r14
+     2a6:	df 90       	pop	r13
+     2a8:	cf 90       	pop	r12
+     2aa:	bf 90       	pop	r11
+     2ac:	9f 90       	pop	r9
+     2ae:	8f 90       	pop	r8
+     2b0:	08 95       	ret
+
+000002b2 <__vector_15>:
+		return 3;
+	}
+}
+
+ISR(TIMER1_OVF_vect)
+{
+     2b2:	1f 92       	push	r1
+     2b4:	0f 92       	push	r0
+     2b6:	0f b6       	in	r0, 0x3f	; 63
+     2b8:	0f 92       	push	r0
+     2ba:	11 24       	eor	r1, r1
+     2bc:	0b b6       	in	r0, 0x3b	; 59
+     2be:	0f 92       	push	r0
+     2c0:	8f 93       	push	r24
+     2c2:	ef 93       	push	r30
+     2c4:	ff 93       	push	r31
+	overflowcount++;
+     2c6:	80 91 4d 09 	lds	r24, 0x094D
+     2ca:	8f 5f       	subi	r24, 0xFF	; 255
+	
+	if (overflowcount>=10){  //  To account for 20 secs
+     2cc:	8a 30       	cpi	r24, 0x0A	; 10
+     2ce:	18 f4       	brcc	.+6      	; 0x2d6 <__vector_15+0x24>
+	}
+}
+
+ISR(TIMER1_OVF_vect)
+{
+	overflowcount++;
+     2d0:	80 93 4d 09 	sts	0x094D, r24
+     2d4:	0a c0       	rjmp	.+20     	; 0x2ea <__vector_15+0x38>
+	
+	if (overflowcount>=10){  //  To account for 20 secs
+		overflowcount = 0;
+     2d6:	10 92 4d 09 	sts	0x094D, r1
+		skip = 1;
+     2da:	81 e0       	ldi	r24, 0x01	; 1
+     2dc:	80 93 4e 09 	sts	0x094E, r24
+		cbi(TCCR1B,CS12);
+     2e0:	e1 e8       	ldi	r30, 0x81	; 129
+     2e2:	f0 e0       	ldi	r31, 0x00	; 0
+     2e4:	80 81       	ld	r24, Z
+     2e6:	8b 7f       	andi	r24, 0xFB	; 251
+     2e8:	80 83       	st	Z, r24
+	}
+}
+     2ea:	ff 91       	pop	r31
+     2ec:	ef 91       	pop	r30
+     2ee:	8f 91       	pop	r24
+     2f0:	0f 90       	pop	r0
+     2f2:	0b be       	out	0x3b, r0	; 59
+     2f4:	0f 90       	pop	r0
+     2f6:	0f be       	out	0x3f, r0	; 63
+     2f8:	0f 90       	pop	r0
+     2fa:	1f 90       	pop	r1
+     2fc:	18 95       	reti
+
+000002fe <start_timer>:
+
+void start_timer(){
+	skip = 0;
+     2fe:	10 92 4e 09 	sts	0x094E, r1
+	TCNT1 = 0;
+     302:	10 92 85 00 	sts	0x0085, r1
+     306:	10 92 84 00 	sts	0x0084, r1
+	sbi(TCCR1B,CS12);
+     30a:	e1 e8       	ldi	r30, 0x81	; 129
+     30c:	f0 e0       	ldi	r31, 0x00	; 0
+     30e:	80 81       	ld	r24, Z
+     310:	84 60       	ori	r24, 0x04	; 4
+     312:	80 83       	st	Z, r24
+     314:	08 95       	ret
+
+00000316 <wait_for_data>:
+	_delay_ms(20000);
+}
+
+uint8_t wait_for_data(){
+	// Start Timer
+	start_timer();
+     316:	f3 df       	rcall	.-26     	; 0x2fe <start_timer>
+	
+	//  Waiting for data
+	while (!(UCSR1A & (1<<RXC1))){
+     318:	e8 ec       	ldi	r30, 0xC8	; 200
+     31a:	f0 e0       	ldi	r31, 0x00	; 0
+     31c:	08 c0       	rjmp	.+16     	; 0x32e <wait_for_data+0x18>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     31e:	8a e1       	ldi	r24, 0x1A	; 26
+     320:	8a 95       	dec	r24
+     322:	f1 f7       	brne	.-4      	; 0x320 <wait_for_data+0xa>
+     324:	00 c0       	rjmp	.+0      	; 0x326 <wait_for_data+0x10>
+		_delay_us(10);
+		if (skip==1){
+     326:	80 91 4e 09 	lds	r24, 0x094E
+     32a:	81 30       	cpi	r24, 0x01	; 1
+     32c:	51 f0       	breq	.+20     	; 0x342 <wait_for_data+0x2c>
+uint8_t wait_for_data(){
+	// Start Timer
+	start_timer();
+	
+	//  Waiting for data
+	while (!(UCSR1A & (1<<RXC1))){
+     32e:	80 81       	ld	r24, Z
+     330:	88 23       	and	r24, r24
+     332:	ac f7       	brge	.-22     	; 0x31e <wait_for_data+0x8>
+			return 0;  //  No data; timer expired
+		}
+	}
+	
+	//  Stop Timer
+	cbi(TCCR1B,CS12);
+     334:	e1 e8       	ldi	r30, 0x81	; 129
+     336:	f0 e0       	ldi	r31, 0x00	; 0
+     338:	80 81       	ld	r24, Z
+     33a:	8b 7f       	andi	r24, 0xFB	; 251
+     33c:	80 83       	st	Z, r24
+	
+	return 1;  //  Data arrived
+     33e:	81 e0       	ldi	r24, 0x01	; 1
+     340:	08 95       	ret
+	
+	//  Waiting for data
+	while (!(UCSR1A & (1<<RXC1))){
+		_delay_us(10);
+		if (skip==1){
+			return 0;  //  No data; timer expired
+     342:	80 e0       	ldi	r24, 0x00	; 0
+	
+	//  Stop Timer
+	cbi(TCCR1B,CS12);
+	
+	return 1;  //  Data arrived
+}
+     344:	08 95       	ret
+
+00000346 <sim900_response>:
+	}
+	
+	return 0;
+}
+
+void sim900_response(char* response){
+     346:	ef 92       	push	r14
+     348:	ff 92       	push	r15
+     34a:	0f 93       	push	r16
+     34c:	1f 93       	push	r17
+     34e:	cf 93       	push	r28
+     350:	7c 01       	movw	r14, r24
+	uint8_t i=0,dataarrived=0;
+	char initial[]={'0','0'};
+     352:	c0 e3       	ldi	r28, 0x30	; 48
+		if (dataarrived==0){
+			UART_0_puts("No Response...\r\n");
+			UART_0_puts("Re-Checking...\r\n");
+			break;
+		}
+		initial[1]=UDR1;
+     354:	0e ec       	ldi	r16, 0xCE	; 206
+     356:	10 e0       	ldi	r17, 0x00	; 0
+     358:	03 c0       	rjmp	.+6      	; 0x360 <sim900_response+0x1a>
+     35a:	c9 2f       	mov	r28, r25
+     35c:	01 c0       	rjmp	.+2      	; 0x360 <sim900_response+0x1a>
+     35e:	c9 2f       	mov	r28, r25
+	uint8_t i=0,dataarrived=0;
+	char initial[]={'0','0'};
+		
+	while(!(initial[0]==0x0D && initial[1]==0x0A)){
+		initial[0]=initial[1];
+		dataarrived=wait_for_data();
+     360:	da df       	rcall	.-76     	; 0x316 <wait_for_data>
+		if (dataarrived==0){
+     362:	81 11       	cpse	r24, r1
+     364:	0c c0       	rjmp	.+24     	; 0x37e <sim900_response+0x38>
+			UART_0_puts("No Response...\r\n");
+     366:	89 e9       	ldi	r24, 0x99	; 153
+     368:	93 e0       	ldi	r25, 0x03	; 3
+     36a:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+			UART_0_puts("Re-Checking...\r\n");
+     36e:	8a ea       	ldi	r24, 0xAA	; 170
+     370:	93 e0       	ldi	r25, 0x03	; 3
+     372:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+     376:	c0 e0       	ldi	r28, 0x00	; 0
+	while(1){		
+		dataarrived=wait_for_data();
+		if (dataarrived==0){
+			break;
+		}
+		response[i]=UDR1;
+     378:	0e ec       	ldi	r16, 0xCE	; 206
+     37a:	10 e0       	ldi	r17, 0x00	; 0
+     37c:	07 c0       	rjmp	.+14     	; 0x38c <sim900_response+0x46>
+		if (dataarrived==0){
+			UART_0_puts("No Response...\r\n");
+			UART_0_puts("Re-Checking...\r\n");
+			break;
+		}
+		initial[1]=UDR1;
+     37e:	f8 01       	movw	r30, r16
+     380:	90 81       	ld	r25, Z
+
+void sim900_response(char* response){
+	uint8_t i=0,dataarrived=0;
+	char initial[]={'0','0'};
+		
+	while(!(initial[0]==0x0D && initial[1]==0x0A)){
+     382:	cd 30       	cpi	r28, 0x0D	; 13
+     384:	51 f7       	brne	.-44     	; 0x35a <sim900_response+0x14>
+     386:	9a 30       	cpi	r25, 0x0A	; 10
+     388:	51 f7       	brne	.-44     	; 0x35e <sim900_response+0x18>
+     38a:	f5 cf       	rjmp	.-22     	; 0x376 <sim900_response+0x30>
+		}
+		initial[1]=UDR1;
+	}
+
+	while(1){		
+		dataarrived=wait_for_data();
+     38c:	c4 df       	rcall	.-120    	; 0x316 <wait_for_data>
+		if (dataarrived==0){
+     38e:	88 23       	and	r24, r24
+     390:	51 f0       	breq	.+20     	; 0x3a6 <sim900_response+0x60>
+			break;
+		}
+		response[i]=UDR1;
+     392:	f8 01       	movw	r30, r16
+     394:	90 81       	ld	r25, Z
+     396:	f7 01       	movw	r30, r14
+     398:	ec 0f       	add	r30, r28
+     39a:	f1 1d       	adc	r31, r1
+     39c:	90 83       	st	Z, r25
+		if(response[i]==0x0D){
+     39e:	9d 30       	cpi	r25, 0x0D	; 13
+     3a0:	11 f0       	breq	.+4      	; 0x3a6 <sim900_response+0x60>
+			break;
+		}
+		i++;
+     3a2:	cf 5f       	subi	r28, 0xFF	; 255
+	}
+     3a4:	f3 cf       	rjmp	.-26     	; 0x38c <sim900_response+0x46>
+
+	//  Terminating string
+	response[i]="\0";
+     3a6:	f7 01       	movw	r30, r14
+     3a8:	ec 0f       	add	r30, r28
+     3aa:	f1 1d       	adc	r31, r1
+     3ac:	80 e0       	ldi	r24, 0x00	; 0
+     3ae:	91 e0       	ldi	r25, 0x01	; 1
+     3b0:	80 83       	st	Z, r24
+
+	//  Reception Disable
+	cbi(UCSR1B,RXEN1);
+     3b2:	e9 ec       	ldi	r30, 0xC9	; 201
+     3b4:	f0 e0       	ldi	r31, 0x00	; 0
+     3b6:	80 81       	ld	r24, Z
+     3b8:	8f 7e       	andi	r24, 0xEF	; 239
+     3ba:	80 83       	st	Z, r24
+} 
+     3bc:	cf 91       	pop	r28
+     3be:	1f 91       	pop	r17
+     3c0:	0f 91       	pop	r16
+     3c2:	ff 90       	pop	r15
+     3c4:	ef 90       	pop	r14
+     3c6:	08 95       	ret
+
+000003c8 <sim900_cmd>:
+		UART_0_puts("APN not found...\r\n");
+		return 0;
+	}
+}
+
+void sim900_cmd(char* str,char* response){	
+     3c8:	0f 93       	push	r16
+     3ca:	1f 93       	push	r17
+     3cc:	cf 93       	push	r28
+     3ce:	df 93       	push	r29
+     3d0:	ec 01       	movw	r28, r24
+     3d2:	8b 01       	movw	r16, r22
+	uint8_t i=0;
+	char initial[]={'0','0'};
+
+	//  Send Command
+	while( *str != '\0' ){
+     3d4:	88 81       	ld	r24, Y
+     3d6:	88 23       	and	r24, r24
+     3d8:	31 f0       	breq	.+12     	; 0x3e6 <sim900_cmd+0x1e>
+     3da:	21 96       	adiw	r28, 0x01	; 1
+		UART_1_putc( *str++ );
+     3dc:	0e 94 41 0c 	call	0x1882	; 0x1882 <UART_1_putc>
+void sim900_cmd(char* str,char* response){	
+	uint8_t i=0;
+	char initial[]={'0','0'};
+
+	//  Send Command
+	while( *str != '\0' ){
+     3e0:	89 91       	ld	r24, Y+
+     3e2:	81 11       	cpse	r24, r1
+     3e4:	fb cf       	rjmp	.-10     	; 0x3dc <sim900_cmd+0x14>
+		UART_1_putc( *str++ );
+	}
+	
+	//  Reception Enable
+	sbi(UCSR1B,RXEN1);
+     3e6:	e9 ec       	ldi	r30, 0xC9	; 201
+     3e8:	f0 e0       	ldi	r31, 0x00	; 0
+     3ea:	90 81       	ld	r25, Z
+     3ec:	90 61       	ori	r25, 0x10	; 16
+     3ee:	90 83       	st	Z, r25
+	
+	sim900_response(response);
+     3f0:	c8 01       	movw	r24, r16
+     3f2:	a9 df       	rcall	.-174    	; 0x346 <sim900_response>
+}
+     3f4:	df 91       	pop	r29
+     3f6:	cf 91       	pop	r28
+     3f8:	1f 91       	pop	r17
+     3fa:	0f 91       	pop	r16
+     3fc:	08 95       	ret
+
+000003fe <get_apn>:
+		}
+		
+	}
+}
+ 
+uint8_t get_apn(char* apn,char* user){
+     3fe:	ef 92       	push	r14
+     400:	ff 92       	push	r15
+     402:	0f 93       	push	r16
+     404:	1f 93       	push	r17
+     406:	cf 93       	push	r28
+     408:	df 93       	push	r29
+     40a:	cd b7       	in	r28, 0x3d	; 61
+     40c:	de b7       	in	r29, 0x3e	; 62
+     40e:	c8 5c       	subi	r28, 0xC8	; 200
+     410:	d1 09       	sbc	r29, r1
+     412:	0f b6       	in	r0, 0x3f	; 63
+     414:	f8 94       	cli
+     416:	de bf       	out	0x3e, r29	; 62
+     418:	0f be       	out	0x3f, r0	; 63
+     41a:	cd bf       	out	0x3d, r28	; 61
+     41c:	7c 01       	movw	r14, r24
+     41e:	8b 01       	movw	r16, r22
+	 
+	uint8_t i=0,p=0;
+	char simresponse[200];
+	
+	UART_0_puts("Checking SIM...\r\n");
+     420:	8b eb       	ldi	r24, 0xBB	; 187
+     422:	93 e0       	ldi	r25, 0x03	; 3
+     424:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+	// SIM900 Echo disabled in response
+	UART_1_puts("ATE0\r\n\0");  
+     428:	82 e0       	ldi	r24, 0x02	; 2
+     42a:	91 e0       	ldi	r25, 0x01	; 1
+     42c:	0e 94 49 0c 	call	0x1892	; 0x1892 <UART_1_puts>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     430:	2f ef       	ldi	r18, 0xFF	; 255
+     432:	84 e3       	ldi	r24, 0x34	; 52
+     434:	9c e0       	ldi	r25, 0x0C	; 12
+     436:	21 50       	subi	r18, 0x01	; 1
+     438:	80 40       	sbci	r24, 0x00	; 0
+     43a:	90 40       	sbci	r25, 0x00	; 0
+     43c:	e1 f7       	brne	.-8      	; 0x436 <get_apn+0x38>
+     43e:	00 c0       	rjmp	.+0      	; 0x440 <get_apn+0x42>
+     440:	00 00       	nop
+	_delay_ms(500);
+	
+	// SIM900 module check
+	sim900_cmd("AT\r\n\0",simresponse);
+     442:	be 01       	movw	r22, r28
+     444:	6f 5f       	subi	r22, 0xFF	; 255
+     446:	7f 4f       	sbci	r23, 0xFF	; 255
+     448:	8a e0       	ldi	r24, 0x0A	; 10
+     44a:	91 e0       	ldi	r25, 0x01	; 1
+     44c:	bd df       	rcall	.-134    	; 0x3c8 <sim900_cmd>
+	if (strcmp(simresponse,"OK\0")!=0){
+     44e:	60 e1       	ldi	r22, 0x10	; 16
+     450:	71 e0       	ldi	r23, 0x01	; 1
+     452:	ce 01       	movw	r24, r28
+     454:	01 96       	adiw	r24, 0x01	; 1
+     456:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     45a:	89 2b       	or	r24, r25
+     45c:	51 f0       	breq	.+20     	; 0x472 <get_apn+0x74>
+		UART_0_puts("No Response...\r\n");
+     45e:	89 e9       	ldi	r24, 0x99	; 153
+     460:	93 e0       	ldi	r25, 0x03	; 3
+     462:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts("Rechecking...\r\n");
+     466:	8d ec       	ldi	r24, 0xCD	; 205
+     468:	93 e0       	ldi	r25, 0x03	; 3
+     46a:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		return 0;
+     46e:	80 e0       	ldi	r24, 0x00	; 0
+     470:	77 c1       	rjmp	.+750    	; 0x760 <get_apn+0x362>
+	}
+	UART_0_puts("SIM Checked OK...\r\n");
+     472:	8d ed       	ldi	r24, 0xDD	; 221
+     474:	93 e0       	ldi	r25, 0x03	; 3
+     476:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+	UART_0_puts("Checking SimCard...\r\n");
+     47a:	81 ef       	ldi	r24, 0xF1	; 241
+     47c:	93 e0       	ldi	r25, 0x03	; 3
+     47e:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+	
+	// To check if SIM card is present	 
+	sim900_cmd("AT+CSMINS?\r\n\0",simresponse); 
+     482:	be 01       	movw	r22, r28
+     484:	6f 5f       	subi	r22, 0xFF	; 255
+     486:	7f 4f       	sbci	r23, 0xFF	; 255
+     488:	84 e1       	ldi	r24, 0x14	; 20
+     48a:	91 e0       	ldi	r25, 0x01	; 1
+     48c:	9d df       	rcall	.-198    	; 0x3c8 <sim900_cmd>
+	if (strcmp(simresponse,"+CSMINS: 0\,1\0")!=0){
+     48e:	62 e2       	ldi	r22, 0x22	; 34
+     490:	71 e0       	ldi	r23, 0x01	; 1
+     492:	ce 01       	movw	r24, r28
+     494:	01 96       	adiw	r24, 0x01	; 1
+     496:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     49a:	89 2b       	or	r24, r25
+     49c:	51 f0       	breq	.+20     	; 0x4b2 <get_apn+0xb4>
+		UART_0_puts("No Response...\r\n");
+     49e:	89 e9       	ldi	r24, 0x99	; 153
+     4a0:	93 e0       	ldi	r25, 0x03	; 3
+     4a2:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts("Rechecking...\r\n");
+     4a6:	8d ec       	ldi	r24, 0xCD	; 205
+     4a8:	93 e0       	ldi	r25, 0x03	; 3
+     4aa:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		return 0;
+     4ae:	80 e0       	ldi	r24, 0x00	; 0
+     4b0:	57 c1       	rjmp	.+686    	; 0x760 <get_apn+0x362>
+	}
+	UART_0_puts("SimCard Present...\r\n");
+     4b2:	87 e0       	ldi	r24, 0x07	; 7
+     4b4:	94 e0       	ldi	r25, 0x04	; 4
+     4b6:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+	UART_0_puts("Checking SIMCARD Registration...\r\n");
+     4ba:	8c e1       	ldi	r24, 0x1C	; 28
+     4bc:	94 e0       	ldi	r25, 0x04	; 4
+     4be:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+	
+	// To check if SIM card is registered
+	sim900_cmd("AT+CREG?\r\n\0",simresponse);  
+     4c2:	be 01       	movw	r22, r28
+     4c4:	6f 5f       	subi	r22, 0xFF	; 255
+     4c6:	7f 4f       	sbci	r23, 0xFF	; 255
+     4c8:	80 e3       	ldi	r24, 0x30	; 48
+     4ca:	91 e0       	ldi	r25, 0x01	; 1
+     4cc:	7d df       	rcall	.-262    	; 0x3c8 <sim900_cmd>
+	if (!((strcmp(simresponse,"+CREG: 0\,1\0")==0) || (strcmp(simresponse,"+CREG: 0\,5\0")==0))){
+     4ce:	6c e3       	ldi	r22, 0x3C	; 60
+     4d0:	71 e0       	ldi	r23, 0x01	; 1
+     4d2:	ce 01       	movw	r24, r28
+     4d4:	01 96       	adiw	r24, 0x01	; 1
+     4d6:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     4da:	89 2b       	or	r24, r25
+     4dc:	91 f0       	breq	.+36     	; 0x502 <get_apn+0x104>
+     4de:	68 e4       	ldi	r22, 0x48	; 72
+     4e0:	71 e0       	ldi	r23, 0x01	; 1
+     4e2:	ce 01       	movw	r24, r28
+     4e4:	01 96       	adiw	r24, 0x01	; 1
+     4e6:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     4ea:	89 2b       	or	r24, r25
+     4ec:	51 f0       	breq	.+20     	; 0x502 <get_apn+0x104>
+		UART_0_puts("No Response...\r\n");
+     4ee:	89 e9       	ldi	r24, 0x99	; 153
+     4f0:	93 e0       	ldi	r25, 0x03	; 3
+     4f2:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts("Rechecking...\r\n");
+     4f6:	8d ec       	ldi	r24, 0xCD	; 205
+     4f8:	93 e0       	ldi	r25, 0x03	; 3
+     4fa:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		return 0;
+     4fe:	80 e0       	ldi	r24, 0x00	; 0
+     500:	2f c1       	rjmp	.+606    	; 0x760 <get_apn+0x362>
+	}
+	UART_0_puts("SimCard Registered OK...\r\n");
+     502:	8f e3       	ldi	r24, 0x3F	; 63
+     504:	94 e0       	ldi	r25, 0x04	; 4
+     506:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+	// Returns name of Network Provider
+	sim900_cmd("AT+CSPN?\r\n\0",simresponse);  
+     50a:	be 01       	movw	r22, r28
+     50c:	6f 5f       	subi	r22, 0xFF	; 255
+     50e:	7f 4f       	sbci	r23, 0xFF	; 255
+     510:	84 e5       	ldi	r24, 0x54	; 84
+     512:	91 e0       	ldi	r25, 0x01	; 1
+     514:	59 df       	rcall	.-334    	; 0x3c8 <sim900_cmd>
+	i=0;p=0;
+	while (simresponse[i]!='\"' && i<200){
+     516:	89 81       	ldd	r24, Y+1	; 0x01
+     518:	82 32       	cpi	r24, 0x22	; 34
+     51a:	41 f0       	breq	.+16     	; 0x52c <get_apn+0x12e>
+     51c:	fe 01       	movw	r30, r28
+     51e:	32 96       	adiw	r30, 0x02	; 2
+     520:	20 e0       	ldi	r18, 0x00	; 0
+		i++;
+     522:	2f 5f       	subi	r18, 0xFF	; 255
+	}
+	UART_0_puts("SimCard Registered OK...\r\n");
+	// Returns name of Network Provider
+	sim900_cmd("AT+CSPN?\r\n\0",simresponse);  
+	i=0;p=0;
+	while (simresponse[i]!='\"' && i<200){
+     524:	81 91       	ld	r24, Z+
+     526:	82 32       	cpi	r24, 0x22	; 34
+     528:	e1 f7       	brne	.-8      	; 0x522 <get_apn+0x124>
+     52a:	01 c0       	rjmp	.+2      	; 0x52e <get_apn+0x130>
+		return 0;
+	}
+	UART_0_puts("SimCard Registered OK...\r\n");
+	// Returns name of Network Provider
+	sim900_cmd("AT+CSPN?\r\n\0",simresponse);  
+	i=0;p=0;
+     52c:	20 e0       	ldi	r18, 0x00	; 0
+	while (simresponse[i]!='\"' && i<200){
+		i++;
+	}
+	i++;
+     52e:	91 e0       	ldi	r25, 0x01	; 1
+     530:	92 0f       	add	r25, r18
+	while (simresponse[i]!='\"' && p<30){
+     532:	fe 01       	movw	r30, r28
+     534:	e9 0f       	add	r30, r25
+     536:	f1 1d       	adc	r31, r1
+     538:	31 81       	ldd	r19, Z+1	; 0x01
+     53a:	32 32       	cpi	r19, 0x22	; 34
+     53c:	99 f0       	breq	.+38     	; 0x564 <get_apn+0x166>
+     53e:	f8 01       	movw	r30, r16
+     540:	4f e1       	ldi	r20, 0x1F	; 31
+     542:	42 0f       	add	r20, r18
+		user[p]=simresponse[i];
+     544:	31 93       	st	Z+, r19
+		p++;i++;
+     546:	89 2f       	mov	r24, r25
+     548:	82 1b       	sub	r24, r18
+     54a:	9f 5f       	subi	r25, 0xFF	; 255
+	i=0;p=0;
+	while (simresponse[i]!='\"' && i<200){
+		i++;
+	}
+	i++;
+	while (simresponse[i]!='\"' && p<30){
+     54c:	a1 e0       	ldi	r26, 0x01	; 1
+     54e:	b0 e0       	ldi	r27, 0x00	; 0
+     550:	ac 0f       	add	r26, r28
+     552:	bd 1f       	adc	r27, r29
+     554:	a9 0f       	add	r26, r25
+     556:	b1 1d       	adc	r27, r1
+     558:	3c 91       	ld	r19, X
+     55a:	32 32       	cpi	r19, 0x22	; 34
+     55c:	21 f0       	breq	.+8      	; 0x566 <get_apn+0x168>
+     55e:	94 13       	cpse	r25, r20
+     560:	f1 cf       	rjmp	.-30     	; 0x544 <get_apn+0x146>
+     562:	01 c0       	rjmp	.+2      	; 0x566 <get_apn+0x168>
+		return 0;
+	}
+	UART_0_puts("SimCard Registered OK...\r\n");
+	// Returns name of Network Provider
+	sim900_cmd("AT+CSPN?\r\n\0",simresponse);  
+	i=0;p=0;
+     564:	80 e0       	ldi	r24, 0x00	; 0
+	i++;
+	while (simresponse[i]!='\"' && p<30){
+		user[p]=simresponse[i];
+		p++;i++;
+	}
+	user[p]='\0';
+     566:	f8 01       	movw	r30, r16
+     568:	e8 0f       	add	r30, r24
+     56a:	f1 1d       	adc	r31, r1
+     56c:	10 82       	st	Z, r1
+	UART_0_puts("SIM network provider...");
+     56e:	8a e5       	ldi	r24, 0x5A	; 90
+     570:	94 e0       	ldi	r25, 0x04	; 4
+     572:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+	UART_0_puts(user);
+     576:	c8 01       	movw	r24, r16
+     578:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+	UART_0_puts("\r\n");
+     57c:	83 ea       	ldi	r24, 0xA3	; 163
+     57e:	95 e0       	ldi	r25, 0x05	; 5
+     580:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+	
+	//APN Compare and Assignment
+	if (strcmp(user,"Hutch\0")==0){
+     584:	60 e6       	ldi	r22, 0x60	; 96
+     586:	71 e0       	ldi	r23, 0x01	; 1
+     588:	c8 01       	movw	r24, r16
+     58a:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     58e:	89 2b       	or	r24, r25
+     590:	b1 f4       	brne	.+44     	; 0x5be <get_apn+0x1c0>
+		strcpy(apn,"www");
+     592:	87 e7       	ldi	r24, 0x77	; 119
+     594:	97 e7       	ldi	r25, 0x77	; 119
+     596:	a7 e7       	ldi	r26, 0x77	; 119
+     598:	b0 e0       	ldi	r27, 0x00	; 0
+     59a:	f7 01       	movw	r30, r14
+     59c:	80 83       	st	Z, r24
+     59e:	91 83       	std	Z+1, r25	; 0x01
+     5a0:	a2 83       	std	Z+2, r26	; 0x02
+     5a2:	b3 83       	std	Z+3, r27	; 0x03
+		UART_0_puts("APN...");
+     5a4:	82 e7       	ldi	r24, 0x72	; 114
+     5a6:	94 e0       	ldi	r25, 0x04	; 4
+     5a8:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts(apn);
+     5ac:	c7 01       	movw	r24, r14
+     5ae:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts("\r\n");
+     5b2:	83 ea       	ldi	r24, 0xA3	; 163
+     5b4:	95 e0       	ldi	r25, 0x05	; 5
+     5b6:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		return 1;
+     5ba:	81 e0       	ldi	r24, 0x01	; 1
+     5bc:	d1 c0       	rjmp	.+418    	; 0x760 <get_apn+0x362>
+	}
+	else if (strcmp(user,"Vodafone\0")==0){
+     5be:	67 e6       	ldi	r22, 0x67	; 103
+     5c0:	71 e0       	ldi	r23, 0x01	; 1
+     5c2:	c8 01       	movw	r24, r16
+     5c4:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     5c8:	89 2b       	or	r24, r25
+     5ca:	b1 f4       	brne	.+44     	; 0x5f8 <get_apn+0x1fa>
+		strcpy(apn,"www");
+     5cc:	87 e7       	ldi	r24, 0x77	; 119
+     5ce:	97 e7       	ldi	r25, 0x77	; 119
+     5d0:	a7 e7       	ldi	r26, 0x77	; 119
+     5d2:	b0 e0       	ldi	r27, 0x00	; 0
+     5d4:	f7 01       	movw	r30, r14
+     5d6:	80 83       	st	Z, r24
+     5d8:	91 83       	std	Z+1, r25	; 0x01
+     5da:	a2 83       	std	Z+2, r26	; 0x02
+     5dc:	b3 83       	std	Z+3, r27	; 0x03
+		UART_0_puts("APN...");
+     5de:	82 e7       	ldi	r24, 0x72	; 114
+     5e0:	94 e0       	ldi	r25, 0x04	; 4
+     5e2:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts(apn);
+     5e6:	c7 01       	movw	r24, r14
+     5e8:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts("\r\n");
+     5ec:	83 ea       	ldi	r24, 0xA3	; 163
+     5ee:	95 e0       	ldi	r25, 0x05	; 5
+     5f0:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		return 1;
+     5f4:	81 e0       	ldi	r24, 0x01	; 1
+     5f6:	b4 c0       	rjmp	.+360    	; 0x760 <get_apn+0x362>
+	}
+	else if ((strcmp(user,"airtel\0")==0) || (strcmp(user,"Airtel\0")==0)){
+     5f8:	61 e7       	ldi	r22, 0x71	; 113
+     5fa:	71 e0       	ldi	r23, 0x01	; 1
+     5fc:	c8 01       	movw	r24, r16
+     5fe:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     602:	89 2b       	or	r24, r25
+     604:	39 f0       	breq	.+14     	; 0x614 <get_apn+0x216>
+     606:	69 e7       	ldi	r22, 0x79	; 121
+     608:	71 e0       	ldi	r23, 0x01	; 1
+     60a:	c8 01       	movw	r24, r16
+     60c:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     610:	89 2b       	or	r24, r25
+     612:	a9 f4       	brne	.+42     	; 0x63e <get_apn+0x240>
+		strcpy(apn,"airtelgprs.com");
+     614:	8f e0       	ldi	r24, 0x0F	; 15
+     616:	e9 e7       	ldi	r30, 0x79	; 121
+     618:	f4 e0       	ldi	r31, 0x04	; 4
+     61a:	d7 01       	movw	r26, r14
+     61c:	01 90       	ld	r0, Z+
+     61e:	0d 92       	st	X+, r0
+     620:	8a 95       	dec	r24
+     622:	e1 f7       	brne	.-8      	; 0x61c <get_apn+0x21e>
+		UART_0_puts("APN...");
+     624:	82 e7       	ldi	r24, 0x72	; 114
+     626:	94 e0       	ldi	r25, 0x04	; 4
+     628:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts(apn);
+     62c:	c7 01       	movw	r24, r14
+     62e:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts("\r\n");
+     632:	83 ea       	ldi	r24, 0xA3	; 163
+     634:	95 e0       	ldi	r25, 0x05	; 5
+     636:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		return 1;
+     63a:	81 e0       	ldi	r24, 0x01	; 1
+     63c:	91 c0       	rjmp	.+290    	; 0x760 <get_apn+0x362>
+	}
+	else if(strcmp(user,"CellOne\0")==0){
+     63e:	61 e8       	ldi	r22, 0x81	; 129
+     640:	71 e0       	ldi	r23, 0x01	; 1
+     642:	c8 01       	movw	r24, r16
+     644:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     648:	89 2b       	or	r24, r25
+     64a:	a9 f4       	brne	.+42     	; 0x676 <get_apn+0x278>
+		strcpy(apn,"bsnlenet");
+     64c:	89 e0       	ldi	r24, 0x09	; 9
+     64e:	e8 e8       	ldi	r30, 0x88	; 136
+     650:	f4 e0       	ldi	r31, 0x04	; 4
+     652:	d7 01       	movw	r26, r14
+     654:	01 90       	ld	r0, Z+
+     656:	0d 92       	st	X+, r0
+     658:	8a 95       	dec	r24
+     65a:	e1 f7       	brne	.-8      	; 0x654 <get_apn+0x256>
+		UART_0_puts("APN...");
+     65c:	82 e7       	ldi	r24, 0x72	; 114
+     65e:	94 e0       	ldi	r25, 0x04	; 4
+     660:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts(apn);
+     664:	c7 01       	movw	r24, r14
+     666:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts("\r\n");
+     66a:	83 ea       	ldi	r24, 0xA3	; 163
+     66c:	95 e0       	ldi	r25, 0x05	; 5
+     66e:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		return 1;;
+     672:	81 e0       	ldi	r24, 0x01	; 1
+     674:	75 c0       	rjmp	.+234    	; 0x760 <get_apn+0x362>
+	}
+	else if(strcmp(user,"Reliance\0")==0){
+     676:	6a e8       	ldi	r22, 0x8A	; 138
+     678:	71 e0       	ldi	r23, 0x01	; 1
+     67a:	c8 01       	movw	r24, r16
+     67c:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     680:	89 2b       	or	r24, r25
+     682:	a9 f4       	brne	.+42     	; 0x6ae <get_apn+0x2b0>
+		strcpy(apn,"rcomwap");
+     684:	88 e0       	ldi	r24, 0x08	; 8
+     686:	e1 e9       	ldi	r30, 0x91	; 145
+     688:	f4 e0       	ldi	r31, 0x04	; 4
+     68a:	d7 01       	movw	r26, r14
+     68c:	01 90       	ld	r0, Z+
+     68e:	0d 92       	st	X+, r0
+     690:	8a 95       	dec	r24
+     692:	e1 f7       	brne	.-8      	; 0x68c <get_apn+0x28e>
+		UART_0_puts("APN...");
+     694:	82 e7       	ldi	r24, 0x72	; 114
+     696:	94 e0       	ldi	r25, 0x04	; 4
+     698:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts(apn);
+     69c:	c7 01       	movw	r24, r14
+     69e:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts("\r\n");
+     6a2:	83 ea       	ldi	r24, 0xA3	; 163
+     6a4:	95 e0       	ldi	r25, 0x05	; 5
+     6a6:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		return 1;
+     6aa:	81 e0       	ldi	r24, 0x01	; 1
+     6ac:	59 c0       	rjmp	.+178    	; 0x760 <get_apn+0x362>
+	}
+	else if(strcmp(user,"TATA\0")==0){
+     6ae:	64 e9       	ldi	r22, 0x94	; 148
+     6b0:	71 e0       	ldi	r23, 0x01	; 1
+     6b2:	c8 01       	movw	r24, r16
+     6b4:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     6b8:	89 2b       	or	r24, r25
+     6ba:	a9 f4       	brne	.+42     	; 0x6e6 <get_apn+0x2e8>
+		strcpy(apn,"tata.docomo.internet");
+     6bc:	85 e1       	ldi	r24, 0x15	; 21
+     6be:	e9 e9       	ldi	r30, 0x99	; 153
+     6c0:	f4 e0       	ldi	r31, 0x04	; 4
+     6c2:	d7 01       	movw	r26, r14
+     6c4:	01 90       	ld	r0, Z+
+     6c6:	0d 92       	st	X+, r0
+     6c8:	8a 95       	dec	r24
+     6ca:	e1 f7       	brne	.-8      	; 0x6c4 <get_apn+0x2c6>
+		UART_0_puts("APN...");
+     6cc:	82 e7       	ldi	r24, 0x72	; 114
+     6ce:	94 e0       	ldi	r25, 0x04	; 4
+     6d0:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts(apn);
+     6d4:	c7 01       	movw	r24, r14
+     6d6:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts("\r\n");
+     6da:	83 ea       	ldi	r24, 0xA3	; 163
+     6dc:	95 e0       	ldi	r25, 0x05	; 5
+     6de:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		return 1;
+     6e2:	81 e0       	ldi	r24, 0x01	; 1
+     6e4:	3d c0       	rjmp	.+122    	; 0x760 <get_apn+0x362>
+	}
+	else if(strcmp(user,"Uninor\0")==0){
+     6e6:	6a e9       	ldi	r22, 0x9A	; 154
+     6e8:	71 e0       	ldi	r23, 0x01	; 1
+     6ea:	c8 01       	movw	r24, r16
+     6ec:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     6f0:	89 2b       	or	r24, r25
+     6f2:	a9 f4       	brne	.+42     	; 0x71e <get_apn+0x320>
+		strcpy(apn,"uninor");
+     6f4:	87 e0       	ldi	r24, 0x07	; 7
+     6f6:	ee ea       	ldi	r30, 0xAE	; 174
+     6f8:	f4 e0       	ldi	r31, 0x04	; 4
+     6fa:	d7 01       	movw	r26, r14
+     6fc:	01 90       	ld	r0, Z+
+     6fe:	0d 92       	st	X+, r0
+     700:	8a 95       	dec	r24
+     702:	e1 f7       	brne	.-8      	; 0x6fc <get_apn+0x2fe>
+		UART_0_puts("APN...");
+     704:	82 e7       	ldi	r24, 0x72	; 114
+     706:	94 e0       	ldi	r25, 0x04	; 4
+     708:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts(apn);
+     70c:	c7 01       	movw	r24, r14
+     70e:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts("\r\n");
+     712:	83 ea       	ldi	r24, 0xA3	; 163
+     714:	95 e0       	ldi	r25, 0x05	; 5
+     716:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		return 1;
+     71a:	81 e0       	ldi	r24, 0x01	; 1
+     71c:	21 c0       	rjmp	.+66     	; 0x760 <get_apn+0x362>
+	}
+	else if(strcmp(user,"!dea\0")==0){
+     71e:	62 ea       	ldi	r22, 0xA2	; 162
+     720:	71 e0       	ldi	r23, 0x01	; 1
+     722:	c8 01       	movw	r24, r16
+     724:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     728:	89 2b       	or	r24, r25
+     72a:	a9 f4       	brne	.+42     	; 0x756 <get_apn+0x358>
+		strcpy(apn,"internet");
+     72c:	89 e0       	ldi	r24, 0x09	; 9
+     72e:	e5 ea       	ldi	r30, 0xA5	; 165
+     730:	f4 e0       	ldi	r31, 0x04	; 4
+     732:	d7 01       	movw	r26, r14
+     734:	01 90       	ld	r0, Z+
+     736:	0d 92       	st	X+, r0
+     738:	8a 95       	dec	r24
+     73a:	e1 f7       	brne	.-8      	; 0x734 <get_apn+0x336>
+		UART_0_puts("APN...");
+     73c:	82 e7       	ldi	r24, 0x72	; 114
+     73e:	94 e0       	ldi	r25, 0x04	; 4
+     740:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts(apn);
+     744:	c7 01       	movw	r24, r14
+     746:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		UART_0_puts("\r\n");
+     74a:	83 ea       	ldi	r24, 0xA3	; 163
+     74c:	95 e0       	ldi	r25, 0x05	; 5
+     74e:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		return 1; 
+     752:	81 e0       	ldi	r24, 0x01	; 1
+     754:	05 c0       	rjmp	.+10     	; 0x760 <get_apn+0x362>
+	}
+	else{
+		UART_0_puts("APN not found...\r\n");
+     756:	85 eb       	ldi	r24, 0xB5	; 181
+     758:	94 e0       	ldi	r25, 0x04	; 4
+     75a:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+		return 0;
+     75e:	80 e0       	ldi	r24, 0x00	; 0
+	}
+}
+     760:	c8 53       	subi	r28, 0x38	; 56
+     762:	df 4f       	sbci	r29, 0xFF	; 255
+     764:	0f b6       	in	r0, 0x3f	; 63
+     766:	f8 94       	cli
+     768:	de bf       	out	0x3e, r29	; 62
+     76a:	0f be       	out	0x3f, r0	; 63
+     76c:	cd bf       	out	0x3d, r28	; 61
+     76e:	df 91       	pop	r29
+     770:	cf 91       	pop	r28
+     772:	1f 91       	pop	r17
+     774:	0f 91       	pop	r16
+     776:	ff 90       	pop	r15
+     778:	ef 90       	pop	r14
+     77a:	08 95       	ret
+
+0000077c <allocate_dynaIP>:
+	UART_0_puts("Dynamic IP Allocated successfully...\r\n");
+		
+	return 0;
+}
+
+uint8_t allocate_dynaIP(){
+     77c:	cf 93       	push	r28
+     77e:	df 93       	push	r29
+     780:	cd b7       	in	r28, 0x3d	; 61
+     782:	de b7       	in	r29, 0x3e	; 62
+     784:	64 97       	sbiw	r28, 0x14	; 20
+     786:	0f b6       	in	r0, 0x3f	; 63
+     788:	f8 94       	cli
+     78a:	de bf       	out	0x3e, r29	; 62
+     78c:	0f be       	out	0x3f, r0	; 63
+     78e:	cd bf       	out	0x3d, r28	; 61
+	char simresponse[20];
+	
+	//  To attach to GPRS connection
+	sim900_cmd("AT+CIICR\r\n\0",simresponse);
+     790:	be 01       	movw	r22, r28
+     792:	6f 5f       	subi	r22, 0xFF	; 255
+     794:	7f 4f       	sbci	r23, 0xFF	; 255
+     796:	88 ea       	ldi	r24, 0xA8	; 168
+     798:	91 e0       	ldi	r25, 0x01	; 1
+     79a:	16 de       	rcall	.-980    	; 0x3c8 <sim900_cmd>
+	if (strcmp(simresponse,"OK\0")==0){
+     79c:	60 e1       	ldi	r22, 0x10	; 16
+     79e:	71 e0       	ldi	r23, 0x01	; 1
+     7a0:	ce 01       	movw	r24, r28
+     7a2:	01 96       	adiw	r24, 0x01	; 1
+     7a4:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     7a8:	89 2b       	or	r24, r25
+     7aa:	89 f4       	brne	.+34     	; 0x7ce <allocate_dynaIP+0x52>
+		//  To allocate dynamic IP
+		sim900_cmd("AT+CIFSR\r\n\0",simresponse);
+     7ac:	be 01       	movw	r22, r28
+     7ae:	6f 5f       	subi	r22, 0xFF	; 255
+     7b0:	7f 4f       	sbci	r23, 0xFF	; 255
+     7b2:	84 eb       	ldi	r24, 0xB4	; 180
+     7b4:	91 e0       	ldi	r25, 0x01	; 1
+     7b6:	08 de       	rcall	.-1008   	; 0x3c8 <sim900_cmd>
+		if (strcmp(simresponse,"ERROR\0")!=0){
+     7b8:	60 ec       	ldi	r22, 0xC0	; 192
+     7ba:	71 e0       	ldi	r23, 0x01	; 1
+     7bc:	ce 01       	movw	r24, r28
+     7be:	01 96       	adiw	r24, 0x01	; 1
+     7c0:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     7c4:	21 e0       	ldi	r18, 0x01	; 1
+     7c6:	89 2b       	or	r24, r25
+     7c8:	19 f4       	brne	.+6      	; 0x7d0 <allocate_dynaIP+0x54>
+     7ca:	20 e0       	ldi	r18, 0x00	; 0
+     7cc:	01 c0       	rjmp	.+2      	; 0x7d0 <allocate_dynaIP+0x54>
+			return 1;
+		}
+	}
+	return 0;
+     7ce:	20 e0       	ldi	r18, 0x00	; 0
+} 
+     7d0:	82 2f       	mov	r24, r18
+     7d2:	64 96       	adiw	r28, 0x14	; 20
+     7d4:	0f b6       	in	r0, 0x3f	; 63
+     7d6:	f8 94       	cli
+     7d8:	de bf       	out	0x3e, r29	; 62
+     7da:	0f be       	out	0x3f, r0	; 63
+     7dc:	cd bf       	out	0x3d, r28	; 61
+     7de:	df 91       	pop	r29
+     7e0:	cf 91       	pop	r28
+     7e2:	08 95       	ret
+
+000007e4 <reset_SIM900>:
+	skip = 0;
+	TCNT1 = 0;
+	sbi(TCCR1B,CS12);
+}
+
+void reset_SIM900(){
+     7e4:	cf 93       	push	r28
+     7e6:	df 93       	push	r29
+     7e8:	cd b7       	in	r28, 0x3d	; 61
+     7ea:	de b7       	in	r29, 0x3e	; 62
+     7ec:	64 97       	sbiw	r28, 0x14	; 20
+     7ee:	0f b6       	in	r0, 0x3f	; 63
+     7f0:	f8 94       	cli
+     7f2:	de bf       	out	0x3e, r29	; 62
+     7f4:	0f be       	out	0x3f, r0	; 63
+     7f6:	cd bf       	out	0x3d, r28	; 61
+	
+	char simresponse[20];
+	
+	sim900_cmd("AT+CPOWD=1\r\n\0",simresponse);	
+     7f8:	be 01       	movw	r22, r28
+     7fa:	6f 5f       	subi	r22, 0xFF	; 255
+     7fc:	7f 4f       	sbci	r23, 0xFF	; 255
+     7fe:	87 ec       	ldi	r24, 0xC7	; 199
+     800:	91 e0       	ldi	r25, 0x01	; 1
+     802:	e2 dd       	rcall	.-1084   	; 0x3c8 <sim900_cmd>
+     804:	2a ea       	ldi	r18, 0xAA	; 170
+     806:	36 ee       	ldi	r19, 0xE6	; 230
+     808:	86 e9       	ldi	r24, 0x96	; 150
+     80a:	91 e0       	ldi	r25, 0x01	; 1
+     80c:	21 50       	subi	r18, 0x01	; 1
+     80e:	30 40       	sbci	r19, 0x00	; 0
+     810:	80 40       	sbci	r24, 0x00	; 0
+     812:	90 40       	sbci	r25, 0x00	; 0
+     814:	d9 f7       	brne	.-10     	; 0x80c <reset_SIM900+0x28>
+     816:	00 00       	nop
+	_delay_ms(20000);
+}
+     818:	64 96       	adiw	r28, 0x14	; 20
+     81a:	0f b6       	in	r0, 0x3f	; 63
+     81c:	f8 94       	cli
+     81e:	de bf       	out	0x3e, r29	; 62
+     820:	0f be       	out	0x3f, r0	; 63
+     822:	cd bf       	out	0x3d, r28	; 61
+     824:	df 91       	pop	r29
+     826:	cf 91       	pop	r28
+     828:	08 95       	ret
+
+0000082a <fetch_gprs>:
+	}
+	
+	return 1;
+}
+
+uint8_t fetch_gprs(){
+     82a:	cf 93       	push	r28
+     82c:	df 93       	push	r29
+     82e:	cd b7       	in	r28, 0x3d	; 61
+     830:	de b7       	in	r29, 0x3e	; 62
+     832:	64 97       	sbiw	r28, 0x14	; 20
+     834:	0f b6       	in	r0, 0x3f	; 63
+     836:	f8 94       	cli
+     838:	de bf       	out	0x3e, r29	; 62
+     83a:	0f be       	out	0x3f, r0	; 63
+     83c:	cd bf       	out	0x3d, r28	; 61
+	char simresponse[20];
+	UART_0_puts("Searching GPRS...\r\n");
+     83e:	88 ec       	ldi	r24, 0xC8	; 200
+     840:	94 e0       	ldi	r25, 0x04	; 4
+     842:	0e 94 23 0c 	call	0x1846	; 0x1846 <UART_0_puts>
+	
+	sim900_cmd("AT+CGATT?\r\n",simresponse);
+     846:	be 01       	movw	r22, r28
+     848:	6f 5f       	subi	r22, 0xFF	; 255
+     84a:	7f 4f       	sbci	r23, 0xFF	; 255
+     84c:	8c ed       	ldi	r24, 0xDC	; 220
+     84e:	94 e0       	ldi	r25, 0x04	; 4
+     850:	bb dd       	rcall	.-1162   	; 0x3c8 <sim900_cmd>
+	if(strcmp(simresponse,"+CGATT: 0\0")==0){  // If GPRS is not attached
+     852:	65 ed       	ldi	r22, 0xD5	; 213
+     854:	71 e0       	ldi	r23, 0x01	; 1
+     856:	ce 01       	movw	r24, r28
+     858:	01 96       	adiw	r24, 0x01	; 1
+     85a:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     85e:	89 2b       	or	r24, r25
+     860:	71 f4       	brne	.+28     	; 0x87e <fetch_gprs+0x54>
+		UART_0_puts("GPRS returns ERROR...\r\n");
+     862:	88 ee       	ldi	r24, 0xE8	; 232
+     864:	94 e0       	ldi	r25, 0x04	; 4
+     866:	ef d7       	rcall	.+4062   	; 0x1846 <UART_0_puts>
+     868:	2f ef       	ldi	r18, 0xFF	; 255
+     86a:	81 e1       	ldi	r24, 0x11	; 17
+     86c:	9a e7       	ldi	r25, 0x7A	; 122
+     86e:	21 50       	subi	r18, 0x01	; 1
+     870:	80 40       	sbci	r24, 0x00	; 0
+     872:	90 40       	sbci	r25, 0x00	; 0
+     874:	e1 f7       	brne	.-8      	; 0x86e <fetch_gprs+0x44>
+     876:	00 c0       	rjmp	.+0      	; 0x878 <fetch_gprs+0x4e>
+     878:	00 00       	nop
+		sbi(UCSR1B,RXEN1);
+		UART_0_puts("GPRS OK...\r\n");
+		sim900_response(simresponse);
+		return 1;
+	}
+	return 0;
+     87a:	80 e0       	ldi	r24, 0x00	; 0
+     87c:	16 c0       	rjmp	.+44     	; 0x8aa <fetch_gprs+0x80>
+	
+	sim900_cmd("AT+CGATT?\r\n",simresponse);
+	if(strcmp(simresponse,"+CGATT: 0\0")==0){  // If GPRS is not attached
+		UART_0_puts("GPRS returns ERROR...\r\n");
+		_delay_ms(5000);
+	}else if(strcmp(simresponse,"+CGATT: 1\0")==0){  // GPRS is attached properly
+     87e:	60 ee       	ldi	r22, 0xE0	; 224
+     880:	71 e0       	ldi	r23, 0x01	; 1
+     882:	ce 01       	movw	r24, r28
+     884:	01 96       	adiw	r24, 0x01	; 1
+     886:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     88a:	89 2b       	or	r24, r25
+     88c:	69 f4       	brne	.+26     	; 0x8a8 <fetch_gprs+0x7e>
+		//  Reception Enable again for OK
+		sbi(UCSR1B,RXEN1);
+     88e:	e9 ec       	ldi	r30, 0xC9	; 201
+     890:	f0 e0       	ldi	r31, 0x00	; 0
+     892:	80 81       	ld	r24, Z
+     894:	80 61       	ori	r24, 0x10	; 16
+     896:	80 83       	st	Z, r24
+		UART_0_puts("GPRS OK...\r\n");
+     898:	80 e0       	ldi	r24, 0x00	; 0
+     89a:	95 e0       	ldi	r25, 0x05	; 5
+     89c:	d4 d7       	rcall	.+4008   	; 0x1846 <UART_0_puts>
+		sim900_response(simresponse);
+     89e:	ce 01       	movw	r24, r28
+     8a0:	01 96       	adiw	r24, 0x01	; 1
+     8a2:	51 dd       	rcall	.-1374   	; 0x346 <sim900_response>
+		return 1;
+     8a4:	81 e0       	ldi	r24, 0x01	; 1
+     8a6:	01 c0       	rjmp	.+2      	; 0x8aa <fetch_gprs+0x80>
+	}
+	return 0;
+     8a8:	80 e0       	ldi	r24, 0x00	; 0
+}
+     8aa:	64 96       	adiw	r28, 0x14	; 20
+     8ac:	0f b6       	in	r0, 0x3f	; 63
+     8ae:	f8 94       	cli
+     8b0:	de bf       	out	0x3e, r29	; 62
+     8b2:	0f be       	out	0x3f, r0	; 63
+     8b4:	cd bf       	out	0x3d, r28	; 61
+     8b6:	df 91       	pop	r29
+     8b8:	cf 91       	pop	r28
+     8ba:	08 95       	ret
+
+000008bc <set_apn>:
+			t=0;
+		}
+	}
+}
+
+uint8_t set_apn(char* apn){
+     8bc:	0f 93       	push	r16
+     8be:	1f 93       	push	r17
+     8c0:	cf 93       	push	r28
+     8c2:	df 93       	push	r29
+     8c4:	cd b7       	in	r28, 0x3d	; 61
+     8c6:	de b7       	in	r29, 0x3e	; 62
+     8c8:	2a 97       	sbiw	r28, 0x0a	; 10
+     8ca:	0f b6       	in	r0, 0x3f	; 63
+     8cc:	f8 94       	cli
+     8ce:	de bf       	out	0x3e, r29	; 62
+     8d0:	0f be       	out	0x3f, r0	; 63
+     8d2:	cd bf       	out	0x3d, r28	; 61
+     8d4:	8c 01       	movw	r16, r24
+	char simresponse[10];
+	uint8_t flag_allocate_dynaIP=0;
+	
+	UART_0_puts("Closing PDP Settings...\r\n");
+     8d6:	8d e0       	ldi	r24, 0x0D	; 13
+     8d8:	95 e0       	ldi	r25, 0x05	; 5
+     8da:	b5 d7       	rcall	.+3946   	; 0x1846 <UART_0_puts>
+	//  Closing PDP connection
+	sim900_cmd("AT+CIPSHUT\r\n\0",simresponse);	
+     8dc:	be 01       	movw	r22, r28
+     8de:	6f 5f       	subi	r22, 0xFF	; 255
+     8e0:	7f 4f       	sbci	r23, 0xFF	; 255
+     8e2:	8b ee       	ldi	r24, 0xEB	; 235
+     8e4:	91 e0       	ldi	r25, 0x01	; 1
+     8e6:	70 dd       	rcall	.-1312   	; 0x3c8 <sim900_cmd>
+	if (strcmp(simresponse,"SHUT OK\0")!=0){  //  Previous PDP connection not closed properly
+     8e8:	69 ef       	ldi	r22, 0xF9	; 249
+     8ea:	71 e0       	ldi	r23, 0x01	; 1
+     8ec:	ce 01       	movw	r24, r28
+     8ee:	01 96       	adiw	r24, 0x01	; 1
+     8f0:	0e 94 92 0c 	call	0x1924	; 0x1924 <strcmp>
+     8f4:	89 2b       	or	r24, r25
+     8f6:	41 f0       	breq	.+16     	; 0x908 <set_apn+0x4c>
+		UART_0_puts("PDP connection not closed properly...\r\n");
+     8f8:	87 e2       	ldi	r24, 0x27	; 39
+     8fa:	95 e0       	ldi	r25, 0x05	; 5
+     8fc:	a4 d7       	rcall	.+3912   	; 0x1846 <UART_0_puts>
+		UART_0_puts("Re-shutting...\r\n");
+     8fe:	8f e4       	ldi	r24, 0x4F	; 79
+     900:	95 e0       	ldi	r25, 0x05	; 5
+     902:	a1 d7       	rcall	.+3906   	; 0x1846 <UART_0_puts>
+		return 0;
+     904:	80 e0       	ldi	r24, 0x00	; 0
+     906:	39 c0       	rjmp	.+114    	; 0x97a <set_apn+0xbe>
+	}
+	UART_0_puts("PDP Settings closed Properly...\r\n");
+     908:	80 e6       	ldi	r24, 0x60	; 96
+     90a:	95 e0       	ldi	r25, 0x05	; 5
+     90c:	9c d7       	rcall	.+3896   	; 0x1846 <UART_0_puts>
+	UART_0_puts("Setting apn to ");
+     90e:	82 e8       	ldi	r24, 0x82	; 130
+     910:	95 e0       	ldi	r25, 0x05	; 5
+     912:	99 d7       	rcall	.+3890   	; 0x1846 <UART_0_puts>
+	UART_0_puts(apn);
+     914:	c8 01       	movw	r24, r16
+     916:	97 d7       	rcall	.+3886   	; 0x1846 <UART_0_puts>
+	UART_0_puts("\r\n");
+     918:	83 ea       	ldi	r24, 0xA3	; 163
+     91a:	95 e0       	ldi	r25, 0x05	; 5
+     91c:	94 d7       	rcall	.+3880   	; 0x1846 <UART_0_puts>
+	
+	//  Reception Enable
+	sbi(UCSR1B,RXEN1);
+     91e:	e9 ec       	ldi	r30, 0xC9	; 201
+     920:	f0 e0       	ldi	r31, 0x00	; 0
+     922:	90 81       	ld	r25, Z
+     924:	90 61       	ori	r25, 0x10	; 16
+     926:	90 83       	st	Z, r25
+	
+	//  Setting APN
+	UART_1_puts("AT+CSTT=\"");  //  To assign the APN username and password
+     928:	82 e9       	ldi	r24, 0x92	; 146
+     92a:	95 e0       	ldi	r25, 0x05	; 5
+     92c:	b2 d7       	rcall	.+3940   	; 0x1892 <UART_1_puts>
+	UART_1_puts(apn);
+     92e:	c8 01       	movw	r24, r16
+     930:	b0 d7       	rcall	.+3936   	; 0x1892 <UART_1_puts>
+	UART_1_puts("\"\,\"\"\,\"\"\r\n");
+     932:	8c e9       	ldi	r24, 0x9C	; 156
+     934:	95 e0       	ldi	r25, 0x05	; 5
+     936:	ad d7       	rcall	.+3930   	; 0x1892 <UART_1_puts>
+		
+	// Getting response
+	sim900_response(simresponse);
+     938:	ce 01       	movw	r24, r28
+     93a:	01 96       	adiw	r24, 0x01	; 1
+     93c:	04 dd       	rcall	.-1528   	; 0x346 <sim900_response>
+	
+	if (strcmp(simresponse,"OK\0")!=0){  //  Not good
+     93e:	60 e1       	ldi	r22, 0x10	; 16
+     940:	71 e0       	ldi	r23, 0x01	; 1
+     942:	ce 01       	movw	r24, r28
+     944:	01 96       	adiw	r24, 0x01	; 1
+     946:	ee d7       	rcall	.+4060   	; 0x1924 <strcmp>
+     948:	89 2b       	or	r24, r25
+     94a:	41 f0       	breq	.+16     	; 0x95c <set_apn+0xa0>
+		UART_0_puts("APN not set properly...\r\n");
+     94c:	86 ea       	ldi	r24, 0xA6	; 166
+     94e:	95 e0       	ldi	r25, 0x05	; 5
+     950:	7a d7       	rcall	.+3828   	; 0x1846 <UART_0_puts>
+		UART_0_puts("Re-setting APN...\r\n");
+     952:	80 ec       	ldi	r24, 0xC0	; 192
+     954:	95 e0       	ldi	r25, 0x05	; 5
+     956:	77 d7       	rcall	.+3822   	; 0x1846 <UART_0_puts>
+		return 0;
+     958:	80 e0       	ldi	r24, 0x00	; 0
+     95a:	0f c0       	rjmp	.+30     	; 0x97a <set_apn+0xbe>
+	}
+	UART_0_puts("APN set properly...\r\n");
+     95c:	84 ed       	ldi	r24, 0xD4	; 212
+     95e:	95 e0       	ldi	r25, 0x05	; 5
+     960:	72 d7       	rcall	.+3812   	; 0x1846 <UART_0_puts>
+	UART_0_puts("Allocating Dynamic IP...\r\n");
+     962:	8a ee       	ldi	r24, 0xEA	; 234
+     964:	95 e0       	ldi	r25, 0x05	; 5
+     966:	6f d7       	rcall	.+3806   	; 0x1846 <UART_0_puts>
+	// Allocating dynamic IP
+	flag_allocate_dynaIP = allocate_dynaIP();
+     968:	09 df       	rcall	.-494    	; 0x77c <allocate_dynaIP>
+	if(flag_allocate_dynaIP==1){  // Dynamic IP allocation successful
+     96a:	81 30       	cpi	r24, 0x01	; 1
+     96c:	29 f0       	breq	.+10     	; 0x978 <set_apn+0xbc>
+		return 1;
+	}
+	UART_0_puts("Dynamic IP Allocated successfully...\r\n");
+     96e:	85 e0       	ldi	r24, 0x05	; 5
+     970:	96 e0       	ldi	r25, 0x06	; 6
+     972:	69 d7       	rcall	.+3794   	; 0x1846 <UART_0_puts>
+		
+	return 0;
+     974:	80 e0       	ldi	r24, 0x00	; 0
+     976:	01 c0       	rjmp	.+2      	; 0x97a <set_apn+0xbe>
+	UART_0_puts("APN set properly...\r\n");
+	UART_0_puts("Allocating Dynamic IP...\r\n");
+	// Allocating dynamic IP
+	flag_allocate_dynaIP = allocate_dynaIP();
+	if(flag_allocate_dynaIP==1){  // Dynamic IP allocation successful
+		return 1;
+     978:	81 e0       	ldi	r24, 0x01	; 1
+	}
+	UART_0_puts("Dynamic IP Allocated successfully...\r\n");
+		
+	return 0;
+}
+     97a:	2a 96       	adiw	r28, 0x0a	; 10
+     97c:	0f b6       	in	r0, 0x3f	; 63
+     97e:	f8 94       	cli
+     980:	de bf       	out	0x3e, r29	; 62
+     982:	0f be       	out	0x3f, r0	; 63
+     984:	cd bf       	out	0x3d, r28	; 61
+     986:	df 91       	pop	r29
+     988:	cf 91       	pop	r28
+     98a:	1f 91       	pop	r17
+     98c:	0f 91       	pop	r16
+     98e:	08 95       	ret
+
+00000990 <get_signalstrength>:
+
+	//  Reception Disable
+	cbi(UCSR1B,RXEN1);
+} 
+
+uint8_t get_signalstrength(){
+     990:	cf 93       	push	r28
+     992:	df 93       	push	r29
+     994:	cd b7       	in	r28, 0x3d	; 61
+     996:	de b7       	in	r29, 0x3e	; 62
+     998:	c0 5d       	subi	r28, 0xD0	; 208
+     99a:	d1 09       	sbc	r29, r1
+     99c:	0f b6       	in	r0, 0x3f	; 63
+     99e:	f8 94       	cli
+     9a0:	de bf       	out	0x3e, r29	; 62
+     9a2:	0f be       	out	0x3f, r0	; 63
+     9a4:	cd bf       	out	0x3d, r28	; 61
+	char dummy[5],strength[3],simresponse[200];
+	uint8_t signalstrength;
+	
+	//  To get signal strength
+	sim900_cmd("AT+CSQ\r\n\0",simresponse); 
+     9a6:	be 01       	movw	r22, r28
+     9a8:	67 5f       	subi	r22, 0xF7	; 247
+     9aa:	7f 4f       	sbci	r23, 0xFF	; 255
+     9ac:	82 e0       	ldi	r24, 0x02	; 2
+     9ae:	92 e0       	ldi	r25, 0x02	; 2
+     9b0:	0b dd       	rcall	.-1514   	; 0x3c8 <sim900_cmd>
+	
+	//  Re-enabling reception for OK
+	sbi(UCSR1B,RXEN1);
+     9b2:	e9 ec       	ldi	r30, 0xC9	; 201
+     9b4:	f0 e0       	ldi	r31, 0x00	; 0
+     9b6:	80 81       	ld	r24, Z
+     9b8:	80 61       	ori	r24, 0x10	; 16
+     9ba:	80 83       	st	Z, r24
+	
+	sim900_response(dummy);
+     9bc:	ce 01       	movw	r24, r28
+     9be:	01 96       	adiw	r24, 0x01	; 1
+     9c0:	c2 dc       	rcall	.-1660   	; 0x346 <sim900_response>
+	
+	strength[0]=simresponse[6];
+     9c2:	8f 85       	ldd	r24, Y+15	; 0x0f
+     9c4:	8e 83       	std	Y+6, r24	; 0x06
+	if (simresponse[7]!=','){
+     9c6:	88 89       	ldd	r24, Y+16	; 0x10
+     9c8:	8c 32       	cpi	r24, 0x2C	; 44
+     9ca:	19 f0       	breq	.+6      	; 0x9d2 <get_signalstrength+0x42>
+		strength[1]=simresponse[7];
+     9cc:	8f 83       	std	Y+7, r24	; 0x07
+		strength[2]='\0';
+     9ce:	18 86       	std	Y+8, r1	; 0x08
+     9d0:	01 c0       	rjmp	.+2      	; 0x9d4 <get_signalstrength+0x44>
+	} else {
+		strength[1]='\0';
+     9d2:	1f 82       	std	Y+7, r1	; 0x07
+	}	
+	
+	signalstrength=atoi(strength);
+     9d4:	ce 01       	movw	r24, r28
+     9d6:	06 96       	adiw	r24, 0x06	; 6
+     9d8:	6a d7       	rcall	.+3796   	; 0x18ae <atoi>
+	
+	if (signalstrength<10 || signalstrength==99){
+     9da:	8a 30       	cpi	r24, 0x0A	; 10
+     9dc:	68 f0       	brcs	.+26     	; 0x9f8 <get_signalstrength+0x68>
+     9de:	83 36       	cpi	r24, 0x63	; 99
+     9e0:	69 f0       	breq	.+26     	; 0x9fc <get_signalstrength+0x6c>
+		return 0;
+	} else if (signalstrength>=10 && signalstrength<20){
+     9e2:	96 ef       	ldi	r25, 0xF6	; 246
+     9e4:	98 0f       	add	r25, r24
+     9e6:	9a 30       	cpi	r25, 0x0A	; 10
+     9e8:	58 f0       	brcs	.+22     	; 0xa00 <get_signalstrength+0x70>
+		return 1;
+	} else if (signalstrength>=20 && signalstrength<30){
+     9ea:	9c ee       	ldi	r25, 0xEC	; 236
+     9ec:	98 0f       	add	r25, r24
+     9ee:	9a 30       	cpi	r25, 0x0A	; 10
+     9f0:	48 f0       	brcs	.+18     	; 0xa04 <get_signalstrength+0x74>
+		return 2;
+	} else if (signalstrength>30){
+     9f2:	8f 31       	cpi	r24, 0x1F	; 31
+     9f4:	48 f4       	brcc	.+18     	; 0xa08 <get_signalstrength+0x78>
+     9f6:	09 c0       	rjmp	.+18     	; 0xa0a <get_signalstrength+0x7a>
+	}	
+	
+	signalstrength=atoi(strength);
+	
+	if (signalstrength<10 || signalstrength==99){
+		return 0;
+     9f8:	80 e0       	ldi	r24, 0x00	; 0
+     9fa:	07 c0       	rjmp	.+14     	; 0xa0a <get_signalstrength+0x7a>
+     9fc:	80 e0       	ldi	r24, 0x00	; 0
+     9fe:	05 c0       	rjmp	.+10     	; 0xa0a <get_signalstrength+0x7a>
+	} else if (signalstrength>=10 && signalstrength<20){
+		return 1;
+     a00:	81 e0       	ldi	r24, 0x01	; 1
+     a02:	03 c0       	rjmp	.+6      	; 0xa0a <get_signalstrength+0x7a>
+	} else if (signalstrength>=20 && signalstrength<30){
+		return 2;
+     a04:	82 e0       	ldi	r24, 0x02	; 2
+     a06:	01 c0       	rjmp	.+2      	; 0xa0a <get_signalstrength+0x7a>
+	} else if (signalstrength>30){
+		return 3;
+     a08:	83 e0       	ldi	r24, 0x03	; 3
+	}
+}
+     a0a:	c0 53       	subi	r28, 0x30	; 48
+     a0c:	df 4f       	sbci	r29, 0xFF	; 255
+     a0e:	0f b6       	in	r0, 0x3f	; 63
+     a10:	f8 94       	cli
+     a12:	de bf       	out	0x3e, r29	; 62
+     a14:	0f be       	out	0x3f, r0	; 63
+     a16:	cd bf       	out	0x3d, r28	; 61
+     a18:	df 91       	pop	r29
+     a1a:	cf 91       	pop	r28
+     a1c:	08 95       	ret
+
+00000a1e <get_sms>:
+	sbi(UCSR1B,RXEN1);
+	
+	sim900_response(response);
+}
+
+uint8_t get_sms(uint8_t* system_on,char* customer_no,char* Serial_num){
+     a1e:	2f 92       	push	r2
+     a20:	3f 92       	push	r3
+     a22:	4f 92       	push	r4
+     a24:	5f 92       	push	r5
+     a26:	6f 92       	push	r6
+     a28:	7f 92       	push	r7
+     a2a:	8f 92       	push	r8
+     a2c:	9f 92       	push	r9
+     a2e:	af 92       	push	r10
+     a30:	bf 92       	push	r11
+     a32:	cf 92       	push	r12
+     a34:	df 92       	push	r13
+     a36:	ef 92       	push	r14
+     a38:	ff 92       	push	r15
+     a3a:	0f 93       	push	r16
+     a3c:	1f 93       	push	r17
+     a3e:	cf 93       	push	r28
+     a40:	df 93       	push	r29
+     a42:	cd b7       	in	r28, 0x3d	; 61
+     a44:	de b7       	in	r29, 0x3e	; 62
+     a46:	c1 58       	subi	r28, 0x81	; 129
+     a48:	d1 40       	sbci	r29, 0x01	; 1
+     a4a:	0f b6       	in	r0, 0x3f	; 63
+     a4c:	f8 94       	cli
+     a4e:	de bf       	out	0x3e, r29	; 62
+     a50:	0f be       	out	0x3f, r0	; 63
+     a52:	cd bf       	out	0x3d, r28	; 61
+     a54:	c5 58       	subi	r28, 0x85	; 133
+     a56:	de 4f       	sbci	r29, 0xFE	; 254
+     a58:	99 83       	std	Y+1, r25	; 0x01
+     a5a:	88 83       	st	Y, r24
+     a5c:	cb 57       	subi	r28, 0x7B	; 123
+     a5e:	d1 40       	sbci	r29, 0x01	; 1
+     a60:	c9 58       	subi	r28, 0x89	; 137
+     a62:	de 4f       	sbci	r29, 0xFE	; 254
+     a64:	79 83       	std	Y+1, r23	; 0x01
+     a66:	68 83       	st	Y, r22
+     a68:	c7 57       	subi	r28, 0x77	; 119
+     a6a:	d1 40       	sbci	r29, 0x01	; 1
+     a6c:	c7 58       	subi	r28, 0x87	; 135
+     a6e:	de 4f       	sbci	r29, 0xFE	; 254
+     a70:	59 83       	std	Y+1, r21	; 0x01
+     a72:	48 83       	st	Y, r20
+     a74:	c9 57       	subi	r28, 0x79	; 121
+     a76:	d1 40       	sbci	r29, 0x01	; 1
+	uint8_t update_customer_no=0,update_serial_no=0,update_remote_control=0;
+	int no_of_msg,message_number;
+	char no_msg[6],response_number[150],contact_no[20],simresponse[30],msg[160],dummy[5];
+	char initial[]={'0','0'};
+	
+	UART_0_puts("Checking no. of unread messages...\r\n");
+     a78:	8c e2       	ldi	r24, 0x2C	; 44
+     a7a:	96 e0       	ldi	r25, 0x06	; 6
+     a7c:	e4 d6       	rcall	.+3528   	; 0x1846 <UART_0_puts>
+	// Check no. of messages
+	sim900_cmd("AT+CPMS=\"SM\"\r\n\0",simresponse);
+     a7e:	be 01       	movw	r22, r28
+     a80:	6f 54       	subi	r22, 0x4F	; 79
+     a82:	7f 4f       	sbci	r23, 0xFF	; 255
+     a84:	8c e0       	ldi	r24, 0x0C	; 12
+     a86:	92 e0       	ldi	r25, 0x02	; 2
+     a88:	9f dc       	rcall	.-1730   	; 0x3c8 <sim900_cmd>
+	
+	//  For re-enabling reception for OK
+	sbi(UCSR1B,RXEN1);
+     a8a:	e9 ec       	ldi	r30, 0xC9	; 201
+     a8c:	f0 e0       	ldi	r31, 0x00	; 0
+     a8e:	80 81       	ld	r24, Z
+     a90:	80 61       	ori	r24, 0x10	; 16
+     a92:	80 83       	st	Z, r24
+	
+	sim900_response(dummy);
+     a94:	ce 01       	movw	r24, r28
+     a96:	81 59       	subi	r24, 0x91	; 145
+     a98:	9e 4f       	sbci	r25, 0xFE	; 254
+     a9a:	55 dc       	rcall	.-1878   	; 0x346 <sim900_response>
+	
+	i=0;p=0;
+	while (simresponse[i]!='\:' && i<30){
+     a9c:	cf 54       	subi	r28, 0x4F	; 79
+     a9e:	df 4f       	sbci	r29, 0xFF	; 255
+     aa0:	88 81       	ld	r24, Y
+     aa2:	c1 5b       	subi	r28, 0xB1	; 177
+     aa4:	d0 40       	sbci	r29, 0x00	; 0
+     aa6:	8a 33       	cpi	r24, 0x3A	; 58
+     aa8:	49 f0       	breq	.+18     	; 0xabc <get_sms+0x9e>
+     aaa:	fe 01       	movw	r30, r28
+     aac:	ee 54       	subi	r30, 0x4E	; 78
+     aae:	ff 4f       	sbci	r31, 0xFF	; 255
+     ab0:	80 e0       	ldi	r24, 0x00	; 0
+		i++;
+     ab2:	8f 5f       	subi	r24, 0xFF	; 255
+	sbi(UCSR1B,RXEN1);
+	
+	sim900_response(dummy);
+	
+	i=0;p=0;
+	while (simresponse[i]!='\:' && i<30){
+     ab4:	91 91       	ld	r25, Z+
+     ab6:	9a 33       	cpi	r25, 0x3A	; 58
+     ab8:	e1 f7       	brne	.-8      	; 0xab2 <get_sms+0x94>
+     aba:	01 c0       	rjmp	.+2      	; 0xabe <get_sms+0xa0>
+	//  For re-enabling reception for OK
+	sbi(UCSR1B,RXEN1);
+	
+	sim900_response(dummy);
+	
+	i=0;p=0;
+     abc:	80 e0       	ldi	r24, 0x00	; 0
+	while (simresponse[i]!='\:' && i<30){
+		i++;
+	}
+	i++;i++;
+     abe:	92 e0       	ldi	r25, 0x02	; 2
+     ac0:	98 0f       	add	r25, r24
+	while (simresponse[i]!='\,' && p<6){
+     ac2:	e1 eb       	ldi	r30, 0xB1	; 177
+     ac4:	f0 e0       	ldi	r31, 0x00	; 0
+     ac6:	ec 0f       	add	r30, r28
+     ac8:	fd 1f       	adc	r31, r29
+     aca:	e9 0f       	add	r30, r25
+     acc:	f1 1d       	adc	r31, r1
+     ace:	20 81       	ld	r18, Z
+     ad0:	2c 32       	cpi	r18, 0x2C	; 44
+     ad2:	a9 f0       	breq	.+42     	; 0xafe <get_sms+0xe0>
+     ad4:	ae 01       	movw	r20, r28
+     ad6:	4f 5f       	subi	r20, 0xFF	; 255
+     ad8:	5f 4f       	sbci	r21, 0xFF	; 255
+     ada:	88 5f       	subi	r24, 0xF8	; 248
+     adc:	fa 01       	movw	r30, r20
+		no_msg[p]=simresponse[i];
+     ade:	21 93       	st	Z+, r18
+     ae0:	3e 2f       	mov	r19, r30
+     ae2:	34 1b       	sub	r19, r20
+		p++;i++;
+     ae4:	9f 5f       	subi	r25, 0xFF	; 255
+	i=0;p=0;
+	while (simresponse[i]!='\:' && i<30){
+		i++;
+	}
+	i++;i++;
+	while (simresponse[i]!='\,' && p<6){
+     ae6:	a1 eb       	ldi	r26, 0xB1	; 177
+     ae8:	b0 e0       	ldi	r27, 0x00	; 0
+     aea:	ac 0f       	add	r26, r28
+     aec:	bd 1f       	adc	r27, r29
+     aee:	a9 0f       	add	r26, r25
+     af0:	b1 1d       	adc	r27, r1
+     af2:	2c 91       	ld	r18, X
+     af4:	2c 32       	cpi	r18, 0x2C	; 44
+     af6:	21 f0       	breq	.+8      	; 0xb00 <get_sms+0xe2>
+     af8:	98 13       	cpse	r25, r24
+     afa:	f1 cf       	rjmp	.-30     	; 0xade <get_sms+0xc0>
+     afc:	01 c0       	rjmp	.+2      	; 0xb00 <get_sms+0xe2>
+	//  For re-enabling reception for OK
+	sbi(UCSR1B,RXEN1);
+	
+	sim900_response(dummy);
+	
+	i=0;p=0;
+     afe:	30 e0       	ldi	r19, 0x00	; 0
+	i++;i++;
+	while (simresponse[i]!='\,' && p<6){
+		no_msg[p]=simresponse[i];
+		p++;i++;
+	}
+	no_msg[p]='\0';
+     b00:	e1 e0       	ldi	r30, 0x01	; 1
+     b02:	f0 e0       	ldi	r31, 0x00	; 0
+     b04:	ec 0f       	add	r30, r28
+     b06:	fd 1f       	adc	r31, r29
+     b08:	e3 0f       	add	r30, r19
+     b0a:	f1 1d       	adc	r31, r1
+     b0c:	10 82       	st	Z, r1
+	no_of_msg = atoi(no_msg);  
+     b0e:	ce 01       	movw	r24, r28
+     b10:	01 96       	adiw	r24, 0x01	; 1
+     b12:	cd d6       	rcall	.+3482   	; 0x18ae <atoi>
+     b14:	cc 58       	subi	r28, 0x8C	; 140
+     b16:	de 4f       	sbci	r29, 0xFE	; 254
+     b18:	99 83       	std	Y+1, r25	; 0x01
+     b1a:	88 83       	st	Y, r24
+     b1c:	c4 57       	subi	r28, 0x74	; 116
+     b1e:	d1 40       	sbci	r29, 0x01	; 1
+	UART_0_puts("no. of unread messages are..");
+     b20:	81 e5       	ldi	r24, 0x51	; 81
+     b22:	96 e0       	ldi	r25, 0x06	; 6
+     b24:	90 d6       	rcall	.+3360   	; 0x1846 <UART_0_puts>
+	UART_0_puts(no_msg);
+     b26:	ce 01       	movw	r24, r28
+     b28:	01 96       	adiw	r24, 0x01	; 1
+     b2a:	8d d6       	rcall	.+3354   	; 0x1846 <UART_0_puts>
+	UART_0_puts("\r\n");
+     b2c:	83 ea       	ldi	r24, 0xA3	; 163
+     b2e:	95 e0       	ldi	r25, 0x05	; 5
+     b30:	8a d6       	rcall	.+3348   	; 0x1846 <UART_0_puts>
+	
+	// Exiting the function if no new messages have arrived
+	if (no_of_msg==0){
+     b32:	cc 58       	subi	r28, 0x8C	; 140
+     b34:	de 4f       	sbci	r29, 0xFE	; 254
+     b36:	28 81       	ld	r18, Y
+     b38:	39 81       	ldd	r19, Y+1	; 0x01
+     b3a:	c4 57       	subi	r28, 0x74	; 116
+     b3c:	d1 40       	sbci	r29, 0x01	; 1
+     b3e:	23 2b       	or	r18, r19
+     b40:	09 f4       	brne	.+2      	; 0xb44 <get_sms+0x126>
+     b42:	56 c2       	rjmp	.+1196   	; 0xff0 <get_sms+0x5d2>
+		return 1;
+	}
+	
+	// Changing the message to readable format
+	sim900_cmd("AT+CMGF=1\r\n",simresponse);
+     b44:	be 01       	movw	r22, r28
+     b46:	6f 54       	subi	r22, 0x4F	; 79
+     b48:	7f 4f       	sbci	r23, 0xFF	; 255
+     b4a:	8e e6       	ldi	r24, 0x6E	; 110
+     b4c:	96 e0       	ldi	r25, 0x06	; 6
+     b4e:	3c dc       	rcall	.-1928   	; 0x3c8 <sim900_cmd>
+	if (strcmp(simresponse,"OK\0")!=0){
+     b50:	60 e1       	ldi	r22, 0x10	; 16
+     b52:	71 e0       	ldi	r23, 0x01	; 1
+     b54:	ce 01       	movw	r24, r28
+     b56:	8f 54       	subi	r24, 0x4F	; 79
+     b58:	9f 4f       	sbci	r25, 0xFF	; 255
+     b5a:	e4 d6       	rcall	.+3528   	; 0x1924 <strcmp>
+     b5c:	89 2b       	or	r24, r25
+     b5e:	09 f0       	breq	.+2      	; 0xb62 <get_sms+0x144>
+     b60:	49 c2       	rjmp	.+1170   	; 0xff4 <get_sms+0x5d6>
+		return 0;
+	}
+	UART_0_puts("Messages converted to Readable Format...\r\n");
+     b62:	8a e7       	ldi	r24, 0x7A	; 122
+     b64:	96 e0       	ldi	r25, 0x06	; 6
+     b66:	6f d6       	rcall	.+3294   	; 0x1846 <UART_0_puts>
+	
+	// To fetch SMS messages
+	message_number=1;
+	while (message_number<=no_of_msg){
+     b68:	cc 58       	subi	r28, 0x8C	; 140
+     b6a:	de 4f       	sbci	r29, 0xFE	; 254
+     b6c:	88 81       	ld	r24, Y
+     b6e:	99 81       	ldd	r25, Y+1	; 0x01
+     b70:	c4 57       	subi	r28, 0x74	; 116
+     b72:	d1 40       	sbci	r29, 0x01	; 1
+     b74:	18 16       	cp	r1, r24
+     b76:	19 06       	cpc	r1, r25
+     b78:	0c f0       	brlt	.+2      	; 0xb7c <get_sms+0x15e>
+     b7a:	13 c2       	rjmp	.+1062   	; 0xfa2 <get_sms+0x584>
+     b7c:	68 94       	set
+     b7e:	22 24       	eor	r2, r2
+     b80:	21 f8       	bld	r2, 1
+     b82:	31 2c       	mov	r3, r1
+     b84:	c3 58       	subi	r28, 0x83	; 131
+     b86:	de 4f       	sbci	r29, 0xFE	; 254
+     b88:	18 82       	st	Y, r1
+     b8a:	cd 57       	subi	r28, 0x7D	; 125
+     b8c:	d1 40       	sbci	r29, 0x01	; 1
+     b8e:	c2 58       	subi	r28, 0x82	; 130
+     b90:	de 4f       	sbci	r29, 0xFE	; 254
+     b92:	18 82       	st	Y, r1
+     b94:	ce 57       	subi	r28, 0x7E	; 126
+     b96:	d1 40       	sbci	r29, 0x01	; 1
+     b98:	c1 58       	subi	r28, 0x81	; 129
+     b9a:	de 4f       	sbci	r29, 0xFE	; 254
+     b9c:	18 82       	st	Y, r1
+     b9e:	cf 57       	subi	r28, 0x7F	; 127
+     ba0:	d1 40       	sbci	r29, 0x01	; 1
+			initial[0]=initial[1];
+			dataarrived=wait_for_data();
+			if (dataarrived==0){
+				break;
+			}
+			initial[1]=UDR1;
+     ba2:	0e ec       	ldi	r16, 0xCE	; 206
+     ba4:	10 e0       	ldi	r17, 0x00	; 0
+     ba6:	7e 01       	movw	r14, r28
+     ba8:	97 e0       	ldi	r25, 0x07	; 7
+     baa:	e9 0e       	add	r14, r25
+     bac:	f1 1c       	adc	r15, r1
+     bae:	5e 01       	movw	r10, r28
+     bb0:	ee e9       	ldi	r30, 0x9E	; 158
+     bb2:	ae 0e       	add	r10, r30
+     bb4:	b1 1c       	adc	r11, r1
+     bb6:	ca 58       	subi	r28, 0x8A	; 138
+     bb8:	de 4f       	sbci	r29, 0xFE	; 254
+     bba:	e8 82       	st	Y, r14
+     bbc:	c6 57       	subi	r28, 0x76	; 118
+     bbe:	d1 40       	sbci	r29, 0x01	; 1
+     bc0:	8f 2c       	mov	r8, r15
+     bc2:	3e 01       	movw	r6, r28
+     bc4:	ff ec       	ldi	r31, 0xCF	; 207
+     bc6:	6f 0e       	add	r6, r31
+     bc8:	71 1c       	adc	r7, r1
+     bca:	2e 01       	movw	r4, r28
+     bcc:	20 e9       	ldi	r18, 0x90	; 144
+     bce:	42 1a       	sub	r4, r18
+     bd0:	2e ef       	ldi	r18, 0xFE	; 254
+     bd2:	52 0a       	sbc	r5, r18
+			UART_0_puts("System Turned OFF....\r\n");
+			cbi(PORTB,7);
+			update_remote_control=1;
+		}
+		else if ((strncmp(msg,"SNO+E",5)==0) && (strcmp(contact_no,MASTER_NUMBER)==0)){  //  To change serial number by Master
+			strncpy(Serial_num,msg+4,11);
+     bd4:	c3 01       	movw	r24, r6
+     bd6:	04 96       	adiw	r24, 0x04	; 4
+     bd8:	c0 58       	subi	r28, 0x80	; 128
+     bda:	de 4f       	sbci	r29, 0xFE	; 254
+     bdc:	99 83       	std	Y+1, r25	; 0x01
+     bde:	88 83       	st	Y, r24
+     be0:	c0 58       	subi	r28, 0x80	; 128
+     be2:	d1 40       	sbci	r29, 0x01	; 1
+    } else if (__radix < 2 || __radix > 36) {
+	*__s = 0;
+	return __s;
+    } else {
+	extern char *__itoa_ncheck (int, char *, unsigned char);
+	return __itoa_ncheck (__val, __s, __radix);
+     be4:	4a e0       	ldi	r20, 0x0A	; 10
+     be6:	be 01       	movw	r22, r28
+     be8:	6f 5f       	subi	r22, 0xFF	; 255
+     bea:	7f 4f       	sbci	r23, 0xFF	; 255
+     bec:	c1 01       	movw	r24, r2
+     bee:	01 97       	sbiw	r24, 0x01	; 1
+     bf0:	c6 d6       	rcall	.+3468   	; 0x197e <__itoa_ncheck>
+	while (message_number<=no_of_msg){
+		initial[0]='0';initial[1]='0';  // Re-initializing initial variable
+		
+		// Send command for reading the particular message
+		itoa(message_number,no_msg,10);
+		UART_1_puts("AT+CMGR=");
+     bf2:	85 ea       	ldi	r24, 0xA5	; 165
+     bf4:	96 e0       	ldi	r25, 0x06	; 6
+     bf6:	4d d6       	rcall	.+3226   	; 0x1892 <UART_1_puts>
+		UART_1_puts(no_msg);
+     bf8:	ce 01       	movw	r24, r28
+     bfa:	01 96       	adiw	r24, 0x01	; 1
+     bfc:	4a d6       	rcall	.+3220   	; 0x1892 <UART_1_puts>
+		UART_1_puts("\r\n");
+     bfe:	83 ea       	ldi	r24, 0xA3	; 163
+     c00:	95 e0       	ldi	r25, 0x05	; 5
+     c02:	47 d6       	rcall	.+3214   	; 0x1892 <UART_1_puts>
+		
+		//  For enabling reception
+		sbi(UCSR1B,RXEN1);		
+     c04:	e9 ec       	ldi	r30, 0xC9	; 201
+     c06:	f0 e0       	ldi	r31, 0x00	; 0
+     c08:	80 81       	ld	r24, Z
+     c0a:	80 61       	ori	r24, 0x10	; 16
+     c0c:	80 83       	st	Z, r24
+	UART_0_puts("Messages converted to Readable Format...\r\n");
+	
+	// To fetch SMS messages
+	message_number=1;
+	while (message_number<=no_of_msg){
+		initial[0]='0';initial[1]='0';  // Re-initializing initial variable
+     c0e:	0f 2e       	mov	r0, r31
+     c10:	f0 e3       	ldi	r31, 0x30	; 48
+     c12:	df 2e       	mov	r13, r31
+     c14:	f0 2d       	mov	r31, r0
+     c16:	03 c0       	rjmp	.+6      	; 0xc1e <get_sms+0x200>
+     c18:	d8 2e       	mov	r13, r24
+     c1a:	01 c0       	rjmp	.+2      	; 0xc1e <get_sms+0x200>
+     c1c:	d8 2e       	mov	r13, r24
+		sbi(UCSR1B,RXEN1);		
+		
+		//  For receiving sender number
+		while(!(initial[0]==0x0D && initial[1]==0x0A)){
+			initial[0]=initial[1];
+			dataarrived=wait_for_data();
+     c1e:	7b db       	rcall	.-2314   	; 0x316 <wait_for_data>
+			if (dataarrived==0){
+     c20:	81 11       	cpse	r24, r1
+     c22:	07 c0       	rjmp	.+14     	; 0xc32 <get_sms+0x214>
+     c24:	ca 58       	subi	r28, 0x8A	; 138
+     c26:	de 4f       	sbci	r29, 0xFE	; 254
+     c28:	c8 80       	ld	r12, Y
+     c2a:	c6 57       	subi	r28, 0x76	; 118
+     c2c:	d1 40       	sbci	r29, 0x01	; 1
+     c2e:	d8 2c       	mov	r13, r8
+     c30:	08 c0       	rjmp	.+16     	; 0xc42 <get_sms+0x224>
+				break;
+			}
+			initial[1]=UDR1;
+     c32:	f8 01       	movw	r30, r16
+     c34:	80 81       	ld	r24, Z
+		
+		//  For enabling reception
+		sbi(UCSR1B,RXEN1);		
+		
+		//  For receiving sender number
+		while(!(initial[0]==0x0D && initial[1]==0x0A)){
+     c36:	fd e0       	ldi	r31, 0x0D	; 13
+     c38:	df 12       	cpse	r13, r31
+     c3a:	ee cf       	rjmp	.-36     	; 0xc18 <get_sms+0x1fa>
+     c3c:	8a 30       	cpi	r24, 0x0A	; 10
+     c3e:	71 f7       	brne	.-36     	; 0xc1c <get_sms+0x1fe>
+     c40:	f1 cf       	rjmp	.-30     	; 0xc24 <get_sms+0x206>
+     c42:	9c 2c       	mov	r9, r12
+     c44:	9e 18       	sub	r9, r14
+		}
+
+		i=0;
+		
+		while(1){
+			dataarrived=wait_for_data();
+     c46:	67 db       	rcall	.-2354   	; 0x316 <wait_for_data>
+			if (dataarrived==0){
+     c48:	88 23       	and	r24, r24
+     c4a:	51 f0       	breq	.+20     	; 0xc60 <get_sms+0x242>
+				break;
+			}
+			response_number[i]=UDR1;
+     c4c:	f8 01       	movw	r30, r16
+     c4e:	80 81       	ld	r24, Z
+     c50:	f6 01       	movw	r30, r12
+     c52:	81 93       	st	Z+, r24
+     c54:	6f 01       	movw	r12, r30
+			if(response_number[i]==0x0D || i>=150){
+     c56:	8d 30       	cpi	r24, 0x0D	; 13
+     c58:	19 f0       	breq	.+6      	; 0xc60 <get_sms+0x242>
+     c5a:	ea 15       	cp	r30, r10
+     c5c:	fb 05       	cpc	r31, r11
+     c5e:	89 f7       	brne	.-30     	; 0xc42 <get_sms+0x224>
+			}
+			i++;
+		}
+		
+		//  Terminating strings
+		response_number[i]="\0";
+     c60:	f7 01       	movw	r30, r14
+     c62:	e9 0d       	add	r30, r9
+     c64:	f1 1d       	adc	r31, r1
+     c66:	20 e0       	ldi	r18, 0x00	; 0
+     c68:	31 e0       	ldi	r19, 0x01	; 1
+     c6a:	20 83       	st	Z, r18
+		
+		//  For those odd unexplainable cases where this response comes empty with OK
+		if (strcmp(response_number,"OK\0")==0){
+     c6c:	60 e1       	ldi	r22, 0x10	; 16
+     c6e:	71 e0       	ldi	r23, 0x01	; 1
+     c70:	ca 58       	subi	r28, 0x8A	; 138
+     c72:	de 4f       	sbci	r29, 0xFE	; 254
+     c74:	88 81       	ld	r24, Y
+     c76:	c6 57       	subi	r28, 0x76	; 118
+     c78:	d1 40       	sbci	r29, 0x01	; 1
+     c7a:	98 2d       	mov	r25, r8
+     c7c:	53 d6       	rcall	.+3238   	; 0x1924 <strcmp>
+     c7e:	89 2b       	or	r24, r25
+     c80:	11 f4       	brne	.+4      	; 0xc86 <get_sms+0x268>
+			message_number++;
+     c82:	c1 01       	movw	r24, r2
+			continue;
+     c84:	37 c1       	rjmp	.+622    	; 0xef4 <get_sms+0x4d6>
+		}
+		
+		//  Receiving message
+		p=0;
+		
+		dataarrived=wait_for_data();
+     c86:	47 db       	rcall	.-2418   	; 0x316 <wait_for_data>
+		if (dataarrived==1){
+     c88:	81 30       	cpi	r24, 0x01	; 1
+     c8a:	11 f4       	brne	.+4      	; 0xc90 <get_sms+0x272>
+			initial[1]=UDR1;  // To eliminate Lf that comes after Cr but before message starts;
+     c8c:	f8 01       	movw	r30, r16
+     c8e:	80 81       	ld	r24, Z
+     c90:	63 01       	movw	r12, r6
+     c92:	9c 2c       	mov	r9, r12
+     c94:	96 18       	sub	r9, r6
+		}
+		
+		while(1){
+			dataarrived=wait_for_data();
+     c96:	3f db       	rcall	.-2434   	; 0x316 <wait_for_data>
+			if (dataarrived==0){
+     c98:	88 23       	and	r24, r24
+     c9a:	51 f0       	breq	.+20     	; 0xcb0 <get_sms+0x292>
+				break;
+			}
+			msg[p]=UDR1;
+     c9c:	f8 01       	movw	r30, r16
+     c9e:	80 81       	ld	r24, Z
+     ca0:	f6 01       	movw	r30, r12
+     ca2:	81 93       	st	Z+, r24
+     ca4:	6f 01       	movw	r12, r30
+			if(msg[p]==0x0D || p>=160){
+     ca6:	8d 30       	cpi	r24, 0x0D	; 13
+     ca8:	19 f0       	breq	.+6      	; 0xcb0 <get_sms+0x292>
+     caa:	e4 15       	cp	r30, r4
+     cac:	f5 05       	cpc	r31, r5
+     cae:	89 f7       	brne	.-30     	; 0xc92 <get_sms+0x274>
+			}
+			p++;
+		}
+		
+		//  For receiving final OK
+		sim900_response(dummy);
+     cb0:	ce 01       	movw	r24, r28
+     cb2:	81 59       	subi	r24, 0x91	; 145
+     cb4:	9e 4f       	sbci	r25, 0xFE	; 254
+     cb6:	47 db       	rcall	.-2418   	; 0x346 <sim900_response>
+
+		//  Terminating strings
+		msg[p]="\0";	
+     cb8:	f3 01       	movw	r30, r6
+     cba:	e9 0d       	add	r30, r9
+     cbc:	f1 1d       	adc	r31, r1
+     cbe:	20 e0       	ldi	r18, 0x00	; 0
+     cc0:	31 e0       	ldi	r19, 0x01	; 1
+     cc2:	20 83       	st	Z, r18
+		
+		// Figuring out Phone number of SMS sender
+		i=0;p=0;
+		while (response_number[i]!='\"' && i<150){
+     cc4:	8f 81       	ldd	r24, Y+7	; 0x07
+     cc6:	82 32       	cpi	r24, 0x22	; 34
+     cc8:	09 f4       	brne	.+2      	; 0xccc <get_sms+0x2ae>
+     cca:	96 c1       	rjmp	.+812    	; 0xff8 <get_sms+0x5da>
+     ccc:	fe 01       	movw	r30, r28
+     cce:	38 96       	adiw	r30, 0x08	; 8
+     cd0:	20 e0       	ldi	r18, 0x00	; 0
+			i++;
+     cd2:	2f 5f       	subi	r18, 0xFF	; 255
+		//  Terminating strings
+		msg[p]="\0";	
+		
+		// Figuring out Phone number of SMS sender
+		i=0;p=0;
+		while (response_number[i]!='\"' && i<150){
+     cd4:	81 91       	ld	r24, Z+
+     cd6:	82 32       	cpi	r24, 0x22	; 34
+     cd8:	e1 f7       	brne	.-8      	; 0xcd2 <get_sms+0x2b4>
+			i++;
+		}
+		i++;
+     cda:	2f 5f       	subi	r18, 0xFF	; 255
+		while (response_number[i]!='\"' && i<150){
+     cdc:	f7 01       	movw	r30, r14
+     cde:	e2 0f       	add	r30, r18
+     ce0:	f1 1d       	adc	r31, r1
+     ce2:	80 81       	ld	r24, Z
+     ce4:	82 32       	cpi	r24, 0x22	; 34
+     ce6:	69 f0       	breq	.+26     	; 0xd02 <get_sms+0x2e4>
+     ce8:	26 39       	cpi	r18, 0x96	; 150
+     cea:	10 f0       	brcs	.+4      	; 0xcf0 <get_sms+0x2d2>
+     cec:	0a c0       	rjmp	.+20     	; 0xd02 <get_sms+0x2e4>
+		// Figuring out Phone number of SMS sender
+		i=0;p=0;
+		while (response_number[i]!='\"' && i<150){
+			i++;
+		}
+		i++;
+     cee:	21 e0       	ldi	r18, 0x01	; 1
+		while (response_number[i]!='\"' && i<150){
+			i++;
+     cf0:	2f 5f       	subi	r18, 0xFF	; 255
+		i=0;p=0;
+		while (response_number[i]!='\"' && i<150){
+			i++;
+		}
+		i++;
+		while (response_number[i]!='\"' && i<150){
+     cf2:	f7 01       	movw	r30, r14
+     cf4:	e2 0f       	add	r30, r18
+     cf6:	f1 1d       	adc	r31, r1
+     cf8:	80 81       	ld	r24, Z
+     cfa:	82 32       	cpi	r24, 0x22	; 34
+     cfc:	11 f0       	breq	.+4      	; 0xd02 <get_sms+0x2e4>
+     cfe:	26 39       	cpi	r18, 0x96	; 150
+     d00:	b8 f3       	brcs	.-18     	; 0xcf0 <get_sms+0x2d2>
+			i++;
+		}
+		i++;
+     d02:	2f 5f       	subi	r18, 0xFF	; 255
+		while (response_number[i]!='\"' && i<150){
+     d04:	f7 01       	movw	r30, r14
+     d06:	e2 0f       	add	r30, r18
+     d08:	f1 1d       	adc	r31, r1
+     d0a:	80 81       	ld	r24, Z
+     d0c:	82 32       	cpi	r24, 0x22	; 34
+     d0e:	79 f0       	breq	.+30     	; 0xd2e <get_sms+0x310>
+     d10:	26 39       	cpi	r18, 0x96	; 150
+     d12:	10 f0       	brcs	.+4      	; 0xd18 <get_sms+0x2fa>
+     d14:	0c c0       	rjmp	.+24     	; 0xd2e <get_sms+0x310>
+		}
+		i++;
+		while (response_number[i]!='\"' && i<150){
+			i++;
+		}
+		i++;
+     d16:	22 e0       	ldi	r18, 0x02	; 2
+		while (response_number[i]!='\"' && i<150){
+			i++;
+     d18:	2f 5f       	subi	r18, 0xFF	; 255
+		i++;
+		while (response_number[i]!='\"' && i<150){
+			i++;
+		}
+		i++;
+		while (response_number[i]!='\"' && i<150){
+     d1a:	f7 01       	movw	r30, r14
+     d1c:	e2 0f       	add	r30, r18
+     d1e:	f1 1d       	adc	r31, r1
+     d20:	80 81       	ld	r24, Z
+     d22:	82 32       	cpi	r24, 0x22	; 34
+     d24:	21 f0       	breq	.+8      	; 0xd2e <get_sms+0x310>
+     d26:	26 39       	cpi	r18, 0x96	; 150
+     d28:	b9 f7       	brne	.-18     	; 0xd18 <get_sms+0x2fa>
+
+		//  Terminating strings
+		msg[p]="\0";	
+		
+		// Figuring out Phone number of SMS sender
+		i=0;p=0;
+     d2a:	30 e0       	ldi	r19, 0x00	; 0
+     d2c:	21 c0       	rjmp	.+66     	; 0xd70 <get_sms+0x352>
+		}
+		i++;
+		while (response_number[i]!='\"' && i<150){
+			i++;
+		}
+		i++;
+     d2e:	81 e0       	ldi	r24, 0x01	; 1
+     d30:	82 0f       	add	r24, r18
+		while (response_number[i]!='\"' && p<20 && i<150){
+     d32:	f7 01       	movw	r30, r14
+     d34:	e8 0f       	add	r30, r24
+     d36:	f1 1d       	adc	r31, r1
+     d38:	90 81       	ld	r25, Z
+     d3a:	92 32       	cpi	r25, 0x22	; 34
+     d3c:	b1 f0       	breq	.+44     	; 0xd6a <get_sms+0x34c>
+     d3e:	86 39       	cpi	r24, 0x96	; 150
+     d40:	b0 f4       	brcc	.+44     	; 0xd6e <get_sms+0x350>
+     d42:	fe 01       	movw	r30, r28
+     d44:	e3 56       	subi	r30, 0x63	; 99
+     d46:	ff 4f       	sbci	r31, 0xFF	; 255
+     d48:	45 e1       	ldi	r20, 0x15	; 21
+     d4a:	42 0f       	add	r20, r18
+			contact_no[p]=response_number[i];
+     d4c:	91 93       	st	Z+, r25
+			p++;i++;
+     d4e:	38 2f       	mov	r19, r24
+     d50:	32 1b       	sub	r19, r18
+     d52:	8f 5f       	subi	r24, 0xFF	; 255
+		i++;
+		while (response_number[i]!='\"' && i<150){
+			i++;
+		}
+		i++;
+		while (response_number[i]!='\"' && p<20 && i<150){
+     d54:	d7 01       	movw	r26, r14
+     d56:	a8 0f       	add	r26, r24
+     d58:	b1 1d       	adc	r27, r1
+     d5a:	9c 91       	ld	r25, X
+     d5c:	92 32       	cpi	r25, 0x22	; 34
+     d5e:	41 f0       	breq	.+16     	; 0xd70 <get_sms+0x352>
+     d60:	84 17       	cp	r24, r20
+     d62:	31 f0       	breq	.+12     	; 0xd70 <get_sms+0x352>
+     d64:	86 39       	cpi	r24, 0x96	; 150
+     d66:	91 f7       	brne	.-28     	; 0xd4c <get_sms+0x32e>
+     d68:	03 c0       	rjmp	.+6      	; 0xd70 <get_sms+0x352>
+
+		//  Terminating strings
+		msg[p]="\0";	
+		
+		// Figuring out Phone number of SMS sender
+		i=0;p=0;
+     d6a:	30 e0       	ldi	r19, 0x00	; 0
+     d6c:	01 c0       	rjmp	.+2      	; 0xd70 <get_sms+0x352>
+     d6e:	30 e0       	ldi	r19, 0x00	; 0
+		i++;
+		while (response_number[i]!='\"' && p<20 && i<150){
+			contact_no[p]=response_number[i];
+			p++;i++;
+		}
+		contact_no[p]='\0';
+     d70:	ed e9       	ldi	r30, 0x9D	; 157
+     d72:	f0 e0       	ldi	r31, 0x00	; 0
+     d74:	ec 0f       	add	r30, r28
+     d76:	fd 1f       	adc	r31, r29
+     d78:	e3 0f       	add	r30, r19
+     d7a:	f1 1d       	adc	r31, r1
+     d7c:	10 82       	st	Z, r1
+		
+		// If message doesn't match authenticated source, move to next message
+		if (!((strcmp(contact_no,customer_no)==0) || (strcmp(contact_no,MASTER_NUMBER)==0))){
+     d7e:	c9 58       	subi	r28, 0x89	; 137
+     d80:	de 4f       	sbci	r29, 0xFE	; 254
+     d82:	68 81       	ld	r22, Y
+     d84:	79 81       	ldd	r23, Y+1	; 0x01
+     d86:	c7 57       	subi	r28, 0x77	; 119
+     d88:	d1 40       	sbci	r29, 0x01	; 1
+     d8a:	ce 01       	movw	r24, r28
+     d8c:	83 56       	subi	r24, 0x63	; 99
+     d8e:	9f 4f       	sbci	r25, 0xFF	; 255
+     d90:	c9 d5       	rcall	.+2962   	; 0x1924 <strcmp>
+     d92:	6c 01       	movw	r12, r24
+     d94:	89 2b       	or	r24, r25
+     d96:	59 f0       	breq	.+22     	; 0xdae <get_sms+0x390>
+     d98:	6c e1       	ldi	r22, 0x1C	; 28
+     d9a:	72 e0       	ldi	r23, 0x02	; 2
+     d9c:	ce 01       	movw	r24, r28
+     d9e:	83 56       	subi	r24, 0x63	; 99
+     da0:	9f 4f       	sbci	r25, 0xFF	; 255
+     da2:	c0 d5       	rcall	.+2944   	; 0x1924 <strcmp>
+     da4:	89 2b       	or	r24, r25
+     da6:	09 f4       	brne	.+2      	; 0xdaa <get_sms+0x38c>
+     da8:	2c c1       	rjmp	.+600    	; 0x1002 <get_sms+0x5e4>
+			message_number++;
+     daa:	c1 01       	movw	r24, r2
+			continue;
+     dac:	a3 c0       	rjmp	.+326    	; 0xef4 <get_sms+0x4d6>
+		}
+		
+		if ((msg[0]=='+') && (strcmp(contact_no,MASTER_NUMBER)==0)){  //  Changing customer number by Master
+     dae:	f3 01       	movw	r30, r6
+     db0:	80 81       	ld	r24, Z
+     db2:	8b 32       	cpi	r24, 0x2B	; 43
+     db4:	29 f5       	brne	.+74     	; 0xe00 <get_sms+0x3e2>
+     db6:	6c e1       	ldi	r22, 0x1C	; 28
+     db8:	72 e0       	ldi	r23, 0x02	; 2
+     dba:	ce 01       	movw	r24, r28
+     dbc:	83 56       	subi	r24, 0x63	; 99
+     dbe:	9f 4f       	sbci	r25, 0xFF	; 255
+     dc0:	b1 d5       	rcall	.+2914   	; 0x1924 <strcmp>
+     dc2:	89 2b       	or	r24, r25
+     dc4:	09 f0       	breq	.+2      	; 0xdc8 <get_sms+0x3aa>
+     dc6:	22 c1       	rjmp	.+580    	; 0x100c <get_sms+0x5ee>
+			strcpy(customer_no,msg);
+     dc8:	b3 01       	movw	r22, r6
+     dca:	c9 58       	subi	r28, 0x89	; 137
+     dcc:	de 4f       	sbci	r29, 0xFE	; 254
+     dce:	88 81       	ld	r24, Y
+     dd0:	99 81       	ldd	r25, Y+1	; 0x01
+     dd2:	c7 57       	subi	r28, 0x77	; 119
+     dd4:	d1 40       	sbci	r29, 0x01	; 1
+     dd6:	af d5       	rcall	.+2910   	; 0x1936 <strcpy>
+			UART_0_puts("Customer No. changed to ");
+     dd8:	8e ea       	ldi	r24, 0xAE	; 174
+     dda:	96 e0       	ldi	r25, 0x06	; 6
+     ddc:	34 d5       	rcall	.+2664   	; 0x1846 <UART_0_puts>
+			UART_0_puts(customer_no);
+     dde:	c9 58       	subi	r28, 0x89	; 137
+     de0:	de 4f       	sbci	r29, 0xFE	; 254
+     de2:	88 81       	ld	r24, Y
+     de4:	99 81       	ldd	r25, Y+1	; 0x01
+     de6:	c7 57       	subi	r28, 0x77	; 119
+     de8:	d1 40       	sbci	r29, 0x01	; 1
+     dea:	2d d5       	rcall	.+2650   	; 0x1846 <UART_0_puts>
+			UART_0_puts("\r\n");
+     dec:	83 ea       	ldi	r24, 0xA3	; 163
+     dee:	95 e0       	ldi	r25, 0x05	; 5
+     df0:	2a d5       	rcall	.+2644   	; 0x1846 <UART_0_puts>
+			update_customer_no=1;
+     df2:	f1 e0       	ldi	r31, 0x01	; 1
+     df4:	c1 58       	subi	r28, 0x81	; 129
+     df6:	de 4f       	sbci	r29, 0xFE	; 254
+     df8:	f8 83       	st	Y, r31
+     dfa:	cf 57       	subi	r28, 0x7F	; 127
+     dfc:	d1 40       	sbci	r29, 0x01	; 1
+     dfe:	79 c0       	rjmp	.+242    	; 0xef2 <get_sms+0x4d4>
+		}
+		else if ((strcasecmp(msg,"on")==0) && ((strcmp(contact_no,MASTER_NUMBER)==0) || (strcmp(contact_no,customer_no)==0))){  //  Commanding system to Switch on by Customer/Master
+     e00:	67 ec       	ldi	r22, 0xC7	; 199
+     e02:	76 e0       	ldi	r23, 0x06	; 6
+     e04:	c3 01       	movw	r24, r6
+     e06:	70 d5       	rcall	.+2784   	; 0x18e8 <strcasecmp>
+     e08:	89 2b       	or	r24, r25
+     e0a:	e9 f4       	brne	.+58     	; 0xe46 <get_sms+0x428>
+     e0c:	6c e1       	ldi	r22, 0x1C	; 28
+     e0e:	72 e0       	ldi	r23, 0x02	; 2
+     e10:	ce 01       	movw	r24, r28
+     e12:	83 56       	subi	r24, 0x63	; 99
+     e14:	9f 4f       	sbci	r25, 0xFF	; 255
+     e16:	86 d5       	rcall	.+2828   	; 0x1924 <strcmp>
+     e18:	89 2b       	or	r24, r25
+     e1a:	11 f0       	breq	.+4      	; 0xe20 <get_sms+0x402>
+     e1c:	cd 28       	or	r12, r13
+     e1e:	b9 f5       	brne	.+110    	; 0xe8e <get_sms+0x470>
+			*system_on=0x31;
+     e20:	81 e3       	ldi	r24, 0x31	; 49
+     e22:	c5 58       	subi	r28, 0x85	; 133
+     e24:	de 4f       	sbci	r29, 0xFE	; 254
+     e26:	e8 81       	ld	r30, Y
+     e28:	f9 81       	ldd	r31, Y+1	; 0x01
+     e2a:	cb 57       	subi	r28, 0x7B	; 123
+     e2c:	d1 40       	sbci	r29, 0x01	; 1
+     e2e:	80 83       	st	Z, r24
+			UART_0_puts("System Turned ON....\r\n");
+     e30:	8a ec       	ldi	r24, 0xCA	; 202
+     e32:	96 e0       	ldi	r25, 0x06	; 6
+     e34:	08 d5       	rcall	.+2576   	; 0x1846 <UART_0_puts>
+			sbi(PORTB,7);
+     e36:	2f 9a       	sbi	0x05, 7	; 5
+			update_remote_control=1;
+     e38:	f1 e0       	ldi	r31, 0x01	; 1
+     e3a:	c3 58       	subi	r28, 0x83	; 131
+     e3c:	de 4f       	sbci	r29, 0xFE	; 254
+     e3e:	f8 83       	st	Y, r31
+     e40:	cd 57       	subi	r28, 0x7D	; 125
+     e42:	d1 40       	sbci	r29, 0x01	; 1
+     e44:	56 c0       	rjmp	.+172    	; 0xef2 <get_sms+0x4d4>
+		}
+		else if((strcasecmp(msg,"off")==0) && ((strcmp(contact_no,MASTER_NUMBER)==0) || (strcmp(contact_no,customer_no)==0))){  //  Commanding system to Switch off by Customer/Master
+     e46:	61 ee       	ldi	r22, 0xE1	; 225
+     e48:	76 e0       	ldi	r23, 0x06	; 6
+     e4a:	c3 01       	movw	r24, r6
+     e4c:	4d d5       	rcall	.+2714   	; 0x18e8 <strcasecmp>
+     e4e:	89 2b       	or	r24, r25
+     e50:	f1 f4       	brne	.+60     	; 0xe8e <get_sms+0x470>
+     e52:	6c e1       	ldi	r22, 0x1C	; 28
+     e54:	72 e0       	ldi	r23, 0x02	; 2
+     e56:	ce 01       	movw	r24, r28
+     e58:	83 56       	subi	r24, 0x63	; 99
+     e5a:	9f 4f       	sbci	r25, 0xFF	; 255
+     e5c:	63 d5       	rcall	.+2758   	; 0x1924 <strcmp>
+     e5e:	89 2b       	or	r24, r25
+     e60:	19 f0       	breq	.+6      	; 0xe68 <get_sms+0x44a>
+     e62:	cd 28       	or	r12, r13
+     e64:	09 f0       	breq	.+2      	; 0xe68 <get_sms+0x44a>
+     e66:	45 c0       	rjmp	.+138    	; 0xef2 <get_sms+0x4d4>
+			*system_on=0x30;
+     e68:	80 e3       	ldi	r24, 0x30	; 48
+     e6a:	c5 58       	subi	r28, 0x85	; 133
+     e6c:	de 4f       	sbci	r29, 0xFE	; 254
+     e6e:	e8 81       	ld	r30, Y
+     e70:	f9 81       	ldd	r31, Y+1	; 0x01
+     e72:	cb 57       	subi	r28, 0x7B	; 123
+     e74:	d1 40       	sbci	r29, 0x01	; 1
+     e76:	80 83       	st	Z, r24
+			UART_0_puts("System Turned OFF....\r\n");
+     e78:	85 ee       	ldi	r24, 0xE5	; 229
+     e7a:	96 e0       	ldi	r25, 0x06	; 6
+     e7c:	e4 d4       	rcall	.+2504   	; 0x1846 <UART_0_puts>
+			cbi(PORTB,7);
+     e7e:	2f 98       	cbi	0x05, 7	; 5
+			update_remote_control=1;
+     e80:	f1 e0       	ldi	r31, 0x01	; 1
+     e82:	c3 58       	subi	r28, 0x83	; 131
+     e84:	de 4f       	sbci	r29, 0xFE	; 254
+     e86:	f8 83       	st	Y, r31
+     e88:	cd 57       	subi	r28, 0x7D	; 125
+     e8a:	d1 40       	sbci	r29, 0x01	; 1
+     e8c:	32 c0       	rjmp	.+100    	; 0xef2 <get_sms+0x4d4>
+		}
+		else if ((strncmp(msg,"SNO+E",5)==0) && (strcmp(contact_no,MASTER_NUMBER)==0)){  //  To change serial number by Master
+     e8e:	45 e0       	ldi	r20, 0x05	; 5
+     e90:	50 e0       	ldi	r21, 0x00	; 0
+     e92:	6d ef       	ldi	r22, 0xFD	; 253
+     e94:	76 e0       	ldi	r23, 0x06	; 6
+     e96:	c3 01       	movw	r24, r6
+     e98:	55 d5       	rcall	.+2730   	; 0x1944 <strncmp>
+     e9a:	89 2b       	or	r24, r25
+     e9c:	51 f5       	brne	.+84     	; 0xef2 <get_sms+0x4d4>
+     e9e:	6c e1       	ldi	r22, 0x1C	; 28
+     ea0:	72 e0       	ldi	r23, 0x02	; 2
+     ea2:	ce 01       	movw	r24, r28
+     ea4:	83 56       	subi	r24, 0x63	; 99
+     ea6:	9f 4f       	sbci	r25, 0xFF	; 255
+     ea8:	3d d5       	rcall	.+2682   	; 0x1924 <strcmp>
+     eaa:	89 2b       	or	r24, r25
+     eac:	11 f5       	brne	.+68     	; 0xef2 <get_sms+0x4d4>
+			strncpy(Serial_num,msg+4,11);
+     eae:	4b e0       	ldi	r20, 0x0B	; 11
+     eb0:	50 e0       	ldi	r21, 0x00	; 0
+     eb2:	c0 58       	subi	r28, 0x80	; 128
+     eb4:	de 4f       	sbci	r29, 0xFE	; 254
+     eb6:	68 81       	ld	r22, Y
+     eb8:	79 81       	ldd	r23, Y+1	; 0x01
+     eba:	c0 58       	subi	r28, 0x80	; 128
+     ebc:	d1 40       	sbci	r29, 0x01	; 1
+     ebe:	c7 58       	subi	r28, 0x87	; 135
+     ec0:	de 4f       	sbci	r29, 0xFE	; 254
+     ec2:	88 81       	ld	r24, Y
+     ec4:	99 81       	ldd	r25, Y+1	; 0x01
+     ec6:	c9 57       	subi	r28, 0x79	; 121
+     ec8:	d1 40       	sbci	r29, 0x01	; 1
+     eca:	4a d5       	rcall	.+2708   	; 0x1960 <strncpy>
+			
+			UART_0_puts("Serial No. changed to ");
+     ecc:	83 e0       	ldi	r24, 0x03	; 3
+     ece:	97 e0       	ldi	r25, 0x07	; 7
+     ed0:	ba d4       	rcall	.+2420   	; 0x1846 <UART_0_puts>
+			UART_0_puts(Serial_num);
+     ed2:	c7 58       	subi	r28, 0x87	; 135
+     ed4:	de 4f       	sbci	r29, 0xFE	; 254
+     ed6:	88 81       	ld	r24, Y
+     ed8:	99 81       	ldd	r25, Y+1	; 0x01
+     eda:	c9 57       	subi	r28, 0x79	; 121
+     edc:	d1 40       	sbci	r29, 0x01	; 1
+     ede:	b3 d4       	rcall	.+2406   	; 0x1846 <UART_0_puts>
+			UART_0_puts("\r\n");
+     ee0:	83 ea       	ldi	r24, 0xA3	; 163
+     ee2:	95 e0       	ldi	r25, 0x05	; 5
+     ee4:	b0 d4       	rcall	.+2400   	; 0x1846 <UART_0_puts>
+			update_serial_no=1;
+     ee6:	21 e0       	ldi	r18, 0x01	; 1
+     ee8:	c2 58       	subi	r28, 0x82	; 130
+     eea:	de 4f       	sbci	r29, 0xFE	; 254
+     eec:	28 83       	st	Y, r18
+     eee:	ce 57       	subi	r28, 0x7E	; 126
+     ef0:	d1 40       	sbci	r29, 0x01	; 1
+		}
+	
+		message_number++;
+     ef2:	c1 01       	movw	r24, r2
+     ef4:	3f ef       	ldi	r19, 0xFF	; 255
+     ef6:	23 1a       	sub	r2, r19
+     ef8:	33 0a       	sbc	r3, r19
+	}
+	UART_0_puts("Messages converted to Readable Format...\r\n");
+	
+	// To fetch SMS messages
+	message_number=1;
+	while (message_number<=no_of_msg){
+     efa:	cc 58       	subi	r28, 0x8C	; 140
+     efc:	de 4f       	sbci	r29, 0xFE	; 254
+     efe:	e8 81       	ld	r30, Y
+     f00:	f9 81       	ldd	r31, Y+1	; 0x01
+     f02:	c4 57       	subi	r28, 0x74	; 116
+     f04:	d1 40       	sbci	r29, 0x01	; 1
+     f06:	e8 17       	cp	r30, r24
+     f08:	f9 07       	cpc	r31, r25
+     f0a:	0c f0       	brlt	.+2      	; 0xf0e <get_sms+0x4f0>
+     f0c:	6b ce       	rjmp	.-810    	; 0xbe4 <get_sms+0x1c6>
+     f0e:	c2 58       	subi	r28, 0x82	; 130
+     f10:	de 4f       	sbci	r29, 0xFE	; 254
+     f12:	b8 80       	ld	r11, Y
+     f14:	ce 57       	subi	r28, 0x7E	; 126
+     f16:	d1 40       	sbci	r29, 0x01	; 1
+	
+		message_number++;
+	}
+	
+	// To update customer number in EEPROM
+	if (update_customer_no){
+     f18:	c1 58       	subi	r28, 0x81	; 129
+     f1a:	de 4f       	sbci	r29, 0xFE	; 254
+     f1c:	f8 81       	ld	r31, Y
+     f1e:	cf 57       	subi	r28, 0x7F	; 127
+     f20:	d1 40       	sbci	r29, 0x01	; 1
+     f22:	f1 11       	cpse	r31, r1
+     f24:	7b c0       	rjmp	.+246    	; 0x101c <get_sms+0x5fe>
+     f26:	11 c0       	rjmp	.+34     	; 0xf4a <get_sms+0x52c>
+		i=0;
+		while (i<=12){
+			eeprom_update_byte((uint8_t*)(i+16),customer_no[i]);
+     f28:	f8 01       	movw	r30, r16
+     f2a:	61 91       	ld	r22, Z+
+     f2c:	8f 01       	movw	r16, r30
+     f2e:	c6 01       	movw	r24, r12
+     f30:	8e 0f       	add	r24, r30
+     f32:	9f 1f       	adc	r25, r31
+     f34:	67 d5       	rcall	.+2766   	; 0x1a04 <eeprom_update_byte>
+     f36:	8f e0       	ldi	r24, 0x0F	; 15
+     f38:	97 e2       	ldi	r25, 0x27	; 39
+     f3a:	01 97       	sbiw	r24, 0x01	; 1
+     f3c:	f1 f7       	brne	.-4      	; 0xf3a <get_sms+0x51c>
+     f3e:	00 c0       	rjmp	.+0      	; 0xf40 <get_sms+0x522>
+     f40:	00 00       	nop
+	}
+	
+	// To update customer number in EEPROM
+	if (update_customer_no){
+		i=0;
+		while (i<=12){
+     f42:	0e 15       	cp	r16, r14
+     f44:	1f 05       	cpc	r17, r15
+     f46:	81 f7       	brne	.-32     	; 0xf28 <get_sms+0x50a>
+     f48:	7e c0       	rjmp	.+252    	; 0x1046 <get_sms+0x628>
+			i++;
+		}
+	}
+	
+	// To update serial number in EEPROM
+	if (update_serial_no){
+     f4a:	c2 58       	subi	r28, 0x82	; 130
+     f4c:	de 4f       	sbci	r29, 0xFE	; 254
+     f4e:	98 81       	ld	r25, Y
+     f50:	ce 57       	subi	r28, 0x7E	; 126
+     f52:	d1 40       	sbci	r29, 0x01	; 1
+     f54:	99 23       	and	r25, r25
+     f56:	51 f1       	breq	.+84     	; 0xfac <get_sms+0x58e>
+     f58:	c7 58       	subi	r28, 0x87	; 135
+     f5a:	de 4f       	sbci	r29, 0xFE	; 254
+     f5c:	e8 80       	ld	r14, Y
+     f5e:	f9 80       	ldd	r15, Y+1	; 0x01
+     f60:	c9 57       	subi	r28, 0x79	; 121
+     f62:	d1 40       	sbci	r29, 0x01	; 1
+     f64:	eb e0       	ldi	r30, 0x0B	; 11
+     f66:	ee 0e       	add	r14, r30
+     f68:	f1 1c       	adc	r15, r1
+	
+		message_number++;
+	}
+	
+	// To update customer number in EEPROM
+	if (update_customer_no){
+     f6a:	c7 58       	subi	r28, 0x87	; 135
+     f6c:	de 4f       	sbci	r29, 0xFE	; 254
+     f6e:	08 81       	ld	r16, Y
+     f70:	19 81       	ldd	r17, Y+1	; 0x01
+     f72:	c9 57       	subi	r28, 0x79	; 121
+     f74:	d1 40       	sbci	r29, 0x01	; 1
+     f76:	8f e1       	ldi	r24, 0x1F	; 31
+     f78:	90 e0       	ldi	r25, 0x00	; 0
+     f7a:	6c 01       	movw	r12, r24
+     f7c:	c0 1a       	sub	r12, r16
+     f7e:	d1 0a       	sbc	r13, r17
+	
+	// To update serial number in EEPROM
+	if (update_serial_no){
+		i=0;
+		while (i<=10){
+			eeprom_update_byte((uint8_t*)(i+32),Serial_num[i]);
+     f80:	f8 01       	movw	r30, r16
+     f82:	61 91       	ld	r22, Z+
+     f84:	8f 01       	movw	r16, r30
+     f86:	c6 01       	movw	r24, r12
+     f88:	8e 0f       	add	r24, r30
+     f8a:	9f 1f       	adc	r25, r31
+     f8c:	3b d5       	rcall	.+2678   	; 0x1a04 <eeprom_update_byte>
+     f8e:	8f e0       	ldi	r24, 0x0F	; 15
+     f90:	97 e2       	ldi	r25, 0x27	; 39
+     f92:	01 97       	sbiw	r24, 0x01	; 1
+     f94:	f1 f7       	brne	.-4      	; 0xf92 <get_sms+0x574>
+     f96:	00 c0       	rjmp	.+0      	; 0xf98 <get_sms+0x57a>
+     f98:	00 00       	nop
+	}
+	
+	// To update serial number in EEPROM
+	if (update_serial_no){
+		i=0;
+		while (i<=10){
+     f9a:	0e 15       	cp	r16, r14
+     f9c:	1f 05       	cpc	r17, r15
+     f9e:	81 f7       	brne	.-32     	; 0xf80 <get_sms+0x562>
+     fa0:	05 c0       	rjmp	.+10     	; 0xfac <get_sms+0x58e>
+}
+
+uint8_t get_sms(uint8_t* system_on,char* customer_no,char* Serial_num){
+	
+	uint8_t i=0,p=0,dataarrived=0;
+	uint8_t update_customer_no=0,update_serial_no=0,update_remote_control=0;
+     fa2:	c3 58       	subi	r28, 0x83	; 131
+     fa4:	de 4f       	sbci	r29, 0xFE	; 254
+     fa6:	18 82       	st	Y, r1
+     fa8:	cd 57       	subi	r28, 0x7D	; 125
+     faa:	d1 40       	sbci	r29, 0x01	; 1
+			i++;
+		}
+	}
+	
+	// To update system on/off status in EEPROM
+	if (update_remote_control){
+     fac:	c3 58       	subi	r28, 0x83	; 131
+     fae:	de 4f       	sbci	r29, 0xFE	; 254
+     fb0:	98 81       	ld	r25, Y
+     fb2:	cd 57       	subi	r28, 0x7D	; 125
+     fb4:	d1 40       	sbci	r29, 0x01	; 1
+     fb6:	99 23       	and	r25, r25
+     fb8:	81 f0       	breq	.+32     	; 0xfda <get_sms+0x5bc>
+		eeprom_update_byte((uint8_t*)30,*system_on);
+     fba:	c5 58       	subi	r28, 0x85	; 133
+     fbc:	de 4f       	sbci	r29, 0xFE	; 254
+     fbe:	e8 81       	ld	r30, Y
+     fc0:	f9 81       	ldd	r31, Y+1	; 0x01
+     fc2:	cb 57       	subi	r28, 0x7B	; 123
+     fc4:	d1 40       	sbci	r29, 0x01	; 1
+     fc6:	60 81       	ld	r22, Z
+     fc8:	8e e1       	ldi	r24, 0x1E	; 30
+     fca:	90 e0       	ldi	r25, 0x00	; 0
+     fcc:	1b d5       	rcall	.+2614   	; 0x1a04 <eeprom_update_byte>
+     fce:	8f e0       	ldi	r24, 0x0F	; 15
+     fd0:	97 e2       	ldi	r25, 0x27	; 39
+     fd2:	01 97       	sbiw	r24, 0x01	; 1
+     fd4:	f1 f7       	brne	.-4      	; 0xfd2 <get_sms+0x5b4>
+     fd6:	00 c0       	rjmp	.+0      	; 0xfd8 <get_sms+0x5ba>
+     fd8:	00 00       	nop
+		_delay_ms(5);  //  EEPROM write time is 3.3ms in data sheet
+	}
+		
+	// To delete all messages
+	sim900_cmd("AT+CMGDA=\"DEL READ\"\r\n",simresponse);
+     fda:	be 01       	movw	r22, r28
+     fdc:	6f 54       	subi	r22, 0x4F	; 79
+     fde:	7f 4f       	sbci	r23, 0xFF	; 255
+     fe0:	8a e1       	ldi	r24, 0x1A	; 26
+     fe2:	97 e0       	ldi	r25, 0x07	; 7
+     fe4:	f1 d9       	rcall	.-3102   	; 0x3c8 <sim900_cmd>
+	UART_0_puts("Deleting Read messages...\r\n");
+     fe6:	80 e3       	ldi	r24, 0x30	; 48
+     fe8:	97 e0       	ldi	r25, 0x07	; 7
+     fea:	2d d4       	rcall	.+2138   	; 0x1846 <UART_0_puts>
+	
+	return 1;
+     fec:	81 e0       	ldi	r24, 0x01	; 1
+     fee:	44 c0       	rjmp	.+136    	; 0x1078 <get_sms+0x65a>
+	UART_0_puts(no_msg);
+	UART_0_puts("\r\n");
+	
+	// Exiting the function if no new messages have arrived
+	if (no_of_msg==0){
+		return 1;
+     ff0:	81 e0       	ldi	r24, 0x01	; 1
+     ff2:	42 c0       	rjmp	.+132    	; 0x1078 <get_sms+0x65a>
+	}
+	
+	// Changing the message to readable format
+	sim900_cmd("AT+CMGF=1\r\n",simresponse);
+	if (strcmp(simresponse,"OK\0")!=0){
+		return 0;
+     ff4:	80 e0       	ldi	r24, 0x00	; 0
+     ff6:	40 c0       	rjmp	.+128    	; 0x1078 <get_sms+0x65a>
+		i=0;p=0;
+		while (response_number[i]!='\"' && i<150){
+			i++;
+		}
+		i++;
+		while (response_number[i]!='\"' && i<150){
+     ff8:	88 85       	ldd	r24, Y+8	; 0x08
+     ffa:	82 32       	cpi	r24, 0x22	; 34
+     ffc:	09 f0       	breq	.+2      	; 0x1000 <get_sms+0x5e2>
+     ffe:	77 ce       	rjmp	.-786    	; 0xcee <get_sms+0x2d0>
+    1000:	25 c0       	rjmp	.+74     	; 0x104c <get_sms+0x62e>
+		if (!((strcmp(contact_no,customer_no)==0) || (strcmp(contact_no,MASTER_NUMBER)==0))){
+			message_number++;
+			continue;
+		}
+		
+		if ((msg[0]=='+') && (strcmp(contact_no,MASTER_NUMBER)==0)){  //  Changing customer number by Master
+    1002:	f3 01       	movw	r30, r6
+    1004:	80 81       	ld	r24, Z
+    1006:	8b 32       	cpi	r24, 0x2B	; 43
+    1008:	39 f5       	brne	.+78     	; 0x1058 <get_sms+0x63a>
+    100a:	de ce       	rjmp	.-580    	; 0xdc8 <get_sms+0x3aa>
+			UART_0_puts("Customer No. changed to ");
+			UART_0_puts(customer_no);
+			UART_0_puts("\r\n");
+			update_customer_no=1;
+		}
+		else if ((strcasecmp(msg,"on")==0) && ((strcmp(contact_no,MASTER_NUMBER)==0) || (strcmp(contact_no,customer_no)==0))){  //  Commanding system to Switch on by Customer/Master
+    100c:	67 ec       	ldi	r22, 0xC7	; 199
+    100e:	76 e0       	ldi	r23, 0x06	; 6
+    1010:	c3 01       	movw	r24, r6
+    1012:	6a d4       	rcall	.+2260   	; 0x18e8 <strcasecmp>
+    1014:	89 2b       	or	r24, r25
+    1016:	09 f4       	brne	.+2      	; 0x101a <get_sms+0x5fc>
+    1018:	03 cf       	rjmp	.-506    	; 0xe20 <get_sms+0x402>
+    101a:	26 c0       	rjmp	.+76     	; 0x1068 <get_sms+0x64a>
+    101c:	c9 58       	subi	r28, 0x89	; 137
+    101e:	de 4f       	sbci	r29, 0xFE	; 254
+    1020:	e8 80       	ld	r14, Y
+    1022:	f9 80       	ldd	r15, Y+1	; 0x01
+    1024:	c7 57       	subi	r28, 0x77	; 119
+    1026:	d1 40       	sbci	r29, 0x01	; 1
+    1028:	fd e0       	ldi	r31, 0x0D	; 13
+    102a:	ef 0e       	add	r14, r31
+    102c:	f1 1c       	adc	r15, r1
+	
+		message_number++;
+	}
+	
+	// To update customer number in EEPROM
+	if (update_customer_no){
+    102e:	c9 58       	subi	r28, 0x89	; 137
+    1030:	de 4f       	sbci	r29, 0xFE	; 254
+    1032:	08 81       	ld	r16, Y
+    1034:	19 81       	ldd	r17, Y+1	; 0x01
+    1036:	c7 57       	subi	r28, 0x77	; 119
+    1038:	d1 40       	sbci	r29, 0x01	; 1
+    103a:	8f e0       	ldi	r24, 0x0F	; 15
+    103c:	90 e0       	ldi	r25, 0x00	; 0
+    103e:	6c 01       	movw	r12, r24
+    1040:	c0 1a       	sub	r12, r16
+    1042:	d1 0a       	sbc	r13, r17
+    1044:	71 cf       	rjmp	.-286    	; 0xf28 <get_sms+0x50a>
+			i++;
+		}
+	}
+	
+	// To update serial number in EEPROM
+	if (update_serial_no){
+    1046:	b1 10       	cpse	r11, r1
+    1048:	87 cf       	rjmp	.-242    	; 0xf58 <get_sms+0x53a>
+    104a:	b0 cf       	rjmp	.-160    	; 0xfac <get_sms+0x58e>
+		i++;
+		while (response_number[i]!='\"' && i<150){
+			i++;
+		}
+		i++;
+		while (response_number[i]!='\"' && i<150){
+    104c:	89 85       	ldd	r24, Y+9	; 0x09
+    104e:	82 32       	cpi	r24, 0x22	; 34
+    1050:	09 f0       	breq	.+2      	; 0x1054 <get_sms+0x636>
+    1052:	61 ce       	rjmp	.-830    	; 0xd16 <get_sms+0x2f8>
+		}
+		i++;
+		while (response_number[i]!='\"' && i<150){
+			i++;
+		}
+		i++;
+    1054:	22 e0       	ldi	r18, 0x02	; 2
+    1056:	6b ce       	rjmp	.-810    	; 0xd2e <get_sms+0x310>
+			UART_0_puts("Customer No. changed to ");
+			UART_0_puts(customer_no);
+			UART_0_puts("\r\n");
+			update_customer_no=1;
+		}
+		else if ((strcasecmp(msg,"on")==0) && ((strcmp(contact_no,MASTER_NUMBER)==0) || (strcmp(contact_no,customer_no)==0))){  //  Commanding system to Switch on by Customer/Master
+    1058:	67 ec       	ldi	r22, 0xC7	; 199
+    105a:	76 e0       	ldi	r23, 0x06	; 6
+    105c:	c3 01       	movw	r24, r6
+    105e:	44 d4       	rcall	.+2184   	; 0x18e8 <strcasecmp>
+    1060:	89 2b       	or	r24, r25
+    1062:	09 f4       	brne	.+2      	; 0x1066 <get_sms+0x648>
+    1064:	dd ce       	rjmp	.-582    	; 0xe20 <get_sms+0x402>
+    1066:	ef ce       	rjmp	.-546    	; 0xe46 <get_sms+0x428>
+			*system_on=0x31;
+			UART_0_puts("System Turned ON....\r\n");
+			sbi(PORTB,7);
+			update_remote_control=1;
+		}
+		else if((strcasecmp(msg,"off")==0) && ((strcmp(contact_no,MASTER_NUMBER)==0) || (strcmp(contact_no,customer_no)==0))){  //  Commanding system to Switch off by Customer/Master
+    1068:	61 ee       	ldi	r22, 0xE1	; 225
+    106a:	76 e0       	ldi	r23, 0x06	; 6
+    106c:	c3 01       	movw	r24, r6
+    106e:	3c d4       	rcall	.+2168   	; 0x18e8 <strcasecmp>
+    1070:	89 2b       	or	r24, r25
+    1072:	09 f4       	brne	.+2      	; 0x1076 <get_sms+0x658>
+    1074:	f9 ce       	rjmp	.-526    	; 0xe68 <get_sms+0x44a>
+    1076:	0b cf       	rjmp	.-490    	; 0xe8e <get_sms+0x470>
+	// To delete all messages
+	sim900_cmd("AT+CMGDA=\"DEL READ\"\r\n",simresponse);
+	UART_0_puts("Deleting Read messages...\r\n");
+	
+	return 1;
+}
+    1078:	cf 57       	subi	r28, 0x7F	; 127
+    107a:	de 4f       	sbci	r29, 0xFE	; 254
+    107c:	0f b6       	in	r0, 0x3f	; 63
+    107e:	f8 94       	cli
+    1080:	de bf       	out	0x3e, r29	; 62
+    1082:	0f be       	out	0x3f, r0	; 63
+    1084:	cd bf       	out	0x3d, r28	; 61
+    1086:	df 91       	pop	r29
+    1088:	cf 91       	pop	r28
+    108a:	1f 91       	pop	r17
+    108c:	0f 91       	pop	r16
+    108e:	ff 90       	pop	r15
+    1090:	ef 90       	pop	r14
+    1092:	df 90       	pop	r13
+    1094:	cf 90       	pop	r12
+    1096:	bf 90       	pop	r11
+    1098:	af 90       	pop	r10
+    109a:	9f 90       	pop	r9
+    109c:	8f 90       	pop	r8
+    109e:	7f 90       	pop	r7
+    10a0:	6f 90       	pop	r6
+    10a2:	5f 90       	pop	r5
+    10a4:	4f 90       	pop	r4
+    10a6:	3f 90       	pop	r3
+    10a8:	2f 90       	pop	r2
+    10aa:	08 95       	ret
+
+000010ac <Log_data>:
+		}
+	}
+	return 0;
+} 
+
+uint8_t Log_data(char* responseimp,char* Serial_num,char* loc_lat,char* loc_long){
+    10ac:	4f 92       	push	r4
+    10ae:	5f 92       	push	r5
+    10b0:	6f 92       	push	r6
+    10b2:	7f 92       	push	r7
+    10b4:	8f 92       	push	r8
+    10b6:	9f 92       	push	r9
+    10b8:	af 92       	push	r10
+    10ba:	bf 92       	push	r11
+    10bc:	cf 92       	push	r12
+    10be:	df 92       	push	r13
+    10c0:	ef 92       	push	r14
+    10c2:	ff 92       	push	r15
+    10c4:	0f 93       	push	r16
+    10c6:	1f 93       	push	r17
+    10c8:	cf 93       	push	r28
+    10ca:	df 93       	push	r29
+    10cc:	cd b7       	in	r28, 0x3d	; 61
+    10ce:	de b7       	in	r29, 0x3e	; 62
+    10d0:	d2 50       	subi	r29, 0x02	; 2
+    10d2:	0f b6       	in	r0, 0x3f	; 63
+    10d4:	f8 94       	cli
+    10d6:	de bf       	out	0x3e, r29	; 62
+    10d8:	0f be       	out	0x3f, r0	; 63
+    10da:	cd bf       	out	0x3d, r28	; 61
+    10dc:	4c 01       	movw	r8, r24
+    10de:	5b 01       	movw	r10, r22
+    10e0:	3a 01       	movw	r6, r20
+    10e2:	29 01       	movw	r4, r18
+	char simresponse[512],var_remote,dummy;
+	uint8_t tabname_length=0,dataarrived=0,e=32,l=0,i=0;
+	
+	//  If Serial_num gets erased mysteriously
+	tabname_length=strlen(Serial_num);
+    10e4:	fb 01       	movw	r30, r22
+    10e6:	01 90       	ld	r0, Z+
+    10e8:	00 20       	and	r0, r0
+    10ea:	e9 f7       	brne	.-6      	; 0x10e6 <Log_data+0x3a>
+    10ec:	ec 50       	subi	r30, 0x0C	; 12
+	if (tabname_length!=11){
+    10ee:	e6 17       	cp	r30, r22
+    10f0:	b1 f0       	breq	.+44     	; 0x111e <Log_data+0x72>
+    10f2:	6b 01       	movw	r12, r22
+    10f4:	2b e0       	ldi	r18, 0x0B	; 11
+    10f6:	c2 0e       	add	r12, r18
+    10f8:	d1 1c       	adc	r13, r1
+    10fa:	8b 01       	movw	r16, r22
+    10fc:	80 e2       	ldi	r24, 0x20	; 32
+    10fe:	90 e0       	ldi	r25, 0x00	; 0
+    1100:	7c 01       	movw	r14, r24
+    1102:	e6 1a       	sub	r14, r22
+    1104:	f7 0a       	sbc	r15, r23
+		while (l<11){
+			Serial_num[i]=eeprom_read_byte((uint8_t*)e);
+    1106:	c7 01       	movw	r24, r14
+    1108:	80 0f       	add	r24, r16
+    110a:	91 1f       	adc	r25, r17
+    110c:	73 d4       	rcall	.+2278   	; 0x19f4 <eeprom_read_byte>
+    110e:	f8 01       	movw	r30, r16
+    1110:	81 93       	st	Z+, r24
+    1112:	8f 01       	movw	r16, r30
+	uint8_t tabname_length=0,dataarrived=0,e=32,l=0,i=0;
+	
+	//  If Serial_num gets erased mysteriously
+	tabname_length=strlen(Serial_num);
+	if (tabname_length!=11){
+		while (l<11){
+    1114:	ec 15       	cp	r30, r12
+    1116:	fd 05       	cpc	r31, r13
+    1118:	b1 f7       	brne	.-20     	; 0x1106 <Log_data+0x5a>
+			Serial_num[i]=eeprom_read_byte((uint8_t*)e);
+			i++;e++;l++;
+		}
+		Serial_num[i]='\0';
+    111a:	f5 01       	movw	r30, r10
+    111c:	13 86       	std	Z+11, r1	; 0x0b
+	}
+	UART_0_puts("Starting CHIP...\r\n");
+    111e:	8c e4       	ldi	r24, 0x4C	; 76
+    1120:	97 e0       	ldi	r25, 0x07	; 7
+    1122:	91 d3       	rcall	.+1826   	; 0x1846 <UART_0_puts>
+	
+	//  GPRS services connected and getting ready to Log
+	sim900_cmd("AT+CIPSTART=\"TCP\"\,\"52.74.151.81\"\,\"80\"\r\n\0",simresponse);
+    1124:	be 01       	movw	r22, r28
+    1126:	6f 5f       	subi	r22, 0xFF	; 255
+    1128:	7f 4f       	sbci	r23, 0xFF	; 255
+    112a:	8b e2       	ldi	r24, 0x2B	; 43
+    112c:	92 e0       	ldi	r25, 0x02	; 2
+    112e:	4c d9       	rcall	.-3432   	; 0x3c8 <sim900_cmd>
+	if (strcmp(simresponse,"OK\0")==0){
+    1130:	60 e1       	ldi	r22, 0x10	; 16
+    1132:	71 e0       	ldi	r23, 0x01	; 1
+    1134:	ce 01       	movw	r24, r28
+    1136:	01 96       	adiw	r24, 0x01	; 1
+    1138:	f5 d3       	rcall	.+2026   	; 0x1924 <strcmp>
+    113a:	89 2b       	or	r24, r25
+    113c:	09 f0       	breq	.+2      	; 0x1140 <Log_data+0x94>
+    113e:	6d c0       	rjmp	.+218    	; 0x121a <Log_data+0x16e>
+		
+		//  Enabling data reception again to verify connection
+		sbi(UCSR1B,RXEN1);
+    1140:	09 ec       	ldi	r16, 0xC9	; 201
+    1142:	10 e0       	ldi	r17, 0x00	; 0
+    1144:	f8 01       	movw	r30, r16
+    1146:	80 81       	ld	r24, Z
+    1148:	80 61       	ori	r24, 0x10	; 16
+    114a:	80 83       	st	Z, r24
+		
+		//  Verifying connection
+		sim900_response(simresponse);
+    114c:	ce 01       	movw	r24, r28
+    114e:	01 96       	adiw	r24, 0x01	; 1
+    1150:	fa d8       	rcall	.-3596   	; 0x346 <sim900_response>
+		UART_0_puts("Sending Data...\r\n");
+    1152:	8f e5       	ldi	r24, 0x5F	; 95
+    1154:	97 e0       	ldi	r25, 0x07	; 7
+    1156:	77 d3       	rcall	.+1774   	; 0x1846 <UART_0_puts>
+		
+		//  Start sending the data							
+		UART_1_puts("AT+CIPSEND\r\n\0");
+    1158:	84 e5       	ldi	r24, 0x54	; 84
+    115a:	92 e0       	ldi	r25, 0x02	; 2
+    115c:	9a d3       	rcall	.+1844   	; 0x1892 <UART_1_puts>
+    115e:	ff ef       	ldi	r31, 0xFF	; 255
+    1160:	24 e3       	ldi	r18, 0x34	; 52
+    1162:	8c e0       	ldi	r24, 0x0C	; 12
+    1164:	f1 50       	subi	r31, 0x01	; 1
+    1166:	20 40       	sbci	r18, 0x00	; 0
+    1168:	80 40       	sbci	r24, 0x00	; 0
+    116a:	e1 f7       	brne	.-8      	; 0x1164 <Log_data+0xb8>
+    116c:	00 c0       	rjmp	.+0      	; 0x116e <Log_data+0xc2>
+    116e:	00 00       	nop
+		_delay_ms(500);
+
+		// Sending data
+		UART_1_puts("GET /datalogging/write.php?tabname=E011501A005&\0");
+    1170:	82 e6       	ldi	r24, 0x62	; 98
+    1172:	92 e0       	ldi	r25, 0x02	; 2
+    1174:	8e d3       	rcall	.+1820   	; 0x1892 <UART_1_puts>
+ 	//	UART_1_puts(Serial_num);
+ 	//	UART_1_putc('&');
+		UART_1_puts(responseimp);
+    1176:	c4 01       	movw	r24, r8
+    1178:	8c d3       	rcall	.+1816   	; 0x1892 <UART_1_puts>
+		
+		UART_1_puts("&A46=");
+    117a:	81 e7       	ldi	r24, 0x71	; 113
+    117c:	97 e0       	ldi	r25, 0x07	; 7
+    117e:	89 d3       	rcall	.+1810   	; 0x1892 <UART_1_puts>
+ 		UART_1_puts(loc_lat);
+    1180:	c3 01       	movw	r24, r6
+    1182:	87 d3       	rcall	.+1806   	; 0x1892 <UART_1_puts>
+ 		UART_1_puts("&A47=");
+    1184:	87 e7       	ldi	r24, 0x77	; 119
+    1186:	97 e0       	ldi	r25, 0x07	; 7
+    1188:	84 d3       	rcall	.+1800   	; 0x1892 <UART_1_puts>
+ 		UART_1_puts(loc_long);
+    118a:	c2 01       	movw	r24, r4
+    118c:	82 d3       	rcall	.+1796   	; 0x1892 <UART_1_puts>
+		UART_1_puts(" HTTP/1.1\r\n\0");
+    118e:	83 e9       	ldi	r24, 0x93	; 147
+    1190:	92 e0       	ldi	r25, 0x02	; 2
+    1192:	7f d3       	rcall	.+1790   	; 0x1892 <UART_1_puts>
+		UART_1_puts("Host:52.74.151.81\r\nAccept: */*\r\nAccept-Language: en-us\r\nConnection: Keep-Alive\r\n\r\n\x1A\0");
+    1194:	80 ea       	ldi	r24, 0xA0	; 160
+    1196:	92 e0       	ldi	r25, 0x02	; 2
+    1198:	7c d3       	rcall	.+1784   	; 0x1892 <UART_1_puts>
+		
+		//  Enabling data reception
+		sbi(UCSR1B,RXEN1);
+    119a:	f8 01       	movw	r30, r16
+    119c:	80 81       	ld	r24, Z
+    119e:	80 61       	ori	r24, 0x10	; 16
+    11a0:	80 83       	st	Z, r24
+		
+		//  Disabling data reception UART0
+		cbi(UCSR0B,RXEN0);
+    11a2:	e1 ec       	ldi	r30, 0xC1	; 193
+    11a4:	f0 e0       	ldi	r31, 0x00	; 0
+    11a6:	80 81       	ld	r24, Z
+    11a8:	8f 7e       	andi	r24, 0xEF	; 239
+    11aa:	80 83       	st	Z, r24
+		
+		while (dummy!='$'){
+    11ac:	10 e0       	ldi	r17, 0x00	; 0
+			dataarrived=wait_for_data();
+			if (dataarrived==0){
+				break;
+			}
+			dummy=UDR1;
+    11ae:	0f 2e       	mov	r0, r31
+    11b0:	fe ec       	ldi	r31, 0xCE	; 206
+    11b2:	ef 2e       	mov	r14, r31
+    11b4:	f1 2c       	mov	r15, r1
+    11b6:	f0 2d       	mov	r31, r0
+		
+		//  Disabling data reception UART0
+		cbi(UCSR0B,RXEN0);
+		
+		while (dummy!='$'){
+			dataarrived=wait_for_data();
+    11b8:	ae d8       	rcall	.-3748   	; 0x316 <wait_for_data>
+			if (dataarrived==0){
+    11ba:	88 23       	and	r24, r24
+    11bc:	29 f0       	breq	.+10     	; 0x11c8 <Log_data+0x11c>
+				break;
+			}
+			dummy=UDR1;
+    11be:	f7 01       	movw	r30, r14
+    11c0:	10 81       	ld	r17, Z
+		sbi(UCSR1B,RXEN1);
+		
+		//  Disabling data reception UART0
+		cbi(UCSR0B,RXEN0);
+		
+		while (dummy!='$'){
+    11c2:	14 32       	cpi	r17, 0x24	; 36
+    11c4:	c9 f7       	brne	.-14     	; 0x11b8 <Log_data+0x10c>
+    11c6:	2d c0       	rjmp	.+90     	; 0x1222 <Log_data+0x176>
+			if (dataarrived==0){
+				break;
+			}
+			dummy=UDR1;
+		}
+		dataarrived=wait_for_data();
+    11c8:	a6 d8       	rcall	.-3764   	; 0x316 <wait_for_data>
+		var_remote=UDR1;
+    11ca:	00 91 ce 00 	lds	r16, 0x00CE
+		
+		//  Enabling data reception UART0
+		sbi(UCSR0B,RXEN0);
+    11ce:	e1 ec       	ldi	r30, 0xC1	; 193
+    11d0:	f0 e0       	ldi	r31, 0x00	; 0
+    11d2:	80 81       	ld	r24, Z
+    11d4:	80 61       	ori	r24, 0x10	; 16
+    11d6:	80 83       	st	Z, r24
+		if (dummy=='$'){
+    11d8:	14 32       	cpi	r17, 0x24	; 36
+    11da:	49 f4       	brne	.+18     	; 0x11ee <Log_data+0x142>
+			UART_0_puts("Data Sent Successfully to ");
+    11dc:	8d e7       	ldi	r24, 0x7D	; 125
+    11de:	97 e0       	ldi	r25, 0x07	; 7
+    11e0:	32 d3       	rcall	.+1636   	; 0x1846 <UART_0_puts>
+			UART_0_puts(Serial_num);
+    11e2:	c5 01       	movw	r24, r10
+    11e4:	30 d3       	rcall	.+1632   	; 0x1846 <UART_0_puts>
+			UART_0_puts("\r\n");
+    11e6:	83 ea       	ldi	r24, 0xA3	; 163
+    11e8:	95 e0       	ldi	r25, 0x05	; 5
+    11ea:	2d d3       	rcall	.+1626   	; 0x1846 <UART_0_puts>
+    11ec:	06 c0       	rjmp	.+12     	; 0x11fa <Log_data+0x14e>
+		}
+		else{
+			UART_0_puts("Data Sent returns ERROR...\r\n");
+    11ee:	88 e9       	ldi	r24, 0x98	; 152
+    11f0:	97 e0       	ldi	r25, 0x07	; 7
+    11f2:	29 d3       	rcall	.+1618   	; 0x1846 <UART_0_puts>
+			UART_0_puts("Check String or SIMCARD balance...\r\n");
+    11f4:	85 eb       	ldi	r24, 0xB5	; 181
+    11f6:	97 e0       	ldi	r25, 0x07	; 7
+    11f8:	26 d3       	rcall	.+1612   	; 0x1846 <UART_0_puts>
+		}
+		if (var_remote=='1'){
+    11fa:	01 33       	cpi	r16, 0x31	; 49
+    11fc:	31 f4       	brne	.+12     	; 0x120a <Log_data+0x15e>
+			cli();
+    11fe:	f8 94       	cli
+			flag_datafreeze=1;
+    1200:	81 e0       	ldi	r24, 0x01	; 1
+    1202:	80 93 4b 09 	sts	0x094B, r24
+			sei();
+    1206:	78 94       	sei
+    1208:	15 c0       	rjmp	.+42     	; 0x1234 <Log_data+0x188>
+		}
+		else if(var_remote=='2'){
+    120a:	02 33       	cpi	r16, 0x32	; 50
+    120c:	41 f4       	brne	.+16     	; 0x121e <Log_data+0x172>
+			cli();
+    120e:	f8 94       	cli
+			flag_datafreeze=0;
+    1210:	10 92 4b 09 	sts	0x094B, r1
+			sei();
+    1214:	78 94       	sei
+		}
+				
+		return 1;
+    1216:	81 e0       	ldi	r24, 0x01	; 1
+    1218:	0d c0       	rjmp	.+26     	; 0x1234 <Log_data+0x188>
+	}
+	
+	return 0;
+    121a:	80 e0       	ldi	r24, 0x00	; 0
+    121c:	0b c0       	rjmp	.+22     	; 0x1234 <Log_data+0x188>
+			cli();
+			flag_datafreeze=0;
+			sei();
+		}
+				
+		return 1;
+    121e:	81 e0       	ldi	r24, 0x01	; 1
+    1220:	09 c0       	rjmp	.+18     	; 0x1234 <Log_data+0x188>
+			if (dataarrived==0){
+				break;
+			}
+			dummy=UDR1;
+		}
+		dataarrived=wait_for_data();
+    1222:	79 d8       	rcall	.-3854   	; 0x316 <wait_for_data>
+		var_remote=UDR1;
+    1224:	00 91 ce 00 	lds	r16, 0x00CE
+		
+		//  Enabling data reception UART0
+		sbi(UCSR0B,RXEN0);
+    1228:	e1 ec       	ldi	r30, 0xC1	; 193
+    122a:	f0 e0       	ldi	r31, 0x00	; 0
+    122c:	80 81       	ld	r24, Z
+    122e:	80 61       	ori	r24, 0x10	; 16
+    1230:	80 83       	st	Z, r24
+    1232:	d4 cf       	rjmp	.-88     	; 0x11dc <Log_data+0x130>
+				
+		return 1;
+	}
+	
+	return 0;
+}
+    1234:	de 5f       	subi	r29, 0xFE	; 254
+    1236:	0f b6       	in	r0, 0x3f	; 63
+    1238:	f8 94       	cli
+    123a:	de bf       	out	0x3e, r29	; 62
+    123c:	0f be       	out	0x3f, r0	; 63
+    123e:	cd bf       	out	0x3d, r28	; 61
+    1240:	df 91       	pop	r29
+    1242:	cf 91       	pop	r28
+    1244:	1f 91       	pop	r17
+    1246:	0f 91       	pop	r16
+    1248:	ff 90       	pop	r15
+    124a:	ef 90       	pop	r14
+    124c:	df 90       	pop	r13
+    124e:	cf 90       	pop	r12
+    1250:	bf 90       	pop	r11
+    1252:	af 90       	pop	r10
+    1254:	9f 90       	pop	r9
+    1256:	8f 90       	pop	r8
+    1258:	7f 90       	pop	r7
+    125a:	6f 90       	pop	r6
+    125c:	5f 90       	pop	r5
+    125e:	4f 90       	pop	r4
+    1260:	08 95       	ret
+
+00001262 <dataLog>:
+	UART_0_puts("Deleting Read messages...\r\n");
+	
+	return 1;
+}
+
+uint8_t dataLog(uint8_t system_on,char* apn,char* Serial_num,uint8_t signal_strength,char* user,char* loc_lat,char* loc_long,uint8_t flag_cooldown){
+    1262:	3f 92       	push	r3
+    1264:	4f 92       	push	r4
+    1266:	5f 92       	push	r5
+    1268:	6f 92       	push	r6
+    126a:	7f 92       	push	r7
+    126c:	8f 92       	push	r8
+    126e:	9f 92       	push	r9
+    1270:	af 92       	push	r10
+    1272:	bf 92       	push	r11
+    1274:	cf 92       	push	r12
+    1276:	df 92       	push	r13
+    1278:	ef 92       	push	r14
+    127a:	ff 92       	push	r15
+    127c:	0f 93       	push	r16
+    127e:	1f 93       	push	r17
+    1280:	cf 93       	push	r28
+    1282:	df 93       	push	r29
+    1284:	cd b7       	in	r28, 0x3d	; 61
+    1286:	de b7       	in	r29, 0x3e	; 62
+    1288:	d2 50       	subi	r29, 0x02	; 2
+    128a:	0f b6       	in	r0, 0x3f	; 63
+    128c:	f8 94       	cli
+    128e:	de bf       	out	0x3e, r29	; 62
+    1290:	0f be       	out	0x3f, r0	; 63
+    1292:	cd bf       	out	0x3d, r28	; 61
+    1294:	b8 2e       	mov	r11, r24
+    1296:	4b 01       	movw	r8, r22
+    1298:	2a 01       	movw	r4, r20
+    129a:	32 2e       	mov	r3, r18
+    129c:	37 01       	movw	r6, r14
+    129e:	0f 2e       	mov	r0, r31
+    12a0:	f6 e0       	ldi	r31, 0x06	; 6
+    12a2:	ff 2e       	mov	r15, r31
+    12a4:	f0 2d       	mov	r31, r0
+	char responseimp[512];
+	
+	// To acquire GPRS settings
+	data_counter=NumberOfAttempts;  // Number of attempts to be made if APN fetch fails
+	while (data_counter!=0){
+		flag_fetch_gprs = fetch_gprs();
+    12a6:	c1 da       	rcall	.-2686   	; 0x82a <fetch_gprs>
+		data_counter--;
+		if(flag_fetch_gprs==1){  // GPRS settings Fetch successful
+    12a8:	81 30       	cpi	r24, 0x01	; 1
+    12aa:	21 f0       	breq	.+8      	; 0x12b4 <dataLog+0x52>
+    12ac:	fa 94       	dec	r15
+			break;
+		}
+		else if(data_counter==0){  // Number of attempts exhausted
+    12ae:	f1 10       	cpse	r15, r1
+    12b0:	fa cf       	rjmp	.-12     	; 0x12a6 <dataLog+0x44>
+    12b2:	25 c0       	rjmp	.+74     	; 0x12fe <dataLog+0x9c>
+	
+	//For Testing
+	//strcpy(responseimp,"A01=1&A02=2");
+	
+	// Acquiring data for logging
+	get_data(system_on,responseimp,2,signal_strength,user,flag_cooldown);
+    12b4:	ea 2c       	mov	r14, r10
+    12b6:	23 2d       	mov	r18, r3
+    12b8:	42 e0       	ldi	r20, 0x02	; 2
+    12ba:	be 01       	movw	r22, r28
+    12bc:	6f 5f       	subi	r22, 0xFF	; 255
+    12be:	7f 4f       	sbci	r23, 0xFF	; 255
+    12c0:	8b 2d       	mov	r24, r11
+    12c2:	0e 94 66 00 	call	0xcc	; 0xcc <get_data>
+    12c6:	0f 2e       	mov	r0, r31
+    12c8:	f6 e0       	ldi	r31, 0x06	; 6
+    12ca:	ff 2e       	mov	r15, r31
+    12cc:	f0 2d       	mov	r31, r0
+	// Acquiring data for logging and setting APN
+	data_counter=NumberOfAttempts;  // Number of attempts to be made if APN set fails
+	while (data_counter!=0){
+		//Setting APN
+		flag_set_apn = set_apn(apn);
+    12ce:	c4 01       	movw	r24, r8
+    12d0:	f5 da       	rcall	.-2582   	; 0x8bc <set_apn>
+		data_counter--;
+		if(flag_set_apn==1){  // APN set successful
+    12d2:	81 30       	cpi	r24, 0x01	; 1
+    12d4:	21 f0       	breq	.+8      	; 0x12de <dataLog+0x7c>
+    12d6:	fa 94       	dec	r15
+			break;
+		}
+		else if(data_counter==0){  // Number of attempts exhausted
+    12d8:	f1 10       	cpse	r15, r1
+    12da:	f9 cf       	rjmp	.-14     	; 0x12ce <dataLog+0x6c>
+    12dc:	10 c0       	rjmp	.+32     	; 0x12fe <dataLog+0x9c>
+    12de:	16 e0       	ldi	r17, 0x06	; 6
+	}
+	
+	// Data Logging
+	data_counter=NumberOfAttempts;  // Number of attempts to be made if Dynamic IP allocation fails
+	while (data_counter!=0){
+		flag_Log_data = Log_data(responseimp,Serial_num,loc_lat,loc_long);
+    12e0:	96 01       	movw	r18, r12
+    12e2:	a3 01       	movw	r20, r6
+    12e4:	b2 01       	movw	r22, r4
+    12e6:	ce 01       	movw	r24, r28
+    12e8:	01 96       	adiw	r24, 0x01	; 1
+    12ea:	e0 de       	rcall	.-576    	; 0x10ac <Log_data>
+		data_counter--;
+		if(flag_Log_data==1){  // Data Logging successful
+    12ec:	81 30       	cpi	r24, 0x01	; 1
+    12ee:	29 f0       	breq	.+10     	; 0x12fa <dataLog+0x98>
+    12f0:	11 50       	subi	r17, 0x01	; 1
+			break;
+		}
+		else if(data_counter==0){  // Number of attempts exhausted
+    12f2:	b1 f7       	brne	.-20     	; 0x12e0 <dataLog+0x7e>
+			return 1;
+    12f4:	ff 24       	eor	r15, r15
+    12f6:	f3 94       	inc	r15
+    12f8:	02 c0       	rjmp	.+4      	; 0x12fe <dataLog+0x9c>
+		}		
+	}
+	
+	return 1;
+    12fa:	ff 24       	eor	r15, r15
+    12fc:	f3 94       	inc	r15
+}
+    12fe:	8f 2d       	mov	r24, r15
+    1300:	de 5f       	subi	r29, 0xFE	; 254
+    1302:	0f b6       	in	r0, 0x3f	; 63
+    1304:	f8 94       	cli
+    1306:	de bf       	out	0x3e, r29	; 62
+    1308:	0f be       	out	0x3f, r0	; 63
+    130a:	cd bf       	out	0x3d, r28	; 61
+    130c:	df 91       	pop	r29
+    130e:	cf 91       	pop	r28
+    1310:	1f 91       	pop	r17
+    1312:	0f 91       	pop	r16
+    1314:	ff 90       	pop	r15
+    1316:	ef 90       	pop	r14
+    1318:	df 90       	pop	r13
+    131a:	cf 90       	pop	r12
+    131c:	bf 90       	pop	r11
+    131e:	af 90       	pop	r10
+    1320:	9f 90       	pop	r9
+    1322:	8f 90       	pop	r8
+    1324:	7f 90       	pop	r7
+    1326:	6f 90       	pop	r6
+    1328:	5f 90       	pop	r5
+    132a:	4f 90       	pop	r4
+    132c:	3f 90       	pop	r3
+    132e:	08 95       	ret
+
+00001330 <get_loc>:
+	cbi(TCCR1B,CS12);
+	
+	return 1;  //  Data arrived
+}
+
+ void get_loc(char* apn,char* loc_lat,char* loc_long){
+    1330:	2f 92       	push	r2
+    1332:	3f 92       	push	r3
+    1334:	4f 92       	push	r4
+    1336:	5f 92       	push	r5
+    1338:	6f 92       	push	r6
+    133a:	7f 92       	push	r7
+    133c:	8f 92       	push	r8
+    133e:	9f 92       	push	r9
+    1340:	af 92       	push	r10
+    1342:	bf 92       	push	r11
+    1344:	cf 92       	push	r12
+    1346:	df 92       	push	r13
+    1348:	ef 92       	push	r14
+    134a:	ff 92       	push	r15
+    134c:	0f 93       	push	r16
+    134e:	1f 93       	push	r17
+    1350:	cf 93       	push	r28
+    1352:	df 93       	push	r29
+    1354:	cd b7       	in	r28, 0x3d	; 61
+    1356:	de b7       	in	r29, 0x3e	; 62
+    1358:	c7 58       	subi	r28, 0x87	; 135
+    135a:	d1 09       	sbc	r29, r1
+    135c:	0f b6       	in	r0, 0x3f	; 63
+    135e:	f8 94       	cli
+    1360:	de bf       	out	0x3e, r29	; 62
+    1362:	0f be       	out	0x3f, r0	; 63
+    1364:	cd bf       	out	0x3d, r28	; 61
+    1366:	4c 01       	movw	r8, r24
+    1368:	5b 01       	movw	r10, r22
+    136a:	6a 01       	movw	r12, r20
+	char simresponse[70],set_apn_str[60],dummy[5];
+	uint8_t i=0,p=0,number_attempts=0,allokay=1;
+	
+	//  Initializing Latitude and Longitude if fetch is unsuccessful
+	loc_lat[0]='0';loc_lat[1]='\0';
+    136c:	80 e3       	ldi	r24, 0x30	; 48
+    136e:	fb 01       	movw	r30, r22
+    1370:	80 83       	st	Z, r24
+    1372:	11 82       	std	Z+1, r1	; 0x01
+	loc_long[0]='0';loc_long[1]='\0';
+    1374:	fa 01       	movw	r30, r20
+    1376:	80 83       	st	Z, r24
+    1378:	11 82       	std	Z+1, r1	; 0x01
+    137a:	12 e0       	ldi	r17, 0x02	; 2
+	return 1;  //  Data arrived
+}
+
+ void get_loc(char* apn,char* loc_lat,char* loc_long){
+	char simresponse[70],set_apn_str[60],dummy[5];
+	uint8_t i=0,p=0,number_attempts=0,allokay=1;
+    137c:	01 e0       	ldi	r16, 0x01	; 1
+			continue;
+		}
+		UART_0_puts("Connection Type set to GPRS successfully...\r\n");
+		UART_0_puts("Setting APN for Loc....\r\n");
+		//  Setting APN
+		set_apn_str[0]='\0';
+    137e:	7e 01       	movw	r14, r28
+    1380:	f7 e4       	ldi	r31, 0x47	; 71
+    1382:	ef 0e       	add	r14, r31
+    1384:	f1 1c       	adc	r15, r1
+		strcat(set_apn_str,"AT+SAPBR=3,1,\"APN\",\"");
+    1386:	0f 2e       	mov	r0, r31
+    1388:	f5 e1       	ldi	r31, 0x15	; 21
+    138a:	3f 2e       	mov	r3, r31
+    138c:	f0 2d       	mov	r31, r0
+		strcat(set_apn_str,apn);
+		strcat(set_apn_str,"\"\r\n\0");
+    138e:	0f 2e       	mov	r0, r31
+    1390:	f2 e2       	ldi	r31, 0x22	; 34
+    1392:	4f 2e       	mov	r4, r31
+    1394:	fd e0       	ldi	r31, 0x0D	; 13
+    1396:	5f 2e       	mov	r5, r31
+    1398:	fa e0       	ldi	r31, 0x0A	; 10
+    139a:	6f 2e       	mov	r6, r31
+    139c:	71 2c       	mov	r7, r1
+    139e:	f0 2d       	mov	r31, r0
+    13a0:	24 2e       	mov	r2, r20
+    13a2:	15 c0       	rjmp	.+42     	; 0x13ce <get_loc+0x9e>
+	number_attempts=NumberOfAttempts-4;  //  Because some ICs don't have this functionality so reducing number of attempts to save time
+	
+	while (number_attempts>0){
+		number_attempts--;
+		
+		if (allokay==0){
+    13a4:	01 11       	cpse	r16, r1
+    13a6:	13 c0       	rjmp	.+38     	; 0x13ce <get_loc+0x9e>
+			allokay=1;
+			UART_0_puts("Deactivating Bearer...\r\n");
+    13a8:	8a ed       	ldi	r24, 0xDA	; 218
+    13aa:	97 e0       	ldi	r25, 0x07	; 7
+    13ac:	4c d2       	rcall	.+1176   	; 0x1846 <UART_0_puts>
+			//  Deactivitate Bearer
+			sim900_cmd("AT+SAPBR=0,1\r\n\0",simresponse);
+    13ae:	be 01       	movw	r22, r28
+    13b0:	6f 5f       	subi	r22, 0xFF	; 255
+    13b2:	7f 4f       	sbci	r23, 0xFF	; 255
+    13b4:	85 ef       	ldi	r24, 0xF5	; 245
+    13b6:	92 e0       	ldi	r25, 0x02	; 2
+    13b8:	07 d8       	rcall	.-4082   	; 0x3c8 <sim900_cmd>
+    13ba:	2f ef       	ldi	r18, 0xFF	; 255
+    13bc:	84 e3       	ldi	r24, 0x34	; 52
+    13be:	9c e0       	ldi	r25, 0x0C	; 12
+    13c0:	21 50       	subi	r18, 0x01	; 1
+    13c2:	80 40       	sbci	r24, 0x00	; 0
+    13c4:	90 40       	sbci	r25, 0x00	; 0
+    13c6:	e1 f7       	brne	.-8      	; 0x13c0 <get_loc+0x90>
+    13c8:	00 c0       	rjmp	.+0      	; 0x13ca <get_loc+0x9a>
+    13ca:	00 00       	nop
+	
+	while (number_attempts>0){
+		number_attempts--;
+		
+		if (allokay==0){
+			allokay=1;
+    13cc:	01 e0       	ldi	r16, 0x01	; 1
+			UART_0_puts("Deactivating Bearer...\r\n");
+			//  Deactivitate Bearer
+			sim900_cmd("AT+SAPBR=0,1\r\n\0",simresponse);
+			_delay_ms(500);  //  Waiting for response
+		}
+		UART_0_puts("setting Connection type as GPRS...\r\n");
+    13ce:	83 ef       	ldi	r24, 0xF3	; 243
+    13d0:	97 e0       	ldi	r25, 0x07	; 7
+    13d2:	39 d2       	rcall	.+1138   	; 0x1846 <UART_0_puts>
+		//  Setting connection type as GPRS
+		sim900_cmd("AT+SAPBR=3,1,\"CONTYPE\",\"GPRS\"\r\n\0",simresponse);
+    13d4:	be 01       	movw	r22, r28
+    13d6:	6f 5f       	subi	r22, 0xFF	; 255
+    13d8:	7f 4f       	sbci	r23, 0xFF	; 255
+    13da:	85 e0       	ldi	r24, 0x05	; 5
+    13dc:	93 e0       	ldi	r25, 0x03	; 3
+    13de:	0e 94 e4 01 	call	0x3c8	; 0x3c8 <sim900_cmd>
+		if (strcmp(simresponse,"OK\0")!=0){
+    13e2:	60 e1       	ldi	r22, 0x10	; 16
+    13e4:	71 e0       	ldi	r23, 0x01	; 1
+    13e6:	ce 01       	movw	r24, r28
+    13e8:	01 96       	adiw	r24, 0x01	; 1
+    13ea:	9c d2       	rcall	.+1336   	; 0x1924 <strcmp>
+    13ec:	89 2b       	or	r24, r25
+    13ee:	21 f0       	breq	.+8      	; 0x13f8 <get_loc+0xc8>
+			UART_0_puts("Response returns ERROR...\r\n");
+    13f0:	88 e1       	ldi	r24, 0x18	; 24
+    13f2:	98 e0       	ldi	r25, 0x08	; 8
+    13f4:	28 d2       	rcall	.+1104   	; 0x1846 <UART_0_puts>
+			continue;
+    13f6:	0b c1       	rjmp	.+534    	; 0x160e <get_loc+0x2de>
+		}
+		UART_0_puts("Connection Type set to GPRS successfully...\r\n");
+    13f8:	84 e3       	ldi	r24, 0x34	; 52
+    13fa:	98 e0       	ldi	r25, 0x08	; 8
+    13fc:	24 d2       	rcall	.+1096   	; 0x1846 <UART_0_puts>
+		UART_0_puts("Setting APN for Loc....\r\n");
+    13fe:	82 e6       	ldi	r24, 0x62	; 98
+    1400:	98 e0       	ldi	r25, 0x08	; 8
+    1402:	21 d2       	rcall	.+1090   	; 0x1846 <UART_0_puts>
+		//  Setting APN
+		set_apn_str[0]='\0';
+    1404:	f7 01       	movw	r30, r14
+    1406:	10 82       	st	Z, r1
+		strcat(set_apn_str,"AT+SAPBR=3,1,\"APN\",\"");
+    1408:	d7 01       	movw	r26, r14
+    140a:	0d 90       	ld	r0, X+
+    140c:	00 20       	and	r0, r0
+    140e:	e9 f7       	brne	.-6      	; 0x140a <get_loc+0xda>
+    1410:	11 97       	sbiw	r26, 0x01	; 1
+    1412:	ec e7       	ldi	r30, 0x7C	; 124
+    1414:	f8 e0       	ldi	r31, 0x08	; 8
+    1416:	83 2d       	mov	r24, r3
+    1418:	01 90       	ld	r0, Z+
+    141a:	0d 92       	st	X+, r0
+    141c:	8a 95       	dec	r24
+    141e:	e1 f7       	brne	.-8      	; 0x1418 <get_loc+0xe8>
+		strcat(set_apn_str,apn);
+    1420:	b4 01       	movw	r22, r8
+    1422:	c7 01       	movw	r24, r14
+    1424:	74 d2       	rcall	.+1256   	; 0x190e <strcat>
+		strcat(set_apn_str,"\"\r\n\0");
+    1426:	f7 01       	movw	r30, r14
+    1428:	01 90       	ld	r0, Z+
+    142a:	00 20       	and	r0, r0
+    142c:	e9 f7       	brne	.-6      	; 0x1428 <get_loc+0xf8>
+    142e:	31 97       	sbiw	r30, 0x01	; 1
+    1430:	40 82       	st	Z, r4
+    1432:	51 82       	std	Z+1, r5	; 0x01
+    1434:	62 82       	std	Z+2, r6	; 0x02
+    1436:	73 82       	std	Z+3, r7	; 0x03
+		sim900_cmd(set_apn_str,simresponse);
+    1438:	be 01       	movw	r22, r28
+    143a:	6f 5f       	subi	r22, 0xFF	; 255
+    143c:	7f 4f       	sbci	r23, 0xFF	; 255
+    143e:	c7 01       	movw	r24, r14
+    1440:	0e 94 e4 01 	call	0x3c8	; 0x3c8 <sim900_cmd>
+		if (strcmp(simresponse,"OK\0")!=0){
+    1444:	60 e1       	ldi	r22, 0x10	; 16
+    1446:	71 e0       	ldi	r23, 0x01	; 1
+    1448:	ce 01       	movw	r24, r28
+    144a:	01 96       	adiw	r24, 0x01	; 1
+    144c:	6b d2       	rcall	.+1238   	; 0x1924 <strcmp>
+    144e:	89 2b       	or	r24, r25
+    1450:	21 f0       	breq	.+8      	; 0x145a <get_loc+0x12a>
+			UART_0_puts("APN not set...returns ERROR...\r\n");
+    1452:	81 e9       	ldi	r24, 0x91	; 145
+    1454:	98 e0       	ldi	r25, 0x08	; 8
+    1456:	f7 d1       	rcall	.+1006   	; 0x1846 <UART_0_puts>
+			continue;
+    1458:	da c0       	rjmp	.+436    	; 0x160e <get_loc+0x2de>
+		}
+		UART_0_puts("APN set successfully to ");
+    145a:	82 eb       	ldi	r24, 0xB2	; 178
+    145c:	98 e0       	ldi	r25, 0x08	; 8
+    145e:	f3 d1       	rcall	.+998    	; 0x1846 <UART_0_puts>
+		UART_0_puts(apn);
+    1460:	c4 01       	movw	r24, r8
+    1462:	f1 d1       	rcall	.+994    	; 0x1846 <UART_0_puts>
+		UART_0_puts("\r\n");
+    1464:	83 ea       	ldi	r24, 0xA3	; 163
+    1466:	95 e0       	ldi	r25, 0x05	; 5
+    1468:	ee d1       	rcall	.+988    	; 0x1846 <UART_0_puts>
+		
+		//  Open Bearer
+		sim900_cmd("AT+SAPBR=1,1\r\n\0",simresponse);
+    146a:	be 01       	movw	r22, r28
+    146c:	6f 5f       	subi	r22, 0xFF	; 255
+    146e:	7f 4f       	sbci	r23, 0xFF	; 255
+    1470:	86 e2       	ldi	r24, 0x26	; 38
+    1472:	93 e0       	ldi	r25, 0x03	; 3
+    1474:	0e 94 e4 01 	call	0x3c8	; 0x3c8 <sim900_cmd>
+		if (strcmp(simresponse,"OK\0")!=0){
+    1478:	60 e1       	ldi	r22, 0x10	; 16
+    147a:	71 e0       	ldi	r23, 0x01	; 1
+    147c:	ce 01       	movw	r24, r28
+    147e:	01 96       	adiw	r24, 0x01	; 1
+    1480:	51 d2       	rcall	.+1186   	; 0x1924 <strcmp>
+    1482:	89 2b       	or	r24, r25
+    1484:	09 f0       	breq	.+2      	; 0x1488 <get_loc+0x158>
+    1486:	d3 c0       	rjmp	.+422    	; 0x162e <get_loc+0x2fe>
+			allokay=0;
+			continue;
+		}
+	
+		//  Query Bearer
+		sim900_cmd("AT+SAPBR=2,1\r\n\0",simresponse);
+    1488:	be 01       	movw	r22, r28
+    148a:	6f 5f       	subi	r22, 0xFF	; 255
+    148c:	7f 4f       	sbci	r23, 0xFF	; 255
+    148e:	86 e3       	ldi	r24, 0x36	; 54
+    1490:	93 e0       	ldi	r25, 0x03	; 3
+    1492:	0e 94 e4 01 	call	0x3c8	; 0x3c8 <sim900_cmd>
+		if(strcmp(simresponse,"ERROR\0")==0){
+    1496:	60 ec       	ldi	r22, 0xC0	; 192
+    1498:	71 e0       	ldi	r23, 0x01	; 1
+    149a:	ce 01       	movw	r24, r28
+    149c:	01 96       	adiw	r24, 0x01	; 1
+    149e:	42 d2       	rcall	.+1156   	; 0x1924 <strcmp>
+    14a0:	89 2b       	or	r24, r25
+    14a2:	09 f4       	brne	.+2      	; 0x14a6 <get_loc+0x176>
+    14a4:	b4 c0       	rjmp	.+360    	; 0x160e <get_loc+0x2de>
+			continue;
+		}
+		//  Enable reception again for OK
+		sbi(UCSR1B,RXEN1);
+    14a6:	e9 ec       	ldi	r30, 0xC9	; 201
+    14a8:	f0 e0       	ldi	r31, 0x00	; 0
+    14aa:	80 81       	ld	r24, Z
+    14ac:	80 61       	ori	r24, 0x10	; 16
+    14ae:	80 83       	st	Z, r24
+		sim900_response(simresponse);
+    14b0:	ce 01       	movw	r24, r28
+    14b2:	01 96       	adiw	r24, 0x01	; 1
+    14b4:	0e 94 a3 01 	call	0x346	; 0x346 <sim900_response>
+		if (strcmp(simresponse,"OK\0")!=0){
+    14b8:	60 e1       	ldi	r22, 0x10	; 16
+    14ba:	71 e0       	ldi	r23, 0x01	; 1
+    14bc:	ce 01       	movw	r24, r28
+    14be:	01 96       	adiw	r24, 0x01	; 1
+    14c0:	31 d2       	rcall	.+1122   	; 0x1924 <strcmp>
+    14c2:	89 2b       	or	r24, r25
+    14c4:	09 f0       	breq	.+2      	; 0x14c8 <get_loc+0x198>
+    14c6:	b3 c0       	rjmp	.+358    	; 0x162e <get_loc+0x2fe>
+			allokay=0;
+			continue;
+		}
+		UART_0_puts("Fetching Location Coordinates...\r\n");
+    14c8:	8b ec       	ldi	r24, 0xCB	; 203
+    14ca:	98 e0       	ldi	r25, 0x08	; 8
+    14cc:	bc d1       	rcall	.+888    	; 0x1846 <UART_0_puts>
+		//  Get Latitude and Longitude
+		sim900_cmd("AT+CIPGSMLOC=1,1\r\n\0",simresponse);
+    14ce:	be 01       	movw	r22, r28
+    14d0:	6f 5f       	subi	r22, 0xFF	; 255
+    14d2:	7f 4f       	sbci	r23, 0xFF	; 255
+    14d4:	86 e4       	ldi	r24, 0x46	; 70
+    14d6:	93 e0       	ldi	r25, 0x03	; 3
+    14d8:	0e 94 e4 01 	call	0x3c8	; 0x3c8 <sim900_cmd>
+	    if(strcmp(simresponse,"ERROR\0")==0){
+    14dc:	60 ec       	ldi	r22, 0xC0	; 192
+    14de:	71 e0       	ldi	r23, 0x01	; 1
+    14e0:	ce 01       	movw	r24, r28
+    14e2:	01 96       	adiw	r24, 0x01	; 1
+    14e4:	1f d2       	rcall	.+1086   	; 0x1924 <strcmp>
+    14e6:	89 2b       	or	r24, r25
+    14e8:	21 f4       	brne	.+8      	; 0x14f2 <get_loc+0x1c2>
+			UART_0_puts("Location Not found....Retrying...\r\n");
+    14ea:	8e ee       	ldi	r24, 0xEE	; 238
+    14ec:	98 e0       	ldi	r25, 0x08	; 8
+    14ee:	ab d1       	rcall	.+854    	; 0x1846 <UART_0_puts>
+			continue;
+    14f0:	8e c0       	rjmp	.+284    	; 0x160e <get_loc+0x2de>
+		}
+		
+		//  Enable reception again for OK
+		sbi(UCSR1B,RXEN1);
+    14f2:	e9 ec       	ldi	r30, 0xC9	; 201
+    14f4:	f0 e0       	ldi	r31, 0x00	; 0
+    14f6:	80 81       	ld	r24, Z
+    14f8:	80 61       	ori	r24, 0x10	; 16
+    14fa:	80 83       	st	Z, r24
+		sim900_response(dummy);
+    14fc:	ce 01       	movw	r24, r28
+    14fe:	8d 57       	subi	r24, 0x7D	; 125
+    1500:	9f 4f       	sbci	r25, 0xFF	; 255
+    1502:	0e 94 a3 01 	call	0x346	; 0x346 <sim900_response>
+		if (strcmp(dummy,"OK\0")!=0){
+    1506:	60 e1       	ldi	r22, 0x10	; 16
+    1508:	71 e0       	ldi	r23, 0x01	; 1
+    150a:	ce 01       	movw	r24, r28
+    150c:	8d 57       	subi	r24, 0x7D	; 125
+    150e:	9f 4f       	sbci	r25, 0xFF	; 255
+    1510:	09 d2       	rcall	.+1042   	; 0x1924 <strcmp>
+    1512:	89 2b       	or	r24, r25
+    1514:	09 f0       	breq	.+2      	; 0x1518 <get_loc+0x1e8>
+    1516:	8b c0       	rjmp	.+278    	; 0x162e <get_loc+0x2fe>
+			allokay=0;
+			continue;
+		}
+	 
+		i=0;p=0;
+		while (simresponse[i]!=0x2C && i<70){  //  0x2C IS FOR ,
+    1518:	89 81       	ldd	r24, Y+1	; 0x01
+    151a:	8c 32       	cpi	r24, 0x2C	; 44
+    151c:	09 f4       	brne	.+2      	; 0x1520 <get_loc+0x1f0>
+    151e:	7b c0       	rjmp	.+246    	; 0x1616 <get_loc+0x2e6>
+    1520:	fe 01       	movw	r30, r28
+    1522:	32 96       	adiw	r30, 0x02	; 2
+    1524:	80 e0       	ldi	r24, 0x00	; 0
+			i++;
+    1526:	8f 5f       	subi	r24, 0xFF	; 255
+			allokay=0;
+			continue;
+		}
+	 
+		i=0;p=0;
+		while (simresponse[i]!=0x2C && i<70){  //  0x2C IS FOR ,
+    1528:	91 91       	ld	r25, Z+
+    152a:	9c 32       	cpi	r25, 0x2C	; 44
+    152c:	e1 f7       	brne	.-8      	; 0x1526 <get_loc+0x1f6>
+			i++;
+		}
+		i++;
+    152e:	8f 5f       	subi	r24, 0xFF	; 255
+		while (simresponse[i]!=0x2C && i<70){
+    1530:	e1 e0       	ldi	r30, 0x01	; 1
+    1532:	f0 e0       	ldi	r31, 0x00	; 0
+    1534:	ec 0f       	add	r30, r28
+    1536:	fd 1f       	adc	r31, r29
+    1538:	e8 0f       	add	r30, r24
+    153a:	f1 1d       	adc	r31, r1
+    153c:	90 81       	ld	r25, Z
+    153e:	9c 32       	cpi	r25, 0x2C	; 44
+    1540:	b1 f0       	breq	.+44     	; 0x156e <get_loc+0x23e>
+    1542:	86 34       	cpi	r24, 0x46	; 70
+    1544:	10 f0       	brcs	.+4      	; 0x154a <get_loc+0x21a>
+    1546:	15 c0       	rjmp	.+42     	; 0x1572 <get_loc+0x242>
+	 
+		i=0;p=0;
+		while (simresponse[i]!=0x2C && i<70){  //  0x2C IS FOR ,
+			i++;
+		}
+		i++;
+    1548:	81 e0       	ldi	r24, 0x01	; 1
+    154a:	ec 2d       	mov	r30, r12
+    154c:	fd 2d       	mov	r31, r13
+		while (simresponse[i]!=0x2C && i<70){
+			loc_long[p]=simresponse[i];
+    154e:	91 93       	st	Z+, r25
+    1550:	2e 2f       	mov	r18, r30
+    1552:	22 19       	sub	r18, r2
+			p++;i++;	 
+    1554:	8f 5f       	subi	r24, 0xFF	; 255
+		i=0;p=0;
+		while (simresponse[i]!=0x2C && i<70){  //  0x2C IS FOR ,
+			i++;
+		}
+		i++;
+		while (simresponse[i]!=0x2C && i<70){
+    1556:	a1 e0       	ldi	r26, 0x01	; 1
+    1558:	b0 e0       	ldi	r27, 0x00	; 0
+    155a:	ac 0f       	add	r26, r28
+    155c:	bd 1f       	adc	r27, r29
+    155e:	a8 0f       	add	r26, r24
+    1560:	b1 1d       	adc	r27, r1
+    1562:	9c 91       	ld	r25, X
+    1564:	9c 32       	cpi	r25, 0x2C	; 44
+    1566:	31 f0       	breq	.+12     	; 0x1574 <get_loc+0x244>
+    1568:	86 34       	cpi	r24, 0x46	; 70
+    156a:	88 f3       	brcs	.-30     	; 0x154e <get_loc+0x21e>
+    156c:	03 c0       	rjmp	.+6      	; 0x1574 <get_loc+0x244>
+		if (strcmp(dummy,"OK\0")!=0){
+			allokay=0;
+			continue;
+		}
+	 
+		i=0;p=0;
+    156e:	20 e0       	ldi	r18, 0x00	; 0
+    1570:	01 c0       	rjmp	.+2      	; 0x1574 <get_loc+0x244>
+    1572:	20 e0       	ldi	r18, 0x00	; 0
+		i++;
+		while (simresponse[i]!=0x2C && i<70){
+			loc_long[p]=simresponse[i];
+			p++;i++;	 
+		}
+		loc_long[p]='\0';
+    1574:	f6 01       	movw	r30, r12
+    1576:	e2 0f       	add	r30, r18
+    1578:	f1 1d       	adc	r31, r1
+    157a:	10 82       	st	Z, r1
+		i++;
+    157c:	91 e0       	ldi	r25, 0x01	; 1
+    157e:	98 0f       	add	r25, r24
+		p=0;
+		while (simresponse[i]!=0x2C && i<70){
+    1580:	e1 e0       	ldi	r30, 0x01	; 1
+    1582:	f0 e0       	ldi	r31, 0x00	; 0
+    1584:	ec 0f       	add	r30, r28
+    1586:	fd 1f       	adc	r31, r29
+    1588:	e9 0f       	add	r30, r25
+    158a:	f1 1d       	adc	r31, r1
+    158c:	20 81       	ld	r18, Z
+    158e:	2c 32       	cpi	r18, 0x2C	; 44
+    1590:	b1 f0       	breq	.+44     	; 0x15be <get_loc+0x28e>
+    1592:	96 34       	cpi	r25, 0x46	; 70
+    1594:	18 f0       	brcs	.+6      	; 0x159c <get_loc+0x26c>
+    1596:	15 c0       	rjmp	.+42     	; 0x15c2 <get_loc+0x292>
+	 
+		i=0;p=0;
+		while (simresponse[i]!=0x2C && i<70){  //  0x2C IS FOR ,
+			i++;
+		}
+		i++;
+    1598:	81 e0       	ldi	r24, 0x01	; 1
+		while (simresponse[i]!=0x2C && i<70){
+			loc_long[p]=simresponse[i];
+			p++;i++;	 
+		}
+		loc_long[p]='\0';
+		i++;
+    159a:	92 e0       	ldi	r25, 0x02	; 2
+    159c:	f5 01       	movw	r30, r10
+		p=0;
+		while (simresponse[i]!=0x2C && i<70){
+			loc_lat[p]=simresponse[i];
+    159e:	21 93       	st	Z+, r18
+			p++;i++;
+    15a0:	39 2f       	mov	r19, r25
+    15a2:	38 1b       	sub	r19, r24
+    15a4:	9f 5f       	subi	r25, 0xFF	; 255
+			p++;i++;	 
+		}
+		loc_long[p]='\0';
+		i++;
+		p=0;
+		while (simresponse[i]!=0x2C && i<70){
+    15a6:	a1 e0       	ldi	r26, 0x01	; 1
+    15a8:	b0 e0       	ldi	r27, 0x00	; 0
+    15aa:	ac 0f       	add	r26, r28
+    15ac:	bd 1f       	adc	r27, r29
+    15ae:	a9 0f       	add	r26, r25
+    15b0:	b1 1d       	adc	r27, r1
+    15b2:	2c 91       	ld	r18, X
+    15b4:	2c 32       	cpi	r18, 0x2C	; 44
+    15b6:	31 f0       	breq	.+12     	; 0x15c4 <get_loc+0x294>
+    15b8:	96 34       	cpi	r25, 0x46	; 70
+    15ba:	89 f7       	brne	.-30     	; 0x159e <get_loc+0x26e>
+    15bc:	03 c0       	rjmp	.+6      	; 0x15c4 <get_loc+0x294>
+			loc_long[p]=simresponse[i];
+			p++;i++;	 
+		}
+		loc_long[p]='\0';
+		i++;
+		p=0;
+    15be:	30 e0       	ldi	r19, 0x00	; 0
+    15c0:	01 c0       	rjmp	.+2      	; 0x15c4 <get_loc+0x294>
+    15c2:	30 e0       	ldi	r19, 0x00	; 0
+		while (simresponse[i]!=0x2C && i<70){
+			loc_lat[p]=simresponse[i];
+			p++;i++;
+		}
+		loc_lat[p]='\0';
+    15c4:	f5 01       	movw	r30, r10
+    15c6:	e3 0f       	add	r30, r19
+    15c8:	f1 1d       	adc	r31, r1
+    15ca:	10 82       	st	Z, r1
+		UART_0_puts("Location Fetched Successfully...\r\n");
+    15cc:	82 e1       	ldi	r24, 0x12	; 18
+    15ce:	99 e0       	ldi	r25, 0x09	; 9
+    15d0:	3a d1       	rcall	.+628    	; 0x1846 <UART_0_puts>
+		UART_0_puts("Latitude=");
+    15d2:	85 e3       	ldi	r24, 0x35	; 53
+    15d4:	99 e0       	ldi	r25, 0x09	; 9
+    15d6:	37 d1       	rcall	.+622    	; 0x1846 <UART_0_puts>
+		UART_0_puts(loc_lat);
+    15d8:	c5 01       	movw	r24, r10
+    15da:	35 d1       	rcall	.+618    	; 0x1846 <UART_0_puts>
+		UART_0_puts("\r\n");
+    15dc:	83 ea       	ldi	r24, 0xA3	; 163
+    15de:	95 e0       	ldi	r25, 0x05	; 5
+    15e0:	32 d1       	rcall	.+612    	; 0x1846 <UART_0_puts>
+		UART_0_puts("Longitude=");
+    15e2:	8f e3       	ldi	r24, 0x3F	; 63
+    15e4:	99 e0       	ldi	r25, 0x09	; 9
+    15e6:	2f d1       	rcall	.+606    	; 0x1846 <UART_0_puts>
+		UART_0_puts(loc_long);
+    15e8:	c6 01       	movw	r24, r12
+    15ea:	2d d1       	rcall	.+602    	; 0x1846 <UART_0_puts>
+		UART_0_puts("\r\n");
+    15ec:	83 ea       	ldi	r24, 0xA3	; 163
+    15ee:	95 e0       	ldi	r25, 0x05	; 5
+    15f0:	2a d1       	rcall	.+596    	; 0x1846 <UART_0_puts>
+		//  Deactivitate Bearer 
+		sim900_cmd("AT+SAPBR=0,1\r\n\0",simresponse);
+    15f2:	be 01       	movw	r22, r28
+    15f4:	6f 5f       	subi	r22, 0xFF	; 255
+    15f6:	7f 4f       	sbci	r23, 0xFF	; 255
+    15f8:	85 ef       	ldi	r24, 0xF5	; 245
+    15fa:	92 e0       	ldi	r25, 0x02	; 2
+    15fc:	0e 94 e4 01 	call	0x3c8	; 0x3c8 <sim900_cmd>
+		if (strcmp(simresponse,"OK\0")==0){
+    1600:	60 e1       	ldi	r22, 0x10	; 16
+    1602:	71 e0       	ldi	r23, 0x01	; 1
+    1604:	ce 01       	movw	r24, r28
+    1606:	01 96       	adiw	r24, 0x01	; 1
+    1608:	8d d1       	rcall	.+794    	; 0x1924 <strcmp>
+    160a:	89 2b       	or	r24, r25
+    160c:	99 f0       	breq	.+38     	; 0x1634 <get_loc+0x304>
+    160e:	11 50       	subi	r17, 0x01	; 1
+	loc_long[0]='0';loc_long[1]='\0';
+	
+	//  No. of attempts
+	number_attempts=NumberOfAttempts-4;  //  Because some ICs don't have this functionality so reducing number of attempts to save time
+	
+	while (number_attempts>0){
+    1610:	09 f0       	breq	.+2      	; 0x1614 <get_loc+0x2e4>
+    1612:	c8 ce       	rjmp	.-624    	; 0x13a4 <get_loc+0x74>
+    1614:	0f c0       	rjmp	.+30     	; 0x1634 <get_loc+0x304>
+		i=0;p=0;
+		while (simresponse[i]!=0x2C && i<70){  //  0x2C IS FOR ,
+			i++;
+		}
+		i++;
+		while (simresponse[i]!=0x2C && i<70){
+    1616:	9a 81       	ldd	r25, Y+2	; 0x02
+    1618:	9c 32       	cpi	r25, 0x2C	; 44
+    161a:	09 f0       	breq	.+2      	; 0x161e <get_loc+0x2ee>
+    161c:	95 cf       	rjmp	.-214    	; 0x1548 <get_loc+0x218>
+			loc_long[p]=simresponse[i];
+			p++;i++;	 
+		}
+		loc_long[p]='\0';
+    161e:	f6 01       	movw	r30, r12
+    1620:	10 82       	st	Z, r1
+		i++;
+		p=0;
+		while (simresponse[i]!=0x2C && i<70){
+    1622:	2b 81       	ldd	r18, Y+3	; 0x03
+    1624:	2c 32       	cpi	r18, 0x2C	; 44
+    1626:	09 f0       	breq	.+2      	; 0x162a <get_loc+0x2fa>
+    1628:	b7 cf       	rjmp	.-146    	; 0x1598 <get_loc+0x268>
+			loc_long[p]=simresponse[i];
+			p++;i++;	 
+		}
+		loc_long[p]='\0';
+		i++;
+		p=0;
+    162a:	30 e0       	ldi	r19, 0x00	; 0
+    162c:	cb cf       	rjmp	.-106    	; 0x15c4 <get_loc+0x294>
+    162e:	11 50       	subi	r17, 0x01	; 1
+	loc_long[0]='0';loc_long[1]='\0';
+	
+	//  No. of attempts
+	number_attempts=NumberOfAttempts-4;  //  Because some ICs don't have this functionality so reducing number of attempts to save time
+	
+	while (number_attempts>0){
+    1630:	09 f0       	breq	.+2      	; 0x1634 <get_loc+0x304>
+    1632:	ba ce       	rjmp	.-652    	; 0x13a8 <get_loc+0x78>
+		}
+	}
+ 
+	return;
+	 
+    1634:	c9 57       	subi	r28, 0x79	; 121
+    1636:	df 4f       	sbci	r29, 0xFF	; 255
+    1638:	0f b6       	in	r0, 0x3f	; 63
+    163a:	f8 94       	cli
+    163c:	de bf       	out	0x3e, r29	; 62
+    163e:	0f be       	out	0x3f, r0	; 63
+    1640:	cd bf       	out	0x3d, r28	; 61
+    1642:	df 91       	pop	r29
+    1644:	cf 91       	pop	r28
+    1646:	1f 91       	pop	r17
+    1648:	0f 91       	pop	r16
+    164a:	ff 90       	pop	r15
+    164c:	ef 90       	pop	r14
+    164e:	df 90       	pop	r13
+    1650:	cf 90       	pop	r12
+    1652:	bf 90       	pop	r11
+    1654:	af 90       	pop	r10
+    1656:	9f 90       	pop	r9
+    1658:	8f 90       	pop	r8
+    165a:	7f 90       	pop	r7
+    165c:	6f 90       	pop	r6
+    165e:	5f 90       	pop	r5
+    1660:	4f 90       	pop	r4
+    1662:	3f 90       	pop	r3
+    1664:	2f 90       	pop	r2
+    1666:	08 95       	ret
+
+00001668 <main>:
+uint8_t wait_for_data();
+void get_loc(char* apn,char* loc_lat,char* loc_long);
+void reset_SIM900();
+
+
+void main(){
+    1668:	cf 93       	push	r28
+    166a:	df 93       	push	r29
+    166c:	cd b7       	in	r28, 0x3d	; 61
+    166e:	de b7       	in	r29, 0x3e	; 62
+    1670:	c4 58       	subi	r28, 0x84	; 132
+    1672:	d2 40       	sbci	r29, 0x02	; 2
+    1674:	0f b6       	in	r0, 0x3f	; 63
+    1676:	f8 94       	cli
+    1678:	de bf       	out	0x3e, r29	; 62
+    167a:	0f be       	out	0x3f, r0	; 63
+    167c:	cd bf       	out	0x3d, r28	; 61
+	
+	DDRD = 0xFA;
+    167e:	8a ef       	ldi	r24, 0xFA	; 250
+    1680:	8a b9       	out	0x0a, r24	; 10
+	DDRB = 0xFF;
+    1682:	8f ef       	ldi	r24, 0xFF	; 255
+    1684:	84 b9       	out	0x04, r24	; 4
+	
+	// To prevent timer from triggering
+	sbi(PORTB,6);
+    1686:	2e 9a       	sbi	0x05, 6	; 5
+    1688:	2a ea       	ldi	r18, 0xAA	; 170
+    168a:	36 ee       	ldi	r19, 0xE6	; 230
+    168c:	86 e9       	ldi	r24, 0x96	; 150
+    168e:	91 e0       	ldi	r25, 0x01	; 1
+    1690:	21 50       	subi	r18, 0x01	; 1
+    1692:	30 40       	sbci	r19, 0x00	; 0
+    1694:	80 40       	sbci	r24, 0x00	; 0
+    1696:	90 40       	sbci	r25, 0x00	; 0
+    1698:	d9 f7       	brne	.-10     	; 0x1690 <main+0x28>
+    169a:	00 00       	nop
+	
+	// Delay for SIM900 initialization <- To investigate why we need this delay here
+	_delay_ms(20000);
+	
+	uint8_t flag_get_apn=0,flag_get_sms=0,system_on,signal_strength=0,flag_datalog=0,flag_cooldown=0x89;
+    169c:	89 e8       	ldi	r24, 0x89	; 137
+    169e:	8a 83       	std	Y+2, r24	; 0x02
+	uint8_t dummy,data_counter=0;
+	uint16_t e=0,l=0,i=0;
+	char Serial_num[20],customer_no[20],apn[30],user[30],responseimp[512],loc_lat[15],loc_long[15];
+		
+	// Rg Making SIM900 Power ON
+	sbi(PORTB,7);
+    16a0:	2f 9a       	sbi	0x05, 7	; 5
+	
+	UART_0_init();
+    16a2:	bb d0       	rcall	.+374    	; 0x181a <UART_0_init>
+	UART_1_init();
+    16a4:	de d0       	rcall	.+444    	; 0x1862 <UART_1_init>
+    16a6:	ef ec       	ldi	r30, 0xCF	; 207
+    16a8:	f7 e0       	ldi	r31, 0x07	; 7
+    16aa:	31 97       	sbiw	r30, 0x01	; 1
+    16ac:	f1 f7       	brne	.-4      	; 0x16aa <main+0x42>
+    16ae:	00 c0       	rjmp	.+0      	; 0x16b0 <main+0x48>
+    16b0:	00 00       	nop
+	
+	// Enable Timer Interrupt
+	_delay_ms(1);
+	sbi(TIMSK1,TOIE1);
+    16b2:	ef e6       	ldi	r30, 0x6F	; 111
+    16b4:	f0 e0       	ldi	r31, 0x00	; 0
+    16b6:	80 81       	ld	r24, Z
+    16b8:	81 60       	ori	r24, 0x01	; 1
+    16ba:	80 83       	st	Z, r24
+    16bc:	8f ec       	ldi	r24, 0xCF	; 207
+    16be:	97 e0       	ldi	r25, 0x07	; 7
+    16c0:	01 97       	sbiw	r24, 0x01	; 1
+    16c2:	f1 f7       	brne	.-4      	; 0x16c0 <main+0x58>
+    16c4:	00 c0       	rjmp	.+0      	; 0x16c6 <main+0x5e>
+    16c6:	00 00       	nop
+	_delay_ms(1);
+	
+	//  Enabling interrupts
+	sei();
+    16c8:	78 94       	sei
+	
+	// To read previous system on/off status
+	system_on=eeprom_read_byte((uint8_t*)30);
+    16ca:	8e e1       	ldi	r24, 0x1E	; 30
+    16cc:	90 e0       	ldi	r25, 0x00	; 0
+    16ce:	92 d1       	rcall	.+804    	; 0x19f4 <eeprom_read_byte>
+    16d0:	89 83       	std	Y+1, r24	; 0x01
+    16d2:	ef e0       	ldi	r30, 0x0F	; 15
+    16d4:	f7 e2       	ldi	r31, 0x27	; 39
+    16d6:	31 97       	sbiw	r30, 0x01	; 1
+    16d8:	f1 f7       	brne	.-4      	; 0x16d6 <main+0x6e>
+    16da:	00 c0       	rjmp	.+0      	; 0x16dc <main+0x74>
+    16dc:	00 00       	nop
+	_delay_ms(5);
+	
+	//  Reception Enable 
+	sbi(UCSR0B,RXEN0);
+    16de:	e1 ec       	ldi	r30, 0xC1	; 193
+    16e0:	f0 e0       	ldi	r31, 0x00	; 0
+    16e2:	80 81       	ld	r24, Z
+    16e4:	80 61       	ori	r24, 0x10	; 16
+    16e6:	80 83       	st	Z, r24
+	
+	// Start Timer
+	start_timer();
+    16e8:	0e 94 7f 01 	call	0x2fe	; 0x2fe <start_timer>
+
+	//  Stop Timer
+	cbi(TCCR1B,CS12);
+    16ec:	e1 e8       	ldi	r30, 0x81	; 129
+    16ee:	f0 e0       	ldi	r31, 0x00	; 0
+    16f0:	80 81       	ld	r24, Z
+    16f2:	8b 7f       	andi	r24, 0xFB	; 251
+    16f4:	80 83       	st	Z, r24
+    16f6:	7e 01       	movw	r14, r28
+    16f8:	f3 e0       	ldi	r31, 0x03	; 3
+    16fa:	ef 0e       	add	r14, r31
+    16fc:	f1 1c       	adc	r15, r1
+
+	// To read last updated Serial No. of controller
+	e=32;l=0;i=0;
+    16fe:	00 e2       	ldi	r16, 0x20	; 32
+    1700:	10 e0       	ldi	r17, 0x00	; 0
+	while (l<11){
+		Serial_num[i]=eeprom_read_byte((uint8_t*)e);
+    1702:	c8 01       	movw	r24, r16
+    1704:	77 d1       	rcall	.+750    	; 0x19f4 <eeprom_read_byte>
+    1706:	f7 01       	movw	r30, r14
+    1708:	81 93       	st	Z+, r24
+    170a:	7f 01       	movw	r14, r30
+		i++;e++;l++;
+    170c:	0f 5f       	subi	r16, 0xFF	; 255
+    170e:	1f 4f       	sbci	r17, 0xFF	; 255
+	//  Stop Timer
+	cbi(TCCR1B,CS12);
+
+	// To read last updated Serial No. of controller
+	e=32;l=0;i=0;
+	while (l<11){
+    1710:	0b 32       	cpi	r16, 0x2B	; 43
+    1712:	11 05       	cpc	r17, r1
+    1714:	b1 f7       	brne	.-20     	; 0x1702 <main+0x9a>
+		Serial_num[i]=eeprom_read_byte((uint8_t*)e);
+		i++;e++;l++;
+	}
+	Serial_num[i]='\0';
+    1716:	1e 86       	std	Y+14, r1	; 0x0e
+    1718:	7e 01       	movw	r14, r28
+    171a:	f7 e1       	ldi	r31, 0x17	; 23
+    171c:	ef 0e       	add	r14, r31
+    171e:	f1 1c       	adc	r15, r1
+	
+	// To read last updated customer number
+	e=16;i=0;
+    1720:	00 e1       	ldi	r16, 0x10	; 16
+    1722:	10 e0       	ldi	r17, 0x00	; 0
+	while (i<13){
+		customer_no[i]=eeprom_read_byte((uint8_t*)e);
+    1724:	c8 01       	movw	r24, r16
+    1726:	66 d1       	rcall	.+716    	; 0x19f4 <eeprom_read_byte>
+    1728:	f7 01       	movw	r30, r14
+    172a:	81 93       	st	Z+, r24
+    172c:	7f 01       	movw	r14, r30
+		i++;e++;
+    172e:	0f 5f       	subi	r16, 0xFF	; 255
+    1730:	1f 4f       	sbci	r17, 0xFF	; 255
+	}
+	Serial_num[i]='\0';
+	
+	// To read last updated customer number
+	e=16;i=0;
+	while (i<13){
+    1732:	0d 31       	cpi	r16, 0x1D	; 29
+    1734:	11 05       	cpc	r17, r1
+    1736:	b1 f7       	brne	.-20     	; 0x1724 <main+0xbc>
+		customer_no[i]=eeprom_read_byte((uint8_t*)e);
+		i++;e++;
+	}
+	customer_no[i]='\0';
+    1738:	1c a2       	std	Y+36, r1	; 0x24
+	
+	// Delay for SIM900 initialization <- To investigate why we need this delay here
+	_delay_ms(20000);
+	
+	uint8_t flag_get_apn=0,flag_get_sms=0,system_on,signal_strength=0,flag_datalog=0,flag_cooldown=0x89;
+	uint8_t dummy,data_counter=0;
+    173a:	b1 2c       	mov	r11, r1
+	sbi(PORTB,6);
+	
+	// Delay for SIM900 initialization <- To investigate why we need this delay here
+	_delay_ms(20000);
+	
+	uint8_t flag_get_apn=0,flag_get_sms=0,system_on,signal_strength=0,flag_datalog=0,flag_cooldown=0x89;
+    173c:	91 2c       	mov	r9, r1
+    173e:	90 e0       	ldi	r25, 0x00	; 0
+		while (flag_get_apn!=1){
+			flag_get_apn = get_apn(apn,user);
+			data_counter++;
+			if(data_counter>10){
+				// Acquiring data for resetting
+				get_data(system_on,responseimp,2,signal_strength,user,&flag_cooldown);
+    1740:	3e 01       	movw	r6, r28
+    1742:	f2 e0       	ldi	r31, 0x02	; 2
+    1744:	6f 0e       	add	r6, r31
+    1746:	71 1c       	adc	r7, r1
+    1748:	01 c0       	rjmp	.+2      	; 0x174c <main+0xe4>
+    174a:	91 e0       	ldi	r25, 0x01	; 1
+	customer_no[i]='\0';
+
+	while(1){
+		
+		//Initial 1 Hr period will be cooldown period before starting the Datafreeze Algo
+		counter_main++;
+    174c:	80 91 4a 09 	lds	r24, 0x094A
+    1750:	8f 5f       	subi	r24, 0xFF	; 255
+    1752:	80 93 4a 09 	sts	0x094A, r24
+		if (counter_main>45){
+    1756:	8e 32       	cpi	r24, 0x2E	; 46
+    1758:	40 f0       	brcs	.+16     	; 0x176a <main+0x102>
+			flag_cooldown=0x88;
+    175a:	88 e8       	ldi	r24, 0x88	; 136
+    175c:	8a 83       	std	Y+2, r24	; 0x02
+			counter_main=50;
+    175e:	82 e3       	ldi	r24, 0x32	; 50
+    1760:	80 93 4a 09 	sts	0x094A, r24
+			}else{
+			flag_cooldown=0x89;
+		}
+		
+		// To fetch APN
+		while (flag_get_apn!=1){
+    1764:	91 30       	cpi	r25, 0x01	; 1
+    1766:	21 f4       	brne	.+8      	; 0x1770 <main+0x108>
+    1768:	20 c0       	rjmp	.+64     	; 0x17aa <main+0x142>
+		counter_main++;
+		if (counter_main>45){
+			flag_cooldown=0x88;
+			counter_main=50;
+			}else{
+			flag_cooldown=0x89;
+    176a:	89 e8       	ldi	r24, 0x89	; 137
+    176c:	8a 83       	std	Y+2, r24	; 0x02
+    176e:	fa cf       	rjmp	.-12     	; 0x1764 <main+0xfc>
+			flag_get_apn = get_apn(apn,user);
+			data_counter++;
+			if(data_counter>10){
+				// Acquiring data for resetting
+				get_data(system_on,responseimp,2,signal_strength,user,&flag_cooldown);
+				data_counter=0;
+    1770:	d1 2c       	mov	r13, r1
+			flag_cooldown=0x89;
+		}
+		
+		// To fetch APN
+		while (flag_get_apn!=1){
+			flag_get_apn = get_apn(apn,user);
+    1772:	be 01       	movw	r22, r28
+    1774:	67 5b       	subi	r22, 0xB7	; 183
+    1776:	7f 4f       	sbci	r23, 0xFF	; 255
+    1778:	ce 01       	movw	r24, r28
+    177a:	8b 96       	adiw	r24, 0x2b	; 43
+    177c:	0e 94 ff 01 	call	0x3fe	; 0x3fe <get_apn>
+    1780:	f8 2e       	mov	r15, r24
+			data_counter++;
+    1782:	b3 94       	inc	r11
+			if(data_counter>10){
+    1784:	2a e0       	ldi	r18, 0x0A	; 10
+    1786:	2b 15       	cp	r18, r11
+    1788:	68 f4       	brcc	.+26     	; 0x17a4 <main+0x13c>
+				// Acquiring data for resetting
+				get_data(system_on,responseimp,2,signal_strength,user,&flag_cooldown);
+    178a:	e6 2c       	mov	r14, r6
+    178c:	8e 01       	movw	r16, r28
+    178e:	07 5b       	subi	r16, 0xB7	; 183
+    1790:	1f 4f       	sbci	r17, 0xFF	; 255
+    1792:	29 2d       	mov	r18, r9
+    1794:	42 e0       	ldi	r20, 0x02	; 2
+    1796:	be 01       	movw	r22, r28
+    1798:	69 59       	subi	r22, 0x99	; 153
+    179a:	7f 4f       	sbci	r23, 0xFF	; 255
+    179c:	89 81       	ldd	r24, Y+1	; 0x01
+    179e:	0e 94 66 00 	call	0xcc	; 0xcc <get_data>
+				data_counter=0;
+    17a2:	bd 2c       	mov	r11, r13
+			}else{
+			flag_cooldown=0x89;
+		}
+		
+		// To fetch APN
+		while (flag_get_apn!=1){
+    17a4:	31 e0       	ldi	r19, 0x01	; 1
+    17a6:	f3 12       	cpse	r15, r19
+    17a8:	e4 cf       	rjmp	.-56     	; 0x1772 <main+0x10a>
+			
+			}
+		}
+		
+		//  Get Location
+		get_loc(apn,loc_lat,loc_long);
+    17aa:	ae 01       	movw	r20, r28
+    17ac:	4a 58       	subi	r20, 0x8A	; 138
+    17ae:	5d 4f       	sbci	r21, 0xFD	; 253
+    17b0:	be 01       	movw	r22, r28
+    17b2:	69 59       	subi	r22, 0x99	; 153
+    17b4:	7d 4f       	sbci	r23, 0xFD	; 253
+    17b6:	ce 01       	movw	r24, r28
+    17b8:	8b 96       	adiw	r24, 0x2b	; 43
+    17ba:	ba dd       	rcall	.-1164   	; 0x1330 <get_loc>
+		
+		//  To get signal strength
+		signal_strength=get_signalstrength();
+    17bc:	e9 d8       	rcall	.-3630   	; 0x990 <get_signalstrength>
+    17be:	98 2e       	mov	r9, r24
+		
+		// To fetch SMS 	
+		data_counter=NumberOfAttempts; // Number of attempts to be made if SMS fetch fails
+    17c0:	0f 2e       	mov	r0, r31
+    17c2:	f6 e0       	ldi	r31, 0x06	; 6
+    17c4:	bf 2e       	mov	r11, r31
+    17c6:	f0 2d       	mov	r31, r0
+		while (data_counter!=0){
+			flag_get_sms = get_sms(&system_on,customer_no,Serial_num);
+    17c8:	ae 01       	movw	r20, r28
+    17ca:	4d 5f       	subi	r20, 0xFD	; 253
+    17cc:	5f 4f       	sbci	r21, 0xFF	; 255
+    17ce:	be 01       	movw	r22, r28
+    17d0:	69 5e       	subi	r22, 0xE9	; 233
+    17d2:	7f 4f       	sbci	r23, 0xFF	; 255
+    17d4:	ce 01       	movw	r24, r28
+    17d6:	01 96       	adiw	r24, 0x01	; 1
+    17d8:	22 d9       	rcall	.-3516   	; 0xa1e <get_sms>
+			data_counter--;
+    17da:	ba 94       	dec	r11
+			if(flag_get_sms==1){  // SMS Fetch successful
+    17dc:	81 30       	cpi	r24, 0x01	; 1
+    17de:	11 f0       	breq	.+4      	; 0x17e4 <main+0x17c>
+		//  To get signal strength
+		signal_strength=get_signalstrength();
+		
+		// To fetch SMS 	
+		data_counter=NumberOfAttempts; // Number of attempts to be made if SMS fetch fails
+		while (data_counter!=0){
+    17e0:	b1 10       	cpse	r11, r1
+    17e2:	f2 cf       	rjmp	.-28     	; 0x17c8 <main+0x160>
+				break;
+			}
+		}
+		
+ 		// Logging Data
+		flag_datalog = dataLog(system_on,apn,Serial_num,signal_strength,user,loc_lat,loc_long,flag_cooldown);
+    17e4:	aa 80       	ldd	r10, Y+2	; 0x02
+    17e6:	ce 01       	movw	r24, r28
+    17e8:	8a 58       	subi	r24, 0x8A	; 138
+    17ea:	9d 4f       	sbci	r25, 0xFD	; 253
+    17ec:	6c 01       	movw	r12, r24
+    17ee:	fe 01       	movw	r30, r28
+    17f0:	e9 59       	subi	r30, 0x99	; 153
+    17f2:	fd 4f       	sbci	r31, 0xFD	; 253
+    17f4:	7f 01       	movw	r14, r30
+    17f6:	8e 01       	movw	r16, r28
+    17f8:	07 5b       	subi	r16, 0xB7	; 183
+    17fa:	1f 4f       	sbci	r17, 0xFF	; 255
+    17fc:	29 2d       	mov	r18, r9
+    17fe:	ae 01       	movw	r20, r28
+    1800:	4d 5f       	subi	r20, 0xFD	; 253
+    1802:	5f 4f       	sbci	r21, 0xFF	; 255
+    1804:	be 01       	movw	r22, r28
+    1806:	65 5d       	subi	r22, 0xD5	; 213
+    1808:	7f 4f       	sbci	r23, 0xFF	; 255
+    180a:	89 81       	ldd	r24, Y+1	; 0x01
+    180c:	2a dd       	rcall	.-1452   	; 0x1262 <dataLog>
+		if(flag_datalog==0){
+    180e:	81 11       	cpse	r24, r1
+    1810:	9c cf       	rjmp	.-200    	; 0x174a <main+0xe2>
+			reset_SIM900();  //  Reset SIM900 to get CGATT=1 sooner
+    1812:	0e 94 f2 03 	call	0x7e4	; 0x7e4 <reset_SIM900>
+			flag_get_apn=0;  //  Getting APN again since we're resetting the chip
+    1816:	90 e0       	ldi	r25, 0x00	; 0
+    1818:	99 cf       	rjmp	.-206    	; 0x174c <main+0xe4>
+
+0000181a <UART_0_init>:
+#include <util/delay.h>
+#include "UART_0.h"
+
+void UART_0_init()
+{
+	UBRR0H = (unsigned char) (((F_CPU/(BAUD*16UL))-1)>>8) ;
+    181a:	10 92 c5 00 	sts	0x00C5, r1
+	UBRR0L = (unsigned char) (F_CPU/(BAUD*16UL))-1;
+    181e:	83 e3       	ldi	r24, 0x33	; 51
+    1820:	80 93 c4 00 	sts	0x00C4, r24
+	
+	UCSR0A=0x00;
+    1824:	10 92 c0 00 	sts	0x00C0, r1
+
+	UCSR0C=0b10000110;
+    1828:	86 e8       	ldi	r24, 0x86	; 134
+    182a:	80 93 c2 00 	sts	0x00C2, r24
+	// Set frame format: asynchronous, 8data, no parity, 1 stop bit
+	UCSR0B=0x18; 
+    182e:	88 e1       	ldi	r24, 0x18	; 24
+    1830:	80 93 c1 00 	sts	0x00C1, r24
+    1834:	08 95       	ret
+
+00001836 <UART_0_putc>:
+}
+void UART_0_putc(unsigned char data)
+{
+
+	while ( !(UCSR0A & (1<<UDRE0)) );  /* Wait for empty transmit buffer */
+    1836:	e0 ec       	ldi	r30, 0xC0	; 192
+    1838:	f0 e0       	ldi	r31, 0x00	; 0
+    183a:	90 81       	ld	r25, Z
+    183c:	95 ff       	sbrs	r25, 5
+    183e:	fd cf       	rjmp	.-6      	; 0x183a <UART_0_putc+0x4>
+
+	UDR0 = data;         /* Start transmition */
+    1840:	80 93 c6 00 	sts	0x00C6, r24
+    1844:	08 95       	ret
+
+00001846 <UART_0_puts>:
+
+}
+void UART_0_puts(char *str)
+{
+    1846:	cf 93       	push	r28
+    1848:	df 93       	push	r29
+    184a:	ec 01       	movw	r28, r24
+	
+	while( *str != '\0' ){
+    184c:	88 81       	ld	r24, Y
+    184e:	88 23       	and	r24, r24
+    1850:	29 f0       	breq	.+10     	; 0x185c <UART_0_puts+0x16>
+    1852:	21 96       	adiw	r28, 0x01	; 1
+		
+		UART_0_putc( *str++ );
+    1854:	f0 df       	rcall	.-32     	; 0x1836 <UART_0_putc>
+
+}
+void UART_0_puts(char *str)
+{
+	
+	while( *str != '\0' ){
+    1856:	89 91       	ld	r24, Y+
+    1858:	81 11       	cpse	r24, r1
+    185a:	fc cf       	rjmp	.-8      	; 0x1854 <UART_0_puts+0xe>
+		
+		UART_0_putc( *str++ );
+	}
+}
+    185c:	df 91       	pop	r29
+    185e:	cf 91       	pop	r28
+    1860:	08 95       	ret
+
+00001862 <UART_1_init>:
+#include <util/delay.h>
+#include "UART_1.h"
+
+void UART_1_init()
+{
+	UBRR1H = (unsigned char) (((F_CPU/(BAUD*16UL))-1)>>8) ;
+    1862:	10 92 cd 00 	sts	0x00CD, r1
+	UBRR1L = (unsigned char) (F_CPU/(BAUD*16UL))-1;
+    1866:	83 e3       	ldi	r24, 0x33	; 51
+    1868:	80 93 cc 00 	sts	0x00CC, r24
+	
+	UCSR1A=0x00;
+    186c:	10 92 c8 00 	sts	0x00C8, r1
+	UCSR1B=0x00;
+    1870:	e9 ec       	ldi	r30, 0xC9	; 201
+    1872:	f0 e0       	ldi	r31, 0x00	; 0
+    1874:	10 82       	st	Z, r1
+
+	UCSR1C=0b10000110;
+    1876:	86 e8       	ldi	r24, 0x86	; 134
+    1878:	80 93 ca 00 	sts	0x00CA, r24
+	// Set frame format: asynchronous, 8data, no parity, 1 stop bit
+	UCSR1B=0x18;
+    187c:	88 e1       	ldi	r24, 0x18	; 24
+    187e:	80 83       	st	Z, r24
+    1880:	08 95       	ret
+
+00001882 <UART_1_putc>:
+}
+void UART_1_putc(unsigned char data)
+{
+
+	while ( !(UCSR1A & (1<<UDRE1)) );  /* Wait for empty transmit buffer */
+    1882:	e8 ec       	ldi	r30, 0xC8	; 200
+    1884:	f0 e0       	ldi	r31, 0x00	; 0
+    1886:	90 81       	ld	r25, Z
+    1888:	95 ff       	sbrs	r25, 5
+    188a:	fd cf       	rjmp	.-6      	; 0x1886 <UART_1_putc+0x4>
+
+	UDR1 = data;         /* Start transmition */
+    188c:	80 93 ce 00 	sts	0x00CE, r24
+    1890:	08 95       	ret
+
+00001892 <UART_1_puts>:
+
+}
+void UART_1_puts(char *str)
+{
+    1892:	cf 93       	push	r28
+    1894:	df 93       	push	r29
+    1896:	ec 01       	movw	r28, r24
+	
+	while( *str != '\0' ){
+    1898:	88 81       	ld	r24, Y
+    189a:	88 23       	and	r24, r24
+    189c:	29 f0       	breq	.+10     	; 0x18a8 <UART_1_puts+0x16>
+    189e:	21 96       	adiw	r28, 0x01	; 1
+		
+		UART_1_putc( *str++ );
+    18a0:	f0 df       	rcall	.-32     	; 0x1882 <UART_1_putc>
+
+}
+void UART_1_puts(char *str)
+{
+	
+	while( *str != '\0' ){
+    18a2:	89 91       	ld	r24, Y+
+    18a4:	81 11       	cpse	r24, r1
+    18a6:	fc cf       	rjmp	.-8      	; 0x18a0 <UART_1_puts+0xe>
+		
+		UART_1_putc( *str++ );
+	}
+}
+    18a8:	df 91       	pop	r29
+    18aa:	cf 91       	pop	r28
+    18ac:	08 95       	ret
+
+000018ae <atoi>:
+    18ae:	fc 01       	movw	r30, r24
+    18b0:	88 27       	eor	r24, r24
+    18b2:	99 27       	eor	r25, r25
+    18b4:	e8 94       	clt
+    18b6:	21 91       	ld	r18, Z+
+    18b8:	20 32       	cpi	r18, 0x20	; 32
+    18ba:	e9 f3       	breq	.-6      	; 0x18b6 <atoi+0x8>
+    18bc:	29 30       	cpi	r18, 0x09	; 9
+    18be:	10 f0       	brcs	.+4      	; 0x18c4 <atoi+0x16>
+    18c0:	2e 30       	cpi	r18, 0x0E	; 14
+    18c2:	c8 f3       	brcs	.-14     	; 0x18b6 <atoi+0x8>
+    18c4:	2b 32       	cpi	r18, 0x2B	; 43
+    18c6:	39 f0       	breq	.+14     	; 0x18d6 <atoi+0x28>
+    18c8:	2d 32       	cpi	r18, 0x2D	; 45
+    18ca:	31 f4       	brne	.+12     	; 0x18d8 <atoi+0x2a>
+    18cc:	68 94       	set
+    18ce:	03 c0       	rjmp	.+6      	; 0x18d6 <atoi+0x28>
+    18d0:	60 d0       	rcall	.+192    	; 0x1992 <__mulhi_const_10>
+    18d2:	82 0f       	add	r24, r18
+    18d4:	91 1d       	adc	r25, r1
+    18d6:	21 91       	ld	r18, Z+
+    18d8:	20 53       	subi	r18, 0x30	; 48
+    18da:	2a 30       	cpi	r18, 0x0A	; 10
+    18dc:	c8 f3       	brcs	.-14     	; 0x18d0 <atoi+0x22>
+    18de:	1e f4       	brtc	.+6      	; 0x18e6 <atoi+0x38>
+    18e0:	90 95       	com	r25
+    18e2:	81 95       	neg	r24
+    18e4:	9f 4f       	sbci	r25, 0xFF	; 255
+    18e6:	08 95       	ret
+
+000018e8 <strcasecmp>:
+    18e8:	fb 01       	movw	r30, r22
+    18ea:	dc 01       	movw	r26, r24
+    18ec:	8d 91       	ld	r24, X+
+    18ee:	81 34       	cpi	r24, 0x41	; 65
+    18f0:	1c f0       	brlt	.+6      	; 0x18f8 <strcasecmp+0x10>
+    18f2:	8b 35       	cpi	r24, 0x5B	; 91
+    18f4:	0c f4       	brge	.+2      	; 0x18f8 <strcasecmp+0x10>
+    18f6:	80 5e       	subi	r24, 0xE0	; 224
+    18f8:	61 91       	ld	r22, Z+
+    18fa:	61 34       	cpi	r22, 0x41	; 65
+    18fc:	1c f0       	brlt	.+6      	; 0x1904 <strcasecmp+0x1c>
+    18fe:	6b 35       	cpi	r22, 0x5B	; 91
+    1900:	0c f4       	brge	.+2      	; 0x1904 <strcasecmp+0x1c>
+    1902:	60 5e       	subi	r22, 0xE0	; 224
+    1904:	86 1b       	sub	r24, r22
+    1906:	61 11       	cpse	r22, r1
+    1908:	89 f3       	breq	.-30     	; 0x18ec <strcasecmp+0x4>
+    190a:	99 0b       	sbc	r25, r25
+    190c:	08 95       	ret
+
+0000190e <strcat>:
+    190e:	fb 01       	movw	r30, r22
+    1910:	dc 01       	movw	r26, r24
+    1912:	0d 90       	ld	r0, X+
+    1914:	00 20       	and	r0, r0
+    1916:	e9 f7       	brne	.-6      	; 0x1912 <strcat+0x4>
+    1918:	11 97       	sbiw	r26, 0x01	; 1
+    191a:	01 90       	ld	r0, Z+
+    191c:	0d 92       	st	X+, r0
+    191e:	00 20       	and	r0, r0
+    1920:	e1 f7       	brne	.-8      	; 0x191a <strcat+0xc>
+    1922:	08 95       	ret
+
+00001924 <strcmp>:
+    1924:	fb 01       	movw	r30, r22
+    1926:	dc 01       	movw	r26, r24
+    1928:	8d 91       	ld	r24, X+
+    192a:	01 90       	ld	r0, Z+
+    192c:	80 19       	sub	r24, r0
+    192e:	01 10       	cpse	r0, r1
+    1930:	d9 f3       	breq	.-10     	; 0x1928 <strcmp+0x4>
+    1932:	99 0b       	sbc	r25, r25
+    1934:	08 95       	ret
+
+00001936 <strcpy>:
+    1936:	fb 01       	movw	r30, r22
+    1938:	dc 01       	movw	r26, r24
+    193a:	01 90       	ld	r0, Z+
+    193c:	0d 92       	st	X+, r0
+    193e:	00 20       	and	r0, r0
+    1940:	e1 f7       	brne	.-8      	; 0x193a <strcpy+0x4>
+    1942:	08 95       	ret
+
+00001944 <strncmp>:
+    1944:	fb 01       	movw	r30, r22
+    1946:	dc 01       	movw	r26, r24
+    1948:	41 50       	subi	r20, 0x01	; 1
+    194a:	50 40       	sbci	r21, 0x00	; 0
+    194c:	30 f0       	brcs	.+12     	; 0x195a <strncmp+0x16>
+    194e:	8d 91       	ld	r24, X+
+    1950:	01 90       	ld	r0, Z+
+    1952:	80 19       	sub	r24, r0
+    1954:	19 f4       	brne	.+6      	; 0x195c <strncmp+0x18>
+    1956:	00 20       	and	r0, r0
+    1958:	b9 f7       	brne	.-18     	; 0x1948 <strncmp+0x4>
+    195a:	88 1b       	sub	r24, r24
+    195c:	99 0b       	sbc	r25, r25
+    195e:	08 95       	ret
+
+00001960 <strncpy>:
+    1960:	fb 01       	movw	r30, r22
+    1962:	dc 01       	movw	r26, r24
+    1964:	41 50       	subi	r20, 0x01	; 1
+    1966:	50 40       	sbci	r21, 0x00	; 0
+    1968:	48 f0       	brcs	.+18     	; 0x197c <strncpy+0x1c>
+    196a:	01 90       	ld	r0, Z+
+    196c:	0d 92       	st	X+, r0
+    196e:	00 20       	and	r0, r0
+    1970:	c9 f7       	brne	.-14     	; 0x1964 <strncpy+0x4>
+    1972:	01 c0       	rjmp	.+2      	; 0x1976 <strncpy+0x16>
+    1974:	1d 92       	st	X+, r1
+    1976:	41 50       	subi	r20, 0x01	; 1
+    1978:	50 40       	sbci	r21, 0x00	; 0
+    197a:	e0 f7       	brcc	.-8      	; 0x1974 <strncpy+0x14>
+    197c:	08 95       	ret
+
+0000197e <__itoa_ncheck>:
+    197e:	bb 27       	eor	r27, r27
+    1980:	4a 30       	cpi	r20, 0x0A	; 10
+    1982:	31 f4       	brne	.+12     	; 0x1990 <__itoa_ncheck+0x12>
+    1984:	99 23       	and	r25, r25
+    1986:	22 f4       	brpl	.+8      	; 0x1990 <__itoa_ncheck+0x12>
+    1988:	bd e2       	ldi	r27, 0x2D	; 45
+    198a:	90 95       	com	r25
+    198c:	81 95       	neg	r24
+    198e:	9f 4f       	sbci	r25, 0xFF	; 255
+    1990:	09 c0       	rjmp	.+18     	; 0x19a4 <__utoa_common>
+
+00001992 <__mulhi_const_10>:
+    1992:	7a e0       	ldi	r23, 0x0A	; 10
+    1994:	97 9f       	mul	r25, r23
+    1996:	90 2d       	mov	r25, r0
+    1998:	87 9f       	mul	r24, r23
+    199a:	80 2d       	mov	r24, r0
+    199c:	91 0d       	add	r25, r1
+    199e:	11 24       	eor	r1, r1
+    19a0:	08 95       	ret
+
+000019a2 <__utoa_ncheck>:
+    19a2:	bb 27       	eor	r27, r27
+
+000019a4 <__utoa_common>:
+    19a4:	fb 01       	movw	r30, r22
+    19a6:	55 27       	eor	r21, r21
+    19a8:	aa 27       	eor	r26, r26
+    19aa:	88 0f       	add	r24, r24
+    19ac:	99 1f       	adc	r25, r25
+    19ae:	aa 1f       	adc	r26, r26
+    19b0:	a4 17       	cp	r26, r20
+    19b2:	10 f0       	brcs	.+4      	; 0x19b8 <__utoa_common+0x14>
+    19b4:	a4 1b       	sub	r26, r20
+    19b6:	83 95       	inc	r24
+    19b8:	50 51       	subi	r21, 0x10	; 16
+    19ba:	b9 f7       	brne	.-18     	; 0x19aa <__utoa_common+0x6>
+    19bc:	a0 5d       	subi	r26, 0xD0	; 208
+    19be:	aa 33       	cpi	r26, 0x3A	; 58
+    19c0:	08 f0       	brcs	.+2      	; 0x19c4 <__utoa_common+0x20>
+    19c2:	a9 5d       	subi	r26, 0xD9	; 217
+    19c4:	a1 93       	st	Z+, r26
+    19c6:	00 97       	sbiw	r24, 0x00	; 0
+    19c8:	79 f7       	brne	.-34     	; 0x19a8 <__utoa_common+0x4>
+    19ca:	b1 11       	cpse	r27, r1
+    19cc:	b1 93       	st	Z+, r27
+    19ce:	11 92       	st	Z+, r1
+    19d0:	cb 01       	movw	r24, r22
+    19d2:	00 c0       	rjmp	.+0      	; 0x19d4 <strrev>
+
+000019d4 <strrev>:
+    19d4:	dc 01       	movw	r26, r24
+    19d6:	fc 01       	movw	r30, r24
+    19d8:	67 2f       	mov	r22, r23
+    19da:	71 91       	ld	r23, Z+
+    19dc:	77 23       	and	r23, r23
+    19de:	e1 f7       	brne	.-8      	; 0x19d8 <strrev+0x4>
+    19e0:	32 97       	sbiw	r30, 0x02	; 2
+    19e2:	04 c0       	rjmp	.+8      	; 0x19ec <strrev+0x18>
+    19e4:	7c 91       	ld	r23, X
+    19e6:	6d 93       	st	X+, r22
+    19e8:	70 83       	st	Z, r23
+    19ea:	62 91       	ld	r22, -Z
+    19ec:	ae 17       	cp	r26, r30
+    19ee:	bf 07       	cpc	r27, r31
+    19f0:	c8 f3       	brcs	.-14     	; 0x19e4 <strrev+0x10>
+    19f2:	08 95       	ret
+
+000019f4 <eeprom_read_byte>:
+    19f4:	f9 99       	sbic	0x1f, 1	; 31
+    19f6:	fe cf       	rjmp	.-4      	; 0x19f4 <eeprom_read_byte>
+    19f8:	92 bd       	out	0x22, r25	; 34
+    19fa:	81 bd       	out	0x21, r24	; 33
+    19fc:	f8 9a       	sbi	0x1f, 0	; 31
+    19fe:	99 27       	eor	r25, r25
+    1a00:	80 b5       	in	r24, 0x20	; 32
+    1a02:	08 95       	ret
+
+00001a04 <eeprom_update_byte>:
+    1a04:	26 2f       	mov	r18, r22
+
+00001a06 <eeprom_update_r18>:
+    1a06:	f9 99       	sbic	0x1f, 1	; 31
+    1a08:	fe cf       	rjmp	.-4      	; 0x1a06 <eeprom_update_r18>
+    1a0a:	92 bd       	out	0x22, r25	; 34
+    1a0c:	81 bd       	out	0x21, r24	; 33
+    1a0e:	f8 9a       	sbi	0x1f, 0	; 31
+    1a10:	01 97       	sbiw	r24, 0x01	; 1
+    1a12:	00 b4       	in	r0, 0x20	; 32
+    1a14:	02 16       	cp	r0, r18
+    1a16:	39 f0       	breq	.+14     	; 0x1a26 <eeprom_update_r18+0x20>
+    1a18:	1f ba       	out	0x1f, r1	; 31
+    1a1a:	20 bd       	out	0x20, r18	; 32
+    1a1c:	0f b6       	in	r0, 0x3f	; 63
+    1a1e:	f8 94       	cli
+    1a20:	fa 9a       	sbi	0x1f, 2	; 31
+    1a22:	f9 9a       	sbi	0x1f, 1	; 31
+    1a24:	0f be       	out	0x3f, r0	; 63
+    1a26:	08 95       	ret
+
+00001a28 <_exit>:
+    1a28:	f8 94       	cli
+
+00001a2a <__stop_program>:
+    1a2a:	ff cf       	rjmp	.-2      	; 0x1a2a <__stop_program>

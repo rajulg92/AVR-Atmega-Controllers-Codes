@@ -1,0 +1,140 @@
+/*
+ * GccApplication2.cpp
+ *
+ * Created: 17-11-2014 14:46:02
+ *  Author: Sach
+ */ 
+
+
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+
+#define set_bit(x,y)	x |=(1<<y)
+#define clear_bit(x,y)	x &=~(1<<y)
+#define BIT(x)  (1<<(x))
+#define CHECKBIT(x,b)  x&b
+#define SETBIT(x,b)  x|=b;
+#define CLEARBIT(x,b)  x&=~b;
+#define TOGGLEBIT(x,b)  x^=b;
+
+
+#define sen1 	PORTD				//sensor array
+#define sen1pin	5
+#define sen2	PORTD
+#define sen2pin	7
+#define sen3	PORTD
+#define sen3pin	6
+
+
+
+float error,Kp=10;
+
+
+
+/*void port_init()
+{
+	DDRD |= (1 << PD5) | (1 << PD4) | (1 << PD3) | (1 << PD2);
+	DDRC &= ~(1 << PC0)& ~(1 << PC1) & ~(1 << PC3) & ~(1 << PC4) & ~(1 << PC7);
+	DDRB &= ~(1 << PB2)& ~(1 << PB1) & ~(1 << PB3);
+	DDRA &= ~(1 << PA2);
+}
+*/
+
+
+void delay_ns(unsigned char tim)
+{
+	for(int j=0;j<tim;j++)
+	{
+		for(int k=0;k<10;k++)
+	{};
+	}
+}
+
+
+
+
+
+
+
+void left(int speed)
+{
+	
+	SETBIT(PORTB,BIT(1));
+	CLEARBIT(PORTB,BIT(2));
+	CLEARBIT(PORTC,BIT(0));
+	CLEARBIT(PORTC,BIT(1));
+	delay_ns(speed);
+	CLEARBIT(PORTC,BIT(0));
+	CLEARBIT(PORTC,BIT(1));
+	CLEARBIT(PORTB,BIT(2));
+	CLEARBIT(PORTB,BIT(1));
+	delay_ns(200-speed);
+
+}
+
+void right(int speed)
+{       
+	SETBIT(PORTC,BIT(0));
+	CLEARBIT(PORTC,BIT(1));
+	CLEARBIT(PORTB,BIT(1));
+	CLEARBIT(PORTB,BIT(2));
+	delay_ns(speed);
+	CLEARBIT(PORTC,BIT(0));
+	CLEARBIT(PORTC,BIT(1));
+	CLEARBIT(PORTB,BIT(2));
+	CLEARBIT(PORTB,BIT(1));
+	delay_ns(200-speed);
+	
+}
+
+
+
+
+
+void line_trace(void) 
+{
+	if(bit_is_set(sen1,sen1pin) && bit_is_set(sen2,sen2pin) && bit_is_set(sen3,sen3pin) )						// 3 sensors set //456
+	{
+		error=0;
+	}
+	else if(bit_is_set(sen1,sen1pin) && bit_is_set(sen2,sen2pin) 	)				// 3 sensors set //456
+	{
+	error=-1;
+	}
+	else if(bit_is_set(sen2,sen2pin) && bit_is_set(sen3,sen3pin) )						// 3 sensors set //456
+	{
+	error=1;
+	}
+	else if(bit_is_set(sen1,sen1pin) )						// 3 sensors set //456
+	{
+	error=-2;
+	}
+	else if(bit_is_set(sen3,sen3pin)  )						// 3 sensors set //456
+	{
+	error=2;
+	}
+	
+	
+	
+	
+	error = ceil(error*Kp);
+	left(100-error);
+	right(100+error);
+
+
+}
+
+
+
+
+
+int main(void)
+{
+	while(1)
+	{
+		line_trace();
+	}
+}
+
+	

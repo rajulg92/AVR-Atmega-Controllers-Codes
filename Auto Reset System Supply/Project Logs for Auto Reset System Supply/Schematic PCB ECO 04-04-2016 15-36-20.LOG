@@ -1,0 +1,9 @@
+Change Component Designator: OldDesignator=Q1 NewDesignator=Q2
+Change Component Designator: OldDesignator=Q? NewDesignator=Q1
+Change Component Designator: OldDesignator=R1 NewDesignator=R2
+Change Component Designator: OldDesignator=R1 NewDesignator=R6
+Change Component Designator: OldDesignator=R2 NewDesignator=R1
+Change Component Designator: OldDesignator=R6 NewDesignator=R7
+Added Component: Designator=R5(AXIAL-0.4)
+Added Pin To Net: NetName=NetP1_9 Pin=R4-1
+Added Pin To Net: NetName=NetD3_1 Pin=R5-1

@@ -1,0 +1,191 @@
+   1               		.file	"main.c"
+   2               		.arch atmega640
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	main
+  20               	main:
+  21               	.LFB6:
+  22               	.LM1:
+  23               	/* prologue: frame size=0 */
+  24 0000 C0E0      		ldi r28,lo8(__stack - 0)
+  25 0002 D0E0      		ldi r29,hi8(__stack - 0)
+  26 0004 DEBF      		out __SP_H__,r29
+  27 0006 CDBF      		out __SP_L__,r28
+  28               	/* prologue end (size=4) */
+  29               	.LM2:
+  30 0008 8FEF      		ldi r24,lo8(-1)
+  31 000a 87B9      		out 39-0x20,r24
+  32               	.LM3:
+  33 000c 84B9      		out 36-0x20,r24
+  34               	.LM4:
+  35 000e 81B9      		out 33-0x20,r24
+  36               	.LM5:
+  37 0010 8AB9      		out 42-0x20,r24
+  38               	.LM6:
+  39 0012 8DB9      		out 45-0x20,r24
+  40               	.LM7:
+  41 0014 80BB      		out 48-0x20,r24
+  42               	.LM8:
+  43 0016 83BB      		out 51-0x20,r24
+  44               	.LM9:
+  45 0018 8093 0101 		sts 257,r24
+  46               	.LM10:
+  47 001c 8093 0401 		sts 260,r24
+  48               	.LM11:
+  49 0020 8093 0701 		sts 263,r24
+  50               	.LM12:
+  51 0024 8093 0A01 		sts 266,r24
+  52 0028 282F      		mov r18,r24
+  53 002a E0E0      		ldi r30,lo8(0)
+  54 002c F0E0      		ldi r31,hi8(0)
+  55               	.L2:
+  56               	.LM13:
+  57 002e 28B9      		out 40-0x20,r18
+  58               	.LM14:
+  59 0030 25B9      		out 37-0x20,r18
+  60               	.LM15:
+  61 0032 22B9      		out 34-0x20,r18
+  62               	.LM16:
+  63 0034 2BB9      		out 43-0x20,r18
+  64               	.LM17:
+  65 0036 2EB9      		out 46-0x20,r18
+  66               	.LM18:
+  67 0038 21BB      		out 49-0x20,r18
+  68               	.LM19:
+  69 003a 24BB      		out 52-0x20,r18
+  70               	.LM20:
+  71 003c 2093 0201 		sts 258,r18
+  72               	.LM21:
+  73 0040 2093 0501 		sts 261,r18
+  74               	.LM22:
+  75 0044 2093 0801 		sts 264,r18
+  76               	.LM23:
+  77 0048 2093 0B01 		sts 267,r18
+  78               	.LBB2:
+  79               	.LBB3:
+  80               	.LBB4:
+  81               	.LBB5:
+  82               	.LM24:
+  83 004c CF01      		movw r24,r30
+  84               	/* #APP */
+  85 004e 0197      		1: sbiw r24,1
+  86 0050 F1F7      		brne 1b
+  87               	/* #NOAPP */
+  88               	.LBE5:
+  89               	.LBE4:
+  90               	.LBE3:
+  91               	.LBE2:
+  92               	.LBB6:
+  93               	.LBB7:
+  94               	.LBB8:
+  95               	.LBB9:
+  96 0052 CF01      		movw r24,r30
+  97               	/* #APP */
+  98 0054 0197      		1: sbiw r24,1
+  99 0056 F1F7      		brne 1b
+ 100               	/* #NOAPP */
+ 101               	.LBE9:
+ 102               	.LBE8:
+ 103               	.LBE7:
+ 104               	.LBE6:
+ 105               	.LBB10:
+ 106               	.LBB11:
+ 107               	.LBB12:
+ 108               	.LBB13:
+ 109 0058 CF01      		movw r24,r30
+ 110               	/* #APP */
+ 111 005a 0197      		1: sbiw r24,1
+ 112 005c F1F7      		brne 1b
+ 113               	/* #NOAPP */
+ 114               	.LBE13:
+ 115               	.LBE12:
+ 116               	.LBE11:
+ 117               	.LBE10:
+ 118               	.LM25:
+ 119 005e 18B8      		out 40-0x20,__zero_reg__
+ 120               	.LM26:
+ 121 0060 15B8      		out 37-0x20,__zero_reg__
+ 122               	.LM27:
+ 123 0062 12B8      		out 34-0x20,__zero_reg__
+ 124               	.LM28:
+ 125 0064 1BB8      		out 43-0x20,__zero_reg__
+ 126               	.LM29:
+ 127 0066 1EB8      		out 46-0x20,__zero_reg__
+ 128               	.LM30:
+ 129 0068 11BA      		out 49-0x20,__zero_reg__
+ 130               	.LM31:
+ 131 006a 14BA      		out 52-0x20,__zero_reg__
+ 132               	.LM32:
+ 133 006c 1092 0201 		sts 258,__zero_reg__
+ 134               	.LM33:
+ 135 0070 1092 0501 		sts 261,__zero_reg__
+ 136               	.LM34:
+ 137 0074 1092 0801 		sts 264,__zero_reg__
+ 138               	.LM35:
+ 139 0078 1092 0B01 		sts 267,__zero_reg__
+ 140               	.LBB14:
+ 141               	.LBB15:
+ 142               	.LBB16:
+ 143               	.LBB17:
+ 144               	.LM36:
+ 145 007c CF01      		movw r24,r30
+ 146               	/* #APP */
+ 147 007e 0197      		1: sbiw r24,1
+ 148 0080 F1F7      		brne 1b
+ 149               	/* #NOAPP */
+ 150               	.LBE17:
+ 151               	.LBE16:
+ 152               	.LBE15:
+ 153               	.LBE14:
+ 154               	.LBB18:
+ 155               	.LBB19:
+ 156               	.LBB20:
+ 157               	.LBB21:
+ 158 0082 CF01      		movw r24,r30
+ 159               	/* #APP */
+ 160 0084 0197      		1: sbiw r24,1
+ 161 0086 F1F7      		brne 1b
+ 162               	/* #NOAPP */
+ 163               	.LBE21:
+ 164               	.LBE20:
+ 165               	.LBE19:
+ 166               	.LBE18:
+ 167               	.LBB22:
+ 168               	.LBB23:
+ 169               	.LBB24:
+ 170               	.LBB25:
+ 171 0088 CF01      		movw r24,r30
+ 172               	/* #APP */
+ 173 008a 0197      		1: sbiw r24,1
+ 174 008c F1F7      		brne 1b
+ 175               	/* #NOAPP */
+ 176               	.LBE25:
+ 177               	.LBE24:
+ 178               	.LBE23:
+ 179               	.LBE22:
+ 180 008e CFCF      		rjmp .L2
+ 181               	/* epilogue: frame size=0 */
+ 182               	/* epilogue: noreturn */
+ 183               	/* epilogue end (size=0) */
+ 184               	/* function main size 84 (80) */
+ 185               	.LFE6:
+ 187               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Aditya\AppData\Local\Temp/ccQJaaaa.s:3      *ABS*:0000003f __SREG__
+C:\Users\Aditya\AppData\Local\Temp/ccQJaaaa.s:4      *ABS*:0000003e __SP_H__
+C:\Users\Aditya\AppData\Local\Temp/ccQJaaaa.s:5      *ABS*:0000003d __SP_L__
+C:\Users\Aditya\AppData\Local\Temp/ccQJaaaa.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Aditya\AppData\Local\Temp/ccQJaaaa.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Aditya\AppData\Local\Temp/ccQJaaaa.s:20     .text:00000000 main
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+__stack

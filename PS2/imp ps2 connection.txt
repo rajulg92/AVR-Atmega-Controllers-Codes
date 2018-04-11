@@ -1,0 +1,9 @@
+ps2conn rellinate	ps2wiring	ps2pins	     portA 640board	  Arduino Mega
+
+3	blue            green		acknowledge				
+9 	green		yellow		attention	pa4			10
+4 	yellow		blue		clock		pa0			13
+8 	orange		brown		data		pa1			12
+5 	red		red 		3v3
+7 	brown		orange 		command		pa3			11
+6 	black 		black		gnd

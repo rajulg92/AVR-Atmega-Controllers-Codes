@@ -1,0 +1,104 @@
+/*#include<avr/io.h>
+#include<avr/interrupt.h>
+#include "LCD.h"
+#include "PORT.h"
+unsigned int temp=1;
+
+void main()
+{
+
+DDRF=0x00;
+//CLEARBIT(PORTF,BIT(2));
+lcd_init();
+//sei();
+//SREG=0x80;
+ADCSRA |= 1<<ADPS2;
+ADMUX |= (1<<REFS0) | (1<<ADLAR);
+ADCSRA |=1<<ADIE;
+ADCSRA |=1<<ADEN;
+sei();
+ADCSRA |=1<<ADSC;
+for(;;)
+{
+}
+
+}
+
+ISR(ADC_vect)
+{
+temp=ADCH;
+lcd_showvalue(temp);
+//ADMUX=BIT(5)+BIT(6);
+}
+
+*/
+
+//ADMUX 	01100000
+//ADCSRA 	10000111
+
+#include<avr/io.h>
+#include<avr/interrupt.h>
+#include<util/delay.h>
+#include<stdlib.h>
+#include "LCD.h"
+#include "PORT.h"
+int temp;
+char adcresult[4];
+
+void init_adc()
+{
+ADMUX=0b01000000;
+
+ADCSRA=0b10000111;
+}
+
+int read_adc()
+{
+uint8_t thelow;
+uint16_t ten; 
+ADCSRA |= (1<<ADSC);
+
+while(!(ADCSRA & (1<<ADIF)))
+{
+;
+}
+
+
+thelow = ADCL;
+ten = ADCH <<2 | thelow >> 6; 
+
+
+
+ADCSRA |= (1<<ADIF);
+
+return(thelow);
+
+}
+
+void main()
+{
+uint16_t result=0;
+lcd_init();
+init_adc();
+lcd_gotoxy1(0);
+lcd_char('Y');
+lcd_gotoxy2(0);
+lcd_char('X');
+
+
+while(1)
+{
+result=read_adc();
+lcd_gotoxy1(2);
+itoa(result,adcresult,2);
+lcd_string(adcresult);
+_delay_ms(20);
+ADMUX++;
+result=read_adc();
+lcd_gotoxy2(2);
+itoa(result,adcresult,2);
+lcd_string(adcresult);
+_delay_ms(20);
+ADMUX--;
+}
+}

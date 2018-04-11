@@ -1,0 +1,16 @@
+Removed Pin From Net: NetName=24V Pin=K1-1
+Removed Pin From Net: NetName=24V Pin=K1-4
+Removed Pin From Net: NetName=24V Pin=P2-1
+Removed Pin From Net: NetName=GND Pin=P2-2
+Removed Pin From Net: NetName=NetP1_9 Pin=R3-1
+Removed Pin From Net: NetName=NetD3_1 Pin=R4-1
+Removed Pin From Net: NetName=NetP1_9 Pin=U1-2
+Removed Member From Class: ClassName=Schematic Member=K1
+Removed Member From Class: ClassName=Schematic Member=P3
+Change Component Designator: OldDesignator=P3 NewDesignator=P2
+Change Component Designator: OldDesignator=R2 NewDesignator=R3
+Change Component Designator: OldDesignator=R3 NewDesignator=R2
+Change Component Designator: OldDesignator=R5 NewDesignator=R6
+Added Component: Designator=*1(PCBComponent_1)
+Added Component: Designator=R5(AXIAL-0.4)
+Added Component: Designator=U2(DIP4)

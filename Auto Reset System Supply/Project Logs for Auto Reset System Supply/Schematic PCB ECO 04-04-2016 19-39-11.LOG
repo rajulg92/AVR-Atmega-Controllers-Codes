@@ -1,0 +1,5 @@
+Added Component: Designator=P2(2_Pin_Phoenix)
+Added Pin To Net: NetName=24V Pin=P2-1
+Added Pin To Net: NetName=NetP2_2 Pin=P2-2
+Added Member To Class: ClassName=Schematic Member=Component P2 Header 2
+Added Room: Name=Schematic

@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=TRIGGER Pin=P1-9
+Removed Pin From Net: NetName=24V Pin=P2-1
+Removed Pin From Net: NetName=GND Pin=P2-3
+Removed Member From Class: ClassName=Schematic Member=P2
+Change Component DesignItemId : Designator=P1 Old DesignItemId=Header 5X2 New DesignItemId=Header 4
+Change Component Footprint: Designator=P1 Old Footprint=10PinBox New Footprint=HDR1X4
+Change Component Comment : Designator=P1 Old Comment=Header 5X2 New Comment=Header 4

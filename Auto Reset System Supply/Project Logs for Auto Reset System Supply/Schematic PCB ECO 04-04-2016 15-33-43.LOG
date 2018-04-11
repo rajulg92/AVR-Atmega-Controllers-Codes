@@ -1,0 +1,4 @@
+Change Component Designator: OldDesignator=*1 NewDesignator=R1
+Added Component: Designator=Q?(TO-226-AA)
+Added Component: Designator=R5(AXIAL-0.4)
+Added Pin To Net: NetName=GND Pin=Q?-3

@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=GND Pin=R3-1
+Removed Pin From Net: NetName=VCC Pin=R3-2
+Removed Member From Class: ClassName=Schematic Member=R3
+Change Component Footprint: Designator=C3 Old Footprint=12mm New Footprint=polar Cap

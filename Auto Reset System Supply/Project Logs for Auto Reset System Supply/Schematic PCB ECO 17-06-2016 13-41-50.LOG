@@ -1,0 +1,8 @@
+Added Pin To Net: NetName=24V Pin=P1-1
+Added Pin To Net: NetName=TRIGGER Pin=P1-3
+Added Pin To Net: NetName=GND Pin=P1-4
+Added Pin To Net: NetName=24V OUT Pin=P1-2
+Added Pin To Net: NetName=24V OUT Pin=R3-2
+Added Pin To Net: NetName=24V OUT Pin=R4-4
+Added Net: Name=24V OUT
+Added Room: Name=Schematic

@@ -1,0 +1,278 @@
+   1               		.file	"main.c"
+   2               		.arch atmega8
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	ps2ly
+  19               	.global	ps2ly
+  20               		.section .bss
+  23               	ps2ly:
+  24 0000 0000      		.skip 2,0
+  25               	.global	ps2lx
+  26               	.global	ps2lx
+  29               	ps2lx:
+  30 0002 0000      		.skip 2,0
+  31               	.global	ps2ry
+  32               	.global	ps2ry
+  35               	ps2ry:
+  36 0004 0000      		.skip 2,0
+  37               	.global	ps2rx
+  38               	.global	ps2rx
+  41               	ps2rx:
+  42 0006 0000      		.skip 2,0
+  43               		.text
+  44               	.global	spi_init
+  46               	spi_init:
+  47               	.LFB7:
+  48               	.LM1:
+  49               	/* prologue: frame size=0 */
+  50               	/* prologue end (size=0) */
+  51               	.LM2:
+  52 0000 8CE2      		ldi r24,lo8(44)
+  53 0002 87BB      		out 55-0x20,r24
+  54               	.LM3:
+  55 0004 8FEF      		ldi r24,lo8(-1)
+  56 0006 81BB      		out 49-0x20,r24
+  57               	.LM4:
+  58 0008 8CE3      		ldi r24,lo8(60)
+  59 000a 8DB9      		out 45-0x20,r24
+  60               	/* epilogue: frame size=0 */
+  61 000c 0895      		ret
+  62               	/* epilogue end (size=1) */
+  63               	/* function spi_init size 7 (6) */
+  64               	.LFE7:
+  66               	.global	spi_txrx
+  68               	spi_txrx:
+  69               	.LFB8:
+  70               	.LM5:
+  71               	/* prologue: frame size=0 */
+  72               	/* prologue end (size=0) */
+  73               	.LM6:
+  74 000e 6E9A      		sbi 45-0x20,6
+  75               	.LM7:
+  76 0010 8FB9      		out 47-0x20,r24
+  77               	.L3:
+  78               	.LM8:
+  79 0012 779B      		sbis 46-0x20,7
+  80 0014 FECF      		rjmp .L3
+  81               	.LBB2:
+  82               	.LBB3:
+  83               	.LM9:
+  84 0016 8AE0      		ldi r24,lo8(10)
+  85               	.LBB4:
+  86               	.LBB5:
+  87               	.LM10:
+  88               	/* #APP */
+  89 0018 8A95      		1: dec r24
+  90 001a F1F7      		brne 1b
+  91               	/* #NOAPP */
+  92               	.LBE5:
+  93               	.LBE4:
+  94               	.LBE3:
+  95               	.LBE2:
+  96               	.LM11:
+  97 001c 2FB1      		in r18,47-0x20
+  98               	.LBB6:
+  99               	.LBB7:
+ 100               	.LM12:
+ 101 001e 80E0      		ldi r24,lo8(0)
+ 102 0020 90E0      		ldi r25,hi8(0)
+ 103               	.LBB8:
+ 104               	.LBB9:
+ 105               	.LM13:
+ 106               	/* #APP */
+ 107 0022 0197      		1: sbiw r24,1
+ 108 0024 F1F7      		brne 1b
+ 109               	/* #NOAPP */
+ 110               	.LBE9:
+ 111               	.LBE8:
+ 112               	.LBE7:
+ 113               	.LBE6:
+ 114               	.LM14:
+ 115 0026 822F      		mov r24,r18
+ 116 0028 9927      		clr r25
+ 117               	/* epilogue: frame size=0 */
+ 118 002a 0895      		ret
+ 119               	/* epilogue end (size=1) */
+ 120               	/* function spi_txrx size 19 (18) */
+ 121               	.LFE8:
+ 123               	.global	ps2_poll
+ 125               	ps2_poll:
+ 126               	.LFB10:
+ 127               	.LM15:
+ 128               	/* prologue: frame size=0 */
+ 129 002c CF93      		push r28
+ 130 002e DF93      		push r29
+ 131               	/* prologue end (size=2) */
+ 132               	.LM16:
+ 133 0030 80E0      		ldi r24,lo8(0)
+ 134 0032 EDDF      		rcall spi_txrx
+ 135 0034 9927      		clr r25
+ 136 0036 9093 0000 		sts (ps2rx)+1,r25
+ 137 003a 8093 0000 		sts ps2rx,r24
+ 138               	.LM17:
+ 139 003e 80E0      		ldi r24,lo8(0)
+ 140 0040 E6DF      		rcall spi_txrx
+ 141 0042 9927      		clr r25
+ 142 0044 9093 0000 		sts (ps2ry)+1,r25
+ 143 0048 8093 0000 		sts ps2ry,r24
+ 144               	.LM18:
+ 145 004c 80E0      		ldi r24,lo8(0)
+ 146 004e DFDF      		rcall spi_txrx
+ 147 0050 9927      		clr r25
+ 148 0052 9093 0000 		sts (ps2lx)+1,r25
+ 149 0056 8093 0000 		sts ps2lx,r24
+ 150               	.LM19:
+ 151 005a 80E0      		ldi r24,lo8(0)
+ 152 005c D8DF      		rcall spi_txrx
+ 153 005e 9927      		clr r25
+ 154 0060 9093 0000 		sts (ps2ly)+1,r25
+ 155 0064 8093 0000 		sts ps2ly,r24
+ 156 0068 C0E0      		ldi r28,lo8(pressure)
+ 157 006a D0E0      		ldi r29,hi8(pressure)
+ 158               	.L26:
+ 159               	.LM20:
+ 160 006c 80E0      		ldi r24,lo8(0)
+ 161 006e CFDF      		rcall spi_txrx
+ 162 0070 9927      		clr r25
+ 163 0072 8993      		st Y+,r24
+ 164 0074 9993      		st Y+,r25
+ 165               	.LM21:
+ 166 0076 80E0      		ldi r24,hi8(pressure+22)
+ 167 0078 C030      		cpi r28,lo8(pressure+22)
+ 168 007a D807      		cpc r29,r24
+ 169 007c B9F3      		breq .L26
+ 170 007e B4F3      		brlt .L26
+ 171               	.LM22:
+ 172 0080 C29A      		sbi 56-0x20,2
+ 173               	/* epilogue: frame size=0 */
+ 174 0082 DF91      		pop r29
+ 175 0084 CF91      		pop r28
+ 176 0086 0895      		ret
+ 177               	/* epilogue end (size=3) */
+ 178               	/* function ps2_poll size 46 (41) */
+ 179               	.LFE10:
+ 181               	.global	ps2_init
+ 183               	ps2_init:
+ 184               	.LFB9:
+ 185               	.LM23:
+ 186               	/* prologue: frame size=0 */
+ 187               	/* prologue end (size=0) */
+ 188               	.LM24:
+ 189 0088 C298      		cbi 56-0x20,2
+ 190               	.LM25:
+ 191 008a 81E0      		ldi r24,lo8(1)
+ 192 008c C0DF      		rcall spi_txrx
+ 193 008e 9927      		clr r25
+ 194 0090 9093 0000 		sts (rx_buffer)+1,r25
+ 195 0094 8093 0000 		sts rx_buffer,r24
+ 196               	.LM26:
+ 197 0098 82E4      		ldi r24,lo8(66)
+ 198 009a B9DF      		rcall spi_txrx
+ 199 009c 9927      		clr r25
+ 200 009e 9093 0000 		sts (rx_buffer+2)+1,r25
+ 201 00a2 8093 0000 		sts rx_buffer+2,r24
+ 202               	.LM27:
+ 203 00a6 80E0      		ldi r24,lo8(0)
+ 204 00a8 B2DF      		rcall spi_txrx
+ 205 00aa 9927      		clr r25
+ 206 00ac 9093 0000 		sts (rx_buffer+4)+1,r25
+ 207 00b0 8093 0000 		sts rx_buffer+4,r24
+ 208               	.LM28:
+ 209 00b4 80E0      		ldi r24,lo8(0)
+ 210 00b6 ABDF      		rcall spi_txrx
+ 211 00b8 9927      		clr r25
+ 212 00ba 9093 0000 		sts (rx_buffer+6)+1,r25
+ 213 00be 8093 0000 		sts rx_buffer+6,r24
+ 214               	.LM29:
+ 215 00c2 80E0      		ldi r24,lo8(0)
+ 216 00c4 A4DF      		rcall spi_txrx
+ 217 00c6 9927      		clr r25
+ 218 00c8 9093 0000 		sts (rx_buffer+8)+1,r25
+ 219 00cc 8093 0000 		sts rx_buffer+8,r24
+ 220               	.LBB10:
+ 221               	.LBB11:
+ 222               	.LM30:
+ 223 00d0 84E2      		ldi r24,lo8(-3036)
+ 224 00d2 94EF      		ldi r25,hi8(-3036)
+ 225               	.LBB12:
+ 226               	.LBB13:
+ 227               	.LM31:
+ 228               	/* #APP */
+ 229 00d4 0197      		1: sbiw r24,1
+ 230 00d6 F1F7      		brne 1b
+ 231               	/* #NOAPP */
+ 232               	.LBE13:
+ 233               	.LBE12:
+ 234               	.LBE11:
+ 235               	.LBE10:
+ 236               	/* epilogue: frame size=0 */
+ 237 00d8 0895      		ret
+ 238               	/* epilogue end (size=1) */
+ 239               	/* function ps2_init size 43 (42) */
+ 240               	.LFE9:
+ 242               	.global	main
+ 244               	main:
+ 245               	.LFB6:
+ 246               	.LM32:
+ 247               	/* prologue: frame size=0 */
+ 248 00da C0E0      		ldi r28,lo8(__stack - 0)
+ 249 00dc D0E0      		ldi r29,hi8(__stack - 0)
+ 250 00de DEBF      		out __SP_H__,r29
+ 251 00e0 CDBF      		out __SP_L__,r28
+ 252               	/* prologue end (size=4) */
+ 253               	.LM33:
+ 254 00e2 81E0      		ldi r24,lo8(1)
+ 255 00e4 84BB      		out 52-0x20,r24
+ 256               	.LM34:
+ 257 00e6 8CDF      		rcall spi_init
+ 258               	.L45:
+ 259               	.LM35:
+ 260 00e8 CFDF      		rcall ps2_init
+ 261               	.LM36:
+ 262 00ea 8091 0000 		lds r24,rx_buffer+4
+ 263 00ee 9091 0000 		lds r25,(rx_buffer+4)+1
+ 264 00f2 8A35      		cpi r24,90
+ 265 00f4 9105      		cpc r25,__zero_reg__
+ 266 00f6 C1F7      		brne .L45
+ 267               	.LM37:
+ 268 00f8 A89A      		sbi 53-0x20,0
+ 269               	.LM38:
+ 270 00fa 98DF      		rcall ps2_poll
+ 271 00fc F5CF      		rjmp .L45
+ 272               	/* epilogue: frame size=0 */
+ 273               	/* epilogue: noreturn */
+ 274               	/* epilogue end (size=0) */
+ 275               	/* function main size 18 (14) */
+ 276               	.LFE6:
+ 278               		.comm rx_buffer,10,1
+ 279               		.comm pressure,24,1
+ 280               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Aditya\AppData\Local\Temp/cckZaaaa.s:3      *ABS*:0000003f __SREG__
+C:\Users\Aditya\AppData\Local\Temp/cckZaaaa.s:4      *ABS*:0000003e __SP_H__
+C:\Users\Aditya\AppData\Local\Temp/cckZaaaa.s:5      *ABS*:0000003d __SP_L__
+C:\Users\Aditya\AppData\Local\Temp/cckZaaaa.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Aditya\AppData\Local\Temp/cckZaaaa.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Aditya\AppData\Local\Temp/cckZaaaa.s:23     .bss:00000000 ps2ly
+C:\Users\Aditya\AppData\Local\Temp/cckZaaaa.s:29     .bss:00000002 ps2lx
+C:\Users\Aditya\AppData\Local\Temp/cckZaaaa.s:35     .bss:00000004 ps2ry
+C:\Users\Aditya\AppData\Local\Temp/cckZaaaa.s:41     .bss:00000006 ps2rx
+C:\Users\Aditya\AppData\Local\Temp/cckZaaaa.s:46     .text:00000000 spi_init
+C:\Users\Aditya\AppData\Local\Temp/cckZaaaa.s:68     .text:0000000e spi_txrx
+C:\Users\Aditya\AppData\Local\Temp/cckZaaaa.s:125    .text:0000002c ps2_poll
+                            *COM*:00000018 pressure
+C:\Users\Aditya\AppData\Local\Temp/cckZaaaa.s:183    .text:00000088 ps2_init
+                            *COM*:0000000a rx_buffer
+C:\Users\Aditya\AppData\Local\Temp/cckZaaaa.s:244    .text:000000da main
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+__stack

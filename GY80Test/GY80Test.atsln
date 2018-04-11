@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "GY80Test", "GY80Test\GY80Test.cproj", "{4523D865-F7C0-421E-ACAD-0E9F199D908A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4523D865-F7C0-421E-ACAD-0E9F199D908A}.Debug|AVR.ActiveCfg = Debug|AVR
+		{4523D865-F7C0-421E-ACAD-0E9F199D908A}.Debug|AVR.Build.0 = Debug|AVR
+		{4523D865-F7C0-421E-ACAD-0E9F199D908A}.Release|AVR.ActiveCfg = Release|AVR
+		{4523D865-F7C0-421E-ACAD-0E9F199D908A}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

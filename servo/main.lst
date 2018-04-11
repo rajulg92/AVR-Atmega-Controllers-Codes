@@ -1,0 +1,168 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	topservo
+  18               	topservo:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 9A99      		sbic 51-32,2
+  25 0002 00C0      		rjmp .L2
+  26               	.LM3:
+  27 0004 8AB5      		in r24,74-32
+  28 0006 9BB5      		in r25,(74)+1-32
+  29 0008 8C54      		subi r24,lo8(1100)
+  30 000a 9440      		sbci r25,hi8(1100)
+  31 000c 00F4      		brsh .L5
+  32               	.LM4:
+  33 000e 8AB5      		in r24,74-32
+  34 0010 9BB5      		in r25,(74)+1-32
+  35 0012 9BBD      		out (74)+1-32,r25
+  36 0014 8ABD      		out 74-32,r24
+  37 0016 0196      		adiw r24,1
+  38 0018 00C0      		rjmp .L6
+  39               	.L2:
+  40               	.LM5:
+  41 001a 9B99      		sbic 51-32,3
+  42 001c 00C0      		rjmp .L4
+  43               	.LM6:
+  44 001e 8AB5      		in r24,74-32
+  45 0020 9BB5      		in r25,(74)+1-32
+  46 0022 8B3F      		cpi r24,251
+  47 0024 9105      		cpc r25,__zero_reg__
+  48 0026 00F0      		brlo .L5
+  49               	.LM7:
+  50 0028 8AB5      		in r24,74-32
+  51 002a 9BB5      		in r25,(74)+1-32
+  52 002c 9BBD      		out (74)+1-32,r25
+  53 002e 8ABD      		out 74-32,r24
+  54 0030 0197      		sbiw r24,1
+  55               	.L6:
+  56 0032 9BBD      		out (74)+1-32,r25
+  57 0034 8ABD      		out 74-32,r24
+  58               	.LBB34:
+  59               	.LBB35:
+  60               	.LBB36:
+  61               	.LBB37:
+  62               	.LBB38:
+  63               	.LBB39:
+  64               	.LM8:
+  65 0036 88EE      		ldi r24,lo8(1000)
+  66 0038 93E0      		ldi r25,hi8(1000)
+  67               	.LVL0:
+  68               	/* #APP */
+  69               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  70 003a 0197      		1: sbiw r24,1
+  71 003c 01F4      		brne 1b
+  72               	 ;  0 "" 2
+  73               	/* #NOAPP */
+  74 003e 0895      		ret
+  75               	.LVL1:
+  76               	.L4:
+  77               	.LBE39:
+  78               	.LBE38:
+  79               	.LBE37:
+  80               	.LBE36:
+  81               	.LBE35:
+  82               	.LBE34:
+  83               	.LM9:
+  84 0040 8AB5      		in r24,74-32
+  85 0042 9BB5      		in r25,(74)+1-32
+  86 0044 9BBD      		out (74)+1-32,r25
+  87 0046 8ABD      		out 74-32,r24
+  88               	.L5:
+  89 0048 0895      		ret
+  90               	.LFE6:
+  92               	.global	bottomservo
+  94               	bottomservo:
+  95               	.LFB7:
+  96               	.LM10:
+  97               	/* prologue: function */
+  98               	/* frame size = 0 */
+  99               	.LM11:
+ 100 004a 9899      		sbic 51-32,0
+ 101 004c 00C0      		rjmp .L8
+ 102               	.LM12:
+ 103 004e 82EB      		ldi r24,lo8(690)
+ 104 0050 92E0      		ldi r25,hi8(690)
+ 105 0052 00C0      		rjmp .L12
+ 106               	.L8:
+ 107               	.LM13:
+ 108 0054 9999      		sbic 51-32,1
+ 109 0056 00C0      		rjmp .L10
+ 110               	.LM14:
+ 111 0058 8CEA      		ldi r24,lo8(9900)
+ 112 005a 96E2      		ldi r25,hi8(9900)
+ 113               	.L12:
+ 114 005c 99BD      		out (72)+1-32,r25
+ 115 005e 88BD      		out 72-32,r24
+ 116 0060 0895      		ret
+ 117               	.L10:
+ 118               	.LM15:
+ 119 0062 19BC      		out (72)+1-32,__zero_reg__
+ 120 0064 18BC      		out 72-32,__zero_reg__
+ 121 0066 0895      		ret
+ 122               	.LFE7:
+ 124               	.global	main
+ 126               	main:
+ 127               	.LFB8:
+ 128               	.LM16:
+ 129               	/* prologue: function */
+ 130               	/* frame size = 0 */
+ 131               	.LM17:
+ 132 0068 86E0      		ldi r24,lo8(6)
+ 133 006a 87BB      		out 55-32,r24
+ 134               	.LM18:
+ 135 006c 18BA      		out 56-32,__zero_reg__
+ 136               	.LM19:
+ 137 006e 14BA      		out 52-32,__zero_reg__
+ 138               	.LM20:
+ 139 0070 8FE3      		ldi r24,lo8(63)
+ 140 0072 85BB      		out 53-32,r24
+ 141               	.LM21:
+ 142 0074 80EA      		ldi r24,lo8(-96)
+ 143 0076 8FBD      		out 79-32,r24
+ 144               	.LM22:
+ 145 0078 81E1      		ldi r24,lo8(17)
+ 146 007a 8EBD      		out 78-32,r24
+ 147               	.LM23:
+ 148 007c 80E1      		ldi r24,lo8(10000)
+ 149 007e 97E2      		ldi r25,hi8(10000)
+ 150 0080 97BD      		out (70)+1-32,r25
+ 151 0082 86BD      		out 70-32,r24
+ 152               	.LM24:
+ 153 0084 8CE6      		ldi r24,lo8(620)
+ 154 0086 92E0      		ldi r25,hi8(620)
+ 155 0088 9BBD      		out (74)+1-32,r25
+ 156 008a 8ABD      		out 74-32,r24
+ 157               	.LM25:
+ 158 008c 19BC      		out (72)+1-32,__zero_reg__
+ 159 008e 18BC      		out 72-32,__zero_reg__
+ 160               	.L14:
+ 161               	.LM26:
+ 162 0090 00D0      		rcall bottomservo
+ 163               	.LM27:
+ 164 0092 00D0      		rcall topservo
+ 165 0094 00C0      		rjmp .L14
+ 166               	.LFE8:
+ 208               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\YATEEN~1\AppData\Local\Temp/ccXuKu0V.s:2      *ABS*:0000003f __SREG__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccXuKu0V.s:3      *ABS*:0000003e __SP_H__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccXuKu0V.s:4      *ABS*:0000003d __SP_L__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccXuKu0V.s:5      *ABS*:00000034 __CCP__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccXuKu0V.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccXuKu0V.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\YATEEN~1\AppData\Local\Temp/ccXuKu0V.s:18     .text:00000000 topservo
+C:\Users\YATEEN~1\AppData\Local\Temp/ccXuKu0V.s:94     .text:0000004a bottomservo
+C:\Users\YATEEN~1\AppData\Local\Temp/ccXuKu0V.s:126    .text:00000068 main
+
+NO UNDEFINED SYMBOLS
